@@ -1,5 +1,5 @@
-# 6.5 resources
-# The bare minimum!
+# 6.6 resources
+# Have Lohen, Nicole, and Prune!
 
 # Credits:
 
@@ -8,3 +8,4 @@
 - Dimbreath for resources as well
 - Yuuki for resource inspiration
 - iam-akuzihs for resources
+- kitkat for 6.5 base [resources](https://github.com/kitkat033/LunaGC-Resources)
