@@ -1,5 +1,5 @@
 # 6.6 resources
-# Have Lohen, Nicole, and Prune!
+# Better version here! : [LunaGC-Resources](https://github.com/kitkat033/LunaGC-Resources)
 
 # Credits:
 
