@@ -1,5 +1,7 @@
-# 6.6 resources
-# Better version here! : [LunaGC-Resources](https://github.com/kitkat033/LunaGC-Resources)
+# 6.7 resources!
+
+# This is enough to get you in-game. There will be visual bugs for Sandrone since my resource is not complete.
+
 
 # Credits:
 
@@ -9,3 +11,4 @@
 - Yuuki for resource inspiration
 - iam-akuzihs for resources
 - kitkat for 6.5 base [resources](https://github.com/kitkat033/LunaGC-Resources)
+- Kuroo for resources
