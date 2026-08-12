@@ -1,6 +1,6 @@
-# 6.7 resources!
+# 7.0 resources!
 
-# This is enough to get you in-game. There will be visual bugs for Sandrone since my resource is not complete.
+# This is enough to get you in-game. Resources is not complete, so many things will break, have fun!
 
 
 # Credits:
