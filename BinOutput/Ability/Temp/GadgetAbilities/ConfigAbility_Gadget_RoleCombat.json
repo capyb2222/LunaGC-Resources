@@ -1,0 +1,3319 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ReduceGap": 0
+      },
+      "modifiers": {
+        "EffectTrigger_InitialStage1": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "InitialStage1",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EffectTrigger_ToStage2": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_ToStage2_ReconnectLatency",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "ToStage2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EffectTrigger_ToStage2_ReconnectLatency": {
+          "onRemoved": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "ToStage2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EffectTrigger_ToStage3": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_ToStage3_ReconnectLatency",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "ToStage3",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EffectTrigger_ToStage3_ReconnectLatency": {
+          "onRemoved": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "ToStage2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "ToStage3",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_ThunderStorm_StageManager": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "thinkInterval": "ReduceGap",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SCENEOBJ_Gear_Combat_ThunderStorm_Stage",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_Gear_Combat_ThunderStorm_Stage",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "ThunderStorm_InitialStage1",
+                "ThunderStorm_Stage2",
+                "ThunderStorm_Stage3"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5,
+                2.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_SCENEOBJ_Gear_Combat_ThunderStorm_Stage",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_ThunderStorm_State": {
+          "onRemoved": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Kill_Self": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "CKOGMACPCOC": true,
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Disappear",
+              "configIdArray": [
+                49001030,
+                49001031,
+                49001032
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PNOKPFOOCJH": true
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ThunderStorm_End": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 49001030,
+                "sortType": "Reversed"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Kill_Self",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 49001031,
+                "sortType": "Reversed"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Kill_Self",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 49001032,
+                "sortType": "Reversed"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Kill_Self",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_SafeArea_Auto",
+              "doOffStage": false,
+              "parameter": "StageChange",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gear_Combat_ThunderStorm_State",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ThunderStorm_InitialStage1": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_InitialRange",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -15,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_Stage",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "lifeByOwnerIsAlive": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 5001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 49001030,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_InitialStage1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_InitialRange",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 15,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ThunderStorm_Stage2": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_Stage",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 49001030,
+                "sortType": "Reversed"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Kill_Self",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "lifeByOwnerIsAlive": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 5001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 49001031,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 5,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_ToStage2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_InitialStage1",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ThunderStorm_Stage3": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_Stage",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 49001031,
+                "sortType": "Reversed"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Kill_Self",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "lifeByOwnerIsAlive": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 5001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 49001032,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 5,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_ToStage3",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_ToStage2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EffectTrigger_InitialStage1",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ThunderStorm_TeamRemover": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_ThunderStorm_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_ThunderStorm_StageManager",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_ThunderStorm_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AddGlobalValue",
+          "key": "_SCENEOBJ_ThunderStorm_OwnerTag",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_SCENEOBJ_ThunderStorm_DamageMask",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_SCENEOBJ_ThunderStorm_HasEffect",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_ThunderStorm_Manager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageRatio": 0,
+        "ElementLevelCo": 0,
+        "TriggerGap": 0
+      },
+      "modifiers": {
+        "ThunderStorm_TeamRemover": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "ThunderStorm_ThinkInterval_DamageCheck": {
+          "thinkInterval": 0.25,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_Stage",
+                  "target": "Owner",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "target": "Target",
+                  "value": 15
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_DamageTrigger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_Stage",
+                  "target": "Owner",
+                  "value": 2
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "target": "Target",
+                  "value": 10
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_DamageTrigger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_Stage",
+                  "target": "Owner",
+                  "value": 3
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "target": "Target",
+                  "value": 5
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_DamageTrigger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_Stage",
+                  "target": "Owner",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": 15
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_Stage",
+                  "target": "Owner",
+                  "value": 2
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": 10
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_Stage",
+                  "target": "Owner",
+                  "value": 3
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": 5
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_RoleCombat_ThunderStorm_DamageMask": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_DamageMask",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "TriggerGap",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_DamageMask",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_RoleCombat_ThunderStorm_DamageTrigger": {
+          "isUnique": true,
+          "duration": "TriggerGap",
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasEffect",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "centerBasedOn": "CurLocalAvatar",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campBasedOn": "Caster",
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR50"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_DamageMask",
+                  "compareType": "NoneOrEqual"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasEffect",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_OwnerTag",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurLocalAvatar",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV0",
+                      "retreatType": "ByHitDirection",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "elementType": "Electric",
+                      "damageExtra": [
+                        "DamageRatio",
+                        "ElementLevelCo",
+                        "MUL"
+                      ],
+                      "IOLHEGDMIBF": true,
+                      "strikeType": "None",
+                      "KEBENMLLFJH": true,
+                      "elementDurability": 25,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "default",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "target": "CurLocalAvatar",
+                  "effectPattern": "Eff_SceneObj_ThunderStorm_Blast",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+                  "compareType": "NoneOrEqual"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_DamageMask",
+                  "compareType": "NoneOrEqual"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasEffect",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_RoleCombat_ThunderStorm_Team": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_DamageMask",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_HasEffect",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_ThunderStorm_Gathering",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_DamageMask",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_HasEffect",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "centerBasedOn": "CurLocalAvatar",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campBasedOn": "Caster",
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR50"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_OwnerTag",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SCENEOBJ_ThunderStorm_HasOwner",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_RoleCombat_ThunderStorm_TeamSearcher": {
+          "isUnique": true,
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoleCombat_ThunderStorm_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "ElementLevelCo",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ThunderStorm_ThinkInterval_DamageCheck",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetPositionToSelfPosition",
+              "target": "Target",
+              "value": 15
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_InitialRange",
+              "target": "Owner",
+              "value": 15
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_RoleCombat_ThunderStorm_TeamSearcher",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetPositionToSelfPosition",
+              "target": "Target",
+              "value": 10
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_SCENEOBJ_ThunderStorm_InitialRange",
+              "target": "Owner",
+              "value": 10
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_RoleCombat_ThunderStorm_TeamSearcher",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onFieldExit": [
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByEntityIsAlive",
+              "target": "Caster"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_RoleCombat_ThunderStorm_TeamSearcher",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_ThunderStorm",
+      "onFieldEnter": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "doOffStage": false,
+          "modifierName": "ThunderStorm_TeamRemover",
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "ActiveState"
+          ],
+          "valueSteps": [
+            -1,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_SCENEOBJ_Gear_Combat_TracingEnergyBall_Active",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ActiveState": {
+          "thinkInterval": 20,
+          "onAdded": [
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 400029,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "bulletID": 49001034,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "CurLocalAvatar",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "maxRandomRange": 15
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 400029,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "bulletID": 49001034,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "CurLocalAvatar",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "maxRandomRange": 15
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Gadget_RoleCombat_TracingEnergyBall_CreatorGadget"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DamageByAttackValue",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "attackInfo": {
+            "hitPattern": {
+              "canBeDefenceHalt": true,
+              "hitImpulseType": "LV3",
+              "onHitEffectName": "none",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            },
+            "attackTag": "Gear_Combat_TracingEnergyBall",
+            "cameraShake": {
+              "extension": {
+                "cycleDamping": 0.11999999731779099,
+                "baseOnCamera": true,
+                "rangeAttenuation": 0.5,
+                "baseCycle": 0.11999999731779099
+              },
+              "shakeDistance": 20
+            },
+            "attackProperty": {
+              "enBreak": 100,
+              "damageExtra": [
+                "ElementLevelCo",
+                "TracingEnergyBallRatio",
+                "MUL"
+              ],
+              "IOLHEGDMIBF": true,
+              "KEBENMLLFJH": true,
+              "elementDurability": 100,
+              "attackType": "Range",
+              "elementRank": 1
+            },
+            "KMBBLIMOMBH": {
+              "LMEIODIINNM": "Shake"
+            },
+            "attenuationGroup": "default",
+            "OLHIHLILEKH": {
+              "onHitEffectName": "default",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            }
+          },
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DamageByAttackValue",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "attackInfo": {
+            "hitPattern": {
+              "canBeDefenceHalt": true,
+              "hitImpulseType": "LV3",
+              "onHitEffectName": "none",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            },
+            "attackTag": "Gear_Combat_TracingEnergyBall",
+            "cameraShake": {
+              "extension": {
+                "cycleDamping": 0.11999999731779099,
+                "baseOnCamera": true,
+                "rangeAttenuation": 0.5,
+                "baseCycle": 0.11999999731779099
+              },
+              "shakeDistance": 20
+            },
+            "attackProperty": {
+              "enBreak": 100,
+              "damageExtra": [
+                "ElementLevelCo",
+                "TracingEnergyBallRatio",
+                "MUL"
+              ],
+              "IOLHEGDMIBF": true,
+              "KEBENMLLFJH": true,
+              "elementDurability": 100,
+              "attackType": "Range",
+              "elementRank": 1
+            },
+            "KMBBLIMOMBH": {
+              "LMEIODIINNM": "Shake"
+            },
+            "attenuationGroup": "default",
+            "OLHIHLILEKH": {
+              "onHitEffectName": "default",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            }
+          },
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "EnableBulletCollisionPluginTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_PowerUp",
+              "doOffStage": false,
+              "parameter": "Explode",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001034
+              ],
+              "doOffStage": false,
+              "duHPRation": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireHitEffect",
+          "BCIDGAKNEBH": {
+            "BPIDFNFCNHP": {
+              "value": 1,
+              "NJICIOFCOPD": true
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "hitEntity": "Eff_SceneObj_TracingEnergyBall_Hit",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "AvatarRatio": 0,
+        "BaseRatio": 0,
+        "DampingRatio": 0,
+        "DampingTime": 0,
+        "ElementLevelCo": 0,
+        "MinRatio": 0,
+        "TracingEnergyBallRatio": 1
+      },
+      "modifiers": {
+        "Gear_Combat_TracingEnergyBall": {
+          "onAttackLanded": [
+            {
+              "$type": "KillSelf",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001034
+              ],
+              "doOffStage": false,
+              "duHPRation": 0.800000011920929,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_PowerUp",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_Latency": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "ActiveTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gear_Combat_TracingEnergyBall",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableBulletCollisionPluginTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gear_Combat_TracingEnergyBall_Ratio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_Alert",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableBulletCollisionPluginTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_LineEffect": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "SelfAttackTarget",
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_DirectionLine",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Applier"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_LineEffect_Latency": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Owner",
+              "doOffStage": false,
+              "modifierName": "Gear_Combat_TracingEnergyBall_LineEffect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_Ratio": {
+          "thinkInterval": "DampingTime",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "BaseRatio",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "TracingEnergyBallRatio",
+              "globalValueKey": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "canBeHandledOnRecover": true,
+              "minValue": "MinRatio",
+              "useLimitRange": true,
+              "maxValue": "BaseRatio",
+              "doOffStage": false,
+              "value": "DampingRatio",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "TracingEnergyBallRatio",
+              "globalValueKey": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_TracingEnergyBall",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "ElementLevelCo",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_TracingEnergyBall_Latency",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_TracingEnergyBall_LineEffect_Latency",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_TracingEnergyBall"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "ActiveState"
+          ],
+          "valueSteps": [
+            -1,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_SCENEOBJ_Gear_Combat_TracingEnergyBall_Active",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ActiveState": {
+          "thinkInterval": 25,
+          "onAdded": [
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 400997,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "entityTypePriority": [
+                  "Avatar"
+                ],
+                "sizeRatio": 1,
+                "sortType": "Random",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 1,
+                "shapeName": "CircleR60"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "bulletID": 49001036,
+              "onGround": true,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "maxRandomRange": 15
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 400997,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "entityTypePriority": [
+                  "Avatar"
+                ],
+                "sizeRatio": 1,
+                "sortType": "Random",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 1,
+                "shapeName": "CircleR60"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "bulletID": 49001036,
+              "onGround": true,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "maxRandomRange": 15
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Gadget_RoleCombat_TracingEnergyBall_Grass_CreatorGadget"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DamageByAttackValue",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "attackInfo": {
+            "hitPattern": {
+              "canBeDefenceHalt": true,
+              "hitImpulseType": "LV3",
+              "onHitEffectName": "none",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            },
+            "attackTag": "Gear_Combat_TracingEnergyBall",
+            "cameraShake": {
+              "extension": {
+                "cycleDamping": 0.11999999731779099,
+                "baseOnCamera": true,
+                "rangeAttenuation": 0.5,
+                "baseCycle": 0.11999999731779099
+              },
+              "shakeDistance": 20
+            },
+            "attackProperty": {
+              "elementType": "Grass",
+              "enBreak": 100,
+              "damageExtra": [
+                "ElementLevelCo",
+                "TracingEnergyBallRatio",
+                "MUL",
+                "AvatarRatio",
+                "MUL"
+              ],
+              "IOLHEGDMIBF": true,
+              "KEBENMLLFJH": true,
+              "elementDurability": 25,
+              "attackType": "Range",
+              "elementRank": 1
+            },
+            "KMBBLIMOMBH": {
+              "LMEIODIINNM": "Shake"
+            },
+            "attenuationGroup": "default",
+            "OLHIHLILEKH": {
+              "onHitEffectName": "default",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            }
+          },
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DamageByAttackValue",
+          "predicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "attackInfo": {
+            "hitPattern": {
+              "canBeDefenceHalt": true,
+              "hitImpulseType": "LV3",
+              "onHitEffectName": "none",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            },
+            "attackTag": "Gear_Combat_TracingEnergyBall",
+            "cameraShake": {
+              "extension": {
+                "cycleDamping": 0.11999999731779099,
+                "baseOnCamera": true,
+                "rangeAttenuation": 0.5,
+                "baseCycle": 0.11999999731779099
+              },
+              "shakeDistance": 20
+            },
+            "attackProperty": {
+              "elementType": "Grass",
+              "enBreak": 100,
+              "damageExtra": [
+                "ElementLevelCo",
+                "TracingEnergyBallRatio",
+                "MUL"
+              ],
+              "IOLHEGDMIBF": true,
+              "KEBENMLLFJH": true,
+              "elementDurability": 25,
+              "attackType": "Range",
+              "elementRank": 1
+            },
+            "KMBBLIMOMBH": {
+              "LMEIODIINNM": "Shake"
+            },
+            "attenuationGroup": "default",
+            "OLHIHLILEKH": {
+              "onHitEffectName": "default",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            }
+          },
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "EnableBulletCollisionPluginTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_Grass",
+              "doOffStage": false,
+              "parameter": "Explode",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001036
+              ],
+              "doOffStage": false,
+              "duHPRation": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireHitEffect",
+          "BCIDGAKNEBH": {
+            "BPIDFNFCNHP": {
+              "value": 1,
+              "NJICIOFCOPD": true
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "hitEntity": "Eff_SceneObj_TracingEnergyBall_Grass_Hit",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "AvatarRatio": 0,
+        "BaseRatio": 0,
+        "DampingRatio": 0,
+        "DampingTime": 0,
+        "ElementLevelCo": 0,
+        "MinRatio": 0,
+        "TracingEnergyBallRatio": 1
+      },
+      "modifiers": {
+        "Gear_Combat_TracingEnergyBall": {
+          "onAttackLanded": [
+            {
+              "$type": "KillSelf",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001036
+              ],
+              "doOffStage": false,
+              "duHPRation": 0.800000011920929,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_Grass",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_Latency": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "ActiveTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gear_Combat_TracingEnergyBall",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableBulletCollisionPluginTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gear_Combat_TracingEnergyBall_Ratio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.7999999523162842,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_Grass_Alert",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableBulletCollisionPluginTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_LineEffect": {
+          "duration": 4,
+          "onAdded": [
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetSelfAttackTarget",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "entityTypePriority": [
+                  "Avatar"
+                ],
+                "sizeRatio": 1,
+                "sortType": "Random",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 1,
+                "shapeName": "CircleR60"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KDBMDCJLOPP": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "SelfAttackTarget",
+              "effectPattern": "Eff_SceneObj_TracingEnergyBall_Grass_DirectionLine",
+              "scale": 1,
+              "doOffStage": false,
+              "MMBHFKIOIKL": true,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gear_Combat_TracingEnergyBall_Ratio": {
+          "thinkInterval": "DampingTime",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "BaseRatio",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "TracingEnergyBallRatio",
+              "globalValueKey": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "canBeHandledOnRecover": true,
+              "minValue": "MinRatio",
+              "useLimitRange": true,
+              "maxValue": "BaseRatio",
+              "doOffStage": false,
+              "value": "DampingRatio",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "TracingEnergyBallRatio",
+              "globalValueKey": "_SCENEOBJ_TracingEnergyBall_Ratio",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_TracingEnergyBall",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "ElementLevelCo",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_TracingEnergyBall_Latency",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gear_Combat_TracingEnergyBall_LineEffect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_TracingEnergyBall_Grass"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "RandomLatency": 0.10000000149011612,
+        "RecoverTime": 0.10000000149011612
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Gadget_RoleCombat_DangerArea_Active",
+            "Gadget_RoleCombat_DangerArea_CoolDown"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DANGERAREA_StateID",
+          "defaultGlobalValueOnCreate": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Gadget_RoleCombat_DangerArea_ActiveEffect"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DANGERAREA_ActiveEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FieldEntityCountChangeMixin",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            }
+          ],
+          "simpleCountUseLimitRange": true,
+          "onFieldExit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DANGERAREA_Avatar_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "campTargetType": "Enemy",
+          "onFieldEnter": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DANGERAREA_Avatar_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gadget_RoleCombat_CountDown": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Alert_Enhanced",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true
+              },
+              "gadgetID": 49001038,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_ActiveEffect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_StateID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "LNEPKOKJEJG": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gadget_RoleCombat_DangerArea_Active": {
+          "thinkInterval": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DANGERAREA_Avatar_Count",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 0.5
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gadget_RoleCombat_CountDown",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DANGERAREA_Avatar_Count",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 0.5
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gadget_RoleCombat_CountDown",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Gadget_RoleCombat_DangerArea_ActiveEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Active_Enhanced",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gadget_RoleCombat_DangerArea_CoolDown": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Gadget_RoleCombat_DangerArea_CoolDown_Recover",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "RecoverTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Gadget_RoleCombat_DangerArea_CoolDown_Recover": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_StateID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.5,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_ActiveEffect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_DangerArea_CoolDown_Recover",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_DangerArea"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageRatio": 0,
+        "ElementLevelCo": 0
+      },
+      "modifiers": {
+        "ChargeAtk_LatencyGadget": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Trigger_Enhanced",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV4",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.11999999731779099,
+                    "shakeRange": 0.11999999731779099,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "z": -1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "enBreak": 30,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "DamageRatio",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 100,
+                    "attackType": "Range",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 10,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 20,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ChargeAtk_LatencyGadget",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "ElementLevelCo",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_DamageArea_Impulse"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_FungusRaptor_Weak_Kill": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001043
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_RoleCombatET_PROCESS_FungusRaptor_Weak_Kill",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_FungusRaptor_Weak_Kill",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_FungusRaptor_Weak_Kill"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_MonolithStarchild_Weak_Kill": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001044
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_RoleCombatET_PROCESS_MonolithStarchild_Weak_Kill",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_MonolithStarchild_Weak_Kill",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_MonolithStarchild_Weak_Kill"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_DrakeDeepSea_No_Revive": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001045
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_RoleCombatET_PROCESS_DrakeDeepSea_No_Revive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_DrakeDeepSea_No_Revive",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_DrakeDeepSea_No_Revive"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_DrakeDeepSea_MagicBall_NoHit": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001046
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_RoleCombatET_PROCESS_DrakeDeepSea_MagicBall_NoHit",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_DrakeDeepSea_MagicBall_NoHit",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_DrakeDeepSea_MagicBall_NoHit"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_HermitCrabPrimo_Weak_Kill": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001047
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_RoleCombatET_PROCESS_HermitCrabPrimo_Weak_Kill",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_HermitCrabPrimo_Weak_Kill",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_HermitCrabPrimo_Weak_Kill"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_SeaHorsePrimo_Recover_Break": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001048
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_RoleCombatET_PROCESS_SeaHorsePrimo_Recover_Break",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_SeaHorsePrimo_Recover_Break",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_SeaHorsePrimo_Recover_Break"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Gadget_RoleCombat_Bonus_ApparatusPerpetual_Weak_Kill": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                49001063
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 19,
+              "funcName": "SLC_RoleCombatET_PROCESS_GENERAL_INFORM",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Gadget_RoleCombat_Bonus_ApparatusPerpetual_Weak_Kill",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Gadget_RoleCombat_Bonus_ApparatusPerpetual_Weak_Kill"
+    }
+  }
+]

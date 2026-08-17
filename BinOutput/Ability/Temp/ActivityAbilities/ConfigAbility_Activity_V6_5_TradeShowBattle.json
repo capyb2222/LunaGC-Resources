@@ -1,0 +1,1623 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "DynamicAbility_TradeShowBattle_CallBomb is abilitystart",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerLuaCall",
+          "funcName": "SLC_CallBomb",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "luaCallType": "CurGalleryControlGroup",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_TradeShowBattle_CallBombEnergy",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "modifierName": "Bomb_Activity",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "modifierName": "TickSetNyxValue",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Add_SkillActivity_Handle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ActivitySkillMixin",
+              "CMCAAMGDAFC": 20206,
+              "priority": "Auto",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerUpdateGlobalValueMixin",
+              "key": "GV_TradeShowBattle_CallBombEnergy",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "HideAction_T",
+                "SLC_TSkillReady"
+              ],
+              "valueSteps": [
+                -0.5,
+                99.5,
+                9999
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_TradeShowBattle_CallBombEnergy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Bomb_Activity": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "Bomb_Start"
+              ],
+              "valueSteps": [
+                1.5,
+                2.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_TradeShowBattle_CurrentStage",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Bomb_Start": {
+          "onRemoved": [
+            {
+              "$type": "SetExtraAbilityState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_AirRaidBomb_PreWarmRing_12M_Yellow",
+              "scale": 1.5,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "SceneEffect_BombStart",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "GIBHPGONKMB": true,
+              "modifierName": "TradeShowBattle_Player_SpeedUp_Handle",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot3",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot4",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot5",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "HideAction_T": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "SlotCharge",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SLC_TSkillReady": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_TSkillReady",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SceneEffect_BombStart": {
+          "onRemoved": [
+            {
+              "$type": "CameraScreenEffect",
+              "muteRemoteAction": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "sceneID": 99,
+              "effectName": "Eff_UI_TradeShowBattle_Screen_02",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "CameraScreenEffect",
+              "muteRemoteAction": true,
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "sceneID": 99,
+              "effectName": "Eff_UI_TradeShowBattle_Screen_02",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "TickSetNyxValue": {
+          "duration": 1,
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetNyxValue",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TradeShowBattle_Player_SpeedUp": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 0.4000000059604645,
+            "Animator_OverallSpeedRatioMultiplied": 1.399999976158142
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "TradeShowBattle_Player_SpeedUp_Handle": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "TradeShowBattle_Player_SpeedUp",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    1045
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "TradeShowBattle_Player_SpeedUp_Ultra",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "TradeShowBattle_Player_SpeedUp_Ultra": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 0.4000000059604645,
+            "Animator_OverallSpeedRatio": 0.20000000298023224,
+            "Animator_OverallSpeedRatioMultiplied": 1.399999976158142
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_TradeShowBattle_CallBombEnergy",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "DynamicAbility_TradeShowBattle_CallBomb is run",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Add_SkillActivity_Handle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "DynamicAbility_TradeShowBattle_CallBomb_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "ManageModifier_Handle"
+          ],
+          "valueSteps": [
+            1.5,
+            2.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_TradeShowBattle_CurrentStage",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AttachClear": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "FollowAttachPointEffectMixin",
+              "modifierName": "ClearFollowPet",
+              "attachPriority": "QuestBlank",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ClearFollowPet": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DenyLock": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "NLBKJKDNFFP": -1
+        },
+        "GhostToAllied": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToAllied",
+          "NLBKJKDNFFP": -1
+        },
+        "GhostToEnemy": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "NLBKJKDNFFP": -1
+        },
+        "HideAvatars": {
+          "onRemoved": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushColliderExtra"
+              ],
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "Gallary",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "JHJCOJFFPGG": {
+                "PFGNFCCBKOC": true
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "LockHP": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "LockHP",
+          "NLBKJKDNFFP": -1
+        },
+        "ManageModifier_Avatar_Handle": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "GhostToEnemy",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "GhostToAllied",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "HideAvatars",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "LockHP",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DenyLock",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ManageModifier_Handle": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "TransmitAvatarToOriginalPos",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "TransmitAvatarToOriginalPos",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "AttachClear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "GIBHPGONKMB": true,
+              "modifierName": "ManageModifier_Avatar_Handle",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TransmitAvatarToOriginalPos": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_TRADE_SHOW_BATTLE_ORIGINAL_POS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "born": {
+                "$type": "KELMLBKJCOC",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "HFCNNGKCEEK": {
+                  "x": 500,
+                  "y": 251,
+                  "z": 500
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "JOCHGJLIEAJ",
+              "canBeHandledOnRecover": true,
+              "FJABIPNJLAF": 93.34163665771484,
+              "HCFMNGDMKFB": true,
+              "doOffStage": true,
+              "MJMGNAEBMKI": 2,
+              "positionKey": "_TRADE_SHOW_BATTLE_ORIGINAL_POS",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "DynamicAbility_Activity_TradeShowBattle_Player_Init_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.009999999776482582
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "enBreak": 99999,
+                "damageExtra": 100000,
+                "IOLHEGDMIBF": true,
+                "strikeType": "None",
+                "KEBENMLLFJH": true,
+                "elementDurability": 25,
+                "KGKNBGENBLN": true,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 2,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "PEPMDIPJKIB": true,
+                "alongGround": true
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "entityTypes": [
+            "Monster"
+          ],
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_05_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "PEPMDIPJKIB": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "测试 特效子弹命中怪物",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "TradeShowBattle_SetMonsterBeAttackGV",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_TradeShowBattle_BeFireEffect",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "Target",
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_05_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "PEPMDIPJKIB": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "modifierName": "TradeShowBattle_CameraShake",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "KillSelf": {
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "KillSelf_Handle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "KillSelf"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                1.5
+              ],
+              "globalValueTarget": "Owner",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_TradeShowBattle_BombLoop",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TradeShowBattle_CameraShake": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099,
+                  "PEBIGOKCFOC": true
+                },
+                "shakeTime": 0.5,
+                "shakeRange": 0.800000011920929,
+                "shakeDistance": 0.800000011920929,
+                "shakeDir": {
+                  "x": -1,
+                  "z": -1
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "TradeShowBattle_SetMonsterBeAttackGV": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TradeShowBattle_BeAttack",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 6,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TradeShowBattle_BeAttack",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "KillSelf_Handle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_TradeShowBattle_Bomb_Bullet_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.009999999776482582
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "enBreak": 99999,
+                "damageExtra": 200000,
+                "IOLHEGDMIBF": true,
+                "strikeType": "None",
+                "KEBENMLLFJH": true,
+                "elementDurability": 25,
+                "KGKNBGENBLN": true,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 2,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "PEPMDIPJKIB": true,
+                "alongGround": true
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "entityTypes": [
+            "Monster"
+          ],
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_06_Hit",
+              "scale": 1.7999999523162842,
+              "doOffStage": false,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "PEPMDIPJKIB": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "测试 特效子弹命中怪物",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "TradeShowBattle_SetMonsterBeAttackGV",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "Target",
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_06_Hit",
+              "scale": 1.7999999523162842,
+              "doOffStage": false,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "PEPMDIPJKIB": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "modifierName": "TradeShowBattle_CameraShake",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "KillSelf": {
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "KillSelf_Handle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "KillSelf"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                1.5
+              ],
+              "globalValueTarget": "Owner",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_TradeShowBattle_BombLoop",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TradeShowBattle_CameraShake": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099,
+                  "PEBIGOKCFOC": true
+                },
+                "shakeTime": 0.800000011920929,
+                "shakeRange": 1.2000000476837158,
+                "shakeDistance": 1.2000000476837158,
+                "shakeDir": {
+                  "x": -1,
+                  "z": -1
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "TradeShowBattle_SetMonsterBeAttackGV": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TradeShowBattle_BeAttack",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 6,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TradeShowBattle_BeAttack",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "KillSelf_Handle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_TradeShowBattle_Bomb_Bullet_02_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_TradeShowBattle_Bomb_Launch_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Effect_Handle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "PreStart",
+                "Effect_Loop_Small",
+                "Effect_Loop_Big"
+              ],
+              "valueSteps": [
+                0.5,
+                1.5,
+                2.5,
+                3.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_TradeShowBattle_BombLoop",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Effect_Loop_Big": {
+          "onRemoved": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TickKillMultiBullet",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 5,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_04",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "Scene_Effect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "KillMultiBullet",
+              "gadgetInfo": {
+                "configID": 73131006
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MBCIIAMCOME": 1.5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 73131006,
+              "onGround": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Effect_Loop_Small": {
+          "onRemoved": [
+            {
+              "$type": "KillMultiBullet",
+              "gadgetInfo": {
+                "configID": 73131002
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MBCIIAMCOME": 1.5,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 5,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_03",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "KillMultiBullet",
+              "gadgetInfo": {
+                "configID": 73131002
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MBCIIAMCOME": 1.5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 73131002,
+              "onGround": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "PreStart": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TradeShowBattle_BombCircle_03",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Scene_Effect": {
+          "onRemoved": [
+            {
+              "$type": "CameraScreenEffect",
+              "muteRemoteAction": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "sceneID": 99,
+              "effectName": "Eff_UI_TradeShowBattle_Screen_01",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "CameraScreenEffect",
+              "muteRemoteAction": true,
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "sceneID": 99,
+              "effectName": "Eff_UI_TradeShowBattle_Screen_01",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "TickKillMultiBullet": {
+          "duration": 1,
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "KillMultiBullet",
+              "gadgetInfo": {
+                "configID": 73131002
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillMultiBullet",
+              "gadgetInfo": {
+                "configID": 73131006
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Effect_Handle",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "TradeShowBattle_EmptyGlobal",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_TradeShowBattle_EmptyGlobal_01_Ability"
+    }
+  }
+]

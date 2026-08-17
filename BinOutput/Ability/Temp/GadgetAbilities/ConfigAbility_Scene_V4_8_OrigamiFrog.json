@@ -1,0 +1,5465 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Avatar_MaxDis_op": 4.199999809265137,
+        "Avatar_MinDis_op": 1,
+        "Buff_Radius_op": 2,
+        "Buff_Ratio_op": 1.5,
+        "Frog_MaxDis_op": 8,
+        "Frog_MinDis_op": 0.44999998807907104,
+        "LimitDestination_Check_Radius": 1.5,
+        "Ratio_op": 0,
+        "fault_tolerant_op": 1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 206,
+          "modifierName": "State_206_Finish",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blend_Param_Listener": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "Max_Blend_View"
+              ],
+              "valueSteps": [
+                0.6000000238418579,
+                1
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "Blend",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Delay_Create_LineGadget": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Delay_Create_LineGadget -> onRemoved",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_CreateLineGadget_Req",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "is_Arrived_Destination"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "isTarget": true,
+              "LLACGCNFLEO": {
+                "FrogType": 0
+              },
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Handle_State_By_GV_V2": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "AKMKDOMBHKG": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "LineGadget_Off",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "modifierNameSteps": [
+                "LineCurState_0",
+                "LineCurState_201",
+                "LineCurState_202",
+                "LineCurState_203",
+                "LineCurState_204",
+                "LineCurState_205"
+              ],
+              "enable": true,
+              "DGMFGHKCJNG": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "LineGadget_On",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "valueSteps": [
+                -0.5,
+                200.5,
+                201.5,
+                202.5,
+                203.5,
+                204.5,
+                205.5
+              ],
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "LineGadget_Runtime_Id"
+              },
+              "globalValueTarget": "Target",
+              "removeAppliedModifier": true,
+              "globalValueKey": "LineGadget_CurState",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "JumpBuff_Check": {
+          "thinkInterval": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "Origami_Frog_JumpBuff",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "compareType": "XYZ",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": "Buff_Radius"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "Ratio",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "Buff_Ratio",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "V4_8_FairyBook_OrigamiFrog_Update_GV",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "JumpBuff_Eff_Add",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "Has_Jump_Buff",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "JumpBuff_Check",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "JumpBuff_Check_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "JumpBuff_Check",
+                "JumpBuff_StopCheck"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "Has_Jump_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "JumpBuff_Eff_Add": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_ScenObj_BlowingStone_01_Buff",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "offset": {
+                  "x": 0.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "JumpBuff_StopCheck": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LimitDestination_Check_Handler": {
+          "thinkInterval": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "is_Frog_LimitDestination",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "compareType": "XYZ",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": "LimitDestination_Check_Radius"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ChangeGadgetState",
+                  "FGHGMFLCBFD": 206,
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "is_Arrived_Destination",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "is_Frog_CourseDestination",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "compareType": "XYZ",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": "LimitDestination_Check_Radius"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "V4_8_FairyBook_OrigamiFrog_CourseDestination_01",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "is_Frog_LimitDestination",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "compareType": "XYZ",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": "LimitDestination_Check_Radius"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ChangeGadgetState",
+                  "FGHGMFLCBFD": 206,
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "is_Arrived_Destination",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "is_Frog_CourseDestination",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "compareType": "XYZ",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": "LimitDestination_Check_Radius"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "V4_8_FairyBook_OrigamiFrog_CourseDestination_01",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Limit_Range": {
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "Player_Runtime_Id"
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "LineType_2_Avatar_Cancel",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LineCurState_0": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LineCurState_201": {
+          "onAdded": [
+            {
+              "$type": "SetPartControlTarget",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "ActionSetTarget"
+            },
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "canBeHandledOnRecover": true,
+              "HMAKPMHPKBF": "Stay",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LineCurState_202": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Blend",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "Blend",
+              "canBeHandledOnRecover": true,
+              "value": 0.10000000149011612,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "HMAKPMHPKBF": "Stay",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPartControlTarget",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "Player_Runtime_Id"
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "ActionSetTarget"
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiFrog_03",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_OrigamiFrog_03",
+              "doOffStage": false,
+              "followPath": "AnchorPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValueByTargetDistance",
+              "key": "Avatar_LineDistance",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "Player_Runtime_Id"
+              },
+              "canBeHandledOnRecover": true,
+              "FJPGLGKKGPG": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "target": "Target",
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Avatar_Dis_Calc_Temp",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": "Avatar_MaxDis_Calc",
+              "doOffStage": false,
+              "value": [
+                "Avatar_LineDistance",
+                "Avatar_MinDis",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Avatar_Dis_ClampValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                "Avatar_Dis_Calc_Temp",
+                "Avatar_MaxDis_Calc",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_DUMMY_THROW_RANGE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                "Frog_MinDis",
+                "Avatar_Dis_ClampValue",
+                "Frog_MaxDis_Calc",
+                "MUL",
+                "ADD"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Blend",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                "Avatar_LineDistance",
+                "Avatar_Max_Limit",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "Blend",
+              "canBeHandledOnRecover": true,
+              "value": "Blend",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Empty",
+                "Limit_Range"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                "Avatar_Max_Limit",
+                999
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "Avatar_LineDistance",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "LineCurState_203": {
+          "onAdded": [
+            {
+              "$type": "SetPartControlTarget",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "ActionSetTarget"
+            },
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "canBeHandledOnRecover": true,
+              "HMAKPMHPKBF": "Stay",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Model"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalPos",
+              "key": "Frog_Global_Pos",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AnchorPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalDir",
+              "key": "Frog_Global_Dir",
+              "target": "Target",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttachPoint",
+                  "attachPointName": "AnchorPoint",
+                  "attachPointTargetType": "Self",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AnchorPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalDir",
+              "setTarget": true,
+              "key": "Frog_BulletPre_Dir",
+              "target": "Target",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "useCorrectDir": true,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudioV2",
+              "pattern": "v4_8_FairyBook_Gameplay_Frog_Jump",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Is_WQ_Frog",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "bulletID": 70293174,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "directionKey": "Frog_Global_Dir",
+                "positionKey": "Frog_Global_Pos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Is_WQ_Frog",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "bulletID": 70293177,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "directionKey": "Frog_Global_Dir",
+                "positionKey": "Frog_Global_Pos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "LineGadget_Runtime_Id"
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "V4_8_FairyBook_LineGadget_Link_Remove_SLC",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LineCurState_204": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LineCurState_205": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LineGadget_CreateSLC_Handler": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Frog_Type"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Delay_Create_LineGadget",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Frog_Type",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "V4_8_FairyBook_OrigamiFrog_FollowMove_Logic",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Max_Blend_View": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiFrog_01_Warning",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_OrigamiFrog_01_Warning",
+              "doOffStage": false,
+              "followPath": "RootNode",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_206_Finish": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Frog_Jump_Challenge_Finish_Req",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "Avatar_LineDistance",
+        "Avatar_Dis_Calc_Temp",
+        "Avatar_Dis_ClampValue",
+        "Avatar_MaxDis",
+        "Avatar_MinDis",
+        "Frog_MaxDis",
+        "Frog_MinDis",
+        "Avatar_MaxDis_Calc",
+        "Frog_MaxDis_Calc",
+        "Avatar_Max_Limit",
+        "Charge_Phase_1",
+        "Charge_Phase_2",
+        "Ratio",
+        "Buff_Ratio",
+        "Buff_Radius",
+        "fault_tolerant",
+        "Frog_Self_Dir_0",
+        "Frog_Self_Dir_1",
+        "Frog_Self_Dir_2",
+        "Frog_Global_Dir_0",
+        "Frog_Global_Dir_1",
+        "Frog_Global_Dir_2",
+        "Frog_BulletPre_Dir_0",
+        "Frog_BulletPre_Dir_1",
+        "Frog_BulletPre_Dir_2",
+        "Blend"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetPartControlTarget",
+          "partRootNames": [
+            "RootNode"
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "ActionSetTarget"
+        },
+        {
+          "$type": "EnablePartControl",
+          "partRootNames": [
+            "RootNode"
+          ],
+          "canBeHandledOnRecover": true,
+          "HMAKPMHPKBF": "Stay",
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "EnableSceneTransformByName",
+          "canBeHandledOnRecover": true,
+          "transformNames": [
+            "Model"
+          ],
+          "doOffStage": false,
+          "OMGAHMIGHHO": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Handle_State_By_GV_V2",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Ratio",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Ratio_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Buff_Ratio",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Buff_Ratio_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Buff_Radius",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Buff_Radius_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_MaxDis",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Avatar_MaxDis_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_MinDis",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Avatar_MinDis_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "fault_tolerant",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "fault_tolerant_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Frog_MaxDis",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Frog_MaxDis_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Frog_MinDis",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": "Frog_MinDis_op",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_Dis_Calc_Temp",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_LineDistance",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_Dis_ClampValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "is_Arrived_Destination",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_Need_Buff_Check",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "JumpBuff_Check_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_Need_LimitDestination_Check",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "LimitDestination_Check_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "LineGadget_CreateSLC_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerAbility",
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "doOffStage": false,
+          "abilityName": "V4_8_FairyBook_OrigamiFrog_Update_GV",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetTargetToTargetKey",
+          "targetKey": "Self_RunTime_ID",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Blend_Param_Listener",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "FireEffect",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_Need_Fire_Create_Eff",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_OrigamiFrog_05",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_CreateEff"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Frog_MaxDis",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "Ratio",
+              "compareType": "MoreThan",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": [
+            "Frog_MaxDis",
+            "Ratio",
+            "MUL"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_MaxDis_Calc",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": [
+            "Avatar_MaxDis",
+            "Avatar_MinDis",
+            "SUB"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Frog_MaxDis_Calc",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": [
+            "Frog_MaxDis",
+            "Frog_MinDis",
+            "SUB"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Avatar_Max_Limit",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": [
+            "Avatar_MaxDis",
+            "fault_tolerant",
+            "ADD"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Charge_Phase_1",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": [
+            "Frog_MinDis",
+            "Frog_MaxDis_Calc",
+            3,
+            "DIV",
+            "ADD"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Charge_Phase_2",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": [
+            "Frog_MinDis",
+            "Frog_MaxDis_Calc",
+            3,
+            "DIV",
+            2,
+            "MUL",
+            "ADD"
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "_unk_Q2982101340": [
+        "Avatar_LineDistance",
+        "Avatar_Dis_Calc_Temp",
+        "Avatar_Dis_ClampValue",
+        "Avatar_MaxDis",
+        "Avatar_MinDis",
+        "Frog_MaxDis",
+        "Frog_MinDis",
+        "fault_tolerant",
+        "Avatar_MaxDis_Calc",
+        "Frog_MaxDis_Calc",
+        "Avatar_Max_Limit",
+        "Charge_Phase_1",
+        "Charge_Phase_2",
+        "Ratio"
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Update_GV"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Delay_Send_SLC": {
+          "onRemoved": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_CreateLineGadget_Req",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Frog_Type",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "is_Arrived_Destination"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "isTarget": true,
+              "LLACGCNFLEO": {
+                "FrogType": 1
+              },
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FastFollow_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "FollowMoveParamOverrideMixin",
+              "speed": 999,
+              "NKMAIMKINFG": [
+                "speed"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "FollowTargetSelecter": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "TriggerJump",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetTargetToTargetKey",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "SGV_FollowTarget"
+              },
+              "targetKey": "FollowRuntimeID",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Delay_Send_SLC",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FollowTargetSelecter",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_FastFollow",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FastFollow_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_FollowMove_Logic"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "Self_Global_Pos",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalDir",
+          "setTarget": true,
+          "key": "Self_Global_Dir",
+          "target": "Target",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "$type": "ConfigDirectionByEntity",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "OLMKAFGDANK": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "predicates": [
+            {
+              "$type": "MHAOBEONDCK",
+              "filters": [
+                "Water"
+              ],
+              "KJHNOHHMCAH": true
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_OrigamiFrog_SplashMedium",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "$type": "ConfigDirectionByWorld",
+              "eularAngles": {
+                "x": 0.10000000149011612,
+                "y": 0.10000000149011612,
+                "z": 0.10000000149011612
+              },
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "predicates": [
+            {
+              "$type": "MHAOBEONDCK",
+              "filters": [
+                "Water"
+              ]
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_OrigamiFrog_05",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "V4_8_FairyBook_OrigamiFrog_Bullet_Ability -> Hit Level",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "ServerLuaCall",
+                      "funcName": "SLC_Frog_Jump_Over",
+                      "canBeHandledOnRecover": true,
+                      "target": "Owner",
+                      "isTarget": true,
+                      "LLACGCNFLEO": {
+                        "HitPlatform": 0,
+                        "Tar_0": 0,
+                        "Tar_1": 0,
+                        "posX": "Self_Global_Pos_0",
+                        "posY": "Self_Global_Pos_1",
+                        "posZ": "Self_Global_Pos_2",
+                        "rotX": "Self_Global_Dir_0",
+                        "rotY": "Self_Global_Dir_1",
+                        "rotZ": "Self_Global_Dir_2"
+                      },
+                      "doOffStage": false,
+                      "luaCallType": "OwnerFromGroup",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "KillSelf",
+                      "canBeHandledOnRecover": true,
+                      "killSelfType": "Normal",
+                      "configIdArray": [
+                        70293174,
+                        70293177
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_Accept_Die_When_Hit_Level",
+                      "target": "Owner",
+                      "value": 1
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ServerLuaCall",
+                      "funcName": "SLC_FrogHitWrongType",
+                      "canBeHandledOnRecover": true,
+                      "target": "Owner",
+                      "isTarget": true,
+                      "LLACGCNFLEO": {
+                        "rotY": "Self_Global_Dir_1"
+                      },
+                      "doOffStage": false,
+                      "luaCallType": "OwnerFromGroup",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "KillSelf",
+                      "canBeHandledOnRecover": true,
+                      "killSelfType": "Normal",
+                      "configIdArray": [
+                        70293174,
+                        70293177
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "_IS_Frog_Platform",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "V4_8_FairyBook_OrigamiFrog_Bullet_Ability -> Hit Platform",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetTargetToTargetKey",
+                  "targetKey": "Platform_Runtime_Id",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerLuaCall",
+                  "funcName": "SLC_Frog_Jump_Over",
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "isTarget": true,
+                  "LLACGCNFLEO": {
+                    "HitPlatform": 1,
+                    "Tar_0": "Platform_Runtime_Id_0",
+                    "Tar_1": "Platform_Runtime_Id_1",
+                    "posX": "Self_Global_Pos_0",
+                    "posY": "Self_Global_Pos_1",
+                    "posZ": "Self_Global_Pos_2",
+                    "rotX": "Self_Global_Dir_0",
+                    "rotY": "Self_Global_Dir_1",
+                    "rotZ": "Self_Global_Dir_2"
+                  },
+                  "doOffStage": false,
+                  "luaCallType": "OwnerFromGroup",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    70293174,
+                    70293177
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "MHAOBEONDCK",
+              "filters": [
+                "Water"
+              ],
+              "KJHNOHHMCAH": true
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_Fall_Into_Water_Check",
+              "target": "Owner",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "V4_8_FairyBook_OrigamiFrog_Bullet_Ability -> Hit Water",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_FrogHitWrongType",
+              "canBeHandledOnRecover": true,
+              "target": "Owner",
+              "isTarget": true,
+              "LLACGCNFLEO": {
+                "rotY": "Self_Global_Dir_1"
+              },
+              "doOffStage": false,
+              "luaCallType": "OwnerFromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                70293174,
+                70293177
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "_unk_Q2982101340": [
+        "Self_Global_Pos_0",
+        "Self_Global_Pos_1",
+        "Self_Global_Pos_2",
+        "Self_Global_Dir_0",
+        "Self_Global_Dir_1",
+        "Self_Global_Dir_2",
+        "Platform_Runtime_Id_0",
+        "Platform_Runtime_Id_1"
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Bullet_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "EffectHandler": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiButterfly_01_Dis",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onKill": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiButterfly_01_Dis",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiButterfly_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FallingDamageController_Avatar": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "Jump",
+                "Fall",
+                "SpecialJump",
+                "SpecialJumpForRun",
+                "SpecialJumpForSprint",
+                "SpecialFall"
+              ],
+              "value": -1,
+              "modifierName": "FallingDamageImmune_Avatar",
+              "isCheckOnAttach": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "FallingDamageImmune_Avatar": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "FallingDamageController_Avatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_FallingDamageRatio": -1
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FindAvatar": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ThinkIntervalMixin",
+              "thinkInterval": 0.10000000149011612,
+              "onThinkInterval": [
+                {
+                  "$type": "Predicated",
+                  "otherTargets": {
+                    "$type": "SelectTargetsByShape",
+                    "sizeRatio": 1,
+                    "GLDMBEOHPHB": {
+                      "direction": {
+                        "maxAngle": 180
+                      },
+                      "EALBHHJEFGH": {
+                        "BKAPGJCLCIO": 180
+                      },
+                      "value": 10,
+                      "onGroundRaycastUpDist": 2
+                    },
+                    "campTargetType": "All",
+                    "shapeName": "CircleR1.5H3"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Avatar"
+                      ]
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "target": "TargetTeam",
+                      "doOffStage": false,
+                      "modifierName": "UNIQUE_OrigamiButterFlySuperJump_Controller_Team",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "JumpHandler_Avatar": {
+          "onRemoved": [
+            {
+              "$type": "SetCameraEntityDampRatio",
+              "canBeHandledOnRecover": true,
+              "lerpDuration": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_Controller_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_ScenObj_BlowingStone_01_Active",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetCameraEntityDampRatio",
+              "canBeHandledOnRecover": true,
+              "lerpDuration": 1.2999999523162842,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_StandEff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "FallingDamageController_Avatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_StandEff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_OrigamiButterFlySuperJump_Controller": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByIsInReconnect",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_Controller",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_StandEff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RocketJumpMixin",
+              "type": "GearSpring",
+              "uiEffect": true,
+              "extention": {
+                "xzMultiplier": 4,
+                "yMultiplier": 10
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "OverrideAvatarMoveSpeedRatioMixin",
+              "minValue": -0.699999988079071,
+              "showID": 0.699999988079071,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "JumpForRun",
+                "JumpForWalk",
+                "JumpForSprint",
+                "Jump",
+                "SpecialJump",
+                "SpecialJumpForRun",
+                "SpecialJumpForSprint"
+              ],
+              "value": -1,
+              "modifierName": "JumpHandler_Avatar",
+              "isCheckOnAttach": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_OrigamiButterFlySuperJump_Controller_Team": {
+          "isUnique": true,
+          "duration": 3,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_Controller",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_OrigamiButterFlySuperJump_StandEff": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByIsInReconnect",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_OrigamiButterFlySuperJump_StandEff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_ScenObj_BlowingStone_01_Buff",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "Origami_Frog_JumpBuff",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffectHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FindAvatar",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiButterFly_Frog_JumpBuff_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "PlatformMoveMixin",
+          "stopModifiers": [
+            "Stop_WaterSurface"
+          ],
+          "moveModifiers": [
+            "Move_WaterSurface"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Fire_Impact_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Create_Eff": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Appear",
+              "scale": "SGV_Eff_Scale",
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Fire_Impact_Eff": {
+          "onRemoved": [
+            {
+              "$type": "ChangeGadgetState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Splash",
+              "scale": "SGV_Eff_Scale",
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Move_WaterSurface": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WaterSurfaceEffectMixin",
+              "AENBJMCLKPL": "Top",
+              "attachEffect": "Eff_SceneObj_OrigamiLotus_Ripple_Move",
+              "IKPIJEPICKF": "WaterSurface",
+              "scale": "SGV_Eff_Scale",
+              "MGDPFBBFNFD": "Bottom",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Stop_WaterSurface": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WaterSurfaceEffectMixin",
+              "AENBJMCLKPL": "Top",
+              "attachEffect": "Eff_SceneObj_OrigamiLotus_Ripple",
+              "IKPIJEPICKF": "WaterSurface",
+              "scale": "SGV_Eff_Scale",
+              "MGDPFBBFNFD": "Bottom",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_Eff_Scale"
+      ],
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "_IS_Frog_Platform",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Create_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiLotus_Normal_Platform"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Add_WaterSpout_Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 6
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_0": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Col"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 6
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 202,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar",
+              "useCurve": true,
+              "doOffStage": false,
+              "parameter": "GadgetState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 202,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar_01",
+              "useCurve": true,
+              "doOffStage": false,
+              "parameter": "GadgetState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_201": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 6
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar_Disappear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar_Disappear_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Col"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 6
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar",
+              "useCurve": true,
+              "doOffStage": false,
+              "parameter": "GadgetState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_Size",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar_01",
+              "useCurve": true,
+              "doOffStage": false,
+              "parameter": "GadgetState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_Listener": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "State_0",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "State_201",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Add_WaterSpout_Eff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "State_Listener",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiForest_Waterspout_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Add_WaterSpout_Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_0": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Col"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar",
+              "useCurve": true,
+              "doOffStage": false,
+              "parameter": "GadgetState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "GadgetState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_201": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Impact",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Bottom_EffPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Impact",
+              "doOffStage": false,
+              "followPath": "Bottom_EffPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Col"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Pilar",
+              "useCurve": true,
+              "doOffStage": false,
+              "parameter": "GadgetState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "GadgetState",
+              "doOffStage": false,
+              "value": 201,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_Listener": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "State_0",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "State_201",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "WaterSurfaceEffect": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WaterSurfaceEffectMixin",
+              "AENBJMCLKPL": "Top",
+              "attachEffect": "Eff_SceneObj_OrigamiLotus_Ripple",
+              "HGNPPKMBPOI": "Eff_SceneObj_OrigamiLotus_Splash",
+              "IKPIJEPICKF": "WaterSurface",
+              "scale": 1.5,
+              "MGDPFBBFNFD": "Bottom",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "_IS_Frog_Platform",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "WaterSurfaceEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Add_WaterSpout_Eff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "State_Listener",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiLotus_ColliderMove"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Default",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Default": {
+          "onKill": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_LimitPosition_Disappear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Default",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Time_LimitPosition_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "is_Frog_LimitDestination",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "_IS_Frog_Platform",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_Has_Hitbox",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_LimitDestination_01"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "configIdArray": [
+            70293473
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Default",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Default": {
+          "onKill": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_LimitPosition_Disappear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Default",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Time_LimitPosition_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "is_Frog_CourseDestination",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_CourseDestination_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "PlatformMoveMixin",
+          "stopModifiers": [
+            "Stop_WaterSurface"
+          ],
+          "moveModifiers": [
+            "Move_WaterSurface"
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Fire_Impact_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Create_Eff": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Appear",
+              "scale": "SGV_Eff_Scale",
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiDrum_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Fire_Impact_Eff": {
+          "onRemoved": [
+            {
+              "$type": "ChangeGadgetState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Splash",
+              "scale": "SGV_Eff_Scale",
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Idle_Fast": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FastIdle",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Idle_Slow": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FastIdle",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Idle_State_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Idle_Slow",
+                "Idle_Fast"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "otherTargets": {
+                "$type": "AKCINJNDJDB"
+              },
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "Idle_State",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Move_WaterSurface": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WaterSurfaceEffectMixin",
+              "AENBJMCLKPL": "Top",
+              "attachEffect": "Eff_SceneObj_OrigamiLotus_Ripple_Move",
+              "IKPIJEPICKF": "WaterSurface",
+              "scale": "SGV_Eff_Scale",
+              "MGDPFBBFNFD": "Bottom",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Reconnect_Handler": {
+          "onReconnect": [
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "OrigamFrog_ExitField",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SafeCol_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "SafeCol_On"
+              ],
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_SafeCol_State",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SafeCol_On": {
+          "onRemoved": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "SafeCol",
+                "BottomCol"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "SafeCol",
+                "BottomCol"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiLotus_Wall",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Stop_WaterSurface": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WaterSurfaceEffectMixin",
+              "AENBJMCLKPL": "Top",
+              "attachEffect": "Eff_SceneObj_OrigamiLotus_Ripple",
+              "IKPIJEPICKF": "WaterSurface",
+              "scale": "SGV_Eff_Scale",
+              "MGDPFBBFNFD": "Bottom",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_Eff_Scale",
+        "SGV_SafeCol_State"
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Create_Eff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "SafeCol_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "EnableSceneTransformByName",
+          "canBeHandledOnRecover": true,
+          "transformNames": [
+            "SafeCol"
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Idle_State_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Reconnect_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onFieldExit": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            },
+            {
+              "$type": "ByAvatarIsHost",
+              "isHost": true,
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Avatar_Exit_Field",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "OrigamFrog_ExitField",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorTrigger",
+          "mpTriggerOnRemote": true,
+          "canBeHandledOnRecover": true,
+          "triggerID": "Shake01",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus_HeavyShake"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorTrigger",
+          "mpTriggerOnRemote": true,
+          "canBeHandledOnRecover": true,
+          "triggerID": "Shake02",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus_LightShake"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_OrigamiLotus_Splash",
+          "scale": "SGV_Eff_Scale",
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "_unk_Q2982101340": [
+        "SGV_Eff_Scale"
+      ],
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus_Splash"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Attach_Sad_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Attach_Sad_Eff": {
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_FairyToy_Emote_Sad",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiFrogOPT_PlayEmote"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "TurnDir_By_PartControl",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "WidgetMpSupportMixin",
+          "succActions": [
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Is_In_CD",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "sourceName": "OrigamFrogOption",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "TriggerJump",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Is_In_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TriggerCD",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Intee_Off": {
+          "onAdded": [
+            {
+              "$type": "EnableGadgetIntee",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Intee_On": {
+          "onAdded": [
+            {
+              "$type": "EnableGadgetIntee",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Intee_State_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Intee_Off",
+                "Intee_On"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "otherTargets": {
+                "$type": "AKCINJNDJDB"
+              },
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "Intee_State",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TriggerCD": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Is_In_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.2999999523162842,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "TurnDir_By_PartControl": {
+          "onRemoved": [
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "FrogModel"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPartControlTarget",
+              "partRootNames": [
+                "FrogModel"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "ActionSetTarget"
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "FrogModel"
+              ],
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPartControlTarget",
+              "partRootNames": [
+                "FrogModel"
+              ],
+              "otherTargets": {
+                "$type": "AKCINJNDJDB"
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "ActionSetTarget"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Started",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Is_In_CD",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "EnablePartControl",
+          "partRootNames": [
+            "FrogModel"
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetPartControlTarget",
+          "partRootNames": [
+            "FrogModel"
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "ActionSetTarget"
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Intee_State_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamFrogOption"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorTrigger",
+          "mpTriggerOnRemote": true,
+          "canBeHandledOnRecover": true,
+          "triggerID": "TriggerJump",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamFrog_SingleJump"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_OrigamiDrum_02",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamFrogOption_JumpEndEff"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "CurveEvent_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LevelCurveMixin",
+              "BPAELPGFALC": [
+                "4.8_SetGroupVariable",
+                "4.8_TorrentBrave_PauseCheck",
+                "4.8_TorrentBrave_AxisShake",
+                "4.8_TorrentBrave_ResetFrogDir",
+                "4.8_TorrentBrave_Intee_Control",
+                "4.8_TorrentBrave_Idle_State_Control",
+                "4.8_TorrentBrave_Frog_Jump",
+                "4.8_TorrentBrave_Lotus_Splash"
+              ],
+              "tag": "Origami_Frog_TorrentBrave",
+              "NNDPLAACOMJ": [
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_SetGroupVariable",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "EVENT_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "ServerLuaCall",
+                    "param1": "EVENT_GV_0",
+                    "funcName": "SLC_LevelCurveEvent_SetGroupVariable",
+                    "canBeHandledOnRecover": true,
+                    "param2": "EVENT_GV_1",
+                    "doOffStage": false,
+                    "luaCallType": "FromGroup",
+                    "actorIceSubHurtDelta": -1,
+                    "paramNum": 2
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_PauseCheck",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "EVENT_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetGlobalValueV2",
+                    "key": "Check_Target_Value_GV",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "value": "EVENT_GV_0",
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "ServerLuaCall",
+                    "param1": "EVENT_GV_0",
+                    "funcName": "SLC_Lua_Log",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "luaCallType": "FromGroup",
+                    "actorIceSubHurtDelta": -1,
+                    "paramNum": 2
+                  },
+                  {
+                    "$type": "ApplyModifier",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "modifierName": "Gameplay_Variable_Check",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_AxisShake",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "TriggerAbility",
+                    "otherTargets": {
+                      "$type": "AKCINJNDJDB",
+                      "JEHGBONKHLH": 1
+                    },
+                    "canBeHandledOnRecover": true,
+                    "target": "Other",
+                    "doOffStage": false,
+                    "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus_HeavyShake",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_ResetFrogDir",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "TriggerAbility",
+                    "otherTargets": {
+                      "$type": "AKCINJNDJDB"
+                    },
+                    "canBeHandledOnRecover": true,
+                    "target": "Other",
+                    "doOffStage": false,
+                    "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamFrogOption",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_Intee_Control",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "EVENT_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetGlobalValueV2",
+                    "key": "Intee_State",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "value": "EVENT_GV_0",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_Idle_State_Control",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "EVENT_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetGlobalValueV2",
+                    "key": "Idle_State",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "value": "EVENT_GV_0",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_Frog_Jump",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "TriggerAbility",
+                    "otherTargets": {
+                      "$type": "AKCINJNDJDB"
+                    },
+                    "canBeHandledOnRecover": true,
+                    "target": "Other",
+                    "doOffStage": false,
+                    "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamFrog_SingleJump",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > 4.8_TorrentBrave_Lotus_Splash",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "TriggerAbility",
+                    "otherTargets": {
+                      "$type": "AKCINJNDJDB",
+                      "JEHGBONKHLH": 1
+                    },
+                    "canBeHandledOnRecover": true,
+                    "target": "Other",
+                    "doOffStage": false,
+                    "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus_Splash",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ]
+              ],
+              "PEKOJOJFJFB": [
+                "EVENT_GV_0",
+                "EVENT_GV_1"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Gameplay_Variable_Check": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "LevelCurveMixin > Gameplay_Variable_Check -- Fail",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "otherTargets": {
+                    "$type": "AKCINJNDJDB",
+                    "JEHGBONKHLH": 1
+                  },
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiLotus_LightShake",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "otherTargets": {
+                    "$type": "AKCINJNDJDB"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "V4_8_FairyBook_TorrentBrave_OrigamiFrogOPT_PlayEmote",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerLuaTriggerEvent",
+                  "canBeHandledOnRecover": true,
+                  "sourceName": "OrigamiLotus_LightShake",
+                  "doOffStage": false,
+                  "luaCallType": "FromGroup",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_GamePlay_Variable",
+                  "compareType": "MoreThanAndEqual",
+                  "value": "Check_Target_Value_GV"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "LevelCurveMixin > 4.8_TorrentBrave_PauseCheck -- Succ",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Init_GV": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueList",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "globalValueList": [
+                {
+                  "key": "EVENT_GV_0"
+                },
+                {
+                  "key": "EVENT_GV_1"
+                },
+                {
+                  "key": "Check_Target_Value_GV"
+                },
+                {
+                  "key": "Idle_State"
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "EVENT_GV_0",
+        "EVENT_GV_1",
+        "Check_Target_Value_GV"
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Init_GV",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "CurveEvent_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Intee_State",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Idle_State",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_TorrentBrave_CurveAxis"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Forbid_SpecialState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DisableChangeAvatarMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ForbidAvatarIdleMixin",
+              "reason": "SelfAbility",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Forbid_SpecialState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "V4_8_FairyBook_TorrentBrave_SpecialForbid_Ability"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_01 -> onAbilityStart",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StartMove",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "State_0",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "State_201",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 202,
+          "modifierName": "State_202",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 203,
+          "modifierName": "State_203",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Create_Eff": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiAlpacat_01_As",
+              "scale": "SGV_Emote_Scale",
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Interactor_Square_Controller": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "Interactor_Square_On"
+              ],
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_Interactor_Square_On",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Interactor_Square_On": {
+          "onRemoved": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Interactor_Square"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Interactor_Square"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "StartMove": {
+          "duration": 0.699999988079071,
+          "onAdded": [
+            {
+              "$type": "SetTargetToTargetKey",
+              "otherTargets": {
+                "$type": "AKCINJNDJDB",
+                "JEHGBONKHLH": "SGV_Jump_Move_TargetSlot"
+              },
+              "targetKey": "FollowRuntimeID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "FollowMoveParamOverrideMixin",
+              "speed": "calced_Speed",
+              "NKMAIMKINFG": [
+                "speed"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_0": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_201": {
+          "onRemoved": [
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "Jump",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalPos",
+              "key": "RushMove_TargetPoint",
+              "otherTargets": {
+                "$type": "AKCINJNDJDB",
+                "JEHGBONKHLH": "SGV_Jump_Move_TargetSlot"
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueByTargetDistance",
+              "key": "toPos_Distance",
+              "otherTargets": {
+                "$type": "AKCINJNDJDB",
+                "JEHGBONKHLH": "SGV_Jump_Move_TargetSlot"
+              },
+              "canBeHandledOnRecover": true,
+              "FJPGLGKKGPG": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "calced_Speed",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                "toPos_Distance",
+                "move_time",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirectionToPos",
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "useCorrectDir": true,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "RushMove_TargetPoint"
+              },
+              "IGNFEIPKCPK": -1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "maxAngle": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "Jump",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_202": {
+          "onRemoved": [
+            {
+              "$type": "ChangeGadgetState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 3.799999952316284,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "Talk",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_203": {
+          "onRemoved": [
+            {
+              "$type": "ChangeGadgetState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.7999999523162842,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "Talk2",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_Jump_Move_TargetSlot",
+        "toPos_Distance",
+        "move_time",
+        "calced_Speed",
+        "SGV_Emote_Scale"
+      ],
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_OrigamiAlpacat_01_Ds",
+          "scale": "SGV_Emote_Scale",
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "toPos_Distance",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "move_time",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.4333299994468689,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "calced_Speed",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "FollowRuntimeID_0",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "FollowRuntimeID_1",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Interactor_Square_Controller",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Create_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_01"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetTargetToTargetKey",
+          "targetKey": "OrigamiDrum_Runtime_Id",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueByTargetDistance",
+          "key": "Drum_Distance",
+          "canBeHandledOnRecover": true,
+          "FJPGLGKKGPG": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "target": "Target",
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "enable": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalPos",
+          "key": "Drum_PosKey",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drum_SPJump",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "Drum_Distance",
+              "compareType": "LessAndEqual",
+              "value": 0.30000001192092896
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetTargetToTargetKey",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "OrigamiDrum_Runtime_Id"
+              },
+              "targetKey": "FollowRuntimeID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drum_LightJump",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Drum_LightJump": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "LightJump",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "FollowRuntimeID"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TriggerDurmPlayAnim",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drum_SPJump": {
+          "duration": 0.699999988079071,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "SP_calced_Speed",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                "Drum_Distance",
+                "sp_move_time",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirectionToPos",
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "useCorrectDir": true,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "Drum_PosKey"
+              },
+              "IGNFEIPKCPK": -1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "maxAngle": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "JumpSP",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "TriggerDurmPlayAnim": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "Play",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiDrum_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "Drum_Distance",
+        "sp_move_time",
+        "SP_calced_Speed"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Drum_Distance",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "sp_move_time",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.4099999964237213,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "SP_calced_Speed",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_SPJump"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StartMoveSP",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "StartMoveSP": {
+          "duration": 0.699999988079071,
+          "onAdded": [
+            {
+              "$type": "SetTargetToTargetKey",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "OrigamiDrum_Runtime_Id"
+              },
+              "targetKey": "FollowRuntimeID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "FollowMoveParamOverrideMixin",
+              "speed": "SP_calced_Speed",
+              "NKMAIMKINFG": [
+                "speed"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SP_calced_Speed"
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_SPJumpStart"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "PartControl_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "PartControl_Handler": {
+          "onRemoved": [
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "EnablePartControl",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPartControlTarget",
+              "partRootNames": [
+                "RootNode"
+              ],
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "OrigamiDrum_Runtime_Id"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "ActionSetTarget"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "EnablePartControl",
+          "partRootNames": [
+            "RootNode"
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_SPJump_PartControl_Handler"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "otherTargets": {
+            "$type": "PBAGJILDBFN",
+            "targetKey": "OrigamiDrum_Runtime_Id"
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Trigger_Drum_Play",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Trigger_Drum_Play": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_OrigamiDrum_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "FGHGMFLCBFD": 201,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "PlayLight",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_SPJumpOver"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "otherTargets": {
+            "$type": "PBAGJILDBFN",
+            "targetKey": "OrigamiDrum_Runtime_Id"
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Trigger_Drum_Play",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Trigger_Drum_Play": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "ChangeGadgetState",
+              "FGHGMFLCBFD": 201,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "V4_8_FairyBook_OrigamiFrog_Scene_Moveable_SPLightJumpOver"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ShakeCooldown": 8
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "shakeState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "shakeState": {
+          "thinkInterval": "ShakeCooldown",
+          "onAdded": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": -0.10000000149011612,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.25
+                },
+                "shakeTime": 0.4000000059604645,
+                "shakeRange": 1.5,
+                "shakeDistance": 15,
+                "shakeDir": {
+                  "y": 10
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": -0.10000000149011612,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.25
+                },
+                "shakeTime": 0.4000000059604645,
+                "shakeRange": 1.5,
+                "shakeDistance": 15,
+                "shakeDir": {
+                  "y": 10
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueToOverrideMap",
+          "canBeHandledOnRecover": true,
+          "overrideMapKey": "ShakeCooldown",
+          "globalValueKey": "SGV_Shake_Cooldown",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiForest_LevelCameraShake_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ShakeCooldown": 8
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "shakeState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "shakeState": {
+          "thinkInterval": "ShakeCooldown",
+          "onAdded": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": -0.10000000149011612,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.30000001192092896
+                },
+                "shakeTime": 0.800000011920929,
+                "shakeRange": 0.5,
+                "shakeDistance": 20
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": -0.10000000149011612,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.30000001192092896
+                },
+                "shakeTime": 0.800000011920929,
+                "shakeRange": 0.5,
+                "shakeDistance": 20
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueToOverrideMap",
+          "canBeHandledOnRecover": true,
+          "overrideMapKey": "ShakeCooldown",
+          "globalValueKey": "SGV_Shake_Cooldown",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiForest_LevelCameraShake_02"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ShakeCooldown": 8
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "shakeState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "shakeState": {
+          "thinkInterval": "ShakeCooldown",
+          "onAdded": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": -0.03999999910593033,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.07999999821186066
+                },
+                "shakeTime": 0.699999988079071,
+                "shakeRange": 1,
+                "shakeDistance": 30
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": -0.03999999910593033,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.07999999821186066
+                },
+                "shakeTime": 0.699999988079071,
+                "shakeRange": 1,
+                "shakeDistance": 30
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueToOverrideMap",
+          "canBeHandledOnRecover": true,
+          "overrideMapKey": "ShakeCooldown",
+          "globalValueKey": "SGV_Shake_Cooldown",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiForest_LevelCameraShake_03"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "EnableGadgetSpecialCamera",
+          "enable": true,
+          "canBeHandledOnRecover": true,
+          "useCurve": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "V4_8_FairyBook_OrigamiForest_SpecialCam_01"
+    }
+  }
+]

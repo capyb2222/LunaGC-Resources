@@ -1,0 +1,1234 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "total_damage_count": 3
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToHPPercentMixin",
+          "modifierNameSteps": [
+            "Stage1",
+            "Stage2"
+          ],
+          "valueSteps": [
+            [
+              1,
+              "total_damage_count",
+              "DIV"
+            ]
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42205005,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BulletAttachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "Riftstalker_ShockWave_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Riftstalker_ShockWave_Count",
+                  "target": "Target",
+                  "value": 2
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "PLMD_Boss_Mark",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "PaimonHint",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "ShockWave"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackTraceToPosMixin",
+          "steerStateIDs": [
+            "ResetPos"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.5,
+          "attackAngle": 180,
+          "angularSpeed": 250,
+          "LCAEKNCHHNM": 180,
+          "globalPosKey": "_STANDBY_POS",
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "UnlockStrikeAttack"
+          ],
+          "valueSteps": [
+            2.5,
+            99
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Riftstalker_ShockWave_Count",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Strike_Loop_01"
+          ],
+          "value": -1,
+          "modifierName": "LockingTarget",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Strike_Loop_01",
+            "Strike_AS"
+          ],
+          "value": -1,
+          "modifierName": "LockingVFX",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Strike_AS"
+          ],
+          "value": -1,
+          "modifierName": "StrikeAttackControl",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Strike_Loop_01"
+          ],
+          "value": -1,
+          "modifierName": "CameraControl",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "ResetPos02",
+            "ResetPos03"
+          ],
+          "value": -1,
+          "modifierName": "ResetPos_Logic",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "BeHitThrow"
+          ],
+          "value": -1,
+          "modifierName": "CloseFly",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "BodyVFX"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Riftstalker_BodyVFX",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "Predicated",
+                  "predicates": [
+                    {
+                      "$type": "ByAny",
+                      "predicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_STRIKE_MISS_COUNT",
+                          "target": "Target",
+                          "value": 1
+                        },
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_STRIKE_MISS_COUNT",
+                          "target": "Target",
+                          "value": 3
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "successActions": [
+                    {
+                      "$type": "ShowReminder",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "id": 1003430050,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_STRIKE_MISS_COUNT",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_STRIKE_MISS_COUNT",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_STRIKE_MISS_COUNT",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ShowReminder",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "id": 1003430054,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "Howl"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "isInAir": true,
+              "maxRange": 10,
+              "timeRange": 0.44999998807907104,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 10
+                },
+                "useRotation": true,
+                "value": 20,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "animatorStateIDs": [
+                "Biting"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": -1
+            }
+          ],
+          "stateIDs": [
+            "Biting"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "EntityNoPauseMixin",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BeHitMonitor": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "LunarisLeakArea"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV1",
+                      "hitHaltTime": 0.05000000074505806,
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      },
+                      "hitHaltTimeScale": 0.10000000149011612
+                    },
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "COOFHHPOEAC": 1,
+                      "enBreak": 30,
+                      "damageExtra": [
+                        "_MAX_HP",
+                        "total_damage_count",
+                        "DIV",
+                        1,
+                        "ADD"
+                      ],
+                      "IOLHEGDMIBF": true,
+                      "strikeType": "None",
+                      "elementDurability": 100,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "default",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "BodyVFX": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Riftstalker_Electric_Body",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Riftstalker_Electric_Eye",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CameraControl": {
+          "onRemoved": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "default",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "strikeState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CloseFly": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Fly",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Fly",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 1003430042,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_STRIKE_MISS_COUNT",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GhostState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "NLBKJKDNFFP": -1
+        },
+        "LockingTarget": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Riftstalker_BodyVFX",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableAIStealthy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "PositionLockTimer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "GhostState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Riftstalker_BodyVFX",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableAIStealthy",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "SelfAbility",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnableHitBoxByName",
+                  "canBeHandledOnRecover": true,
+                  "hitBoxNames": [
+                    "HitBox_Head",
+                    "HitBox_Body"
+                  ],
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "HideUIBillBoard",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "HideUIBillBoard",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "hide": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnableHitBoxByName",
+                  "canBeHandledOnRecover": true,
+                  "hitBoxNames": [
+                    "HitBox_Head",
+                    "HitBox_Body"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "LockingVFX": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackActiveTarget",
+              "successActions": [
+                {
+                  "$type": "AttachEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "target": "TargetTeam",
+                  "effectPattern": "Eff_Monster_Riftstalker_Electric_Institute_WarningCircle",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "PaimonHint": {
+          "onAdded": [
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 1003430041,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_PAIMON_HINT_TRIGGERED",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "PositionLockTimer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalPos",
+              "key": "_BLINK_ATTACK_POS",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackActiveTarget",
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2.3299999237060547,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ResetPos_Logic": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ServerLuaCall",
+                  "value": 3,
+                  "positionKey": "_STANDBY_POS"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Riftstalker_Electric_Strike_BS",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "DoBlinkByGlobalPos",
+                  "CHLEMPPBPPP": true,
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "positionKey": "_STANDBY_POS",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Riftstalker_Electric_Strike_BS",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "positionKey": "_STANDBY_POS"
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "isInAir": true,
+              "DHBLGDBBJMI": true,
+              "maxRange": 40,
+              "timeRange": 0.6000000238418579,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_STANDBY_POS"
+              },
+              "animatorStateIDs": [
+                "ResetPos02",
+                "ResetPos03"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_STRIKE_MISS_COUNT",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_PAIMON_HINT_TRIGGERED",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ShowReminder",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "id": 1003430042,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CameraModifierMixin",
+              "BFDDKFJLGBN": [
+                "BossAdjust"
+              ],
+              "CHIGAAIBHIP": {
+                "$type": "LCPPGADILBP",
+                "CDNEIMFOLHD": 25,
+                "FNGCFCHIJOB": 600,
+                "GIELAKDKCBP": "EaseOutQuad",
+                "GKOBBABHPLE": 800
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Stage1": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "globalValueList": [
+                {
+                  "key": "_RIFTSTALKER_STAGE_1",
+                  "value": 1
+                },
+                {
+                  "key": "_RIFTSTALKER_STAGE_2"
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Stage2": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "PLMD_Boss_Mark",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "globalValueList": [
+                    {
+                      "key": "_RIFTSTALKER_STAGE_1"
+                    },
+                    {
+                      "key": "_RIFTSTALKER_STAGE_2",
+                      "value": 1
+                    }
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerLuaTriggerEvent",
+                  "canBeHandledOnRecover": true,
+                  "sourceName": "Tostage2",
+                  "doOffStage": false,
+                  "luaCallType": "FromGroup",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "StrikeAttackControl": {
+          "onAdded": [
+            {
+              "$type": "DoBlinkByGlobalPos",
+              "CHLEMPPBPPP": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "positionKey": "_BLINK_ATTACK_POS",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Riftstalker_Electric_Strike_AS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_BLINK_ATTACK_POS"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Riftstalker_ShockWave_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_STRIKE_MISS_COUNT",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UnlockStrikeAttack": {
+          "onRemoved": [
+            {
+              "$type": "UseSkillEliteSet",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "UseSkillEliteSet",
+              "canBeHandledOnRecover": true,
+              "skillEliteSetID": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "_MAX_HP"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetSkillAnchor",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByActionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "selectType": {
+              "$type": "CPCOMBOAHLH"
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "actionPointType": "AureaePoint",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "_STANDBY_POS",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByActionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "selectType": {
+              "$type": "CPCOMBOAHLH"
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "actionPointType": "AureaePoint",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetPoseBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "Fly",
+          "doOffStage": false,
+          "value": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "globalValueList": [
+            {
+              "key": "_STRIKE_MISS_COUNT",
+              "value": 1
+            },
+            {
+              "key": "_PAIMON_HINT_TRIGGERED"
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "GetFightProperty",
+          "canBeHandledOnRecover": true,
+          "fightProp": "FIGHT_PROP_MAX_HP",
+          "globalValueKey": "_MAX_HP",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BeHitMonitor",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Hound_Riftstalker_Institute_StateControl"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "CreateGadget",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "KIFCNCEFANN": {
+            "enable": true,
+            "IDIMGDPHLCB": 0.5,
+            "JGGJGFDOKFJ": 0.5,
+            "OCJBGKNDDAK": true
+          },
+          "onGround": true,
+          "doOffStage": false,
+          "NECMMOKMHBJ": true,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "onGroundIgnoreWater": true,
+            "bornRandom": {
+              "$type": "BornRandomFromCenter",
+              "maxRandomRange": 2
+            }
+          },
+          "gadgetID": 42802133,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Hound_Riftstalker_Electric_Institute_CreateLightning"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "PLMD_Boss_Init",
+          "poseIDs": [
+            102
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "PLMD_Boss_Init": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "PLMD_Boss_Mark",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAISkillCDMultiplier",
+              "EGJFJGDGEFC": 3,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Hound_Riftstalker_Electric_Institute_ForPLMDBoss"
+    }
+  }
+]

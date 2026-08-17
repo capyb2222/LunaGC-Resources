@@ -1,0 +1,1474 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AvatarBuffDuration": 0,
+        "CJBCD": 0,
+        "CJBDamageRatio": 0,
+        "ChooseCD": 0,
+        "MaxCJBNum": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "No_CJB_Trigger",
+            "Has_CJB_Trigger"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_GO_CJB_TRIGGER",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Activity_ActivityTeamChain_AvatarCJBBuff": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Activity_ActivityTeamChain_AvatarCJBBuff_OnBattle",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Activity_ActivityTeamChain_AvatarCJBBuff_OnBattle": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CJB_IN_CD",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CJB_NUM",
+                  "compareType": "LessAndEqual",
+                  "target": "Team",
+                  "value": "MaxCJBNum"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CHOOSE_IN_CD",
+                  "target": "Team",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "target": "Other",
+                  "effectPattern": "Eff_EnergyDisk_ElementalBurst_Wave_R40",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        },
+                        "hitHaltTimeScale": 0.019999999552965164
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "enBreak": 25,
+                        "damageExtra": [
+                          "CJBDamageRatio",
+                          "DamageSystemValue",
+                          "MUL"
+                        ],
+                        "IOLHEGDMIBF": true,
+                        "strikeType": "None",
+                        "KEBENMLLFJH": true,
+                        "KGKNBGENBLN": true,
+                        "attackType": "Melee",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackSphere",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 4,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "born": {
+                        "$type": "ConfigBornByHitPoint",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "target": "CurLocalAvatar",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "CJB_DAMAGE_INCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CJB_DAMAGE_INCD": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CJB_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "CJBCD",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CJB_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_CJB_NUM",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 10,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ChooseMonster_CD": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CHOOSE_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "ChooseCD",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CHOOSE_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Has_CJB_Trigger": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ChooseMonster_CD",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CJB_NUM",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Reset_CJB_Value",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "No_CJB_Trigger": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Reset_CJB_Value": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_GO_CJB_TRIGGER",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.30000001192092896,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "DamageSystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Activity_ActivityTeamChain_AvatarCJBBuff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_ActivityTeamChain_TeamControlBuff"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageUp": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Crazy_In_Peace",
+            "Crazy_DamageUp"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_IN_HIGH_TIDE_V3.4",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "_IN_HIGH_TIDE_V3.4",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Crazy_DamageUp": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "AllPlayerAvatars",
+              "doOffStage": false,
+              "modifierName": "Crazy_DamageUp_TeamChainV3.4",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Crazy_DamageUp_TeamChainV3.4_Eff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Crazy_DamageUp_TeamChainV3.4": {
+          "properties": {
+            "Actor_ElecAddHurtDelta": "DamageUp",
+            "Actor_FireAddHurtDelta": "DamageUp",
+            "Actor_GrassAddHurtDelta": "DamageUp",
+            "Actor_IceAddHurtDelta": "DamageUp",
+            "Actor_PhysicalAddHurtDelta": "DamageUp",
+            "Actor_RockAddHurtDelta": "DamageUp",
+            "Actor_WaterAddHurtDelta": "DamageUp",
+            "Actor_WindAddHurtDelta": "DamageUp"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1
+        },
+        "Crazy_DamageUp_TeamChainV3.4_Eff": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Crazy_In_Peace": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_IN_HIGH_TIDE_V3.4",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_ActivityTeamChainV3.4_TideBuff"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageUpRatio": 0,
+        "Energy": 0,
+        "OffStageInterval": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_LockedAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "ignoreEventInfo": true,
+              "damagePercentageRatio": "DamageUpRatio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_TeamChain_LockedAvatar_OffStage": {
+          "isUnique": true,
+          "thinkInterval": "OffStageInterval",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByIsCombat",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "ReviveElemEnergy",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": true,
+                      "value": "Energy",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByIsLocalAvatar"
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_LockedAvatar",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "UNIQUE_TeamChain_LockedAvatar_OffStage",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_LockedAvatar"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt_Swirl": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_ElementAddHurt_Swirl": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactSwirlElectricDelta": "ElementAddHurt_Swirl",
+            "Actor_ElemReactSwirlFireDelta": "ElementAddHurt_Swirl",
+            "Actor_ElemReactSwirlIceDelta": "ElementAddHurt_Swirl",
+            "Actor_ElemReactSwirlWaterDelta": "ElementAddHurt_Swirl"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_ElementAddHurt_Swirl",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Swirl"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "damagePercentageRatio": 0
+      },
+      "modifiers": {
+        "Activity_TeamChain_Frozen_PercentageRatio": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "ignoreEventInfo": true,
+              "predicates": [
+                {
+                  "$type": "ByHasAbilityState",
+                  "abilityState": "ElementFrozen",
+                  "target": "Target"
+                }
+              ],
+              "damagePercentageRatio": "damagePercentageRatio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Activity_TeamChain_Frozen_PercentageRatio",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_Frozen_PercentageRatio"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Actor_SkillCDMinusRatio": 0,
+        "ElementalBurst_Rate": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_BurstDamageUp_ReduceCD": {
+          "isUnique": true,
+          "properties": {
+            "Actor_SkillCDMinusRatio": "Actor_SkillCDMinusRatio"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "ElementalBurst_Rate",
+              "attackTags": [
+                "Elemental_Burst"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_BurstDamageUp_ReduceCD",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_BurstDamageUp_ReduceCD"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 0,
+        "Energy": 0,
+        "Interval": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_UltGainEnergy_Effect": {
+          "isUnique": true,
+          "duration": "Duration",
+          "thinkInterval": "Interval",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": "Energy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Activity_TeamChain_UltGainEnergy_Handler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OnAvatarUseSkillMixin",
+              "onTriggerUltimateSkill": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Activity_TeamChain_UltGainEnergy_Effect",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "clearSkillIdDelay": 0.20000000298023224,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "UNIQUE_Activity_TeamChain_UltGainEnergy_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_UltGainEnergy"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "BuffMaxLevel": 0,
+        "BuffTime": 0,
+        "GrassReaction_ElemMasteryDelta": 0,
+        "Multiple_CdTime": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_GrassReaction_ElemMasteryDelta_Handler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_TeamChain_GrassReaction_ElemMasteryDelta_Multiple_Handler",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "Burning",
+                "Overdose",
+                "Overgrow",
+                "OverdoseGrass",
+                "OverdoseElectric",
+                "OvergrowMushroomElectric",
+                "OvergrowMushroomFire"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_TeamChain_GrassReaction_ElemMasteryDelta_MultipleEffect": {
+          "isUnique": true,
+          "stackingOption": {
+            "NALKFKGMPAJ": true,
+            "maxModifierNumForMultipleType": "BuffMaxLevel"
+          },
+          "properties": {
+            "Actor_ElemMasteryDelta": "GrassReaction_ElemMasteryDelta"
+          },
+          "duration": "BuffTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "MultipleRefreshNoRemove"
+        },
+        "UNIQUE_TeamChain_GrassReaction_ElemMasteryDelta_Multiple_Handler": {
+          "isUnique": true,
+          "duration": "Multiple_CdTime",
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_TeamChain_GrassReaction_ElemMasteryDelta_MultipleEffect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "UNIQUE_TeamChain_GrassReaction_ElemMasteryDelta_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_GrassReaction_ElemMasteryDelta"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementalArtRate": 0,
+        "NormalAttackRate": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_NormalAttackAndElementalArt_DamageUp": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "NormalAttackRate",
+              "attackTags": [
+                "NormalAttack_01",
+                "NormalAttack_02",
+                "NormalAttack_03",
+                "NormalAttack_04",
+                "NormalAttack_05",
+                "NormalAttack_06"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "ElementalArtRate",
+              "attackTags": [
+                "Elemental_Art",
+                "Elemental_Art_Hold",
+                "Elemental_Art_Extra"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_NormalAttackAndElementalArt_DamageUp",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_NormalAttackAndElementalArt_DamageUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "FallingDamageUp": 0,
+        "WindZone_CD": 0
+      },
+      "modifiers": {
+        "TeamChain_FallingWindZone_WindZoneEffect": {
+          "onRemoved": [
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 1001,
+              "doOffStage": true,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 44000428,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_TeamChain_FallingWindZone_WindZone_CD",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_TeamChain_FallingWindZone_Handler": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "RogueV2_FallingWindZone_CD",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "attackTags": [
+                    "FallingAttack"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "TeamChain_FallingWindZone_WindZoneEffect",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "FallingDamageUp",
+              "attackTags": [
+                "FallingAttack"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_TeamChain_FallingWindZone_WindZone_CD": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "RogueV2_FallingWindZone_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "WindZone_CD",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "RogueV2_FallingWindZone_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_FallingWindZone_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_FallingWindZone"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageUpRatio": 0,
+        "DamageUpTime": 0
+      },
+      "modifiers": {
+        "TeamChain_Mastery_BuffEffect": {
+          "duration": "DamageUpTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "ignoreEventInfo": true,
+              "damagePercentageRatio": "DamageUpRatio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_TeamChain_Mastery_DamageUp": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": true,
+                  "modifierName": "TeamChain_Mastery_BuffEffect",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "SwirlFire",
+                "SwirlElectric",
+                "SwirlWater",
+                "SwirlIce"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "UNIQUE_TeamChain_Mastery_DamageUp",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_Mastery_DamageUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AttackSpeedRatio": 0,
+        "CriticalUpValue": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_AttackSpeedRatio": {
+          "isUnique": true,
+          "properties": {
+            "Animator_AttackSpeedRatio": "AttackSpeedRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "attackTags": [
+                "NormalAttack_01",
+                "NormalAttack_02",
+                "NormalAttack_03",
+                "NormalAttack_04",
+                "NormalAttack_05",
+                "NormalAttack_06"
+              ],
+              "actorIceSubHurtDelta": -1,
+              "bonusCritical": "CriticalUpValue"
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_AttackSpeedRatio",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_AttackSpeedRatio"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Rate": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_NormalAttackDamageUp": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "Rate",
+              "attackTags": [
+                "NormalAttack_01",
+                "NormalAttack_02",
+                "NormalAttack_03",
+                "NormalAttack_04",
+                "NormalAttack_05",
+                "NormalAttack_06"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_NormalAttackDamageUp",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_NormalAttackDamageUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AttackRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_AttackRatio": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "AttackRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_AttackRatio",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_AttackRatio"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_CriticalHurtDelta": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalHurtDelta": "CriticalHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_CriticalHurtDelta",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_CriticalHurtDelta"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElemMasteryDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElemMasteryDeltaUp": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemMasteryDelta": "ElemMasteryDelta"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElemMasteryDeltaUp",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElemMasteryDeltaUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Rate": 0
+      },
+      "modifiers": {
+        "UNIQUE_TeamChain_BurstDamageUp": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "Rate",
+              "attackTags": [
+                "Elemental_Burst"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_TeamChain_BurstDamageUp",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_BurstDamageUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElementAddHurt_Wind": {
+          "isUnique": true,
+          "properties": {
+            "Actor_WindAddHurtDelta": "ElementAddHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElementAddHurt_Wind",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Wind"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElementAddHurt_Fire": {
+          "isUnique": true,
+          "properties": {
+            "Actor_FireAddHurtDelta": "ElementAddHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElementAddHurt_Fire",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Fire"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElementAddHurt_Elec": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecAddHurtDelta": "ElementAddHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElementAddHurt_Elec",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Elec"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElementAddHurt_Water": {
+          "isUnique": true,
+          "properties": {
+            "Actor_WaterAddHurtDelta": "ElementAddHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElementAddHurt_Water",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Water"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElementAddHurt_Grass": {
+          "isUnique": true,
+          "properties": {
+            "Actor_GrassAddHurtDelta": "ElementAddHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElementAddHurt_Grass",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Grass"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElementAddHurt": 0
+      },
+      "modifiers": {
+        "UNIQUE_Activity_TeamChain_ElementAddHurt_Ice": {
+          "isUnique": true,
+          "properties": {
+            "Actor_IceAddHurtDelta": "ElementAddHurt"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Activity_TeamChain_ElementAddHurt_Ice",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_TeamChain_ElementAddHurt_Ice"
+    }
+  }
+]

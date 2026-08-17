@@ -1,0 +1,2922 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "FightState",
+          "poseIDs": [
+            1,
+            2,
+            501,
+            1901,
+            1902
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "FreeAirState",
+          "poseIDs": [
+            501
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "HitThrow",
+            "HitThrowDrop",
+            "HitThrowToGround"
+          ],
+          "value": -1,
+          "modifierName": "BeHitFallingState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "HitThrow_Recover_BS",
+            "HitThrow_Recover_AS",
+            "SheathWeapon_Wait",
+            "SheathWeapon_FreeAir_Wait"
+          ],
+          "value": -1,
+          "modifierName": "InvisibleState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AirRecoverHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "HitThrow",
+            "HitThrowDrop"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AirRecoverHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "HitThrowToGround"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "MoveOnWaterState",
+          "poseIDs": [
+            1,
+            501,
+            1901,
+            1902
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AirRecoverHandler": {
+          "thinkInterval": 0.800000011920929,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "DoAirRecover",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "AirRecoverHandler",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByHasAbilityState",
+                      "abilityState": "ElementFreeze",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByHasAbilityState",
+                      "abilityState": "ElementPetrifaction",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "BeHitFallingState": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "OnGround",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "OnGround",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DoAirRecover": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DoAirRecoverTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FightState": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FreeAirState": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_WEAPON_SHEATHED",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "IsFreeAir",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "InvisibleState": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_Blink_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideUIBillBoard",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_Blink",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideUIBillBoard",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "hide": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "SelfAbility",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "MoveOnWaterState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "EnableCharacterMoveOnWaterMixin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_WINGSTATE",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "modifierName": "FreeAirState"
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Vila_PoseManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "WingState_Fight"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_WINGSTATE",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "HitThrowToGround",
+          "modifierName": "WingState_Drop",
+          "normalizeEnd": 0.7799999713897705,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "WingState_Drop": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WingState_Fight": {
+          "onRemoved": [
+            {
+              "$type": "TriggerSetRenderersEnableV2",
+              "canBeHandledOnRecover": true,
+              "renderNames": [
+                "SkillObj_Monster_Human_Girl_Vila_Wing_01_Model"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetRenderersEnableV2",
+              "canBeHandledOnRecover": true,
+              "renderNames": [
+                "NPC_ItemDynamic_VilaWing_Model"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Wing_Disspear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Wing_Disspear_R",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "TriggerSetRenderersEnableV2",
+              "canBeHandledOnRecover": true,
+              "renderNames": [
+                "SkillObj_Monster_Human_Girl_Vila_Wing_01_Model"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetRenderersEnableV2",
+              "canBeHandledOnRecover": true,
+              "renderNames": [
+                "NPC_ItemDynamic_VilaWing_Model"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Wing_Disspear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Wing_Disspear_R",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Human_Vila_WingManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Modifier_Vila_Hitbox_TPS_Wing_Off",
+            "Modifier_Vila_Hitbox_TPS_Wing_On"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_WINGSTATE",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Modifier_Vila_Hitbox_TPS_Wing_Off": {
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "TPS_Wing"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Modifier_Vila_Hitbox_TPS_Wing_On": {
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "TPS_Wing"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Human_Vila_WingHitboxManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "Play01",
+          "modifierName": "WingState_Play",
+          "normalizeEnd": 0.8899999856948853,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.36000001430511475
+        }
+      ],
+      "modifiers": {
+        "WingState_Play": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WINGSTATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Human_Vila_Boy_WingManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_WEAPON_HIDE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "FreePose_HideWeapon",
+          "poseIDs": [
+            1001
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "FreePose_HideWeapon": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_WEAPON_HIDE",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "modifierName": "FreeAirState"
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Vila_WeaponManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_WEAPON_SHEATHED",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "State_ShowWeapon",
+            "State_SheathWeapon"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_WEAPON_SHEATHED",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "_WEAPON_HIDE",
+          "actions": [
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "PermanentLoseWeapon",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Bow_Dissappear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Struggle"
+          ],
+          "value": -1,
+          "modifierName": "Weapon_Hide",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByPoseIDMixin",
+          "enterActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_WEAPON_SHEATHED",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "poseIDs": [
+            1001,
+            501
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "HitToBattle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByStateIDMixin",
+              "enterActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_WEAPON_SHEATHED",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "PermanentLoseWeapon",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Oprichnik_BombBackpack",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "stateIDs": [
+                "BeHit",
+                "BeHitThrow",
+                "Struggle"
+              ],
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_SheathWeapon": {
+          "onReconnect": [
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip01",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MDDOIMBNDFH": "WeaponSheathPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "WeaponInHand",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip01",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MDDOIMBNDFH": "WeaponSheathPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip02",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MDDOIMBNDFH": "WeaponSheathPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "WeaponInHand",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip01",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "MDDOIMBNDFH": "WeaponSheathPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip02",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "MDDOIMBNDFH": "WeaponSheathPoint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "WeaponInHand",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToAIAlertnessMixin",
+              "alertness": [
+                1,
+                2,
+                3
+              ],
+              "modifierName": "HitToBattle",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_ShowWeapon": {
+          "onAdded": [
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip01",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetWeaponAttachPointRealName",
+              "ELNHMCBILDB": "equip02",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "WeaponInHand",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Weapon_Hide": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "PermanentLoseWeapon",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Human_Equip_HideWeapon",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Human_Vila_Equip_Display_Manager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "TauntAware01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.75,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "TauntAware02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.75,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AwareMove"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AwareMoveR"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AwareMoveL"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "TauntAware_AS",
+            "TauntAware_BS",
+            "AwareAS",
+            "Aware"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.699999988079071,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.20000000298023224,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Girl_Vila_AwareSteer"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Alert"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.699999988079071,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack01_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.699999988079071,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.18000000715255737,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.699999988079071,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "HeavyAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.30000001192092896,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "HeavyAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.6800000071525574,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.5199999809265137,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.8999999761581421,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Personality01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Girl_Vila_Glaive_Steer"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Alert"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.7599999904632568,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack01_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.6000000238418579,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.41999998688697815,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack03_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack03"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.4399999976158142,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack03_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.8500000238418579,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.550000011920929,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.8199999928474426,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Personality01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Girl_Vila_Blade_Steer"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Alert"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.33000001311302185,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.699999988079071,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.33000001311302185,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.75,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack03"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.18000000715255737,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAttack03"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.6000000238418579,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.4300000071525574,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.699999988079071,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Personality01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Boy_Vila_Blade_Steer"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Vila_BulletIsAccurate",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42510008,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 30
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BulletSource",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByHasModifier",
+              "target": "Target",
+              "modifierName": "Monster_IsInStarMode"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "Vila_BulletIsAccurate",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.30000001192092896,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Common_AffectedByStarReaction_Flash",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Fx_ChestNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "attackInfo": {
+                "hitPattern": {
+                  "onHitEffectName": "default",
+                  "overrideHitImpulse": {
+                    "hitImpulseY": 600,
+                    "hitLevel": "Air",
+                    "hitImpulseX": 600
+                  },
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "enBreak": 200,
+                  "strikeType": "None",
+                  "elementDurability": 100,
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 42510008,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByEntity",
+                      "randomAngleHor": 90
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "BulletSource",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Vila_BulletIsAccurate",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 42510008,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByAttackTarget",
+                      "maxAngle": 30
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "BulletSource",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "ShootAttack",
+          "modifierName": "ShootAttack_BowEffect",
+          "normalizeEnd": 0.8140000104904175,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.0820000022649765
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "ShootAttack",
+          "modifierName": "ShootAttack_WeaponHide",
+          "normalizeEnd": 0.8399999737739563,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.5609999895095825
+        }
+      ],
+      "modifiers": {
+        "ShootAttack_BowEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Girl_Vila_ShootAttack_Bow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ShootAttack_WeaponHide": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_Blade_ShootAttack_Weapon_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Vila_BulletIsAccurate",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Girl_Vila_Glaive_ShootAttackManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Vila_BulletIsAccurate",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42510009,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 30
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BulletSource",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByHasModifier",
+              "target": "Target",
+              "modifierName": "Monster_IsInStarMode"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "Vila_BulletIsAccurate",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.30000001192092896,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Common_AffectedByStarReaction_Flash",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Fx_ChestNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "attackInfo": {
+                "hitPattern": {
+                  "onHitEffectName": "default",
+                  "overrideHitImpulse": {
+                    "hitImpulseY": 600,
+                    "hitLevel": "Air",
+                    "hitImpulseX": 600
+                  },
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "enBreak": 200,
+                  "strikeType": "None",
+                  "elementDurability": 100,
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 42510009,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByEntity",
+                      "randomAngleHor": 90
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "BulletSource",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Vila_BulletIsAccurate",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 42510009,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByAttackTarget",
+                      "maxAngle": 30
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "BulletSource",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "ShootAttack",
+          "modifierName": "ShootAttack_BowEffect",
+          "normalizeEnd": 0.7009999752044678,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.0729999989271164
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "ShootAttack",
+          "modifierName": "ShootAttack_WeaponHide",
+          "normalizeEnd": 0.8069999814033508,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.43700000643730164
+        }
+      ],
+      "modifiers": {
+        "ShootAttack_BowEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Boy_Vila_ShootAttack_Bow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ShootAttack_WeaponHide": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_Blade_ShootAttack_Weapon_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Vila_BulletIsAccurate",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Boy_Vila_Blade_ShootAttackManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Vila_BulletIsAccurate",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42510009,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 30
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BulletSource",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByHasModifier",
+              "target": "Target",
+              "modifierName": "Monster_IsInStarMode"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "Vila_BulletIsAccurate",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.30000001192092896,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Common_AffectedByStarReaction_Flash",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Fx_ChestNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "attackInfo": {
+                "hitPattern": {
+                  "onHitEffectName": "default",
+                  "overrideHitImpulse": {
+                    "hitImpulseY": 600,
+                    "hitLevel": "Air",
+                    "hitImpulseX": 600
+                  },
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "enBreak": 200,
+                  "strikeType": "None",
+                  "elementDurability": 100,
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 42510009,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByEntity",
+                      "randomAngleHor": 90
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "BulletSource",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Vila_BulletIsAccurate",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 42510009,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByAttackTarget",
+                      "maxAngle": 30
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "BulletSource",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "ShootAttack",
+          "modifierName": "ShootAttack_BowEffect",
+          "normalizeEnd": 0.8159999847412109,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.08399999886751175
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "ShootAttack",
+          "modifierName": "ShootAttack_WeaponHide",
+          "normalizeEnd": 0.8519999980926514,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.5580000281333923
+        }
+      ],
+      "modifiers": {
+        "ShootAttack_BowEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Girl_Vila_ShootAttack_Bow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ShootAttack_WeaponHide": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Vila_Blade_ShootAttack_Weapon_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_WEAPON_HIDE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Vila_BulletIsAccurate",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Human_Girl_Vila_Blade_ShootAttackManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Bullet_Hit",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV4",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.009999999776482582
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeTime": 0.09000000357627869,
+                "shakeRange": 0.05999999865889549,
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Wind",
+                "damagePercentage": 1,
+                "enBreak": 100,
+                "strikeType": "Pierce",
+                "elementDurability": 25,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 0.5,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_Loop",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Bullet_Loop": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Girl_Vila_Glaive_ShootAttack_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Girl_Vila_Glaive_ShootAttack_BulletTrail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_Loop",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Vila_Glaive_ShootAttackBullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Human_Vila_ShootAttack_Bullet_Hit",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV4",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.009999999776482582
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeTime": 0.09000000357627869,
+                "shakeRange": 0.05999999865889549,
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Wind",
+                "damagePercentage": 1,
+                "enBreak": 70,
+                "strikeType": "Pierce",
+                "elementDurability": 25,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 0.5,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_Loop",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Bullet_Loop": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Boy_Vila_Blade_ShootAttack_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Human_Boy_Vila_Blade_ShootAttack_BulletTrail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_Loop",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Vila_Blade_ShootAttackBullet"
+    }
+  }
+]

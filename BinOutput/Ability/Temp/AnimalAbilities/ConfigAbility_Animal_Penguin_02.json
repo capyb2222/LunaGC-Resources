@@ -1,0 +1,4492 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            0,
+            1
+          ],
+          "modifierName": "Penguin_03_Free",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2
+          ],
+          "modifierName": "Penguin_03_Initial",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "EnableVisionFreePose": {
+          "duration": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "JustBeHitNotByBuddle",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "JustBeHitNotByBuddle",
+                  "doOffStage": false,
+                  "value": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_CheckAtkTag": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Animal_Penguin_03_RotateAtk"
+                  ]
+                },
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "PreExitRotateSmoothly",
+                  "doOffStage": false,
+                  "value": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_ANIMAL_Penguin_03_RotateHitCapra",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onKill": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR100H80"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "doOffStage": false,
+              "modifierName": "Penguin_03_Die",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Animal_Capra_02_RushAtk"
+                      ]
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Animal_Capra_02_FreeRushAtk"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "HitThrow",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "TargetOriginOwner",
+                  "targetPredicates": [
+                    {
+                      "$type": "KBJIEFMEMIE",
+                      "FKALHKNGMLF": [
+                        "SuperRushAtk_First_Prepare_Ready",
+                        "SuperRushAtk_Prepare_Ready",
+                        "SuperRushAtk_Last_Prepare_Ready",
+                        "SuperRushAtk_First_Loop",
+                        "SuperRushAtk_Loop",
+                        "SuperRushAtk_Last_Loop",
+                        "SuperRushAtk_First_AS",
+                        "SuperRushAtk_AS",
+                        "SuperRushAtk_Last_AS"
+                      ],
+                      "target": "Target",
+                      "MOCOFLKNODH": true
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "AddGlobalValue",
+                      "key": "_ANIMAL_Penguin_03_HitByRush",
+                      "canBeHandledOnRecover": true,
+                      "useLimitRange": true,
+                      "maxValue": 2,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Animal_Capra_02_TrampleAtk"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "GetFightProperty",
+                  "canBeHandledOnRecover": true,
+                  "fightProp": "FIGHT_PROP_CUR_HP",
+                  "globalValueKey": "_ANIMAL_Penguin_03_CurHP",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueToOverrideMap",
+                  "canBeHandledOnRecover": true,
+                  "overrideMapKey": "_ANIMAL_Penguin_03_CurHP",
+                  "globalValueKey": "_ANIMAL_Penguin_03_CurHP",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "GetFightProperty",
+                  "canBeHandledOnRecover": true,
+                  "fightProp": "FIGHT_PROP_MAX_HP",
+                  "target": "Target",
+                  "globalValueKey": "_ANIMAL_Penguin_03_MaxHP",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueToOverrideMap",
+                  "canBeHandledOnRecover": true,
+                  "overrideMapKey": "_ANIMAL_Penguin_03_MaxHP",
+                  "globalValueKey": "_ANIMAL_Penguin_03_MaxHP",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "attacker": "Self",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV1",
+                      "onHitEffectName": "Eff_Animal_Capra_02_HitH",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "attackTag": "Animal_Penguin_03_HitRotateExtraDamage",
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "COOFHHPOEAC": 1,
+                      "damageExtra": [
+                        "_ANIMAL_Penguin_03_CurHP",
+                        0.07999999821186066,
+                        "MUL",
+                        "_ANIMAL_Penguin_03_MaxHP",
+                        0.03999999910593033,
+                        "MUL",
+                        "ADD"
+                      ],
+                      "IOLHEGDMIBF": true,
+                      "strikeType": "Blunt",
+                      "KEBENMLLFJH": true,
+                      "KGKNBGENBLN": true,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "default",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": 0.75
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "HitRotate",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Penguin_03_Die": {
+          "onRemoved": [
+            {
+              "$type": "RefreshUICombatBarLayout",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Capra_02_PenguinDie",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_Free": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "excludeForces": [
+                "WindZoneType"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Other",
+                      "attackTags": [
+                        "Animal_Capra_02_FreeRushAtk"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EnableVisionFreePose",
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Penguin_03_Initial": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_CapraDie",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_HitByRush",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_RotateHitCapra",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_BasicDefendOverCheck",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_Angry",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_DefendState",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetCommandPos",
+              "key": "_ANIMAL_Penguin_03_BornPosition",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_SyncCenterPositionHandler": {
+          "duration": 3,
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR40H40HC"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_Capra_02_AlreadySyncPosition",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_SyncCenterPosition",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_SyncCenterPosition": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Capra_02_AlreadySyncPosition",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_ANIMAL_Capra_02_CenterPosition",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "KEPCAMGENCB": "Caster",
+                "positionKey": "_ANIMAL_Penguin_03_BornPosition"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "_ANIMAL_Penguin_03_BornPosition",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Penguin_03_SyncCenterPositionHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "Is_Penguin_03",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ANIMAL_Penguin_03_Unstoppable",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Penguin_03_CheckAtkTag",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Penguin_03_Initial"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "WalkTurn"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 99,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "HitRotate"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "RotateAtk_Loop_Ready"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "RotateAtk_Loop"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 99,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAtkWithMove"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.1080000028014183,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.01600000075995922,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAtkWithMove"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6449999809265137,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.42500001192092896,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Angry_03"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6449999809265137,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.42500001192092896,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "FreeReactAtk"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "facingTargetTypes": [
+            "BuddyTarget"
+          ],
+          "endNormalizedTime": 0.6449999809265137,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.42500001192092896,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalAtkWithoutMove"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6399999856948853,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.40700000524520874,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Angry_04"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6399999856948853,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.40700000524520874,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Angry_01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.1720000058412552,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.07500000298023224,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "FreeEnterReact01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "facingTargetTypes": [
+            "BuddyTarget"
+          ],
+          "endNormalizedTime": 0.1720000058412552,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.07500000298023224,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Penguin_03_Steer"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "Penguin_03_PrepareDefend"
+          ],
+          "valueSteps": [
+            -0.5,
+            1.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ANIMAL_Penguin_03_HitByRush",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "Penguin_03_PrepareAngry"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ANIMAL_Penguin_03_CapraDie",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "Penguin_03_EndDefendForCapraDie"
+          ],
+          "valueSteps": [
+            -0.5,
+            1.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ANIMAL_Penguin_03_BasicDefendOverCheck",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "Penguin_03_AngryState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ANIMAL_Penguin_03_Angry",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToHPPercentMixinV2",
+          "modifierNameSteps": [
+            "Blank",
+            "Penguin_03_HPLow"
+          ],
+          "value": 1,
+          "valueSteps": [
+            0.6000000238418579
+          ],
+          "MCDNJPLMFJL": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "CapraNotInSuperRushState",
+            "CapraInSuperRushState"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "otherTargets": {
+            "$type": "MDMCILHBCEP",
+            "tag": "Is_Capra_02"
+          },
+          "IDCFEAAAHEL": true,
+          "removeAppliedModifier": true,
+          "targetRegisterType": "RegisterAlways",
+          "globalValueKey": "_ANIMAL_Capra_02_SuperRushState",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "ResetHitByRushGV"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "otherTargets": {
+            "$type": "MDMCILHBCEP",
+            "tag": "Is_Capra_02"
+          },
+          "IDCFEAAAHEL": true,
+          "removeAppliedModifier": true,
+          "targetRegisterType": "RegisterAlways",
+          "globalValueKey": "_ANIMAL_Capra_02_PenguinResetHitByRushGV",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CapraInSuperRushState": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "CapraRushState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CapraNotInSuperRushState": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndDefendTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "CapraRushState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "InformCapra_Penguin_03_HPLow": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_Capra_02_NotInitialRound"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_Capra_02_EnterSuperByHPLow"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_ANIMAL_Capra_02_5SecondsPassedTimes_Initial",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 7,
+                  "doOffStage": false,
+                  "value": 7,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_ANIMAL_Capra_02_EnterSuperByHPLow",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_AngryState": {
+          "properties": {
+            "Actor_AttackRatio": 2,
+            "Actor_ElecSubHurtDelta": -0.5,
+            "Actor_FireSubHurtDelta": -0.5,
+            "Actor_GrassSubHurtDelta": -0.5,
+            "Actor_IceSubHurtDelta": -0.5,
+            "Actor_PhysicalSubHurtDelta": -0.5,
+            "Actor_RockSubHurtDelta": -0.5,
+            "Actor_WaterSubHurtDelta": -0.5,
+            "Actor_WindSubHurtDelta": -0.5
+          },
+          "onAdded": [
+            {
+              "$type": "SetAISkillGCD",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_EndDefendForCapraDie": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndDefendTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_HPLow": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR100H80"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "doOffStage": false,
+              "modifierName": "InformCapra_Penguin_03_HPLow",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_PrepareAngry": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAISkillCDAvailableNow",
+              "canBeHandledOnRecover": true,
+              "skillIDs": [
+                666
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_BasicDefendOverCheck",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RefreshUICombatBarLayout",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_PrepareDefend": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DefendState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ResetHitByRushGV": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_HitByRush",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Penguin_03_GVActionManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "LandState",
+          "poseIDs": [
+            1,
+            101,
+            102,
+            201,
+            202,
+            210,
+            901
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "WaterState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "Weak_BS",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.5
+            },
+            {
+              "stateID": "Weak_Loop",
+              "normalizeEnd": 99
+            },
+            {
+              "stateID": "Weak_AS",
+              "normalizeEnd": 0.30000001192092896
+            }
+          ],
+          "modifierName": "WeakState_Collider",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "LandState": {
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox_Water"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider_Water01",
+                "PushCollider_Water02",
+                "PushCollider_Weak"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WaterState": {
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox_Water"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider",
+                "PushCollider_Weak"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider_Water01",
+                "PushCollider_Water02"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WeakState_Collider": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider_Weak"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider_Weak"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "Animal_Penguin_03_ColliderManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockLaunch",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "bulletID": 42802401,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackActiveTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "angleOffset": {
+                "x": -15
+              },
+              "useCorrectDir": true,
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "bulletID": 42802401,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackActiveTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "useCorrectDir": true,
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "bulletID": 42802401,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackActiveTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "angleOffset": {
+                "x": 15
+              },
+              "useCorrectDir": true,
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Walk"
+          ],
+          "value": -1,
+          "modifierName": "WalkSpeedManager",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Run"
+          ],
+          "value": -1,
+          "modifierName": "RunSpeedManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "RunSpeedManager": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToPoseIDMixin",
+              "modifierName": "RunSpeedManager_Normal",
+              "poseIDs": [
+                101
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToPoseIDMixin",
+              "modifierName": "RunSpeedManager_Angry",
+              "poseIDs": [
+                102
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RunSpeedManager_Angry": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 0.10000000149011612
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RunSpeedManager_Normal": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 0
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WalkSpeedManager": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToPoseIDMixin",
+              "modifierName": "WalkSpeedManager_Normal",
+              "poseIDs": [
+                101
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToPoseIDMixin",
+              "modifierName": "WalkSpeedManager_Angry",
+              "poseIDs": [
+                102
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "WalkSpeedManager_Angry": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 0.10000000149011612
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WalkSpeedManager_Normal": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 0
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Penguin_03_AnimationSpeedManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockLaunch",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "bulletID": 42802402,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackActiveTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "CheckDistance",
+          "poseIDs": [
+            202
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "CheckDistance": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "PositionReady",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetCommandPos",
+              "key": "_ANIMAL_Penguin_03_BornPosition",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.25,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetCommandPos",
+              "enable": true,
+              "key": "_ANIMAL_Penguin_03_BornPosition",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "predicates": [
+                {
+                  "$type": "ServerLuaCall",
+                  "logic": "LesserOrEqual",
+                  "value": 3,
+                  "positionKey": "_ANIMAL_Penguin_03_BornPosition"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "boolID": "PositionReady",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Penguin_03_ResetPosition"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockLaunch",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "bulletID": 42802401,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackActiveTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "MouthEffPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "attachPointTargetType": "Caster"
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "NormalAtkWithMove02",
+            "NormalAtkWithoutMove02",
+            "NormalAtkWithMove02_Triple01",
+            "NormalAtkWithoutMove02_Triple02",
+            "NormalAtkWithoutMove02_Triple03",
+            "NormalAtkWithMove02_Triple01_Unreachable",
+            "NormalAtkWithoutMove02_Triple02_Unreachable",
+            "NormalAtkWithoutMove02_Triple03_Unreachable"
+          ],
+          "value": -1,
+          "modifierName": "RockInMouth",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "NormalAtkWithMove02_FreeReactAtk"
+          ],
+          "value": -1,
+          "modifierName": "FreeRockInMouth",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "NormalAtkWithMove02_Angry",
+            "NormalAtkWithoutMove02_Angry",
+            "NormalAtkWithMove02_Triple01_Angry",
+            "NormalAtkWithoutMove02_Triple02_Angry",
+            "NormalAtkWithoutMove02_Triple03_Angry",
+            "NormalAtkWithMove02_EnterAngry01",
+            "NormalAtkWithoutMove02_EnterAngry02",
+            "NormalAtkWithoutMove02_EnterAngry03"
+          ],
+          "value": -1,
+          "modifierName": "AngryRockInMouth",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Angry_01",
+            "Angry_02",
+            "Angry_03",
+            "Angry_04"
+          ],
+          "value": -1,
+          "modifierName": "Penguin_03_AttachAngryEff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AngryRockInMouth": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Animal_Penguin_03_AnimationSpeedManager",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockInMouth",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "MouthEffPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Caster"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FreeRockInMouth": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Animal_Penguin_03_ResetPosition",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockInMouth",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "MouthEffPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Caster"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_AttachAngryEff": {
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_Angry",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_EmojiBubble_Emoji_Angry",
+              "scale": 5,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RockInMouth": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Animal_Penguin_03_NormalAtk_BulletManager",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockInMouth",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "MouthEffPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Caster"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Penguin_03_NormalAtk_BulletManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "onHitEffectName": "default",
+                "overrideHitImpulse": {
+                  "hitLevel": "Heavy",
+                  "hitImpulseX": 300
+                },
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "damagePercentage": 0.5,
+                "enBreak": 150,
+                "strikeType": "Blunt",
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackCircle",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 2,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "fanAngle": 360,
+              "height": 1.5,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "DamageByAttackValue",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "$type": "ConfigBornBySelf",
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "offset": {
+                    "x": 0.5
+                  },
+                  "useRotation": true,
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR3H4"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "attackInfo": {
+                "hitPattern": {
+                  "hitImpulseType": "LV3",
+                  "onHitEffectName": "default",
+                  "overrideHitImpulse": {
+                    "hitLevel": "Heavy",
+                    "hitImpulseX": 300
+                  },
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "attackTag": "Animal_Penguin_03_FreeDropAtk",
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "enBreak": 1,
+                  "strikeType": "Blunt",
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTargetLinearPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "FFELNAIDFOO": true,
+                "offset": {
+                  "x": 0.75
+                },
+                "useRotation": true,
+                "onGroundRaycastUpDist": 2,
+                "LGOGOBEBJPO": true,
+                "linearOffset": -0.25
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAISkillCDAvailableNow",
+              "canBeHandledOnRecover": true,
+              "skillIDs": [
+                131
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByHasModifier",
+              "target": "Target",
+              "modifierName": "Penguin_03_Initial"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DamageByAttackValue",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "$type": "ConfigBornBySelf",
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "offset": {
+                    "x": 0.5
+                  },
+                  "useRotation": true,
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR3H4"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "attackInfo": {
+                "hitPattern": {
+                  "hitImpulseType": "LV3",
+                  "onHitEffectName": "default",
+                  "overrideHitImpulse": {
+                    "hitLevel": "Heavy",
+                    "hitImpulseX": 300
+                  },
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "damagePercentage": 0.5,
+                  "enBreak": 1,
+                  "strikeType": "Blunt",
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTargetLinearPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "FFELNAIDFOO": true,
+                "offset": {
+                  "x": 0.75
+                },
+                "useRotation": true,
+                "onGroundRaycastUpDist": 2,
+                "LGOGOBEBJPO": true,
+                "linearOffset": -0.25
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Animal_Penguin_03_DropAtk"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "HitRotate",
+            "RotateAtk_Loop_Ready",
+            "RotateAtk_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Animal_Penguin_03_RotateAtk_RushMove",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "RotateAtk_Loop_Ready",
+            "RotateAtk_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Animal_Penguin_03_RotateAtkLoopState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "PreExitRotateSmoothly",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_Penguin_03_RotateHitCapra",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "boolID": "CapraRushState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "RotateAtk_AS"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAbilityStateMixin",
+          "abilityStates": [
+            "ElementPetrifaction",
+            "ElementFreeze"
+          ],
+          "modifierName": "BanRushMove",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Animal_Penguin_03_RotateAtkLoopState": {
+          "thinkInterval": 0.33000001311302185,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_RotateAtk",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_RotateHitCapra",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV1",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "damagePercentage": 0.800000011920929,
+                    "enBreak": 150,
+                    "strikeType": "Blunt",
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "Animal_Penguin_03_RotateAtk",
+                  "attenuationTag": "Animal_Penguin_03_RotateAtk",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 1.7999999523162842,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 2.25,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": -0.5
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "attacker": "CasterOriginOwner",
+                  "target": "Target",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV1",
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "damagePercentage": 0.800000011920929,
+                      "enBreak": 1,
+                      "strikeType": "Blunt",
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "Animal_Penguin_03_RotateAtk",
+                    "attenuationTag": "Animal_Penguin_03_RotateAtk",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campBasedOn": "Caster",
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR4H4"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_Capra_02_HitByRotateAtkTimes",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "attacker": "CasterOriginOwner",
+                  "target": "Target",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV4",
+                      "onHitEffectName": "none",
+                      "overrideHitImpulse": {
+                        "hitLevel": "Heavy",
+                        "hitImpulseX": 1500
+                      },
+                      "muteHitText": true,
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "attackTag": "Animal_Penguin_03_RotateAtk",
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "enBreak": 20000,
+                      "strikeType": "Blunt",
+                      "KGKNBGENBLN": true,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "default",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Animal_Penguin_03_RotateAtk_RushMove": {
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "maxRange": 3.200000047683716,
+              "timeRange": 1,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "animatorStateIDs": [
+                "HitRotate",
+                "RotateAtk_Loop_Ready",
+                "RotateAtk_Loop"
+              ],
+              "doOffStage": false,
+              "NAOGKIPEAAJ": true,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "BanRushMove": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "excludeForces": [
+                "RushMoveType",
+                "FixedRushMoveType"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Penguin_03_RotateAtk_Loop"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Defend"
+          ],
+          "value": -1,
+          "modifierName": "UNIQUE_PenguinDefendState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Defend"
+          ],
+          "value": -1,
+          "modifierName": "PenguinDefendTimer",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "HitByRushManager",
+          "poseIDs": [
+            201
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Defend"
+          ],
+          "value": -1,
+          "modifierName": "EndDefendMaxTime",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "Defend_BS",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.6380000114440918
+            },
+            {
+              "stateID": "Defend_Loop",
+              "normalizeEnd": 99
+            }
+          ],
+          "modifierName": "Penguin_03_DefendEff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "EndDefendMaxTime": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndDefendTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 45,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "HitByRushManager": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ReconnectDefendHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "PenguinDefendTimer": {
+          "duration": 15,
+          "thinkInterval": 10,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_BasicDefendOverCheck",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_DefendEff": {
+          "onRemoved": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_Animal_Penguin_03_Defend",
+              "doOffStage": false,
+              "parameter": "EndureEndTrigger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_BasicDefendOverCheck",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_Defend",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ReconnectDefendHandler": {
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "ReconnectDefend",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "ReconnectDefend",
+                  "doOffStage": false,
+                  "value": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_PenguinDefendState": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_DefendState",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_HitByRush",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DefendState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_ElecSubHurtDelta": 3,
+            "Actor_FireSubHurtDelta": 3,
+            "Actor_GrassSubHurtDelta": 3,
+            "Actor_IceSubHurtDelta": 3,
+            "Actor_PhysicalSubHurtDelta": 3,
+            "Actor_RockSubHurtDelta": 3,
+            "Actor_WaterSubHurtDelta": 3,
+            "Actor_WindSubHurtDelta": 3
+          },
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DefendState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_DefendState",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "abilityName": "Animal_Penguin_03_DefendManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ANIMAL_Penguin_03_CurHP": 0,
+        "ANIMAL_Penguin_03_MaxHP": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "Weak_BS",
+              "normalizeEnd": 1
+            },
+            {
+              "stateID": "Weak_Loop",
+              "normalizeEnd": 99
+            }
+          ],
+          "modifierName": "UNIQUE_Penguin_03_WeakState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "Weak_BS",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.6380000114440918
+            },
+            {
+              "stateID": "Weak_Loop",
+              "normalizeEnd": 99
+            }
+          ],
+          "modifierName": "Penguin_03_WeakEff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "CapraStartWeak": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "WeakTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_CancleWatcher3": {
+          "onRemoved": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_CapraGroup_Watcher3_2",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_LocalLegendTag_",
+                  "value": 1
+                }
+              ],
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_WeakEff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Mimik_Ice_Down_02",
+              "scale": 1.25,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Penguin_03_WeakState": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecSubHurtDelta": -0.5,
+            "Actor_FireSubHurtDelta": -0.5,
+            "Actor_GrassSubHurtDelta": -0.5,
+            "Actor_IceSubHurtDelta": -0.5,
+            "Actor_PhysicalSubHurtDelta": -0.5,
+            "Actor_RockSubHurtDelta": -0.5,
+            "Actor_WaterSubHurtDelta": -0.5,
+            "Actor_WindSubHurtDelta": -0.5
+          },
+          "onAdded": [
+            {
+              "$type": "GetFightProperty",
+              "canBeHandledOnRecover": true,
+              "fightProp": "FIGHT_PROP_MAX_HP",
+              "globalValueKey": "_ANIMAL_Penguin_03_MaxHP",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "_ANIMAL_Penguin_03_MaxHP",
+              "globalValueKey": "_ANIMAL_Penguin_03_MaxHP",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "GetFightProperty",
+              "canBeHandledOnRecover": true,
+              "fightProp": "FIGHT_PROP_CUR_HP",
+              "globalValueKey": "_ANIMAL_Penguin_03_CurHP",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "_ANIMAL_Penguin_03_CurHP",
+              "globalValueKey": "_ANIMAL_Penguin_03_CurHP",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ANIMAL_Penguin_03_WillDieForCrash",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                "_ANIMAL_Penguin_03_MaxHP",
+                0.20000000298023224,
+                "MUL",
+                "_ANIMAL_Penguin_03_CurHP",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": 1,
+              "funcName": "SLC_CapraGroup_Watcher3_2",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_Penguin_03_WillDieForCrash",
+                  "compareType": "MoreThanAndEqual"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_LocalLegendTag_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Penguin_03_CancleWatcher3",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "attackInfo": {
+                "hitPattern": {
+                  "hitImpulseType": "LV1",
+                  "onHitEffectName": "Eff_Animal_Penguin_03_RushCrash01",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "attackTag": "Animal_Penguin_03_WeakByRushAtk",
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "COOFHHPOEAC": 1,
+                  "damageExtra": [
+                    "_ANIMAL_Penguin_03_MaxHP",
+                    0.20000000298023224,
+                    "MUL"
+                  ],
+                  "IOLHEGDMIBF": true,
+                  "strikeType": "Blunt",
+                  "KEBENMLLFJH": true,
+                  "KGKNBGENBLN": true,
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ActCameraShake",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.20000000298023224,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.10000000149011612,
+                  "baseCycle": 0.1599999964237213
+                },
+                "shakeTime": 0.23999999463558197,
+                "shakeRange": 1.2000000476837158,
+                "shakeDistance": 36,
+                "shakeDir": {
+                  "y": -1,
+                  "z": -1
+                },
+                "shakeType": "CustomVector"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "CapraStartWeak",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR100H80"
+              },
+              "canBeHandledOnRecover": true,
+              "predicatesForeach": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "targetPredicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "Weak",
+                    "Weak_Loop"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_RushCrashDust",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "abilityName": "Animal_Penguin_03_Weak"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "NormalResistFreeze",
+            "Unstoppable"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ANIMAL_Penguin_03_Unstoppable",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "UNIQUE_PenguinResistanceManager",
+          "poseIDs": [
+            201,
+            202,
+            210
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "NormalResistFreeze": {
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "durationRatio": 0.8999999761581421,
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 14002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_PenguinResistanceManager": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_Unstoppable",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ANIMAL_Penguin_03_Unstoppable",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Unstoppable": {
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceBuffDebuffs": [
+                "ElementPetrifaction",
+                "ElementFreeze"
+              ],
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Penguin_03_ResistanceManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HAS_TRIGGERED_"
+                },
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Animal_Penguin_03_RockHit",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "CNMNLMNIGHL",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV2",
+                      "onHitEffectName": "none",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "attackTag": "Animal_Penguin_03_BulletDamage",
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "damagePercentage": 1,
+                      "enBreak": 1,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "canBeModifiedBy": "OriginOwner",
+                    "attenuationGroup": "Animal_Penguin_03_NormalAtk_Triple",
+                    "attenuationTag": "Animal_Penguin_03_NormalAtk_Triple",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "MFBBHFKPBPI": true,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_HAS_TRIGGERED_",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    42802401
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_HAS_TRIGGERED_"
+            },
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar",
+                    "Partner",
+                    "Gadget",
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Level"
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_RockHit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV2",
+                    "onHitEffectName": "none",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "attackTag": "Animal_Penguin_03_BulletDamage",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.09000000357627869,
+                    "shakeRange": 0.05999999865889549,
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "damagePercentage": 1,
+                    "enBreak": 50,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "Animal_Penguin_03_NormalAtk_Triple",
+                  "attenuationTag": "Animal_Penguin_03_NormalAtk_Triple",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 0.5,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "CNMNLMNIGHL",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_HAS_TRIGGERED_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                42802401
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "KillSelfTimer": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HAS_TRIGGERED_"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Penguin_03_NormalAtkBulletConfig",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Animal_Penguin_03_RockHit",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "none",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "attackTag": "Animal_Penguin_03_BulletDamage",
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeTime": 0.09000000357627869,
+                        "shakeRange": 0.05999999865889549,
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 1,
+                        "enBreak": 50,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "Animal_Penguin_03_NormalAtk_Triple",
+                      "attenuationTag": "Animal_Penguin_03_NormalAtk_Triple",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackSphere",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 0.5,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "born": {
+                        "$type": "ConfigBornByAttachPoint",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "attachPointName": "RootNode",
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_HAS_TRIGGERED_",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    42802401
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 9,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_NormalAtkBulletConfig": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockBullet",
+              "scale": 1.5,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Penguin_03_NormalAtkBulletConfig",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_HAS_TRIGGERED_",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "KillSelfTimer",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Penguin_03_NormalAtk_BulletConfig"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HAS_TRIGGERED_"
+                },
+                {
+                  "$type": "ByHasTag",
+                  "tag": "Is_Capra_02",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Animal_Penguin_03_RockHit",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "CNMNLMNIGHL",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV2",
+                      "onHitEffectName": "none",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "attackTag": "Animal_Penguin_03_FreeBulletDamage",
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "enBreak": 1,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "canBeModifiedBy": "OriginOwner",
+                    "attenuationGroup": "Animal_Penguin_03_NormalAtk_Triple",
+                    "attenuationTag": "Animal_Penguin_03_NormalAtk_Triple",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "MFBBHFKPBPI": true,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_HAS_TRIGGERED_",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    42802402
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_HAS_TRIGGERED_"
+            },
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar",
+                    "Partner",
+                    "Gadget",
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Level"
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_RockHit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "CNMNLMNIGHL",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV2",
+                    "onHitEffectName": "none",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "attackTag": "Animal_Penguin_03_FreeBulletDamage",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.09000000357627869,
+                    "shakeRange": 0.05999999865889549,
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "damagePercentage": 1,
+                    "enBreak": 50,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "Animal_Penguin_03_NormalAtk_Triple",
+                  "attenuationTag": "Animal_Penguin_03_NormalAtk_Triple",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 0.5,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "CNMNLMNIGHL",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_HAS_TRIGGERED_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                42802402
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "KillSelfTimer": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HAS_TRIGGERED_"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Penguin_03_NormalAtkBulletConfig",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Animal_Penguin_03_RockHit",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "none",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "attackTag": "Animal_Penguin_03_FreeBulletDamage",
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeTime": 0.09000000357627869,
+                        "shakeRange": 0.05999999865889549,
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 1,
+                        "enBreak": 50,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "Animal_Penguin_03_NormalAtk_Triple",
+                      "attenuationTag": "Animal_Penguin_03_NormalAtk_Triple",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackSphere",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 0.5,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "born": {
+                        "$type": "ConfigBornByAttachPoint",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "attachPointName": "RootNode",
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_HAS_TRIGGERED_",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    42802402
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 9,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_03_NormalAtkBulletConfig": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_03_NormalAtk_RockBullet",
+              "scale": 1.5,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Penguin_03_NormalAtkBulletConfig",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_HAS_TRIGGERED_",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "KillSelfTimer",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Penguin_03_FreeNormalAtk_BulletConfig"
+    }
+  }
+]

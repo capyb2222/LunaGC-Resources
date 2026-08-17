@@ -1,0 +1,1238 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Natsaurus_PartnerConfig": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "PartnerTag",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "State_LockHP",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "excludeForces": [
+                "WindZoneType"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RejectAttackMixinV2",
+              "type": "RejectAll",
+              "attackTags": [
+                "Qin_VortexSmash",
+                "Sucrose_WindBlackHole",
+                "Faruzan_WindBlackHole"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_LockHP": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "LockHP",
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_MONSTER_Natsaurus_PartnerTag_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Natsaurus_PartnerConfig",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Natsaurus_PartnerConfig"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetPoseInt",
+          "canBeHandledOnRecover": true,
+          "value": 2,
+          "intID": "VolcanoReactFlag",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "NHBHHNNCKGD",
+              "target": "Target",
+              "configIdArray": [
+                25502401,
+                25502402,
+                25504301,
+                25504302,
+                25505301,
+                25505302
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_tempTracePos",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": -2
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "VolcanoReactTurnR",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.5,
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "VolcanoReactTurnL",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierByNeuronMixin",
+          "enable": true,
+          "CILKIDGMNJI": [
+            "WEATHER_VOLCANO_OUTSIDE"
+          ],
+          "IEOBJCLGHLG": "AllFinishDelete",
+          "modifierName": "VolcanoReactHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Boar_VolcanoMoveAudio": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ReplaceEventPatternMixin",
+              "oldPatterns": [
+                "Audio_Boar_walk",
+                "Audio_Boar_run"
+              ],
+              "newPatterns": [
+                "Audio_Boar_walk_volcano",
+                "Audio_Boar_run_volcano"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fatuus_VolcanoReactAdjuster": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToPoseIDMixin",
+              "modifierName": "Fatuus_VolcanoReactSpeedUp",
+              "poseIDs": [
+                8
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fatuus_VolcanoReactSpeedUp": {
+          "properties": {
+            "Animator_MoveSpeedRatio": 1.350000023841858
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OverrideMonsterMoveSpeedRatioMixin",
+              "minValue": -1,
+              "showID": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "VolcanoReactHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "intID": "VolcanoReactFlag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25502401,
+                    25502402
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_human_Male_sword_bisonsaurus_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25504301,
+                    25504302
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_human_MuscleMan_claymore_bisonsaurus_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25505301,
+                    25505302
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_human_Male_Fat_NoWeapon_bisonsaurus_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25511101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_tribalWarrior_Male_powermaul_bisonsaurus_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25511201
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_tribalWarrior_Female_slingshot_bisonsaurus_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23030101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_fatuus_summoner_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23050101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_maiden_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_fat_m_ejector_ice_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010201
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_fat_m_support_water_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010301
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_strong_m_hammer_elec_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010401
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_m_wand_rock_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010501
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_strong_m_glove_wind_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010601
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_m_remote_fire_volcanoEnd"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "intID": "VolcanoReactFlag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1001,
+              "intID": "FreePoseMark",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25502401,
+                    25502402
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_tribalWarrior_Male_powermaul_bisonsaurus_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25504301,
+                    25504302
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_human_MuscleMan_claymore_bisonsaurus_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25505301,
+                    25505302
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_human_Male_Fat_NoWeapon_bisonsaurus_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25511101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_tribalWarrior_Male_powermaul_bisonsaurus_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    25511201
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_natlan_tribalWarrior_Female_slingshot_bisonsaurus_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23030101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_fatuus_summoner_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23050101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_maiden_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010101
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_fat_m_ejector_ice_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010201
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_fat_m_support_water_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010301
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_strong_m_hammer_elec_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010401
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_m_wand_rock_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010501
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_strong_m_glove_wind_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAudio",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23010601
+                  ]
+                }
+              ],
+              "operation": {
+                "$type": "ConfigAudioEventOp",
+                "operation": {
+                  "text": "Play_vo_monster_skirmisher_m_remote_fire_volcanoStart"
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "configIdArray": [
+                    23050101,
+                    23010101,
+                    23010201,
+                    23010301,
+                    23010401,
+                    23010501,
+                    23010601
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Search",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Practice",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Threat",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Think",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Agree",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Talk",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Attention",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "Afraid",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "NHBHHNNCKGD",
+                      "configIdArray": [
+                        23010101,
+                        23010301,
+                        23010601
+                      ]
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "TriggerHideWeapon",
+                      "canBeHandledOnRecover": true,
+                      "visible": true,
+                      "doOffStage": false,
+                      "partNames": [
+                        "equip01"
+                      ],
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "TriggerHideWeapon",
+                      "canBeHandledOnRecover": true,
+                      "visible": true,
+                      "doOffStage": false,
+                      "partNames": [
+                        "equip02"
+                      ],
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "FireEffect",
+                      "otherTargets": {
+                        "$type": "SelectTargetsByEquipParts",
+                        "partNames": [
+                          "equip01"
+                        ]
+                      },
+                      "canBeHandledOnRecover": true,
+                      "effectTempleteID": -1,
+                      "effectPattern": "Eff_Monster_Weapon_Disappear",
+                      "scale": 1,
+                      "doOffStage": false,
+                      "born": {
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "FireEffect",
+                      "otherTargets": {
+                        "$type": "SelectTargetsByEquipParts",
+                        "partNames": [
+                          "equip02"
+                        ]
+                      },
+                      "canBeHandledOnRecover": true,
+                      "effectTempleteID": -1,
+                      "effectPattern": "Eff_Monster_Weapon_Disappear",
+                      "scale": 1,
+                      "doOffStage": false,
+                      "born": {
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Fatuus_VolcanoReactAdjuster",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SteerAttackTraceToPosMixin",
+              "steerStateIDs": [
+                "VolcanoReact_TurnLBS"
+              ],
+              "APJGHNNHBOG": true,
+              "value": -1,
+              "endNormalizedTime": 1,
+              "angularSpeed": 240,
+              "LCAEKNCHHNM": 180,
+              "globalPosKey": "_tempTracePos",
+              "startNormalizedTime": 0.25,
+              "isCheckOnAttach": true,
+              "PFLLBABOMGO": "Left",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SteerAttackTraceToPosMixin",
+              "steerStateIDs": [
+                "VolcanoReact_TurnLAS"
+              ],
+              "APJGHNNHBOG": true,
+              "value": -1,
+              "endNormalizedTime": 1,
+              "angularSpeed": 240,
+              "LCAEKNCHHNM": 180,
+              "globalPosKey": "_tempTracePos",
+              "isCheckOnAttach": true,
+              "PFLLBABOMGO": "Left",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SteerAttackTraceToPosMixin",
+              "steerStateIDs": [
+                "VolcanoReact_TurnRBS"
+              ],
+              "APJGHNNHBOG": true,
+              "value": -1,
+              "endNormalizedTime": 1,
+              "angularSpeed": 240,
+              "LCAEKNCHHNM": 180,
+              "globalPosKey": "_tempTracePos",
+              "startNormalizedTime": 0.25,
+              "isCheckOnAttach": true,
+              "PFLLBABOMGO": "Right",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SteerAttackTraceToPosMixin",
+              "steerStateIDs": [
+                "VolcanoReact_TurnRAS"
+              ],
+              "APJGHNNHBOG": true,
+              "value": -1,
+              "endNormalizedTime": 1,
+              "angularSpeed": 240,
+              "LCAEKNCHHNM": 180,
+              "globalPosKey": "_tempTracePos",
+              "isCheckOnAttach": true,
+              "PFLLBABOMGO": "Right",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Boar_VolcanoMoveAudio",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Monster_Natsaurus_VolcanoReactHandler"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "VolcanoReact_AirPose",
+          "poseIDs": [
+            9004,
+            9005,
+            9007,
+            911
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 2,
+              "intID": "VolcanoReactFlag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "VolcanoReact_Launch"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "VolcanoReactDetector"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Monster_Natsaurus_Flamingo_Normal_InAirPose",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "VolcanoReactDetector": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierByNeuronMixin",
+              "enable": true,
+              "CILKIDGMNJI": [
+                "WEATHER_VOLCANO_OUTSIDE"
+              ],
+              "IEOBJCLGHLG": "AllFinishDelete",
+              "modifierName": "VolcanoReactHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "VolcanoReactHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "intID": "VolcanoReactFlag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "intID": "VolcanoReactFlag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "VolcanoReact_AirPose": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Natsaurus_Flamingo_Normal_InAirPose",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Natsaurus_Flamingo_Normal_InAirPose",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "Monster_Natsaurus_Flamingo_Normal_VolcanoReactHandler"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "FreezeRigidbody": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "NatsaurusDragon_Staff": {
+          "properties": {
+            "Entity_MassRatio": 20000,
+            "Entity_WeightRatio": 20000
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "excludeForces": [
+                "WindZoneType"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Standby",
+                "StandbyFree"
+              ],
+              "value": -1,
+              "modifierName": "FreezeRigidbody",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "NatsaurusDragon_Staff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Monster_Natsaurus_Common_StaffAffix"
+    }
+  }
+]

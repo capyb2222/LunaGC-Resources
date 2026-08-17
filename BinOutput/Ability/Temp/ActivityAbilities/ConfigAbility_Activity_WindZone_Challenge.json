@@ -1,0 +1,380 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "FallingAttackDamageUpRatio": 0.5
+      },
+      "abilityMixins": [
+        {
+          "$type": "LocalAvatarsMixin",
+          "modifierName": "UNIQUE_WindField_Challenge_RockJump_FallingDamageUp_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_WindField_Challenge_RockJump_FallingDamageUp": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "EnableRocketJump",
+              "type": "DungeonJump",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableRocketJump",
+              "type": "DungeonJump",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": true,
+              "extention": {
+                "yMultiplier": 3,
+                "xzMultiplier": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "FallingAttackDamageUpRatio",
+              "attackTags": [
+                "FallingAttack"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onAvatarIn": [
+            {
+              "$type": "EnableRocketJump",
+              "type": "DungeonJump",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": true,
+              "extention": {
+                "yMultiplier": 3,
+                "xzMultiplier": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stacking": "Unique"
+        },
+        "UNIQUE_WindField_Challenge_RockJump_FallingDamageUp_Handler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_WindField_Challenge_RockJump_FallingDamageUp"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Team",
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_WindField_Buff_2",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_WindField_Challenge_RockJump_FallingDamageUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "WindZone_CD": 4
+      },
+      "abilityMixins": [
+        {
+          "$type": "LocalAvatarsMixin",
+          "modifierName": "UNIQUE_WindField_Challenge_WindZone_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_WindField_Challenge_WindZone_Action_CD": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Wind_CDState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "WindZone_CD",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Wind_CDState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_WindField_Challenge_WindZone_Decision_AttackLand": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "NormalAttack_01",
+                    "NormalAttack_02",
+                    "NormalAttack_03",
+                    "NormalAttack_04",
+                    "NormalAttack_05",
+                    "NormalAttack_06",
+                    "ExtraAttack",
+                    "ExtraAttack1",
+                    "ExtraAttack2",
+                    "ExtraAttack3",
+                    "ExtraAttack_Charge",
+                    "FallingAttack"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Wind_CDState",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "successActions": [
+                {
+                  "$type": "CreateGadget",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "KIFCNCEFANN": {
+                    "enable": true,
+                    "IDIMGDPHLCB": 0.5,
+                    "JGGJGFDOKFJ": 0.5,
+                    "OCJBGKNDDAK": true
+                  },
+                  "onGround": true,
+                  "campID": 1001,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true,
+                    "alongGround": true
+                  },
+                  "gadgetID": 44000454,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_WindField_Challenge_WindZone_Action_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_WindField_Challenge_WindZone_Handler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_WindField_Challenge_WindZone_Decision_AttackLand"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Team",
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_WindField_Buff_1",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_WindField_Challenge_WindZone"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 4
+      },
+      "modifiers": {
+        "Life_Timer": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WindFiled_Challenge_WindZone": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_Roguelike_Gadget_Wind_Absorbe",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WindZoneMixin",
+              "value": 0.10000000149011612,
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetWeight",
+                  "weight": 150,
+                  "logic": "Lesser",
+                  "target": "Target"
+                }
+              ],
+              "EMMNOPNLHOC": 100,
+              "maxNum": 12,
+              "forceType": "WindZoneType",
+              "strength": 10,
+              "innerRadius": 1,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.5
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "shapeName": "CircleR12",
+              "actorIceSubHurtDelta": -1,
+              "targetType": "All"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Life_Timer",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "WindFiled_Challenge_WindZone",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Activity_WindFiled_Challenge_WindZone_Gadget"
+    }
+  }
+]

@@ -1,0 +1,2501 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_Bouncing_Ball_Shooter_Fire",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "RootNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 70290966,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttachPoint",
+              "attachPointName": "ShootPoint",
+              "attachPointTargetType": "Self",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ShootPoint",
+            "offset": {
+              "x": 0.5
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "onGroundIgnoreWater": true
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerLuaTriggerEvent",
+          "canBeHandledOnRecover": true,
+          "sourceName": "SorushHitmanTri",
+          "doOffStage": false,
+          "luaCallType": "FromGroup",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "BeHitState": {
+          "onReconnect": [
+            {
+              "$type": "SetMaterialParamFloatByTransform",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "matName": "Dissolve",
+              "patternName": "_DissolveVal",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Sorush_Hitman_Bomb_Attack"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "Attack",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BeHitState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 101,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanShooterFlower_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "OnAction",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "CanTriggerBullet",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Bouncing_Ball_Slusha_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByLookAtEntity",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "BulletTriggerCD",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Level"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "CanTriggerBullet"
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV6",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.05000000074505806
+                  },
+                  "attackTag": "SorushtrialAttackNoFire",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.36000001430511475,
+                    "shakeRange": 0.36000001430511475,
+                    "shakeDistance": 20
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "enBreak": 9999999,
+                    "strikeType": "None",
+                    "elementDurability": 100,
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 4,
+                  "triggerType": "TriggerNoRepeat",
+                  "ignoreMassive": true,
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": 0.5
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "All"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByHasTag",
+              "tag": "SlushaHitmanBrambleWall",
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "BulletTriggerCD": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "CanTriggerBullet",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "CanTriggerBullet",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SpiningBall_Trail": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Bouncing_Ball_Slusha_Move",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "SpiningBall_Trail",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "CanTriggerBullet",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanShooterFlower_01_Bullet_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "BombBoxLoop",
+            "DestoryState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WoodenObject_BurnOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.75
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "Destory_Enable",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 102,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanWoodenBox_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "BombBoxLoop",
+            "DestoryState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WoodenObject_BurnOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.75
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "Destory_Enable",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 103,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanWoodenBarrel_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Fire_Off",
+            "Fire_On"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "BeHitByFire",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Fire_Off": {
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHitByFire",
+              "predicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "SorushtrialAttackWithFire",
+                    "Sorush_Hitman_Bomb_Attack"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Fire_On": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_FireBasin_Smoke",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "attachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHitByFire",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Fire",
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Fire_Camp_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 25,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "All",
+                "shapeName": "CircleR15"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "NoticeMonster",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "NoticeMonster": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_ACTION_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_EMOJI_VALUE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "BeHitByFire",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 104,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanBonfire_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Fire_Off",
+            "Fire_On"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "BeHitByFire",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Fire_Off": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHitByFire",
+              "predicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "SorushtrialAttackWithFire",
+                    "Sorush_Hitman_Bomb_Attack"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Fire_On": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_FireBasin_Smoke",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "attachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHitByFire",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Fire",
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cooking_01_Fire",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cooking_01_Smoke",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 25,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "All",
+                "shapeName": "CircleR15"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "NoticeMonster",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "NoticeMonster": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_ACTION_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_EMOJI_VALUE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 105,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "BeHitByFire",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanCookingPot_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "NoBorken",
+            "Broken"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "BeHit",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Broken": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 25,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "RootNode"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Amber_Water_Mist",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Amber_Water_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.30000001192092896
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "All",
+                "shapeName": "CircleR10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Equip"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "SteamBangWet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "All",
+                "shapeName": "CircleR10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "MonsterEquip"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "SteamBangWet",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "NoBorken": {
+          "elementType": "Water",
+          "minus_one": -1,
+          "elementDurability": 50,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHit",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "SteamBangWet": {
+          "elementType": "Water",
+          "duration": 8,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_ACTION_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_EMOJI_VALUE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 106,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanAmberWater_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Fire_On",
+            "BurnOut"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "BeHitByFire",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BurnOut": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WoodenObject_BurnOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint1",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WoodenObject_BurnOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint2",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Fire_Off": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHitByFire",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "BeHitByFire",
+              "predicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "SorushtrialAttackWithFire",
+                    "Sorush_Hitman_Bomb_Attack"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Fire_On": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WoodenObject_BurnOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint1",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WoodenObject_BurnOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint2",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Element_Burning",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Fire_Off",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 107,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "SlushaHitmanBrambleWall",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanBrambleWall_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "DestoryState"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Fire",
+          "minus_one": -1,
+          "elementDurability": 1,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Collider"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_BombBarrel_01_Explode",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireAISoundEvent",
+              "canBeHandledOnRecover": true,
+              "JFBLKHICKKL": 50,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV6",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.05000000074505806
+                  },
+                  "attackTag": "SorushtrialAttackWithFire",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.36000001430511475,
+                    "shakeRange": 0.36000001430511475,
+                    "shakeDistance": 20
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "elementType": "Fire",
+                    "enBreak": 9999999,
+                    "strikeType": "None",
+                    "elementDurability": 50,
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 6,
+                  "triggerType": "TriggerNoRepeat",
+                  "ignoreMassive": true,
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": 0.5
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "All"
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "duHPRation": 1,
+              "OPMIOLOPGHP": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BombBoxLoop",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 108,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanBombBarrel_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "DestoryState"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Electric",
+          "minus_one": -1,
+          "elementDurability": 1,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Collider"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Property_Ani_Prop_XMBombbarrel_02_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireAISoundEvent",
+              "canBeHandledOnRecover": true,
+              "JFBLKHICKKL": 50,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV6",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.05000000074505806
+                  },
+                  "attackTag": "SorushtrialAttackNoFire",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.36000001430511475,
+                    "shakeRange": 0.36000001430511475,
+                    "shakeDistance": 20
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "elementType": "Electric",
+                    "enBreak": 9999999,
+                    "strikeType": "None",
+                    "elementDurability": 50,
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 6,
+                  "triggerType": "TriggerNoRepeat",
+                  "ignoreMassive": true,
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": 0.5
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "All"
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "duHPRation": 1,
+              "OPMIOLOPGHP": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BombBoxLoop",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 109,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanThunerBarrel_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "PumpkinBomb": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "BeHitFire",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "PumpkinBomb_Explode",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "PumpkinBomb_Explode": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_BombPlant_Explode",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 1.399999976158142
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireAISoundEvent",
+              "canBeHandledOnRecover": true,
+              "JFBLKHICKKL": 50,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV5",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.05000000074505806
+                  },
+                  "attackTag": "SorushtrialAttackWithFire",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.36000001430511475,
+                    "shakeRange": 0.36000001430511475,
+                    "shakeDistance": 20
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "elementType": "Fire",
+                    "enBreak": 9999999,
+                    "strikeType": "None",
+                    "elementDurability": 50,
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 4,
+                  "triggerType": "TriggerNoRepeat",
+                  "ignoreMassive": true,
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": 0.800000011920929
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "All"
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "duHPRation": 1,
+              "OPMIOLOPGHP": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 3,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_BombPlant_Ignite",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "PumpkinBomb",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 110,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanPumpkinBomb_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "DestoryState"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Electric",
+          "minus_one": -1,
+          "elementDurability": 1,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "All",
+                "shapeName": "CircleR15"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "NoticeMonster",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "SorushHitmanTri",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_ElectricRock_01_Destroy",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireAISoundEvent",
+              "canBeHandledOnRecover": true,
+              "JFBLKHICKKL": 50,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NoticeMonster": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_ACTION_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ACTIVITY_SORUSHTRIAL_EMOJI_VALUE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BombBoxLoop",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVITY_SORUSHTRIAL_TEACH_VALUE_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 111,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanOreElectricRock_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "BombBoxLoop",
+            "DestoryState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_QQTotem_Destroy",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "Destory_Enable",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanTotem_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "BombBoxLoop",
+            "DestoryState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Destory_Enable",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BombBoxLoop": {
+          "elementType": "Wood",
+          "minus_one": -1,
+          "elementDurability": 30,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Destory_Enable",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "DestoryState": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Build_Hili_House_10_Destory",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "Destory_Enable",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Xm_Property_Ani_Prop_SlushaHitmanRoadBlock_01_Ability"
+    }
+  }
+]

@@ -1,0 +1,375 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageSystemValue": 0,
+        "DamageValue": 0,
+        "GenerateCDTime": 0,
+        "Grass_Slash_RandomDir": 0,
+        "HealHPInterval": 0,
+        "HealHPRatio": 0,
+        "ReviveElemEnergyValue": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Ability_ForestWQ_StartHandle"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "globalValueTarget": "Team",
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_Ability_ForestWQ",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Ability_ForestWQ_AssistAttack_Delay": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetRandomOverrideMapValue",
+              "canBeHandledOnRecover": true,
+              "valueRangeMax": 100,
+              "overrideMapKey": "Grass_Slash_RandomDir",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_WitheredForest_Grass_Slash_RandomDir",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": "Grass_Slash_RandomDir",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_WitheredForest_Grass_Slash",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByEntity",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Fx_ChestNode",
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV2",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.019999999552965164
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "elementType": "Grass",
+                    "damagePercentage": "DamageValue",
+                    "strikeType": "None",
+                    "elementDurability": 10,
+                    "attackType": "Melee",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 4,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Applier",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Ability_ForestWQ_AssistAttack": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GeneratePurpleState",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "modifierName": "Ability_ForestWQ_AssistAttack_Delay",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Ability_ForestWQ_AssistAttack_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GeneratePurpleState",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Gadget"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_WeakMode",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "modifierName": "Ability_ForestWQ_AssistAttack_Delay",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Ability_ForestWQ_AssistAttack_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Ability_ForestWQ_AssistAttack_CD": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GeneratePurpleState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "GenerateCDTime",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GeneratePurpleState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Ability_ForestWQ_RecoverHP": {
+          "isUnique": true,
+          "properties": {
+            "Actor_EndureDelta": 0
+          },
+          "thinkInterval": "HealHPInterval",
+          "isLimitedProperties": true,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "DeathZoneGV_ExtraHeal",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "onThinkInterval": [
+            {
+              "$type": "HealHP",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "amountByTargetMaxHPRatio": "HealHPRatio",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "ReviveElemEnergyValue",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "DeathZoneGV_ExtraHeal",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Ability_ForestWQ_StartHandle": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Ability_ForestWQ_AssistAttack",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Ability_ForestWQ_RecoverHP",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_ForestWQ_AssistAttack"
+    }
+  }
+]

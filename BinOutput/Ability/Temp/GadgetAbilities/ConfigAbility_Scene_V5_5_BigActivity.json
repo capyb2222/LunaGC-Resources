@@ -1,0 +1,3275 @@
+[
+  {
+    "Default": {
+      "onRemoved": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "VentiDongeon_5_5_LaserChecking_Team",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "VentiDongeon_5_5_LaserChecking_Avatar": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "_ABILITY_VentiDongeon_LaserChecking_GV",
+              "actions": [
+                {
+                  "$type": "LoseHP",
+                  "canBeHandledOnRecover": true,
+                  "enableInvincible": true,
+                  "doOffStage": false,
+                  "amountByTargetMaxHPRatio": 0.20000000298023224,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetTargetToTargetKey",
+              "targetKey": "Attack_Target",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "VentiLaser_Moveable_Attack"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "otherTargets": {
+                    "$type": "PBAGJILDBFN",
+                    "targetKey": "Attack_Target"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "VentiLaser_CD",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValueV2",
+                  "key": "_ABILITY_VentiDongeon_LaserChecking_GV",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "VentiDongeon_5_5_LaserChecking_Team": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "VentiDongeon_5_5_LaserChecking_Avatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "VentiLaser_CD": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_VentiLaser_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_VentiLaser_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "VentiDongeon_5_5_LaserChecking_Team",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Ability_Team_VentiDongeon_5_5_LaserChecking"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Value_DamageSystemValue": 0
+      },
+      "modifiers": {
+        "Death": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DelayDeath",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_AirRaidBomb_PreWarmBall",
+              "doOffStage": false,
+              "parameter": "State",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DelayDeath": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGadgetState",
+                      "gadgetState": 202
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "otherTargets": {
+                    "$type": "SelectTargetsByShape",
+                    "sizeRatio": 1,
+                    "GLDMBEOHPHB": {
+                      "direction": {
+                        "maxAngle": 180
+                      },
+                      "EALBHHJEFGH": {
+                        "BKAPGJCLCIO": 180
+                      },
+                      "value": 10,
+                      "onGroundRaycastUpDist": 2
+                    },
+                    "campTargetType": "All",
+                    "shapeName": "CircleR6H10"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Avatar"
+                      ]
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "DamageByAttackValue",
+                      "canBeHandledOnRecover": true,
+                      "target": "Target",
+                      "attackInfo": {
+                        "hitPattern": {
+                          "hitImpulseType": "LV6",
+                          "onHitEffectName": "default",
+                          "NPLKKCCDEDJ": {
+                            "value": 1,
+                            "NJICIOFCOPD": true
+                          },
+                          "hitHaltTimeScale": 0.05000000074505806
+                        },
+                        "cameraShake": {
+                          "extension": {
+                            "cycleDamping": 0.11999999731779099,
+                            "baseOnCamera": true,
+                            "rangeAttenuation": 0.5,
+                            "baseCycle": 0.11999999731779099
+                          },
+                          "shakeDistance": 20
+                        },
+                        "attackProperty": {
+                          "elementType": "Fire",
+                          "damageExtra": "Value_DamageSystemValue",
+                          "IOLHEGDMIBF": true,
+                          "KEBENMLLFJH": true,
+                          "KGKNBGENBLN": true,
+                          "attackType": "Default",
+                          "elementRank": 1
+                        },
+                        "KMBBLIMOMBH": {
+                          "LMEIODIINNM": "Shake"
+                        },
+                        "attenuationGroup": "default",
+                        "OLHIHLILEKH": {
+                          "onHitEffectName": "default",
+                          "NPLKKCCDEDJ": {
+                            "value": 1,
+                            "NJICIOFCOPD": true
+                          }
+                        }
+                      },
+                      "doOffStage": false,
+                      "born": {
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "otherTargets": {
+                    "$type": "SelectTargetsByShape",
+                    "sizeRatio": 1,
+                    "GLDMBEOHPHB": {
+                      "direction": {
+                        "maxAngle": 180
+                      },
+                      "EALBHHJEFGH": {
+                        "BKAPGJCLCIO": 180
+                      },
+                      "value": 10,
+                      "onGroundRaycastUpDist": 2
+                    },
+                    "campTargetType": "All",
+                    "shapeName": "CircleR6H10"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "DamageByAttackValue",
+                      "canBeHandledOnRecover": true,
+                      "target": "Target",
+                      "attackInfo": {
+                        "hitPattern": {
+                          "hitImpulseType": "LV6",
+                          "onHitEffectName": "default",
+                          "NPLKKCCDEDJ": {
+                            "value": 1,
+                            "NJICIOFCOPD": true
+                          },
+                          "hitHaltTimeScale": 0.05000000074505806
+                        },
+                        "cameraShake": {
+                          "extension": {
+                            "cycleDamping": 0.11999999731779099,
+                            "baseOnCamera": true,
+                            "rangeAttenuation": 0.5,
+                            "baseCycle": 0.11999999731779099
+                          },
+                          "shakeDistance": 20
+                        },
+                        "attackProperty": {
+                          "elementType": "Fire",
+                          "damageExtra": [
+                            84,
+                            "Value_DamageSystemValue",
+                            "MUL"
+                          ],
+                          "IOLHEGDMIBF": true,
+                          "KEBENMLLFJH": true,
+                          "KGKNBGENBLN": true,
+                          "attackType": "Default",
+                          "elementRank": 1
+                        },
+                        "KMBBLIMOMBH": {
+                          "LMEIODIINNM": "Shake"
+                        },
+                        "attenuationGroup": "default",
+                        "OLHIHLILEKH": {
+                          "onHitEffectName": "default",
+                          "NPLKKCCDEDJ": {
+                            "value": 1,
+                            "NJICIOFCOPD": true
+                          }
+                        }
+                      },
+                      "doOffStage": false,
+                      "born": {
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_AirRaidBomb_Boom_12M",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73042003
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 4,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EffManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_AirRaidBomb_PreWarmBall",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Bone_Boom01",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Normal",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "Death",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 202,
+              "modifierName": "ForceDeath",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ForceDeath": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_AirRaidBomb_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73042003
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_AirRaidBomb_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "VentiDelayedBomb_Already_Hit",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorInt",
+                  "canBeHandledOnRecover": true,
+                  "intID": "GadgetState",
+                  "doOffStage": false,
+                  "value": 201,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ChangeGadgetState",
+                  "FGHGMFLCBFD": 201,
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "VentiDelayedBomb_Already_Hit",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "VentiDelayedBomb_Already_Hit",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "Value_DamageSystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_VentiDelayedBomb_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Laser_PowerOff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Laser_Continue",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Laser_Continue": {
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Laser_01_Standard",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_VentiLaser_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_VentiLaser_CD",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV6",
+                        "retreatType": "ByHitDirection",
+                        "onHitEffectName": "none",
+                        "overrideHitImpulse": {
+                          "hitImpulseY": 800,
+                          "hitLevel": "Air",
+                          "hitImpulseX": 600
+                        },
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        },
+                        "hitHaltTimeScale": 0.05000000074505806
+                      },
+                      "attackTag": "VentiLaser_Moveable_Attack",
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "strikeType": "None",
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackBox",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "CDGHMIIFAPD": true,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "size": {
+                        "z": 50,
+                        "x": 0.5,
+                        "y": 0.800000011920929
+                      },
+                      "born": {
+                        "$type": "ConfigBornByAttachPoint",
+                        "direction": {
+                          "$type": "ConfigDirectionByEntity",
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "attachPointName": "ShootPoint",
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "checkHitLayerType": "Both"
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Laser_PowerOff": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "PLAYER_ENTER",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "value": -5,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onFieldExit": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "PLAYER_ENTER",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "value": -5,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_VentiLaser_Moveable",
+      "onFieldEnter": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "PLAYER_ENTER",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 1,
+          "doOffStage": false,
+          "value": 5,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Normal",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "ShowBar",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 202,
+          "modifierName": "Broken",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Broken": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Normal"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Broken"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR20"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Monster_TauntLevel_MAX",
+              "doOffStage": false,
+              "careValue": 1000,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "triggerID": "Hit",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Default": {
+          "thinkInterval": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR20"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Monster_TauntLevel_MAX",
+              "doOffStage": false,
+              "careValue": 1000,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Normal"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Broken"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ShowUICombatBar",
+              "canBeHandledOnRecover": true,
+              "JGGFNHEKHIM": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR20"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Monster_TauntLevel_MAX",
+              "doOffStage": false,
+              "careValue": 1000,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ShowBar": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "ShowUICombatBar",
+              "show": true,
+              "canBeHandledOnRecover": true,
+              "JGGFNHEKHIM": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RefreshUICombatBarLayout",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Default",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Normal"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Broken"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR20"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Monster_TauntLevel_MAX",
+              "doOffStage": false,
+              "careValue": 1000,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "triggerID": "Hit",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachAbilityStateResistance",
+          "durationRatio": 1,
+          "canBeHandledOnRecover": true,
+          "resistanceListID": 11002,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_SCENEOBJ_PROTECTTARGET",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "_IS_SpecialMamoluHPBar",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_SpecialMamolu_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Default": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "RefreshUICombatBarLayout",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ShowUICombatBar",
+              "canBeHandledOnRecover": true,
+              "JGGFNHEKHIM": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR20"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Monster_TauntLevel_MAX",
+              "doOffStage": false,
+              "careValue": 99999,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Default",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachAbilityStateResistance",
+          "durationRatio": 1,
+          "canBeHandledOnRecover": true,
+          "resistanceListID": 11002,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_SCENEOBJ_PROTECTTARGET",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "_IS_SpecialMamoluHPBar",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_SpecialMamoluHPBar_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "CanonShoot"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "CSE_CanonTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "WidgetMpSupportMixin",
+          "failActions": [
+            {
+              "$type": "ShowReminder",
+              "muteRemoteAction": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 1002370049,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "predicates": [
+            {
+              "$type": "ByTargetGadgetState",
+              "gadgetState": 201,
+              "target": "Target"
+            }
+          ],
+          "succActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "CanonShoot",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DelaySLC",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Active": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillShieldBreaker_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "CanonShoot": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillShieldBreaker_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Default": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "DelaySLC": {
+          "onRemoved": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_CanonShoot",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "EffController": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Default",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "FullCharge",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 202,
+              "modifierName": "Active",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "FullCharge": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Eff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffController",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Common_Property_Ani_Prop_NatlanDrillShieldBreaker_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "NatlanDrillpoint_Idle": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_Circle_Create",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_Circle_Idle",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "NatlanDrillpoint_Idle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_NatlanDrillpoint_01",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_Circle_Die",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73042011
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "NatlanDrillBall_Idle": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_NatlanDrillBall_Tail",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_Trail_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "NatlanDrillBall_Idle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_NatlanDrillBall_01",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_01",
+              "doOffStage": false,
+              "parameter": "State",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73042012,
+                73042015
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Idle": {
+          "onRemoved": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "colRoot"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "IdleEff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "IdleEff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.2999999523162842,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "IdleEff": {
+          "onReconnect": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "colRoot"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "colRoot"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NatlanDrillBall_Idle": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "GadgetState",
+              "doOffStage": false,
+              "value": 207,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_NatlanDrillBall_Tail",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_Trail_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "colRoot"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Idle",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "NatlanDrillBall_Idle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_NatlanDrillBallSpecialBorn_01",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillpoint_01",
+              "doOffStage": false,
+              "parameter": "State",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73042020
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Default",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Warning",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Default": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "HitManager": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBigpoint_Born",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBigpoint_Idle",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBigpoint_Destroy",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73042013
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Warning": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBigpoint_Warning",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "HitManager",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_Avatar_Chasca_AimGadget",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_NatlanDrillBalloon_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "NatlanDrill_KillGadget": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "CKOGMACPCOC": true,
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Disappear",
+              "configIdArray": [
+                73042014
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PNOKPFOOCJH": true
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "杀死gadget",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NatlanDrill_Prop_SeekerBattery": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "NatlanDrill_Prop_SeekerBatteryEffect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "删除常驻特效",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NatlanDrill_Prop_SeekerBatteryEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_SeekerBattery_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 1
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NatlanDrill_TriggerBuff": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_ABILITY_5_5_Activity_Trigger",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_ABILITY_5_5_Activity_Trigger",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Activity_NatlanDrillDefence_GetBuff",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_SeekerBattery_01_Destroy",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": 1
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "能量球被移除时调用了吗111111",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "NatlanDrill_Prop_SeekerBatteryEffect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "AddGlobalValue",
+          "key": "Is_First_FireEffect",
+          "canBeHandledOnRecover": true,
+          "minValue": 1,
+          "useLimitRange": true,
+          "maxValue": 2,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Ability_Property_Prop_IsUse",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "Is_First_FireEffect",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_SeekerBattery_01_BornFast",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "NatlanDrill_Prop_SeekerBattery",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "有能量球被创建了",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Is_First_FireEffect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_NatlanDrillLightBuff_01",
+      "onFieldEnter": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "onFieldEnter",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Ability_Property_Prop_IsUse"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "NatlanDrill_Prop_SeekerBatteryEffect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "NatlanDrill_TriggerBuff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "modifierName": "NatlanDrill_KillGadget",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "这里走到了",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Ability_Property_Prop_IsUse",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "EffManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillEnemySheild_Shield",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "NoneBreak",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "FirstBreak",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 202,
+              "modifierName": "SecondBreak",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 203,
+              "modifierName": "ThirdBreak",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 204,
+              "modifierName": "TotalBreak",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "FirstBreak": {
+          "thinkInterval": 2.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "collider"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillEnemySheild_Shield",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "NoneBreak": {
+          "thinkInterval": 2.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "collider"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SecondBreak": {
+          "thinkInterval": 2.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "collider"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 202,
+              "effectPattern": "Eff_SceneObj_NatlanDrillEnemySheild_Shield",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ThirdBreak": {
+          "thinkInterval": 2.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "collider"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 203,
+              "effectPattern": "Eff_SceneObj_NatlanDrillEnemySheild_Shield",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TotalBreak": {
+          "onReconnect": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 2.5,
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "collider"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 204,
+              "effectPattern": "Eff_SceneObj_NatlanDrillEnemySheild_Shield",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "collider"
+              ],
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_NatlanDrillEnemySheild_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "EffManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Green",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Normal",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "Fade",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fade": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Green",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Green",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_Prop_NatlanDrillBeammark_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "EffManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Normal",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "Fade",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fade": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Purple",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_Prop_NatlanDrillBeammark_02"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "EffManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Red",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Normal",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "Fade",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fade": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Red",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_Red",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_Prop_NatlanDrillBeammark_03"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "EffManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_White",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Normal",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "Fade",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fade": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "value": 201,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_White",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Int",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_NatlanDrillBeammark_White",
+              "doOffStage": false,
+              "parameter": "Appear",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "EffManager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Nt_Property_Ani_Prop_NatlanDrillBeammark_04"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "State_Active": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TournamentPillar_01_ActiveState",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.20000000298023224
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TournamentPillar_01_Amber",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.30000001192092896
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "State_Active",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Common_Property_Ani_Prop_ActivityTournamentPillar_01"
+    }
+  }
+]

@@ -1,0 +1,3125 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "BuffTickTime": 0,
+        "HurtTickTime": 0,
+        "LoseHPRatio": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_CharMastery_Qin",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Qin01_FireDebuff_Detect": {
+          "isUnique": true,
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasElement",
+                      "element": "Fire"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Handler": {
+          "isUnique": true,
+          "thinkInterval": "BuffTickTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_SGV_Handler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Handler"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_CharMastery_Qin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Slave": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasElement",
+                      "element": "Fire"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Fire",
+          "buffID": 90002,
+          "minus_one": -1,
+          "elementDurability": 25,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Team": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Slave",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierTags": [
+            "Corruption"
+          ],
+          "thinkInterval": "HurtTickTime",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_CommonSkill_FireDebuff_LoseHP",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "CurLocalAvatar",
+              "effectPattern": "Eff_Monster_CommonSkill_FireDebuff_LoseHP_OnAdded",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Slave",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_Detect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "GetFightProperty",
+              "canBeHandledOnRecover": true,
+              "fightProp": "FIGHT_PROP_MAX_HP",
+              "globalValueKey": "CharMaster_Qin01_MaxHp",
+              "doOffStage": true,
+              "target": "CurLocalAvatar",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "attackInfo": {
+                "hitPattern": {
+                  "hitImpulseType": "LV0",
+                  "retreatType": "ByHitDirection",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "elementType": "Fire",
+                  "damageExtra": [
+                    "LoseHPRatio",
+                    "CharMaster_Qin01_MaxHp",
+                    "MUL"
+                  ],
+                  "IOLHEGDMIBF": true,
+                  "strikeType": "None",
+                  "KEBENMLLFJH": true,
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 1
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_Slave",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Qin01_FireDebuff_LoseHP_SGV_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Qin_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "HurtTickTime": 0,
+        "LoseHPRatio": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_CharMastery_Qiqi",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CharMaster_QiQi01_Hurt_Handler": {
+          "thinkInterval": "HurtTickTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "LoseHP",
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": true,
+              "amountByTargetMaxHPRatio": "LoseHPRatio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "CharMaster_QiQi01_Hurt_SGV_TeamHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "CharMaster_QiQi01_Hurt_TeamHandler"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_CharMastery_Qiqi",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "CharMaster_QiQi01_Hurt_TeamHandler": {
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "CharMaster_QiQi01_Hurt_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "CharMaster_QiQi01_Hurt_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "CharMaster_QiQi01_Hurt_SGV_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_QiQi_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Energy": 0,
+        "TickTime": 0
+      },
+      "modifiers": {
+        "CharMaster_Diluc01_Energy_Handler": {
+          "thinkInterval": "TickTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": "Energy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": true,
+          "modifierName": "CharMaster_Diluc01_Energy_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Diluc_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 0,
+        "Value_ElecAddHurtDelta": 0,
+        "Value_ElemMasteryDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Keqing01_Buff": {
+          "isUnique": true,
+          "timeScale": "Level",
+          "properties": {
+            "Actor_ElecAddHurtDelta": "Value_ElecAddHurtDelta",
+            "Actor_ElemMasteryDelta": "Value_ElemMasteryDelta"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_CharMaster_Keqing01_TeamHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "SGV_CharMastery_Keqing",
+              "actions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_CharMastery_Keqing",
+                      "compareType": "MoreThan",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "CurLocalAvatar",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Keqing01_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Keqing01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Keqing_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Buff_Duration": 0,
+        "CJB_Damage": 0,
+        "CJB_Duration": 0,
+        "DamageSystemValue": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Zhongli01_Buff": {
+          "isUnique": true,
+          "timeScale": "Level",
+          "duration": "Buff_Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateGroupNormalizedTimeMixin",
+              "stateGroupIDs": [
+                "State_Group_Avatar_Normal_Attack"
+              ],
+              "value": -1,
+              "modifierName": "UNIQUE_CharMaster_Zhongli01_Buff_CJB",
+              "normalizeEnd": 0.3499999940395355,
+              "PBJNGOIJMLL": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_CharMaster_Zhongli01_Buff_CJB": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "CharMaster_Zhongli_Mark",
+                  "target": "Team",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetSystemValueToOverrideMap",
+                  "type": "ElementLevelCo",
+                  "key": "DamageSystemValue",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "param3": -1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Stages_SwirlDoField_DoAttack_R20",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        },
+                        "hitHaltTimeScale": 0.019999999552965164
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damageExtra": [
+                          "CJB_Damage",
+                          "DamageSystemValue",
+                          "MUL"
+                        ],
+                        "IOLHEGDMIBF": true,
+                        "strikeType": "None",
+                        "KEBENMLLFJH": true,
+                        "KGKNBGENBLN": true,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackSphere",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 20,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Zhongli01_Buff_CJB_Timer",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Zhongli01_Buff_CJB_Timer": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "CharMaster_Zhongli_Mark",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "CJB_Duration",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "CharMaster_Zhongli_Mark",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Zhongli01_TeamHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "SGV_CharMastery_Zhongli",
+              "actions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_CharMastery_Zhongli",
+                      "compareType": "MoreThan",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "CurLocalAvatar",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Zhongli01_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Zhongli01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "CharMaster_Zhongli_Mark",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Zhongli_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "CharMaster_Ganyu_AvatarHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToNormalizedTimeMixin",
+              "value": -1,
+              "stateID": "Attack01",
+              "modifierName": "CharMaster_Ganyu_Count",
+              "normalizeEnd": 0.4000000059604645,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack02"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack03"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack04"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack05"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToAnimatorStateIDMixin",
+              "stateIDs": [
+                "Attack06"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "AimShoot"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "FastAimShoot"
+              ],
+              "value": -1,
+              "modifierName": "CharMaster_Ganyu_Count",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "CharMaster_Ganyu_Count": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "GanyuCount",
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "CharMaster_Ganyu_TeamHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "CharMaster_Ganyu_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "CharMaster_Ganyu_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Ganyu_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CritHurt_Ratio": 0,
+        "Crit_Ratio": 0,
+        "DamageUp_Ratio": 0,
+        "Duration": 0,
+        "Max_Stack": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Dehya01_AvatarHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Dehya01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "UNIQUE_CharMaster_Dehya01_Buff": {
+          "isUnique": true,
+          "stackingOption": {
+            "maxModifierNumForMultipleType": "Max_Stack"
+          },
+          "properties": {
+            "Actor_CriticalDelta": "Crit_Ratio",
+            "Actor_CriticalHurtDelta": "CritHurt_Ratio"
+          },
+          "duration": "Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "ignoreEventInfo": true,
+              "damagePercentageRatio": "DamageUp_Ratio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "MultipleRefreshNoRemove"
+        },
+        "UNIQUE_CharMaster_Dehya01_TeamHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_CharMaster_Dehya01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Dehya01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Dehya_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurt_Delta": 0
+      },
+      "modifiers": {
+        "CharMaster_Shougun01_ScreenEffect_OnTeam": {
+          "onRemoved": [
+            {
+              "$type": "CameraScreenEffect",
+              "muteRemoteAction": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "effectName": "Eff_UI_AcrobaticsBattle_Screen_02",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "CameraScreenEffect",
+              "muteRemoteAction": true,
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "effectName": "Eff_UI_AcrobaticsBattle_Screen_02",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Shougun01_AvatarHandler": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalHurtDelta": "CriticalHurt_Delta"
+          },
+          "isLimitedProperties": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "CharMaster_Shougun01_ScreenEffect_OnTeam",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Shougun01_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "target": "Target",
+                  "configIdArray": [
+                    10000052
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Shougun01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "target": "Target",
+                  "configIdArray": [
+                    10000052
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Shougun01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Shougun01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Shougun_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Shougun02_AvatarHandler": {
+          "isUnique": true,
+          "onHittingOther": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "CharMaster_Shougun02_DropBallFlag",
+                      "compareType": "NoneOrEqual",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_CharMaster_Shougun02_DropBall",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Shougun02_DropBall": {
+          "isUnique": true,
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CharMaster_Shougun02_DropBall_CD",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "GenerateElemBall",
+              "configID": 2020,
+              "canBeHandledOnRecover": true,
+              "ratio": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTarget",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 1
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "baseEnergy": 12,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Shougun02_DropBall_CD": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "CharMaster_Shougun02_DropBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "reApplyModifierOnStateChange": true,
+          "duration": 25,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "CharMaster_Shougun02_DropBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Shougun02_TeamHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_CharMaster_Shougun02_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Shougun02_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Shougun_02"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Elemental_Ratio": 0,
+        "Normal_Ratio": 0,
+        "Shenhe_Ratio": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Shenhe01_AvatarHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Shenhe01_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "UNIQUE_Shenhe_ElementalArt_L_Buff_FX"
+                    },
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "UNIQUE_Shenhe_ElementalArt_H_Buff_FX"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Shenhe01_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_NinyoShieldStage_ForCharMaster_Shenhe",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "damagePercentageRatio": "Elemental_Ratio",
+              "attackTags": [
+                "Elemental_Art",
+                "Elemental_Art_Hold",
+                "Elemental_Art_Extra",
+                "Elemental_Burst"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ModifyDamageMixin",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_NinyoShieldStage_ForCharMaster_Shenhe",
+                  "target": "Target"
+                }
+              ],
+              "damagePercentageRatio": "Normal_Ratio",
+              "attackTags": [
+                "NormalAttack_01",
+                "NormalAttack_02",
+                "NormalAttack_03",
+                "NormalAttack_04",
+                "NormalAttack_05",
+                "NormalAttack_06",
+                "ExtraAttack",
+                "FallingAttack"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Shenhe01_Buff": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "ignoreEventInfo": true,
+              "damagePercentageRatio": "Shenhe_Ratio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Shenhe01_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Shenhe01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Shenhe01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Shenhe01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Shenhe_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Debuff_CD": 0,
+        "Debuff_Count": 0,
+        "Debuff_Time": 0,
+        "Delta_Up": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Nahida01_AvatarHandler": {
+          "isUnique": true,
+          "onHittingOther": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Elemental_Art"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "!!!!!!!!!!!!!!!!!test",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Caster",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Nahida01_Debuff_Trigger",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Nahida01_Debuff": {
+          "isUnique": true,
+          "stackingOption": {
+            "maxModifierNumForMultipleType": "Debuff_Count"
+          },
+          "properties": {
+            "Actor_ElemReactBurnDelta": "Delta_Up",
+            "Actor_ElemReactOvergrowDelta": "Delta_Up",
+            "Actor_ElemReactOvergrowElectricDelta": "Delta_Up",
+            "Actor_ElemReactOvergrowFireDelta": "Delta_Up"
+          },
+          "duration": "Debuff_Time",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "MultipleRefreshNoRemove"
+        },
+        "UNIQUE_CharMaster_Nahida01_Debuff_Trigger": {
+          "isUnique": true,
+          "duration": "Debuff_CD",
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Nahida01_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Nahida01_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "target": "Target",
+                  "configIdArray": [
+                    10000073
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Nahida01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Nahida01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Nahida_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Delta_Up_A": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Nahida02_A_Debuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactBurnDelta": "Delta_Up_A",
+            "Actor_ElemReactOvergrowDelta": "Delta_Up_A",
+            "Actor_ElemReactOvergrowElectricDelta": "Delta_Up_A",
+            "Actor_ElemReactOvergrowFireDelta": "Delta_Up_A"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Nahida02_A_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Nahida02_A_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Nahida02_A_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Nahida_02_A"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Delta_Up_B": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Nahida02_B_Debuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactBurnDelta": "Delta_Up_B",
+            "Actor_ElemReactOvergrowDelta": "Delta_Up_B",
+            "Actor_ElemReactOvergrowElectricDelta": "Delta_Up_B",
+            "Actor_ElemReactOvergrowFireDelta": "Delta_Up_B"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Nahida02_B_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Nahida02_B_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Nahida02_B_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Nahida_02_B"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Delta_Up_C": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Nahida02_C_Debuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactBurnDelta": "Delta_Up_C",
+            "Actor_ElemReactOvergrowDelta": "Delta_Up_C",
+            "Actor_ElemReactOvergrowElectricDelta": "Delta_Up_C",
+            "Actor_ElemReactOvergrowFireDelta": "Delta_Up_C"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Nahida02_C_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Nahida02_C_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Nahida02_C_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Nahida_02_C"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Buff_CD": 0,
+        "Buff_Dura": 0,
+        "CJB_Damage": 0,
+        "Explode_CD": 0,
+        "MaxNum": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Klee01_AvatarHandler": {
+          "isUnique": true,
+          "onHittingOther": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Fire"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Klee01_GetBuff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Klee01_Buff": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_CharMaster_Klee01_Flag",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stackingOption": {
+            "maxModifierNumForMultipleType": "MaxNum"
+          },
+          "duration": "Buff_Dura",
+          "buffID": 10005,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_CharMaster_Klee01_Flag",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "KPOHEJEOAIJ": 1,
+          "NLBKJKDNFFP": -1,
+          "stacking": "MultipleRefresh"
+        },
+        "UNIQUE_CharMaster_Klee01_Explode": {
+          "isUnique": true,
+          "duration": "Explode_CD",
+          "onAdded": [
+            {
+              "$type": "SetSystemValueToOverrideMap",
+              "type": "ElementLevelCo",
+              "key": "DamageSystemValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "param3": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryExplosion_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV2",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.019999999552965164
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "elementType": "Fire",
+                    "damageExtra": [
+                      "CJB_Damage",
+                      "DamageSystemValue",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "strikeType": "None",
+                    "KEBENMLLFJH": true,
+                    "KGKNBGENBLN": true,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 7.5,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Klee01_GetBuff": {
+          "isUnique": true,
+          "duration": "Buff_CD",
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Klee01_Buff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_CharMaster_Klee01_Flag",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": "MaxNum"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Klee01_Buff",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Klee01_Buff",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Klee01_Buff",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_ABILITY_CharMaster_Klee01_Flag",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_CharMaster_Klee01_Explode",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Klee01_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Klee01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Klee01_AvatarHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Klee01_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_CharMaster_Klee01_Flag",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Klee_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurtDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Ayaka01_Buff": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "ignoreEventInfo": true,
+              "predicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Ice"
+                }
+              ],
+              "bonusCriticalHurt": "CriticalHurtDelta",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Ayaka_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Ayaka01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Ayaka01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Ayaka_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Ayaka_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AttackSpeed_Ratio": 0,
+        "Dura": 0,
+        "SkillCDDownRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Ayato01_Buff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_SkillCDMinusRatio": "SkillCDDownRatio",
+            "Animator_AttackSpeedRatio": "AttackSpeed_Ratio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Ayato_TeamHandler": {
+          "isUnique": true,
+          "duration": "Dura",
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Ayato01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Ayato01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Ayato_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Ayato_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "CharMaster_Wanderer01_ExtraAttack_Count": {
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "_Is_MasteryAmplifyArtifact",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_MasteryAmplifyArtifact_HeavyAttack",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "CharMaster_Wanderer01_NormalAttack_Count": {
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "_Is_MasteryAmplifyArtifact",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_MasteryAmplifyArtifact_LightAttack",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Wanderer01_Buff": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "Attack01",
+                  "normalizeEnd": 0.10000000149011612,
+                  "normalizeStart": 0.05000000074505806
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_NormalAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "Attack02",
+                  "normalizeEnd": 0.05000000074505806
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_NormalAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "Attack03",
+                  "normalizeEnd": 0.05000000074505806
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_NormalAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "Wanderer_ElementalArt_Attack01",
+                  "normalizeEnd": 0.10000000149011612,
+                  "normalizeStart": 0.05000000074505806
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_NormalAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "Wanderer_ElementalArt_Attack02",
+                  "normalizeEnd": 0.05000000074505806
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_NormalAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "Wanderer_ElementalArt_Attack03",
+                  "normalizeEnd": 0.05000000074505806
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_NormalAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "ExtraAttack",
+                  "normalizeEnd": 1
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_ExtraAttack_Count",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "ExtraAttack_Air",
+                  "normalizeEnd": 1
+                }
+              ],
+              "modifierName": "CharMaster_Wanderer01_ExtraAttack_Count",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Wanderer_TeamHandler": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Wanderer01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Wanderer01_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Wanderer_TeamHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Wanderer_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AttackUp": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Navia01_Buff_A": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "AttackUp"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Navia_TeamHandler_A": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "target": "Target",
+                  "configIdArray": [
+                    10000091
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Navia01_Buff_A",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Navia_TeamHandler_A",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Navia_01_A"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AddHurtDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Navia01_Buff_B": {
+          "isUnique": true,
+          "properties": {
+            "Actor_RockAddHurtDelta": "AddHurtDelta"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Navia_TeamHandler_B": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "target": "Target",
+                  "configIdArray": [
+                    10000091
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Navia01_Buff_B",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Navia_TeamHandler_B",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Navia_01_B"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurt_Delta": 0,
+        "Critical_Delta": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Navia01_Buff_C": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalExtraDelta": "Critical_Delta",
+            "Actor_CriticalHurtExtraDelta": "CriticalHurt_Delta"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Navia_TeamHandler_C": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "NHBHHNNCKGD",
+                  "target": "Target",
+                  "configIdArray": [
+                    10000091
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Navia01_Buff_C",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Navia_TeamHandler_C",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Navia_01_C"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "WindZone_Dura": 0,
+        "WindZone_Strength": 0
+      },
+      "modifiers": {
+        "WindZone_Handler": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                44000647
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "WindZone_Dura",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_Roguelike_Gadget_Wind_Absorbe",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WindZoneMixin",
+              "value": 0.10000000149011612,
+              "attenuation": 1,
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "reject": true,
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                },
+                {
+                  "$type": "ByTargetWeight",
+                  "weight": 150,
+                  "logic": "LesserOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "EMMNOPNLHOC": 100,
+              "maxNum": 12,
+              "forceType": "WindZoneType",
+              "strength": 10,
+              "innerRadius": 1,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 1
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "alongGround": true
+              },
+              "shapeName": "CircleR10",
+              "actorIceSubHurtDelta": -1,
+              "targetType": "All"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "WindZone_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Tartaglia_WindZone_Gadget"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurt_Delta_A": 0,
+        "Critical_Delta_A": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_A": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalExtraDelta": "Critical_Delta_A",
+            "Actor_CriticalHurtExtraDelta": "CriticalHurt_Delta_A"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_Handle_A": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_A",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_Handle_A",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Tartaglia_01_A"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurt_Delta_B": 0,
+        "Critical_Delta_B": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_B": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalExtraDelta": "Critical_Delta_B",
+            "Actor_CriticalHurtExtraDelta": "CriticalHurt_Delta_B"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_Handle_B": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_B",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_Handle_B",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Tartaglia_01_B"
+    }
+  },
+  {
+    "Default": {
+      "onRemoved": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_C_ScreenEffect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "CriticalHurt_Delta_C": 0,
+        "Critical_Delta_C": 0
+      },
+      "modifiers": {
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_C": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalExtraDelta": "Critical_Delta_C",
+            "Actor_CriticalHurtExtraDelta": "CriticalHurt_Delta_C"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_C_ScreenEffect": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "CameraScreenEffect",
+                  "muteRemoteAction": true,
+                  "canBeHandledOnRecover": true,
+                  "useCurve": true,
+                  "effectName": "Eff_UI_ChildeMastery_Screen_01",
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "CameraScreenEffect",
+                  "muteRemoteAction": true,
+                  "enable": true,
+                  "canBeHandledOnRecover": true,
+                  "useCurve": true,
+                  "effectName": "Eff_UI_ChildeMastery_Screen_01",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_CharMaster_Tartaglia_01_Buff_Handle_C": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_C_ScreenEffect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_C_ScreenEffect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_C",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_CharMaster_Tartaglia_01_Buff_Handle_C",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Tartaglia_01_C"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "EnergyRatio": 0,
+        "TickTime": 0
+      },
+      "modifiers": {
+        "CharMaster_Xiao_01_Energy_recover_Handler": {
+          "thinkInterval": "TickTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "ratio": "EnergyRatio",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "CharMaster_Xiao_01_Energy_recover_Handler_OnTeam": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "CharMaster_Xiao_01_Energy_recover_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "CharMaster_Xiao_01_Energy_recover_Handler_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Xiao_01_Energy_recover"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "HealRatio": 0
+      },
+      "modifiers": {
+        "CharMaster_Xiao_01_HP_recover_Handler_OnTeam": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_CharMaster_Xiao_01_HP_recover_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CharMaster_Xiao_01_HP_recover_Handler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByEntityKillMixin",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "actionQueue": [
+                {
+                  "$type": "HealHP",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurLocalAvatar",
+                  "value": 1,
+                  "doOffStage": true,
+                  "amountByTargetMaxHPRatio": "HealRatio",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": true,
+          "modifierName": "CharMaster_Xiao_01_HP_recover_Handler_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_CharMaster_Xiao_01_HP_recover"
+    }
+  }
+]

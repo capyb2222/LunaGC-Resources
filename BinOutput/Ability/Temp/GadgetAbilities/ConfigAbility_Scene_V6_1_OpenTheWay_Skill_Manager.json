@@ -1,0 +1,1220 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "StateMachineHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "GV_OpenTheWay_Help",
+              "actions": [
+                {
+                  "$type": "ServerLuaTriggerEvent",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_Help",
+                      "target": "Team",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "sourceName": "Help",
+                  "doOffStage": false,
+                  "luaCallType": "CurGalleryControlGroup",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_OpenTheWay_Help"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_OpenTheWay_Help",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StateMachineHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Team_6_1_OpenTheWay_GameLogic_Input"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Invincible": {
+          "properties": {
+            "Actor_CostStaminaRatio": -999
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurTeamAvatars",
+          "doOffStage": false,
+          "modifierName": "Invincible",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Avatar_6_1_OpenTheWay_GameLogic_Invincible"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "CheckSubTagScanEntityMixin",
+          "tag": "NodKrai_MainTag",
+          "HPPBFKDELIP": "PathWay_Absorb",
+          "activateSkillKey": "GV_OpenTheWay_ActivateSkill_Ball",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CheckSubTagScanEntityMixin",
+          "tag": "NodKrai_MainTag",
+          "HPPBFKDELIP": "PathWay_Throw",
+          "activateSkillKey": "GV_OpenTheWay_ActivateSkill_Slot",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AvatarStateHandler": {
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IsClimbing",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToAvatarLogicMoveStateMixin",
+              "stateIDs": [
+                "Climb"
+              ],
+              "modifierName": "IsAvatarClimbing",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ContinueCheckNoOtherSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "RemoveAvatarSkill"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5
+              ],
+              "globalValueTarget": "Team",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_OpenTheWay_ActivateSkill_Slot",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "HandleNoSkillState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "GV_OpenTheWay_ActivateSkill_Ball",
+              "actions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Ball",
+                      "target": "Team"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Slot",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_NoSkillState",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Ball",
+                      "compareType": "MoreThan",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_NoSkillState",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Slot",
+                      "compareType": "MoreThan",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_NoSkillState",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "GV_OpenTheWay_ActivateSkill_Slot",
+              "actions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Ball",
+                      "target": "Team"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Slot",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_NoSkillState",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Ball",
+                      "compareType": "MoreThan",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_NoSkillState",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_OpenTheWay_ActivateSkill_Slot",
+                      "compareType": "MoreThan",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_NoSkillState",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "IsAvatarClimbing": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IsClimbing",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IsClimbing",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "MuteElement": {
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 11002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RemoveAvatarSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot5",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "StateMachineHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WidgetDisableMixin",
+              "BDDPPAKBJLD": true,
+              "JNMLJINFNKI": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "SlotQuickUse",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_NoBall",
+                "UNIQUE_HoldSpeedUpBall",
+                "UNIQUE_HoldStoneBall",
+                "UNIQUE_HoldIceBall",
+                "UNIQUE_HoldHighJumpBall"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                200.5,
+                201.5,
+                202.5,
+                203.5,
+                204.5
+              ],
+              "globalValueTarget": "Team",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_HoldItem",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "ContinueCheckNoOtherSkill"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5
+              ],
+              "globalValueTarget": "Team",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_OpenTheWay_ActivateSkill_Ball",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_IsAvatarNotClimbing"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5
+              ],
+              "globalValueTarget": "Team",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_IsClimbing",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_HoldHighJumpBall": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "Team",
+              "effectPattern": "Eff_SceneObj_OpenwayBuffBall_02_Follow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BillboardAttach",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_HoldBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_HoldIceBall": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 4,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "Team",
+              "effectPattern": "Eff_SceneObj_OpenwayBuffBall_03_Follow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BillboardAttach",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_HoldBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_HoldSpeedUpBall": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "Team",
+              "effectPattern": "Eff_SceneObj_OpenwayBuffBall_01_Follow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BillboardAttach",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_HoldBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_HoldStoneBall": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "target": "Team",
+              "effectPattern": "Eff_SceneObj_OpenwayBuffBall_04_Follow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "BillboardAttach",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_HoldBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_IsAvatarNotClimbing": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot1",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_NoBall": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_HoldBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_HoldBallFlag",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_PlayerHoldBallState",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_NoSkillState": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot5",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_CurrentBallID",
+        "SGV_HoldItem",
+        "GV_HoldBallFlag",
+        "GV_PlayerHoldBallState"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_IsClimbing",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "MuteElement",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "modifierName": "StateMachineHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "modifierName": "HandleNoSkillState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_OpenTheWay_ActivateSkill_Ball",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_OpenTheWay_ActivateSkill_Slot",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "modifierName": "AvatarStateHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Avatar_6_1_OpenTheWay_GameLogic_Skill_Manager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_SkillCD",
+              "compareType": "LessAndEqual",
+              "target": "Team"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "OpenTheWay_GameLogic_Input ability start",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 20623,
+              "costStaminaRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_TriggerPick",
+              "otherTargets": {
+                "$type": "GGOCCPHAAFM",
+                "tag": "NodKrai_MainTag",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SkillCD",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Avatar_InitSkill": {
+          "onAdded": [
+            {
+              "$type": "AttachUIEffect",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "effectPattern": "Eff_UI_Btn_SumeruAdvTrnPathway",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SwitchSkillIDMixin",
+              "skillID": 20623,
+              "priority": "Playmode",
+              "skillIndex": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot5",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "StateMachineHandler": {
+          "thinkInterval": 0.699999988079071,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValueV2",
+              "key": "GV_SkillCD",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Avatar_InitSkill"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Team",
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_OpenTheWay_ActivateSkill_Ball",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_SkillCD"
+      ],
+      "onAdded": [
+        {
+          "$type": "AddAvatarSkillInfo",
+          "skillID": 20623,
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StateMachineHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Avatar_6_1_OpenTheWay_GameLogic_Skill_Ball"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "OpenTheWay_GameLogic_Input ability start",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AvatarSkillStart",
+          "skillID": 20631,
+          "costStaminaRatio": 1,
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "cdRatio": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerLuaCall",
+          "funcName": "SLC_TriggerPick",
+          "otherTargets": {
+            "$type": "GGOCCPHAAFM",
+            "tag": "NodKrai_MainTag",
+            "topLimit": 1
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "luaCallType": "CurGalleryControlGroup",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Avatar_InitSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SwitchSkillIDMixin",
+              "skillID": 20631,
+              "priority": "Playmode",
+              "skillIndex": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "Slot5",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "NoBall",
+                "HoldSpeedUpBall",
+                "HoldStoneBall",
+                "HoldIceBall",
+                "HoldHighJumpBall"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                200.5,
+                201.5,
+                202.5,
+                203.5,
+                204.5
+              ],
+              "globalValueTarget": "Team",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_HoldItem",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "HoldHighJumpBall": {
+          "onAdded": [
+            {
+              "$type": "AttachUIEffect",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "effectPattern": "Eff_UI_Btn_SumeruAdvTrnPathway_Buff2",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "HoldIceBall": {
+          "onAdded": [
+            {
+              "$type": "AttachUIEffect",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "effectPattern": "Eff_UI_Btn_SumeruAdvTrnPathway_Buff3",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "HoldSpeedUpBall": {
+          "onAdded": [
+            {
+              "$type": "AttachUIEffect",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "effectPattern": "Eff_UI_Btn_SumeruAdvTrnPathway_Buff1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "HoldStoneBall": {
+          "onAdded": [
+            {
+              "$type": "AttachUIEffect",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "effectPattern": "Eff_UI_Btn_SumeruAdvTrnPathway_Buff4",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NoBall": {
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "NoBall state activated",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "StateMachineHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Avatar_InitSkill"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Team",
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_OpenTheWay_ActivateSkill_Slot",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AddAvatarSkillInfo",
+          "skillID": 20631,
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StateMachineHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Avatar_6_1_OpenTheWay_GameLogic_Skill_Slot"
+    }
+  }
+]

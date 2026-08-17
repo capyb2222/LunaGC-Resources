@@ -1,0 +1,1790 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "TargetShooting_MaterialStateSwitch_LackAmmo",
+            "TargetShooting_MaterialStateSwitch_EnoughAmmoMaterial"
+          ],
+          "valueSteps": [
+            -0.5,
+            5.5,
+            30.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_CURRENT_AMMO_NUMBER",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RotationFollowCameraMixin",
+          "CNFIJMDEPFM": -12,
+          "ENOCPIJEDAI": [
+            "Cannon"
+          ],
+          "JJLDIKGCFIM": "VerticalRotateBone",
+          "OFKLLLHMIEF": "HorizontalRotateBone",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "TargetShooting_MaterialStateSwitch_EnoughAmmoMaterial": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TargetShooting_MaterialStateSwitch_LackAmmo": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cannon_09",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderStateMachineSwitchMixin",
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_Current_BulletType_01"
+      ],
+      "onAdded": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_LOCAL_MAX_AMMO",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_LOCAL_MAX_AMMO",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 30,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CURRENT_AMMO_NUMBER",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 30,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_AMMO_CHANGING",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_CURRENT_BULLET_INDEX",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CopyGlobalValue",
+          "canBeHandledOnRecover": true,
+          "srcTarget": "Team",
+          "srcKey": "SGV_Current_BulletType_01",
+          "dstKey": "_CURRENT_BULLET_TYPE",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "TargetShooting_MaterialStateSwitch_EnoughAmmoMaterial",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "TargetShootingV2_Cannon_Init"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_Current_BulletType_02",
+              "compareType": "MoreThan",
+              "target": "Team"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "TryToChangeBulletType",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "Bullet01_Cost": 1,
+        "Bullet02_Cost": 5,
+        "Bullet03_Cost": 3,
+        "Bullet04_Cost": 3
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "SGV_Current_BulletType_01_Blank"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            4.5
+          ],
+          "globalValueTarget": "Team",
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_Current_BulletType_01",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "SGV_Current_BulletType_02_Blank"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            4.5
+          ],
+          "globalValueTarget": "Team",
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_Current_BulletType_02",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Cost01",
+            "Cost02",
+            "Cost03",
+            "Cost04"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5,
+            2.5,
+            3.5,
+            4.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_CURRENT_BULLET_TYPE",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Cost01": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CURRENT_BULLET_COST",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "Bullet01_Cost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Cost02": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CURRENT_BULLET_COST",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "Bullet02_Cost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Cost03": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CURRENT_BULLET_COST",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "Bullet03_Cost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Cost04": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CURRENT_BULLET_COST",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "Bullet04_Cost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SGV_Current_BulletType_01_Blank": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CURRENT_BULLET_INDEX",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "srcKey": "SGV_Current_BulletType_01",
+              "dstKey": "_CURRENT_BULLET_TYPE",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SGV_Current_BulletType_02_Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "TryToChangeBulletType": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_AMMO_CHANGING",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_AMMO_CHANGING",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "CopyGlobalValue",
+                  "canBeHandledOnRecover": true,
+                  "srcTarget": "Team",
+                  "srcKey": "SGV_Current_BulletType_01",
+                  "dstKey": "_CURRENT_BULLET_TYPE",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CURRENT_BULLET_INDEX",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CURRENT_BULLET_INDEX",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "CopyGlobalValue",
+                  "canBeHandledOnRecover": true,
+                  "srcTarget": "Team",
+                  "srcKey": "SGV_Current_BulletType_02",
+                  "dstKey": "_CURRENT_BULLET_TYPE",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CURRENT_BULLET_INDEX",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 2,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cannon_08",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_Current_BulletType_01",
+        "SGV_Current_BulletType_02",
+        "Bullet01_Cost",
+        "Bullet02_Cost",
+        "Bullet03_Cost",
+        "Bullet04_Cost"
+      ],
+      "abilityName": "TargetShootingV2_Cannon_Change"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RecoverEnergy",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Full_Magzine"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            99.5
+          ],
+          "globalValueTarget": "Team",
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_TARGETSHOOTING_BULLET_MAX",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AutoRecover": {
+          "thinkInterval": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValueV2",
+              "key": "_CURRENT_AMMO_NUMBER",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": "_LOCAL_MAX_AMMO",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Full_Magzine": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_LOCAL_MAX_AMMO",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 30,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Caster",
+              "srcKey": "_LOCAL_MAX_AMMO",
+              "dstKey": "_CURRENT_AMMO_NUMBER",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RecoverEnergy": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_WatergunBossTargetBall_Charge",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        }
+      },
+      "_unk_Q2982101340": [
+        "_LOCAL_MAX_AMMO"
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "AutoRecover",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "TargetShootingV2_Extra_Magzine"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_AMMO_CHANGING",
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CURRENT_AMMO_NUMBER",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CURRENT_AMMO_NUMBER",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": "_CURRENT_BULLET_COST"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "CopyGlobalValue",
+                  "canBeHandledOnRecover": true,
+                  "srcKey": "_CURRENT_BULLET_TYPE",
+                  "dstKey": "_Temp_BULLET_TYPE",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "CopyGlobalValue",
+                  "canBeHandledOnRecover": true,
+                  "srcKey": "_CURRENT_BULLET_COST",
+                  "dstKey": "_Temp_BULLET_COST",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "TargetShooting_ShootDelay",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "FireNotify": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "param1": "_CURRENT_BULLET_INDEX",
+              "canBeHandledOnRecover": true,
+              "sourceName": "FireBullet",
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "TargetShooting_ShootDelay": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Temp_BULLET_TYPE",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "target": "OriginOwner",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 70291180,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "OGIFDHHAIJI",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "ShootPoint",
+                    "offset": {
+                      "z": 0.10000000149011612
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_SceneObj_Cannon_02",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "Shot",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CURRENT_AMMO_NUMBER",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": [
+                    "_CURRENT_AMMO_NUMBER",
+                    "_Temp_BULLET_COST",
+                    "SUB"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ActCameraShake",
+                  "cameraShake": {
+                    "extension": {
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.30000001192092896,
+                      "baseCycle": 0.5
+                    },
+                    "shakeTime": 0.3499999940395355,
+                    "shakeRange": 0.5,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "y": 1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Temp_BULLET_TYPE",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "target": "OriginOwner",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 70291181,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "OGIFDHHAIJI",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "ShootPoint",
+                    "offset": {
+                      "z": 0.10000000149011612
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_SceneObj_Cannon_02_V2",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "Shot",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CURRENT_AMMO_NUMBER",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": [
+                    "_CURRENT_AMMO_NUMBER",
+                    "_Temp_BULLET_COST",
+                    "SUB"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ActCameraShake",
+                  "cameraShake": {
+                    "extension": {
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.30000001192092896,
+                      "baseCycle": 0.5
+                    },
+                    "shakeTime": 0.3499999940395355,
+                    "shakeRange": 0.5,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "y": 1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Temp_BULLET_TYPE",
+                  "value": 3
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "target": "OriginOwner",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 70291182,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "OGIFDHHAIJI",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "ShootPoint",
+                    "offset": {
+                      "z": 0.10000000149011612
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_SceneObj_Jamballoon_05_V2",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "Shot",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CURRENT_AMMO_NUMBER",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": [
+                    "_CURRENT_AMMO_NUMBER",
+                    "_Temp_BULLET_COST",
+                    "SUB"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ActCameraShake",
+                  "cameraShake": {
+                    "extension": {
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.30000001192092896,
+                      "baseCycle": 0.5
+                    },
+                    "shakeTime": 0.3499999940395355,
+                    "shakeRange": 0.5,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "y": 1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Temp_BULLET_TYPE",
+                  "value": 4
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerBullet",
+                  "target": "OriginOwner",
+                  "canBeHandledOnRecover": true,
+                  "bulletID": 70291185,
+                  "onGround": true,
+                  "doOffStage": false,
+                  "trackTarget": "SelfAttackTarget",
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "OGIFDHHAIJI",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "ShootPoint",
+                    "offset": {
+                      "z": 0.10000000149011612
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_SceneObj_Jamballoon_05_V2",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "Shot",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CURRENT_AMMO_NUMBER",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": [
+                    "_CURRENT_AMMO_NUMBER",
+                    "_Temp_BULLET_COST",
+                    "SUB"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ActCameraShake",
+                  "cameraShake": {
+                    "extension": {
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.30000001192092896,
+                      "baseCycle": 0.5
+                    },
+                    "shakeTime": 0.3499999940395355,
+                    "shakeRange": 0.5,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "y": 1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.009999999776482582,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cannon_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "OriginOwner",
+              "doOffStage": false,
+              "modifierName": "FireNotify",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "_CURRENT_AMMO_NUMBER",
+        "_CURRENT_BULLET_INDEX",
+        "_CURRENT_BULLET_COST",
+        "_Temp_BULLET_COST"
+      ],
+      "abilityName": "TargetShootingV2_Cannon_Shot"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV4",
+                "muteHitText": true,
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.05000000074505806
+              },
+              "attackTag": "TargetShootingCannon",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Water",
+                "damageExtra": [
+                  "LevelEntity_AvatarDot_SystemValue",
+                  "DamagePercentage",
+                  "MUL"
+                ],
+                "IOLHEGDMIBF": true,
+                "strikeType": "Blunt",
+                "KEBENMLLFJH": true,
+                "KGKNBGENBLN": true,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 3.299999952316284,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "AllExceptSelf"
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_Cannon_04",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "DamagePercentage": 0,
+        "LevelEntity_AvatarDot_SystemValue": 1
+      },
+      "modifiers": {
+        "BulletEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cannon_03",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BulletEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Bullet_TargetShootingV2_CannonBall"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV4",
+                "hitHaltTime": 0.10000000149011612,
+                "muteHitText": true,
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.05000000074505806
+              },
+              "attackTag": "TargetShootingCannonMax",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Water",
+                "damageExtra": [
+                  "LevelEntity_AvatarDot_SystemValue",
+                  "DamagePercentage",
+                  "MUL"
+                ],
+                "IOLHEGDMIBF": true,
+                "strikeType": "Blunt",
+                "KEBENMLLFJH": true,
+                "KGKNBGENBLN": true,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 10,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "AllExceptSelf"
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_Cannon_07_V2",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "DamagePercentage": 0,
+        "LevelEntity_AvatarDot_SystemValue": 1
+      },
+      "modifiers": {
+        "BulletEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cannon_06_V2",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BulletEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Bullet_TargetShootingV2_ExplosiveCannonBall"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DamageByAttackValue",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "attackInfo": {
+            "hitPattern": {
+              "hitImpulseType": "LV4",
+              "hitHaltTime": 0.10000000149011612,
+              "muteHitText": true,
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              },
+              "hitHaltTimeScale": 0.05000000074505806
+            },
+            "attackTag": "TargetShootingCannonHorizontal",
+            "cameraShake": {
+              "extension": {
+                "cycleDamping": 0.11999999731779099,
+                "baseOnCamera": true,
+                "rangeAttenuation": 0.5,
+                "baseCycle": 0.11999999731779099
+              },
+              "shakeDistance": 20
+            },
+            "attackProperty": {
+              "elementType": "Water",
+              "damageExtra": [
+                "LevelEntity_AvatarDot_SystemValue",
+                "DamagePercentage",
+                "MUL"
+              ],
+              "IOLHEGDMIBF": true,
+              "strikeType": "Blunt",
+              "KEBENMLLFJH": true,
+              "KGKNBGENBLN": true,
+              "attackType": "Default",
+              "elementRank": 1
+            },
+            "KMBBLIMOMBH": {
+              "LMEIODIINNM": "Shake"
+            },
+            "canBeModifiedBy": "OriginOwner",
+            "attenuationGroup": "default",
+            "OLHIHLILEKH": {
+              "onHitEffectName": "default",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            }
+          },
+          "doOffStage": false,
+          "born": {
+            "$type": "CNMNLMNIGHL",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": 0.10000000149011612
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BulletEffect_Onhit",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "DamagePercentage": 0,
+        "LevelEntity_AvatarDot_SystemValue": 1
+      },
+      "modifiers": {
+        "BulletEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Jamballoon_04_V2_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "BulletEffect_Onhit": {
+          "duration": 0.009999999776482582,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Jamballoon_02_V2_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BulletEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Penumbra_CannonBallV2_03"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DamageByAttackValue",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "attackInfo": {
+            "hitPattern": {
+              "hitImpulseType": "LV4",
+              "hitHaltTime": 0.10000000149011612,
+              "muteHitText": true,
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              },
+              "hitHaltTimeScale": 0.05000000074505806
+            },
+            "attackTag": "TargetShootingCannonVertical",
+            "cameraShake": {
+              "extension": {
+                "cycleDamping": 0.11999999731779099,
+                "baseOnCamera": true,
+                "rangeAttenuation": 0.5,
+                "baseCycle": 0.11999999731779099
+              },
+              "shakeDistance": 20
+            },
+            "attackProperty": {
+              "elementType": "Water",
+              "damageExtra": [
+                "LevelEntity_AvatarDot_SystemValue",
+                "DamagePercentage",
+                "MUL"
+              ],
+              "IOLHEGDMIBF": true,
+              "strikeType": "Blunt",
+              "KEBENMLLFJH": true,
+              "KGKNBGENBLN": true,
+              "attackType": "Default",
+              "elementRank": 1
+            },
+            "KMBBLIMOMBH": {
+              "LMEIODIINNM": "Shake"
+            },
+            "canBeModifiedBy": "OriginOwner",
+            "attenuationGroup": "default",
+            "OLHIHLILEKH": {
+              "onHitEffectName": "default",
+              "NPLKKCCDEDJ": {
+                "value": 1,
+                "NJICIOFCOPD": true
+              }
+            }
+          },
+          "doOffStage": false,
+          "born": {
+            "$type": "CNMNLMNIGHL",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": 0.10000000149011612
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BulletEffect_Onhit",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "DamagePercentage": 0,
+        "LevelEntity_AvatarDot_SystemValue": 1
+      },
+      "modifiers": {
+        "BulletEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Jamballoon_04_V2_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "BulletEffect_Onhit": {
+          "duration": 0.009999999776482582,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Jamballoon_02_V2_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BulletEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "LevelEntity_AvatarDot_SystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Penumbra_CannonBallV2_04"
+    }
+  }
+]

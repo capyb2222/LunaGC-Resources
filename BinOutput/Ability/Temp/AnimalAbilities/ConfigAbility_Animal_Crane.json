@@ -1,0 +1,401 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "DoActionByPoseIDMixin",
+          "enterActions": [
+            {
+              "$type": "ReTriggerAISkillInitialCD",
+              "canBeHandledOnRecover": true,
+              "skillIDs": [
+                202
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "poseIDs": [
+            1
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByPoseIDMixin",
+          "enterActions": [
+            {
+              "$type": "ReTriggerAISkillInitialCD",
+              "canBeHandledOnRecover": true,
+              "skillIDs": [
+                101,
+                102,
+                103,
+                104,
+                201
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "poseIDs": [
+            2
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Crane_AIStateInitial"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "RandomSpeed": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "FlyDown",
+            "TakeOff",
+            "FlyUp",
+            "Disappear"
+          ],
+          "value": -1,
+          "modifierName": "Random_MoveSpeedRatio",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Random_MoveSpeedRatio": {
+          "properties": {
+            "Animator_MoveSpeedRatio": "RandomSpeed"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetRandomOverrideMapValue",
+          "valueRangeMin": -0.10000000149011612,
+          "canBeHandledOnRecover": true,
+          "valueRangeMax": 0.10000000149011612,
+          "overrideMapKey": "RandomSpeed",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Crane_Random"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetPoseBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "FlyState",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "FlyDown"
+          ],
+          "value": -1,
+          "modifierName": "FlyState_Down",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Land"
+          ],
+          "value": -1,
+          "modifierName": "FlyDown_Land",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "FlyDown_Land": {
+          "properties": {
+            "Actor_AddGravityScale": -1.9900000095367432
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FlyState_Down": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FlyState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FlyState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Crane_FlyDown"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetPoseBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "FlyState",
+          "doOffStage": false,
+          "value": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Animal_Crane_FlyUp"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetPoseBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "WanderState",
+          "doOffStage": false,
+          "value": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Animal_Crane_ToWander"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetPoseBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "WanderState",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Animal_Crane_ToIdle"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Disappear"
+          ],
+          "value": -1,
+          "modifierName": "DisappearTimer",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "DisappearTimer": {
+          "onAdded": [
+            {
+              "$type": "StartDither",
+              "DIMCCOIBNKM": -1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "duHPRation": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Disappear",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Disappear",
+              "doOffStage": false,
+              "duHPRation": 3.5,
+              "NILKMCEFECE": true,
+              "PFEHDFPHLLF": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Animal_Crane_Disappear"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Animal_Common_Feather",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": 0.75,
+              "y": -0.75
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Animal_Common_Feather",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByTarget",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": 0.75,
+              "y": 0.75
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Animal_Crane_FlyEffect"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "DistanceFaraway",
+          "doOffStage": false,
+          "value": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Alert"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "attackDistance": 1.5,
+          "endNormalizedTime": 1,
+          "angularSpeed": 150,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetAnimatorBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "DistanceFaraway",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Animal_Crane_Scared"
+    }
+  }
+]

@@ -1,0 +1,75 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_CAN_CLEAR_THREAT",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "IsInHachiSneak": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "PlayerDieHandle": {
+          "onKill": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_PlayerDie_DuringQuest",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurChallengeGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "IsInHachiSneak",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "PlayerDieHandle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Activity_Hachi_TeamAbility"
+    }
+  }
+]

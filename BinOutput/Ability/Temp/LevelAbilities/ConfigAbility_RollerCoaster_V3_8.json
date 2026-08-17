@@ -1,0 +1,3037 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "NotifyUI",
+          "uiContextName": "InLevelMainPage",
+          "message": "TransferRollerCoaster",
+          "canBeHandledOnRecover": true,
+          "floatParam": 2,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "GV_Speed": 0,
+        "TEST_GV_0": 0,
+        "TEST_GV_1": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixinV2",
+          "modifierName": "Mod_Avatar_RollerCoaster_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "GV_IsInCumstomCamera",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Avatar_Disable_Leave_RollerCoaster": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GV_IsInCumstomCamera_0": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "GV_Speed_LessThan5",
+                "GV_Speed_MoreThan5"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                7,
+                30
+              ],
+              "globalValueTarget": "CurLocalAvatar",
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_Speed",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "GV_IsInCumstomCamera_1": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GV_IsInRollerCoaster_0": {
+          "onAdded": [
+            {
+              "$type": "NotifyUI",
+              "uiContextName": "InLevelMainPage",
+              "message": "LeaveRollerCoaster",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_IsTransfering",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Team_GV_IsInRollerCoaster",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GV_IsInRollerCoaster_1": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "Speed",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "RollerCoaster",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "RollerCoaster",
+                "sortType": "Nearest"
+              },
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "modifierName": "_SetGV_Active_0",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Team_GV_IsInRollerCoaster",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "StartRollerCoaster_SpeedController",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "NotifyUI",
+              "uiContextName": "InLevelMainPage",
+              "message": "EnterRollerCoaster",
+              "canBeHandledOnRecover": true,
+              "floatParam": 0.5,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "RollerCoaster",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RollerCoaster_Running",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_Ball_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "RollerCoaster",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "_SetGV_Active_1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "modifierName": "Avatar_Disable_Leave_RollerCoaster",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "GV_Speed",
+              "globalValueKey": "GV_Speed",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "Speed",
+              "otherTargets": {
+                "$type": "MDMCILHBCEP",
+                "tag": "RollerCoaster",
+                "sortType": "Nearest",
+                "topLimit": 1
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "GV_Speed",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "SelfAbility",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "JHJCOJFFPGG": {
+                "PFGNFCCBKOC": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "GV_IsInCumstomCamera_0",
+                "GV_IsInCumstomCamera_1"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Team",
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_IsInCumstomCamera",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "GV_Speed_LessThan5": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GV_Speed_MoreThan5": {
+          "thinkInterval": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetPostProcessEffectParam",
+              "BCHCBDFFGLN": "_MaskScale",
+              "canBeHandledOnRecover": true,
+              "postEffectAssetName": "PostEffect_RollerCoaster_Sprint",
+              "doOffStage": false,
+              "value": [
+                0.05000000074505806,
+                "GV_Speed",
+                "MUL"
+              ],
+              "actorIceSubHurtDelta": -1,
+              "PIPEJKHHHKA": true
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "TriggerPostProcessEffectMixin",
+              "postEffectAssetName": "PostEffect_RollerCoaster_Sprint",
+              "actorIceSubHurtDelta": -1,
+              "PIPEJKHHHKA": true
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Mod_Avatar_RollerCoaster_Handler": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_IsInRollerCoaster",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_IsTransfering",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_Speed",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LevelCurveMixin",
+              "BPAELPGFALC": [
+                "ChangeSpeedByTime",
+                "ChangeSpeedByStep",
+                "ShowTransferButton",
+                "ShowTransferButton_Fast",
+                "TransferCurve",
+                "SetGroupVariable",
+                "ForceTransferCurve",
+                "StartCustomCameraList",
+                "SetCameraOffset",
+                "TriggerStopAnimator",
+                "CreateRail",
+                "ShowTransferButton_AfterTrackMakingCircle",
+                "ShowTransferButton_NotInchallenge",
+                "Disable_Leave_RollerCoaster",
+                "Enable_Leave_RollerCoaster"
+              ],
+              "tag": "RollerCoaster",
+              "NNDPLAACOMJ": [
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ChangeSpeedByTime",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "Predicated",
+                    "failActions": [
+                      {
+                        "$type": "SetCurveProgressInfoToGlobalValue",
+                        "canBeHandledOnRecover": true,
+                        "FOEALJCACKB": "TEST_GV_",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "SetGlobalValueToOverrideMap",
+                        "canBeHandledOnRecover": true,
+                        "overrideMapKey": "TEST_GV_0",
+                        "globalValueKey": "TEST_GV_0",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "SetGlobalValueToOverrideMap",
+                        "canBeHandledOnRecover": true,
+                        "overrideMapKey": "TEST_GV_1",
+                        "globalValueKey": "TEST_GV_1",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "ModifyCurveBaseVelocity",
+                        "canBeHandledOnRecover": true,
+                        "doOffStage": false,
+                        "OAKJHIBFCMM": "TEST_GV_1",
+                        "PEMIAEIODJI": "TEST_GV_0",
+                        "actorIceSubHurtDelta": -1,
+                        "POJACNGAIHH": "ByFrame"
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "targetPredicates": [
+                      {
+                        "$type": "ByHasModifier",
+                        "target": "Target",
+                        "modifierName": "StartRollerCoaster_SpeedController"
+                      }
+                    ],
+                    "successActions": [
+                      {
+                        "$type": "DebugLog",
+                        "canBeHandledOnRecover": true,
+                        "content": "LevelCurveMixin > ChangeSpeedByTime 失败：还在起步加速阶段",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      }
+                    ],
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ChangeSpeedByStep",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "Predicated",
+                    "failActions": [
+                      {
+                        "$type": "SetCurveProgressInfoToGlobalValue",
+                        "canBeHandledOnRecover": true,
+                        "FOEALJCACKB": "TEST_GV_",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "SetGlobalValueToOverrideMap",
+                        "canBeHandledOnRecover": true,
+                        "overrideMapKey": "TEST_GV_0",
+                        "globalValueKey": "TEST_GV_0",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "SetGlobalValueToOverrideMap",
+                        "canBeHandledOnRecover": true,
+                        "overrideMapKey": "TEST_GV_1",
+                        "globalValueKey": "TEST_GV_1",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "ModifyCurveBaseVelocity",
+                        "DNAOKEJBGIP": "TEST_GV_1",
+                        "canBeHandledOnRecover": true,
+                        "doOffStage": false,
+                        "PEMIAEIODJI": "TEST_GV_0",
+                        "actorIceSubHurtDelta": -1
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "targetPredicates": [
+                      {
+                        "$type": "ByHasModifier",
+                        "target": "Target",
+                        "modifierName": "StartRollerCoaster_SpeedController"
+                      }
+                    ],
+                    "successActions": [
+                      {
+                        "$type": "DebugLog",
+                        "canBeHandledOnRecover": true,
+                        "content": "LevelCurveMixin > ChangeSpeedByTime 失败：还在起步加速阶段",
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      }
+                    ],
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ShowTransferButton",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "NotifyUI",
+                    "uiContextName": "InLevelMainPage",
+                    "message": "TransferRollerCoaster",
+                    "canBeHandledOnRecover": true,
+                    "floatParam": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "FlushCurveMoveByStepInterval",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ShowTransferButton_Fast",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "NotifyUI",
+                    "uiContextName": "InLevelMainPage",
+                    "message": "TransferRollerCoaster",
+                    "canBeHandledOnRecover": true,
+                    "floatParam": 1.5,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "FlushCurveMoveByStepInterval",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > TransferCurve",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetTargetCurveByBuffer",
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "GV_QTE_Suc",
+                        "target": "Team",
+                        "value": 1
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > SetGroupVariable",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "TEST_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetGlobalValueToOverrideMap",
+                    "canBeHandledOnRecover": true,
+                    "overrideMapKey": "TEST_GV_0",
+                    "globalValueKey": "TEST_GV_0",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetGlobalValueToOverrideMap",
+                    "canBeHandledOnRecover": true,
+                    "overrideMapKey": "TEST_GV_1",
+                    "globalValueKey": "TEST_GV_1",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "ServerLuaCall",
+                    "param1": "TEST_GV_0",
+                    "CallParamList": [
+                      510010035
+                    ],
+                    "funcName": "SLC_Roller_Coaster_SetVar",
+                    "canBeHandledOnRecover": true,
+                    "param2": "TEST_GV_1",
+                    "doOffStage": false,
+                    "luaCallType": "SpecificGroup",
+                    "actorIceSubHurtDelta": -1,
+                    "paramNum": 2
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ForceTransferCurve",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "FlushCurveMoveByStepInterval",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetTargetCurveByBuffer",
+                    "canBeHandledOnRecover": true,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > StartCustomCameraList",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "TEST_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "NCDAJBNLDMH",
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 1
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "FHLFCCKAKKL": 4.5,
+                    "GCEOIGOFNIB": -1,
+                    "HLCFPFEIDKG": [
+                      {
+                        "pos": {
+                          "x": 186.6999969482422,
+                          "y": 213.86199951171875,
+                          "z": 1117.011962890625
+                        },
+                        "CGHFKIMMKCA": 3.5,
+                        "GCEOIGOFNIB": -1,
+                        "rot": {
+                          "x": 2.200000047683716,
+                          "y": 195.39999389648438
+                        }
+                      },
+                      {
+                        "pos": {
+                          "x": 152.1999969482422,
+                          "y": 221.60000610351562,
+                          "z": 1119.699951171875
+                        },
+                        "CGHFKIMMKCA": 9,
+                        "GCEOIGOFNIB": -1,
+                        "LMBEJPGJGGC": 1,
+                        "rot": {
+                          "x": 5,
+                          "y": 160
+                        }
+                      }
+                    ],
+                    "globalValueKey": "GV_IsInCumstomCamera",
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "rot": {
+                      "x": 21.200000762939453,
+                      "y": 250.1999969482422,
+                      "z": 330.1000061035156
+                    },
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "NCDAJBNLDMH",
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 2
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "FHLFCCKAKKL": 1.5,
+                    "GCEOIGOFNIB": -1,
+                    "HLCFPFEIDKG": [
+                      {
+                        "pos": {
+                          "x": 160.16000366210938,
+                          "y": 176.1999969482422,
+                          "z": 1141.9000244140625
+                        },
+                        "CGHFKIMMKCA": 4,
+                        "GCEOIGOFNIB": -1,
+                        "LMBEJPGJGGC": 21,
+                        "rot": {
+                          "x": 27.299999237060547,
+                          "y": 177.3000030517578
+                        }
+                      },
+                      {
+                        "pos": {
+                          "x": 162.60000610351562,
+                          "y": 149.8000030517578,
+                          "z": 1090.719970703125
+                        },
+                        "CGHFKIMMKCA": 5.5,
+                        "GCEOIGOFNIB": -1,
+                        "LMBEJPGJGGC": 21,
+                        "rot": {
+                          "x": 27.264999389648438,
+                          "y": 177.26499938964844
+                        }
+                      }
+                    ],
+                    "globalValueKey": "GV_IsInCumstomCamera",
+                    "LMBEJPGJGGC": 1,
+                    "doOffStage": false,
+                    "rot": {
+                      "x": 19.299999237060547,
+                      "y": 193.89999389648438,
+                      "z": 251.3000030517578
+                    },
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "NCDAJBNLDMH",
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 3
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "FHLFCCKAKKL": 2,
+                    "GCEOIGOFNIB": -1,
+                    "HLCFPFEIDKG": [
+                      {
+                        "pos": {
+                          "x": 493,
+                          "y": 288,
+                          "z": 28
+                        },
+                        "CGHFKIMMKCA": 4,
+                        "GCEOIGOFNIB": 23,
+                        "rot": {
+                          "x": -1,
+                          "y": 134.89999389648438
+                        }
+                      },
+                      {
+                        "pos": {
+                          "x": 540.5999755859375,
+                          "y": 292.8999938964844,
+                          "z": 51.5
+                        },
+                        "CGHFKIMMKCA": 8,
+                        "GCEOIGOFNIB": -1,
+                        "LMBEJPGJGGC": 1,
+                        "rot": {
+                          "x": -2.815000057220459,
+                          "y": 167.29600524902344
+                        }
+                      }
+                    ],
+                    "globalValueKey": "GV_IsInCumstomCamera",
+                    "doOffStage": false,
+                    "rot": {
+                      "x": 32.29999923706055,
+                      "y": 112.5999984741211,
+                      "z": 46.900001525878906
+                    },
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "NCDAJBNLDMH",
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 4
+                      }
+                    ],
+                    "canBeHandledOnRecover": true,
+                    "FHLFCCKAKKL": 4.5,
+                    "GCEOIGOFNIB": -1,
+                    "HLCFPFEIDKG": [
+                      {
+                        "pos": {
+                          "x": 131,
+                          "y": 221,
+                          "z": 1098.0999755859375
+                        },
+                        "CGHFKIMMKCA": 3.5,
+                        "GCEOIGOFNIB": -1,
+                        "LMBEJPGJGGC": 21,
+                        "rot": {
+                          "x": 1.2400000095367432,
+                          "y": 134.4499969482422
+                        }
+                      },
+                      {
+                        "pos": {
+                          "x": 159.1584014892578,
+                          "y": 218.33819580078125,
+                          "z": 1116.5360107421875
+                        },
+                        "CGHFKIMMKCA": 7.5,
+                        "GCEOIGOFNIB": -1,
+                        "LMBEJPGJGGC": 1,
+                        "rot": {
+                          "x": 3.13100004196167,
+                          "y": 166.42300415039062
+                        }
+                      }
+                    ],
+                    "globalValueKey": "GV_IsInCumstomCamera",
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "rot": {
+                      "x": 56.099998474121094,
+                      "y": 67.0999984741211,
+                      "z": 38.900001525878906
+                    },
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > SetCameraOffset",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetCurveProgressInfoToGlobalValue",
+                    "canBeHandledOnRecover": true,
+                    "FOEALJCACKB": "TEST_GV_",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target"
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 1,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 1
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 3,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 2
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 3,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 2,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 3
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 3
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 3,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "y": -10
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 4
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "BCKLKLCJEGA": {
+                      "y": -15
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 5
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "y": -15
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 6
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 2
+                    },
+                    "fov": 75,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 7
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 3
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 20,
+                      "y": -15
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 8
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 5,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 9
+                      }
+                    ],
+                    "FBMGDAFLHCK": 60,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 10
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "BCKLKLCJEGA": {
+                      "x": -89,
+                      "y": -25
+                    },
+                    "CGHFKIMMKCA": 5,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 10
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "x": -6
+                    },
+                    "fov": 45,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 18
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "BCKLKLCJEGA": {
+                      "x": 89,
+                      "y": -25
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 11
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "x": 6
+                    },
+                    "fov": 45,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 18
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "CGHFKIMMKCA": 4,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 12
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 45,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 18
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "BCKLKLCJEGA": {
+                      "x": 89,
+                      "y": -25
+                    },
+                    "CGHFKIMMKCA": 1,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 13
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "x": 8,
+                      "y": 4
+                    },
+                    "fov": 45,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 23
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "y": -15
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 14
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 4
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 12
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "y": 7
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 15
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 8.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "BCKLKLCJEGA": {
+                      "y": 28
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 16
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 1.399999976158142
+                    },
+                    "fov": 60,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 8.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 45,
+                      "y": -20
+                    },
+                    "CGHFKIMMKCA": 1.5,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 17
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 7
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 18
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 6
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 17
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 19
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 3
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 16
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 20
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 10
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 3,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 21
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 10
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 1,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 22
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 6
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 17
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": -30,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 23
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 6
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 15
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": -40
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 24
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 1
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 16.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "y": 15
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 25
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 7
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 80,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 1,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 26
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 3
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 12
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 50,
+                      "y": 5
+                    },
+                    "CGHFKIMMKCA": 1,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 27
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "posOffset": {
+                      "y": 3
+                    },
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 16
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 40,
+                      "y": -10
+                    },
+                    "CGHFKIMMKCA": 1,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 28
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 12
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 10
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 29
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 8
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 30
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 9
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": -20
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 31
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 10
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 32
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 10
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 20
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 33
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 10
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": -30
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 34
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 70,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 9
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30,
+                      "y": 30
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 35
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": 30
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 36
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  },
+                  {
+                    "$type": "TriggerCurveCameraOffset",
+                    "AGFJBJIAKEE": 60,
+                    "BCKLKLCJEGA": {
+                      "x": -30
+                    },
+                    "CGHFKIMMKCA": 2,
+                    "CPHEGGDCPDO": true,
+                    "predicates": [
+                      {
+                        "$type": "ByTargetGlobalValue",
+                        "key": "TEST_GV_0",
+                        "target": "Target",
+                        "value": 37
+                      }
+                    ],
+                    "FBMGDAFLHCK": 20,
+                    "canBeHandledOnRecover": true,
+                    "fov": 65,
+                    "LMBEJPGJGGC": 2,
+                    "doOffStage": false,
+                    "MJKELIFFBCD": 60,
+                    "actorIceSubHurtDelta": -1,
+                    "PMNDGOAODME": 6.5
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > TriggerStopAnimator",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetAnimatorTrigger",
+                    "otherTargets": {
+                      "$type": "MDMCILHBCEP",
+                      "tag": "RollerCoaster",
+                      "sortType": "Nearest",
+                      "topLimit": 1
+                    },
+                    "canBeHandledOnRecover": true,
+                    "triggerID": "Cancel",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "SetAnimatorBool",
+                    "otherTargets": {
+                      "$type": "MDMCILHBCEP",
+                      "tag": "RollerCoaster",
+                      "sortType": "Nearest",
+                      "topLimit": 1
+                    },
+                    "canBeHandledOnRecover": true,
+                    "boolID": "Running",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > CreateRail",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ShowTransferButton_AfterTrackMakingCircle",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "Predicated",
+                    "canBeHandledOnRecover": true,
+                    "target": "Team",
+                    "targetPredicates": [
+                      {
+                        "$type": "ByHasModifier",
+                        "target": "CurLocalAvatar",
+                        "modifierName": "_AfterTrackMakingCircle"
+                      }
+                    ],
+                    "successActions": [
+                      {
+                        "$type": "NotifyUI",
+                        "uiContextName": "InLevelMainPage",
+                        "message": "TransferRollerCoaster",
+                        "canBeHandledOnRecover": true,
+                        "floatParam": 2,
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "FlushCurveMoveByStepInterval",
+                        "canBeHandledOnRecover": true,
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      }
+                    ],
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > ShowTransferButton_NotInchallenge",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "Predicated",
+                    "canBeHandledOnRecover": true,
+                    "target": "Team",
+                    "targetPredicates": [
+                      {
+                        "$type": "ByNot",
+                        "predicates": [
+                          {
+                            "$type": "ByHasModifier",
+                            "target": "Target",
+                            "modifierName": "_RollerCoaster_Challenge"
+                          }
+                        ],
+                        "target": "Target"
+                      }
+                    ],
+                    "successActions": [
+                      {
+                        "$type": "NotifyUI",
+                        "uiContextName": "InLevelMainPage",
+                        "message": "TransferRollerCoaster",
+                        "canBeHandledOnRecover": true,
+                        "floatParam": 2,
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      },
+                      {
+                        "$type": "FlushCurveMoveByStepInterval",
+                        "canBeHandledOnRecover": true,
+                        "doOffStage": false,
+                        "actorIceSubHurtDelta": -1
+                      }
+                    ],
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > Disable_Leave_RollerCoaster",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "ApplyModifier",
+                    "canBeHandledOnRecover": true,
+                    "target": "CurLocalAvatar",
+                    "doOffStage": false,
+                    "modifierName": "Avatar_Disable_Leave_RollerCoaster",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ],
+                [
+                  {
+                    "$type": "DebugLog",
+                    "canBeHandledOnRecover": true,
+                    "content": "LevelCurveMixin > Enable_Leave_RollerCoaster",
+                    "doOffStage": false,
+                    "actorIceSubHurtDelta": -1
+                  },
+                  {
+                    "$type": "RemoveModifier",
+                    "canBeHandledOnRecover": true,
+                    "target": "CurLocalAvatar",
+                    "doOffStage": false,
+                    "modifierName": "Avatar_Disable_Leave_RollerCoaster",
+                    "actorIceSubHurtDelta": -1
+                  }
+                ]
+              ],
+              "PEKOJOJFJFB": [
+                "TEST_GV_0",
+                "TEST_GV_1"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RollerCoasterGVMixin",
+              "speed": "GV_Speed",
+              "OENIJAIEGBD": "GV_IsInRollerCoaster",
+              "PCFCNJGHEDM": "GV_IsTransfering",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "GV_IsInRollerCoaster_0",
+                "GV_IsInRollerCoaster_1"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_IsInRollerCoaster",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RollerCoaster_Running": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Running",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                70000000
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Running",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RunningMark",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "StartRollerCoaster_SpeedController": {
+          "duration": 1.0499999523162842,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_targetVelocity",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 6,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_duration",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ModifyCurveBaseVelocity",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OAKJHIBFCMM": "_duration",
+              "PEMIAEIODJI": "_targetVelocity",
+              "actorIceSubHurtDelta": -1,
+              "POJACNGAIHH": "ByFrame"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Team_Delay_Reset_GV_IsTransfering": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_IsTransfering",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Team_Reset_GV_IsTransfering": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Team_Delay_Reset_GV_IsTransfering",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_RunningMark": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                70000000
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "RollerCoaster_Arrive_Notify",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "RollerCoaster_Arrive_Notify",
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "RollerCoaster_Arrive_Notify",
+                      "value": 1
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetGlobalValue",
+                      "key": "RollerCoaster_Arrive_Notify",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "RemoveModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "UNIQUE_RunningMark",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "KillSelf": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                70000000
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SetGV_Active_0": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_RollerCoasterActive",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "GV_RollerCoasterActive",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueByTargetDistance",
+                  "key": "_Dis",
+                  "canBeHandledOnRecover": true,
+                  "FJPGLGKKGPG": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "target": "Applier",
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Dis",
+                      "compareType": "MoreThan",
+                      "value": 5
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "_KillSelf",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "SetGV_Active_1": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_RollerCoasterActive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_IsInCumstomCamera",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "modifierName": "Team_Reset_GV_IsTransfering",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "TeamAbility_RollerCoaster_WhiteBox"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "TeamAbility_Common_RollerCoaster_Leave > onAbilityStart",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AvatarExitCurveMove",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "ILPHICDCDJN": 2,
+          "doOffStage": false,
+          "value": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "otherTargets": {
+            "$type": "MDMCILHBCEP",
+            "tag": "RollerCoaster",
+            "sortType": "Nearest",
+            "topLimit": 1
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "_Notify_KillSelf",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixinV2",
+          "modifierName": "_Avatar_RollerCoasterDisableLeave_Tips_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Avatar_RollerCoasterDisableLeave_Tips_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "GV_RollerCoasterDisableLeave",
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "Predicated",
+                      "failActions": [
+                        {
+                          "$type": "Predicated",
+                          "failActions": [
+                            {
+                              "$type": "SetGlobalValue",
+                              "key": "GV_RollerCoasterDisableLeaveTips",
+                              "canBeHandledOnRecover": true,
+                              "doOffStage": false,
+                              "actorIceSubHurtDelta": -1
+                            }
+                          ],
+                          "canBeHandledOnRecover": true,
+                          "targetPredicates": [
+                            {
+                              "$type": "ByHasModifier",
+                              "target": "Target",
+                              "modifierName": "Avatar_Disable_Leave_RollerCoaster"
+                            }
+                          ],
+                          "successActions": [
+                            {
+                              "$type": "SetGlobalValue",
+                              "key": "GV_RollerCoasterDisableLeaveTips",
+                              "canBeHandledOnRecover": true,
+                              "doOffStage": false,
+                              "value": 3,
+                              "actorIceSubHurtDelta": -1
+                            }
+                          ],
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "targetPredicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "_RollerCoaster_Challenge_CurLocalAvatar"
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "GV_RollerCoasterDisableLeaveTips",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "value": 1,
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "_RollerCoaster_Task_CurLocalAvatar"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetGlobalValue",
+                      "key": "GV_RollerCoasterDisableLeaveTips",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 2,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Notify_KillSelf": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_RollerCoaster_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Eff_Point",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                70000000
+              ],
+              "doOffStage": false,
+              "OPMIOLOPGHP": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "TeamAbility_Common_RollerCoaster_Leave"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AvatarSkillStart",
+          "skillID": 20351,
+          "costStaminaRatio": 1,
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "cdRatio": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "modifierName": "Action_TriggerAttack",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Action_TriggerAttack": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 70800736,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": -0.6499999761581421,
+                  "x": 0.75,
+                  "y": -4.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "State_AttachCheck_Light": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "State_AttachCheck_Light",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "TeamAbility_Common_RollerCoaster_Left_Attack"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "TeamAbility_Common_RollerCoaster_Right_Attack > onAbilityStart",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "modifierName": "Action_TriggerAttack",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Action_TriggerAttack": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 70800736,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": -0.6499999761581421,
+                  "x": 0.75,
+                  "y": 4.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "State_AttachCheck_Right": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "State_AttachCheck_Right",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "TeamAbility_Common_RollerCoaster_Right_Attack"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "TeamAbility_Common_RollerCoaster_Transfer > onAbilityStart",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetTargetCurveByBuffer",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "otherTargets": {
+            "$type": "MDMCILHBCEP",
+            "tag": "RollerCoaster_TrackThruster",
+            "sortType": "Nearest"
+          },
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGadgetState",
+              "gadgetState": 201,
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "modifierName": "_TrackThruster_FireEffect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "TrackThruster_FireEffect": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TrackThruster_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        }
+      },
+      "abilityName": "TeamAbility_Common_RollerCoaster_Transfer"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "GM_Speed30": {
+          "thinkInterval": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_GM_targetVelocity",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 30,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_GM_duration",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 0.10000000149011612,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ModifyCurveBaseVelocity",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OAKJHIBFCMM": "_GM_duration",
+              "PEMIAEIODJI": "_GM_targetVelocity",
+              "actorIceSubHurtDelta": -1,
+              "POJACNGAIHH": "ByFrame"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "modifierName": "_GM_Speed30",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "TeamAbility_Common_RollerCoaster_Transfer_GM_Speed30"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Reset_GV_Delay": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "_Reset_GV_Delay > onRemoved",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RollerCoaster_Challenge": {
+          "onReconnect": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "_RollerCoaster_Challenge > onReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "_Reset_GV_Delay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "StageReadyMixin",
+              "onStageReady": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "StageReadyMixin",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerLuaCall",
+                  "funcName": "SLC_Challenge_Fail",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "luaCallType": "CurChallengeGroup",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "_RollerCoaster_Challenge_CurLocalAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RollerCoaster_Challenge_CurLocalAvatar": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "_RollerCoaster_Challenge",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "TeamAbility_V3_8_RollerCoaster_Challenge"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixinV2",
+          "modifierName": "_RollerCoaster_Task_CurLocalAvatar",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "RollerCoaster_Task_CurLocalAvatar": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_RollerCoasterDisableLeave",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "TeamAbility_V3_8_RollerCoaster_Disable_In_Task"
+    }
+  }
+]

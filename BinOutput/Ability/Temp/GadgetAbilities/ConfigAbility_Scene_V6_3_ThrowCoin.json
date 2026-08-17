@@ -1,0 +1,1210 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "WidgetMpSupportMixin",
+          "succActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Trigger abil - DynamicAbility_Area_Bhyl_TTC_ThrowCoin_Manager",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TTC_Throw_Team_FixedThrowDist",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "value": "SGV_TTC_FixThrowDist",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TTC_Throw_Team_HoldBtnTime",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "value": "SGV_TTC_HoldBtnTime",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill_MaxChargeCount",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "value": "SGV_TTC_MaxChargeCnt",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Other",
+                  "entityTypes": [
+                    "Team"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "DynamicAbility_Area_Bhyl_TTC_ThrowCoin_Manager",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_TTC_FixThrowDist",
+        "SGV_TTC_HoldBtnTime",
+        "SGV_TTC_MaxChargeCnt"
+      ],
+      "abilityName": "SceneObj_Area_Bhyl_TTC_CollectCoin"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "DynamicAbility_Area_Bhyl_TTC_ThrowCoin_Manager Started",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Refresh skill charges -20620-",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": "TEAM_TTC_ThrowCoinSkill_MaxChargeCount",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "targetPredicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "TEAM_TTC_ThrowCoinSkill",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "UNIQUE_Team_SwitchSkillHandler"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Team_SwitchSkillHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ShowReminder",
+          "muteRemoteAction": true,
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "id": 1003450055,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Avatar_AddSkillInfo": {
+          "onRemoved": [
+            {
+              "$type": "RemoveAvatarSkillInfo",
+              "skillID": 20620,
+              "canBeHandledOnRecover": true,
+              "JPJECOPNDEJ": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Add skillinfo -20620-",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddAvatarSkillInfo",
+              "skillID": 20620,
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Avatar_SwitchSkill": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "[Avatar_SwitchSkill] - onRemoved",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TTC_ThrowCoin_IsActive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "reApplyModifierOnStateChange": true,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Switch to skill -20620-",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_TTC_ThrowCoin_IsActive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachUIEffect",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_UI_ActionBtn_Skill_Notice_04",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "TEAM_TTC_ThrowCoinSkill",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": "TEAM_TTC_ThrowCoinSkill_MaxChargeCount",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "srcKey": "GV_TTC_Throw_Team_FixedThrowDist",
+              "dstKey": "_OBJECT_THROW_RANGE",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "srcKey": "GV_TTC_Throw_Team_HoldBtnTime",
+              "dstKey": "_GV_TTC_Throw_Ava_HoldBtnTime",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SwitchSkillIDMixin",
+              "skillID": 20620,
+              "priority": "Playmode",
+              "skillIndex": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "BanWidgetHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WidgetDisableMixin",
+              "BDDPPAKBJLD": true,
+              "JNMLJINFNKI": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Team_AddSkillInfo": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Avatar_AddSkillInfo",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ThrowCoinCounterListener": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "BanWidgetHandler"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                3.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "TEAM_TTC_ThrowCoinSkill",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "TEAM_TTC_ThrowCoinSkill",
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "predicates": [
+                    {
+                      "$type": "ByAnd",
+                      "predicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Team",
+                          "modifierName": "UNIQUE_Team_SwitchSkillHandler"
+                        },
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "TEAM_TTC_ThrowCoinSkill",
+                          "compareType": "NoneOrEqual",
+                          "target": "Team"
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "useCurve": true,
+                  "successActions": [
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": "Remove Skill 20620 due to charges<=0",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "RemoveUniqueModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "UNIQUE_Team_SwitchSkillHandler",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "ShowReminder",
+                      "muteRemoteAction": true,
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "id": 1003450054,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Team_SwitchSkillHandler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Avatar_SwitchSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Avatar_SwitchSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onKill": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Avatar_SwitchSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Avatar_SwitchSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "_unk_Q2982101340": [
+        "TEAM_TTC_ThrowCoinSkill",
+        "GV_TTC_Throw_Team_FixedThrowDist",
+        "GV_TTC_Throw_Team_HoldBtnTime",
+        "TEAM_TTC_ThrowCoinSkill_MaxChargeCount"
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ThrowCoinCounterListener",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Team_AddSkillInfo",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "DynamicAbility_Area_Bhyl_TTC_ThrowCoin_Manager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "AimMode": {
+          "onRemoved": [
+            {
+              "$type": "AvatarExitFocus",
+              "CEBHFOEODGL": 4.800000190734863,
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "LockMotionFlagExitChannel",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Common_IsChannelState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Exit throw coin aim mode",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AimPredictEffBinder",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AvatarEnterFocus",
+              "dragButtonName": "Skill2",
+              "DBCACFJHJPA": {
+                "CEBHFOEODGL": -1,
+                "canBeHandledOnRecover": true,
+                "doOffStage": false,
+                "actorIceSubHurtDelta": -1
+              },
+              "DKPKOFBFMON": -60,
+              "ECPEOPJCIAN": -1,
+              "cameraFastFocusMode": true,
+              "assistance": {
+                "other": {
+                  "useGyro": true
+                }
+              },
+              "cameraFollowLower": {
+                "x": 1,
+                "y": 0.6000000238418579,
+                "z": -3.5
+              },
+              "canBeHandledOnRecover": true,
+              "GPNPKCIICEE": -1,
+              "HGFKKBFBDKA": true,
+              "vcamFov": 40,
+              "cameraFollowMinDegree": -35,
+              "doOffStage": false,
+              "MEEPKNCPLJK": -1,
+              "cameraFollowMaxDegree": 40,
+              "cameraFollowUpper": {
+                "x": 0.800000011920929,
+                "y": 0.6000000238418579,
+                "z": -2.5
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "LockMotionFlagExitChannel",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Common_IsChannelState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "AimPredictEffBinder": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TTC_ThrowCoinAim",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DoThrowCoin": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndChannelTrigger",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalPos",
+              "key": "_ThrowStartPos",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "WeaponR",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalDir",
+              "key": "_ThrowStartDir",
+              "target": "Target",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "born": {
+                "$type": "LPNNHFKJCNO",
+                "direction": {
+                  "$type": "HPLBLMAFOMO",
+                  "angleOffset": {
+                    "x": 5,
+                    "y": -40
+                  },
+                  "useCorrectDir": true,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 73074006,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "directionKey": "_ThrowStartDir",
+                "positionKey": "_ThrowStartPos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "TEST - TTC_ThrowCoin - FireBullet!",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "srcKey": "TEAM_TTC_ThrowCoinSkill",
+              "dstKey": "_TempChargesRemains",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_TempChargesRemains",
+                  "compareType": "MoreThan",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "HandleCooldown",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "TEAM_TTC_ThrowCoinSkill",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "useLimitRange": true,
+              "maxValue": 3,
+              "doOffStage": false,
+              "value": [
+                "_TempChargesRemains",
+                1,
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "HandleCooldown": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "ThrowCoin - CD completed!",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_IsInCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Conf_Cooldown",
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "ThrowCoin - enter CD!",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_IsInCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetExtraAbilityState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SkillEnableHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_ThrowCoin_InputHandler"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_TTC_ThrowCoin_IsActive",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_ThrowCoin_InputHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ButtonHoldChargeMixin",
+              "skillID": 20620,
+              "chargeStateIDs": [
+                "Channel_Loop"
+              ],
+              "secondChargeTime": "_GV_TTC_Throw_Ava_HoldBtnTime",
+              "OnBeginSecondCharged": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_IsInCD",
+                      "compareType": "NoneOrEqual"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetAnimatorTrigger",
+                      "canBeHandledOnRecover": true,
+                      "triggerID": "StartChannelTrigger",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onCancelCharged": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "Throw coin - EndChannelTriggered!",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "EndChannelTrigger",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "Channel_BS",
+                "Channel_Loop"
+              ],
+              "value": -1,
+              "modifierName": "AimMode",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "_unk_Q2982101340": [
+        "_GV_TTC_Throw_Ava_HoldBtnTime",
+        "GV_TTC_ThrowCoin_IsActive",
+        "Conf_Cooldown",
+        "_CurBtnPressedDuration",
+        "_CurIndicatorEffScaleFactor",
+        "_OBJECT_THROW_RANGE",
+        "_ThrowStartPos",
+        "_ThrowStartDir",
+        "_IsInCD",
+        "_TempChargesRemains"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Conf_Cooldown",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_CurBtnPressedDuration",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_CurIndicatorEffScaleFactor",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_TempChargesRemains",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_IsInCD",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_TTC_ThrowCoin_IsActive",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "SkillEnableHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "DynamicAbility_Area_Bhyl_TTC_ThrowCoin"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "Throw coin - Bullet TriggerAttackEvent",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV1",
+                "retreatType": "ByAttackerForward",
+                "onHitEffectName": "none",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "DFPCIFFIKJP": [
+                "TTC_ThrowCoin"
+              ],
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "strikeType": "None",
+                "KEBENMLLFJH": true,
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 2.5,
+              "triggerType": "TriggerNoRepeat",
+              "ignoreMassive": true,
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "AllExceptSelf"
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_BulletTriggered",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "_BulletTriggered",
+          "actions": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_BulletTriggered",
+                  "compareType": "MoreThanAndEqual",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DelayDestoryBullet",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "DelayDestoryBullet": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Destroy bullet - ThrowCoin",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73074006
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "HandleBulletEntEffect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_IronCoinThrowingSkill01_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "HandleBulletEntEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_BulletTriggered",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_DBTCoinSplash_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "_BulletTriggered"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_BulletTriggered",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "HandleBulletEntEffect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Phyl_TTC_Coin_Bullet"
+    }
+  }
+]

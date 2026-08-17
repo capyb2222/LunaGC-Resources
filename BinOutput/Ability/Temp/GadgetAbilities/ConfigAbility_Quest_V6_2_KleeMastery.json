@@ -1,0 +1,1531 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "KleeMasteryGuard_HealRatio": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Guard_Charging",
+            "Guard_Defending",
+            "Guard_Attacking"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_KleeMasteryGuard_State",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FieldEntityCountChangeMixin",
+          "replaceOnAddedInTick": true,
+          "simpleCountMaxValue": 25,
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            }
+          ],
+          "simpleCountUseLimitRange": true,
+          "simpleCountGlobaValueKey": "GV_EntityCount",
+          "campTargetType": "Enemy",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Disabled_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Activated_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Activated_State": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TauntTrigger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TimerManager",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_KleeMasteryGuard_State",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "AttackEffectCoroutine": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_Fire",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EffectNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_Fire",
+              "attachPoint": "EffectNode",
+              "doOffStage": false,
+              "followPath": "EffectNode",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "BulletAttack",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: Spawned Bullet",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": 0.3499999940395355,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_BS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EffectNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_BS",
+              "attachPoint": "EffectNode",
+              "doOffStage": false,
+              "followPath": "EffectNode",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "BulletAttack": {
+          "onRemoved": [
+            {
+              "$type": "SetSelfAttackTarget",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "entityTypePriority": [
+                  "Monster"
+                ],
+                "sizeRatio": 1,
+                "sortType": "Random",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 2,
+                "shapeName": "CircleR1000"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackTarget",
+              "bulletID": 73108002,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "randomAngleHor": 90,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EffectNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.02500000037252903,
+          "onAdded": [
+            {
+              "$type": "SetSelfAttackTarget",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "entityTypePriority": [
+                  "Monster"
+                ],
+                "sizeRatio": 1,
+                "sortType": "Random",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 2,
+                "shapeName": "CircleR1000"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackTarget",
+              "bulletID": 73108002,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "randomAngleHor": 90,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EffectNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ChargeBar_Mixin": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ChargeBarMixin",
+              "initialValue": "SGV_ChargeValue",
+              "chargeBarElementType": "Fire",
+              "chargeBarIconID": 2,
+              "maxValue": "SGV_Charge_Duration",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Delay_ApplyMixin": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ChargeBar_Mixin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Disabled_State": {
+          "onAdded": [
+            {
+              "$type": "SetChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_KleeMasteryGuard_State",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_AttackTimer",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_EntityCount",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TauntTrigger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TimerManager",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Guard_Charging",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Guard_Defending",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Guard_Attacking",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "BillboardV2Mixin",
+              "HJGCJEBCCFI": {
+                "AMEHMHBPLHP": {
+                  "AGMEFBNGGGG": {
+                    "AHPIAJNJMFM": true
+                  },
+                  "KDNGBHDDPAD": {
+                    "DKGPHLENAEO": 4,
+                    "showDistance": 20,
+                    "HPCHNCOHEEH": true
+                  }
+                },
+                "BNEJBAMCHCE": {
+                  "HPCHNCOHEEH": true,
+                  "KJJHMFLGNAN": 20
+                },
+                "BPLMKCJEOOB": {
+                  "value": 1,
+                  "prefabName": "FirmamentCarBoard"
+                },
+                "CLAACDLALFI": {
+                  "BNILHFBOJNA": true,
+                  "attachPointName": "BillboardAttach",
+                  "showDistance": 20
+                },
+                "FCPLCGCCIHH": {
+                  "HPCHNCOHEEH": true,
+                  "OACKAHBOPOG": 20
+                },
+                "GIELHJFHJFH": {
+                  "value": 1
+                },
+                "PCEMLIEMBOB": {
+                  "HPCHNCOHEEH": true,
+                  "MHPEOHJDBEA": 1,
+                  "MMBAPLCJPOH": {
+                    "DKGPHLENAEO": 4
+                  }
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Guard_Attacking": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "thinkInterval": 1.2999999523162842,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: Guard_Attacking",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ChargeBar_Mixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_KleeGuard_State",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "GadgetState",
+              "doOffStage": false,
+              "value": 202,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "KleeGuardAttack",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_EmojiBubble_Emoji_Angry_Loop_KleeMastery",
+              "scale": 2,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EmojiNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_EmojiBubble_Emoji_Angry_Loop_KleeMastery",
+              "attachPoint": "EmojiNode",
+              "doOffStage": false,
+              "followPath": "EmojiNode",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_ElementWave_01_Fire_KleeGuard",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AttackEffectCoroutine",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "BillboardV2Mixin",
+              "HJGCJEBCCFI": {
+                "AMEHMHBPLHP": {
+                  "KDNGBHDDPAD": {
+                    "DKGPHLENAEO": 4,
+                    "showDistance": 150,
+                    "HPCHNCOHEEH": true,
+                    "MPNNMIPDFJG": [
+                      "Distance"
+                    ]
+                  },
+                  "size": "Big"
+                },
+                "BNEJBAMCHCE": {
+                  "HPCHNCOHEEH": true,
+                  "KJJHMFLGNAN": 20
+                },
+                "BPLMKCJEOOB": {
+                  "value": 1,
+                  "prefabName": "FirmamentCarBoard"
+                },
+                "CLAACDLALFI": {
+                  "BNILHFBOJNA": true,
+                  "DEBICAPKBLP": {
+                    "y": 1.5
+                  },
+                  "attachPointName": "BillboardAttach",
+                  "showDistance": 150
+                },
+                "FCPLCGCCIHH": {
+                  "HPCHNCOHEEH": true,
+                  "OACKAHBOPOG": 20
+                },
+                "GIELHJFHJFH": {
+                  "value": 1
+                },
+                "PCEMLIEMBOB": {
+                  "HPCHNCOHEEH": true,
+                  "MHPEOHJDBEA": 1,
+                  "MMBAPLCJPOH": {
+                    "DKGPHLENAEO": 4
+                  }
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Guard_Charging": {
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: Guard_Charging",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "ChargeBar_Mixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_KleeGuard_State",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "GadgetState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "KleeGuardCharge",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": "SGV_ChargeValue",
+              "funcName": "SLC_Klee_Guard_Tick",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Alert",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_BS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "offset": {
+                  "x": 0.75
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Delay_ApplyMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_CHARGEBAR_VALUE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "SGV_ChargeValue",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "LockHP",
+          "modifierMixins": [
+            {
+              "$type": "BillboardV2Mixin",
+              "HJGCJEBCCFI": {
+                "AMEHMHBPLHP": {
+                  "AGMEFBNGGGG": {
+                    "AHPIAJNJMFM": true
+                  },
+                  "KDNGBHDDPAD": {
+                    "DKGPHLENAEO": 4,
+                    "showDistance": 150,
+                    "HPCHNCOHEEH": true,
+                    "MPNNMIPDFJG": [
+                      "Distance"
+                    ]
+                  },
+                  "size": "Big"
+                },
+                "BNEJBAMCHCE": {
+                  "HPCHNCOHEEH": true,
+                  "KJJHMFLGNAN": 20
+                },
+                "BPLMKCJEOOB": {
+                  "value": 1,
+                  "prefabName": "FirmamentCarBoard"
+                },
+                "CLAACDLALFI": {
+                  "BNILHFBOJNA": true,
+                  "CLPICIFHFAM": {
+                    "x": -0.10000000149011612
+                  },
+                  "attachPointName": "BillboardAttach",
+                  "showDistance": 150,
+                  "worldOffset": {
+                    "y": 1.5
+                  }
+                },
+                "FCPLCGCCIHH": {
+                  "HPCHNCOHEEH": true,
+                  "OACKAHBOPOG": 20
+                },
+                "GIELHJFHJFH": {
+                  "value": 1
+                },
+                "PCEMLIEMBOB": {
+                  "HPCHNCOHEEH": true,
+                  "MHPEOHJDBEA": 1,
+                  "MMBAPLCJPOH": {
+                    "DKGPHLENAEO": 4
+                  }
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Guard_Defending": {
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: Guard_Defending",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ChargeBar_Mixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_KleeGuard_State",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "GadgetState",
+              "doOffStage": false,
+              "value": 201,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "canBeHandledOnRecover": true,
+              "sourceName": "KleeGuardDefense",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Emoji_Afraid_Loop",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AfraidNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_Emoji_Afraid_Loop",
+              "attachPoint": "AfraidNode",
+              "doOffStage": false,
+              "followPath": "AfraidNode",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Alert",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Shield",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.75
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "LockHP",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: Hit while shield up",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Shield_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByHitPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByLookAtEntity",
+                  "useCorrectDir": true,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Init": {
+          "onReconnect": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Klee Guard -> On Reconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "Activated_State"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "ChargeBar_Mixin",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_KleeMasteryGuard_State",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "_KleeGuard_State",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_KleeMasteryGuard_State"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Delay_ApplyMixin",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SetEntityScaleMixin",
+              "scale": 2,
+              "namedTransform": "RootNode",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TauntTrigger": {
+          "thinkInterval": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Ability_TauntLevel_3",
+              "doOffStage": false,
+              "careValue": 99999,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TimerManager": {
+          "thinkInterval": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: Tick",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_KleeMasteryGuard_State",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": "KleeMastery_Guard: Danger close!",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_KleeMasteryGuard_State",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_EntityCount",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ServerLuaCall",
+                      "param1": "SGV_ChargeValue",
+                      "funcName": "SLC_Klee_Guard_Tick",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "luaCallType": "FromGroup",
+                      "actorIceSubHurtDelta": -1,
+                      "paramNum": 1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "_CHARGEBAR_VALUE",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": "SGV_ChargeValue",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_KleeMasteryGuard_State",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_CHARGEBAR_VALUE",
+                      "compareType": "MoreThanAndEqual",
+                      "target": "Target",
+                      "value": "SGV_Charge_Duration"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "HealHP",
+                      "canBeHandledOnRecover": true,
+                      "target": "AllPlayerAvatars",
+                      "value": 1,
+                      "doOffStage": false,
+                      "amountByTargetMaxHPRatio": "KleeMasteryGuard_HealRatio",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_KleeMasteryGuard_State",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 2,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_KleeMasteryGuard_State",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_EntityCount",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_KleeMasteryGuard_State",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_KleeMasteryGuard_State",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValueV2",
+                  "key": "GV_AttackTimer",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_AttackTimer",
+                      "compareType": "MoreThanAndEqual",
+                      "target": "Target",
+                      "value": "SGV_Attack_Duration"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_KleeMasteryGuard_State",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_AttackTimer",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": "Done Attacking!!!",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_Charge_Duration",
+        "SGV_Attack_Duration",
+        "SGV_ChargeValue",
+        "_KleeGuard_State"
+      ],
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_AirRaidBomb_Boom_12M",
+          "scale": 0.30000001192092896,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": 1
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Init",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Level_Property_Ani_Level_KleeMastery_Guard"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": "击中角色，关卡或怪物 爆炸！",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Explode",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "DamageSystemValue": 0,
+        "Value_DamageRate": 0
+      },
+      "modifiers": {
+        "Explode": {
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "KleeMastery_Guard: BULLET EXPLODE!!",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV2",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.009999999776482582
+                  },
+                  "attackTag": "KleeMastery_BulletAttack",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "elementType": "Fire",
+                    "damageExtra": [
+                      "Value_DamageRate",
+                      "DamageSystemValue",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 25,
+                    "KGKNBGENBLN": true,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "attenuationTag": "KleeMastery_BulletAttack",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackSphere",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 2,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "born": {
+                    "$type": "ConfigBornByCollisionPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                73108002
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ShowBulletEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_Bullet",
+              "doOffStage": false,
+              "followPath": "RootNode",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_KleeMasteryGuard_Attack_Burst",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ShowBulletEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "DamageSystemValue",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Level_Property_Ani_Level_KleeMastery_Guard_Bullet"
+    }
+  }
+]

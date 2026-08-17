@@ -1,0 +1,4526 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "KeepAvatarBattleStateMixin",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Ability_Natlan_5_5_Kill_KeepAvatarBattleState"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElemReactSteamDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_Atk_1_Outside_OnAvatar": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactSteamDelta": "ElemReactSteamDelta"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Outside_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_1_Outside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Atk_1_Outside_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Atk_1_Outside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CostPhlogistonRatio": 0,
+        "ElemSubHurtDelta": 0,
+        "ElementLevelCo": 0,
+        "ImpactCD": 0,
+        "ImpactDamageRatio": 0,
+        "MoveSpeedRatio": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_ABILITY_5_5_Activity_Trigger",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Atk_1_Inside_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_ABILITY_5_5_Activity_Trigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_ABILITY_5_5_NB_Buff_Trigger",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_ABILITY_5_5_NB_Buff_Trigger",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_CostPhlogiston": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CostPhlogistonRatio": "CostPhlogistonRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_Mualani": {
+          "isUnique": true,
+          "properties": {
+            "Animator_MoveSpeedRatio": "MoveSpeedRatio"
+          },
+          "thinkInterval": 0.30000001192092896,
+          "isLimitedProperties": true,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR7_5H10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_OnMonster_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "SpeedUp",
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR7_5H10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_OnMonster_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_CD": {
+          "isUnique": true,
+          "duration": "ImpactCD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_Generator": {
+          "isUnique": true,
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetSystemValueToOverrideMap",
+              "type": "ElementLevelCo",
+              "key": "ElementLevelCo",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "param3": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_RoleCombat_Superconductor_Physical_Impact",
+              "scale": 1,
+              "doOffStage": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "KEPCAMGENCB": "Caster",
+                "positionKey": "_ABILITY_Activity_Atk_1_Inside_NB_Buff_pos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.009999999776482582
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "enBreak": 25,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "ImpactDamageRatio",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 25,
+                    "KGKNBGENBLN": true,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 6,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 10,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "KEPCAMGENCB": "Caster",
+                    "positionKey": "_ABILITY_Activity_Atk_1_Inside_NB_Buff_pos"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10102
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByHasAbilityState",
+                  "abilityState": "NyxState",
+                  "target": "Target"
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_OnMualani",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_OnMualani": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "NormalAttack_01",
+                    "NormalAttack_02",
+                    "NormalAttack_03",
+                    "NormalAttack_04",
+                    "NormalAttack_05",
+                    "NormalAttack_06"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "modifierName": "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_CD"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_ABILITY_Activity_Atk_1_Inside_NB_Buff_pos",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_Generator",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_NB_Buff_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10102
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByHasAbilityState",
+                  "abilityState": "NyxState",
+                  "target": "Target"
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_Mualani",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_OnMonster_Debuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_FireSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_GrassSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_IceSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_RockSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_WaterSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_WindSubHurtDelta": "ElemSubHurtDelta"
+          },
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 1,
+          "isLimitedProperties": true,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Natlan_Atk_1_Inside_OnTeam": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_CostPhlogiston",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_1_Inside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Atk_1_Inside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 0,
+        "SubHurtDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_Atk_2_Outside_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_2_Outside_OnMonster_Debuff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 60,
+              "reactionTypes": [
+                "Burning"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_2_Outside_OnMonster_Debuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_FireSubHurtDelta": "SubHurtDelta",
+            "Actor_GrassSubHurtDelta": "SubHurtDelta"
+          },
+          "duration": "Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Natlan_Atk_2_Outside_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_2_Outside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Atk_2_Outside_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Atk_2_Outside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CostPhlogistonRatio": 0,
+        "ElementLevelCo": 0,
+        "ElementalArtRatio": 0,
+        "ImpactCD": 0,
+        "ImpactDamageRatio": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_ABILITY_5_5_Activity_Trigger",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Atk_2_Inside_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_ABILITY_5_5_Activity_Trigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_ABILITY_5_5_NB_Buff_Trigger",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_ABILITY_5_5_NB_Buff_Trigger",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Kinich_ReduceArtCD": {
+          "onRemoved": [
+            {
+              "$type": "ModifyAvatarSkillCD",
+              "skillSlot": [
+                2
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Kinich_SkillTimes",
+                  "compareType": "LessAndEqual",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "cdMin": -2,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.30000001192092896,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_CostPhlogiston": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CostPhlogistonRatio": "CostPhlogistonRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_Kinich": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OnAvatarUseSkillMixin",
+              "onTriggerSkill": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Kinich_ReduceArtCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "clearSkillIdDelay": 0.20000000298023224,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_CD": {
+          "isUnique": true,
+          "duration": "ImpactCD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_Generator": {
+          "isUnique": true,
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetSystemValueToOverrideMap",
+              "type": "ElementLevelCo",
+              "key": "ElementLevelCo",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "param3": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_RoleCombat_Superconductor_Physical_Impact",
+              "scale": 1,
+              "doOffStage": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "KEPCAMGENCB": "Caster",
+                "positionKey": "_ABILITY_Activity_Atk_2_Inside_NB_Buff_pos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.009999999776482582
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "enBreak": 25,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "ImpactDamageRatio",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 25,
+                    "KGKNBGENBLN": true,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 6,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 10,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "KEPCAMGENCB": "Caster",
+                    "positionKey": "_ABILITY_Activity_Atk_2_Inside_NB_Buff_pos"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10101
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_OnKinich",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_OnKinich": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Elemental_Art",
+                    "Elemental_Art_Hold",
+                    "Elemental_Art_Extra"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "modifierName": "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_CD"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_ABILITY_Activity_Atk_2_Inside_NB_Buff_pos",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_Generator",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_2_Inside_NB_Buff_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": "ElementalArtRatio",
+              "attackTags": [
+                "Elemental_Art",
+                "Elemental_Art_Hold",
+                "Elemental_Art_Extra"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10101
+                  ]
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_Atk_2_Inside_Kinich",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_2_Inside_OnTeam": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_2_Inside_CostPhlogiston",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_2_Inside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Atk_2_Inside"
+    }
+  },
+  {
+    "Default": {
+      "onRemoved": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 7,
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "AttackRatio": 0,
+        "CriticalHurtDelta": 0,
+        "Duration": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Natlan_Atk_3_Buff_Layer_1",
+            "Natlan_Atk_3_Buff_Layer_2",
+            "Natlan_Atk_3_Buff_Layer_3"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            1.5,
+            2.5,
+            10
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_Activity_V5_5_Elem_Counter",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Natlan_Atk_3_Buff_Layer_1": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Natlan_Atk_3_Buff_Layer_1_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Natlan_Atk_3_Buff_Layer_1_OnAvatar": {
+          "properties": {
+            "Actor_AttackRatio": "AttackRatio",
+            "Actor_CriticalHurtDelta": "CriticalHurtDelta"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Buff_Layer_2": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Natlan_Atk_3_Buff_Layer_2_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Natlan_Atk_3_Buff_Layer_2_OnAvatar": {
+          "properties": {
+            "Actor_AttackRatio": [
+              "AttackRatio",
+              2,
+              "MUL"
+            ],
+            "Actor_CriticalHurtDelta": [
+              "CriticalHurtDelta",
+              2,
+              "MUL"
+            ]
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Buff_Layer_3": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "Natlan_Atk_3_Buff_Layer_3_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Natlan_Atk_3_Buff_Layer_3_OnAvatar": {
+          "properties": {
+            "Actor_AttackRatio": [
+              "AttackRatio",
+              3,
+              "MUL"
+            ],
+            "Actor_CriticalHurtDelta": [
+              "CriticalHurtDelta",
+              3,
+              "MUL"
+            ]
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_ElecCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Elec",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_FireCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Fire",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_GrassCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Grass",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_IceCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Ice",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_RockCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Rock",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_WaterCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Water",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Natlan_Atk_3_Outside_OnTeam_Buff_WindCD": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Wind",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnAvatar": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Electric"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_ElecCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Fire"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_FireCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Water"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_WaterCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Ice"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_IceCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Wind"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_WindCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Rock"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_RockCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Grass"
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "target": "Other"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "Natlan_Atk_3_Outside_OnTeam_Buff_GrassCD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Elec": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Fire": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Grass": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Ice": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Rock": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Water": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Outside_OnTeam_Buff_Wind": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 7,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Atk_3_Outside_OnTeam",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_Activity_V5_5_Elem_Counter",
+          "canBeHandledOnRecover": true,
+          "useLimitRange": true,
+          "maxValue": 7,
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Atk_3_Outside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CostPhlogistonRatio": 0,
+        "ElementLevelCo": 0,
+        "ImpactCD": 0,
+        "ImpactDamageRatio": 0,
+        "WindZoneCD": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_ABILITY_5_5_Activity_Trigger",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Atk_3_Inside_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_ABILITY_5_5_Activity_Trigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_ABILITY_5_5_NB_Buff_Trigger",
+          "useLimitRange": true,
+          "maxValue": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_ABILITY_5_5_NB_Buff_Trigger",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_Chasca": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "ExtraAttack"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "modifierName": "UNIQUE_Natlan_Atk_3_Inside_WindZone_cd"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_ABILITY_Activity_Atk_3_pos",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "CreateGadget",
+                  "canBeHandledOnRecover": true,
+                  "KIFCNCEFANN": {
+                    "enable": true,
+                    "IDIMGDPHLCB": 0.5,
+                    "JGGJGFDOKFJ": 0.5,
+                    "OCJBGKNDDAK": true
+                  },
+                  "onGround": true,
+                  "campID": 1001,
+                  "doOffStage": false,
+                  "campTargetType": "Enemy",
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "KEPCAMGENCB": "Caster",
+                    "positionKey": "_ABILITY_Activity_Atk_3_pos"
+                  },
+                  "gadgetID": 420004000,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Natlan_Atk_3_Inside_WindZone_cd",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_CostPhlogiston": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CostPhlogistonRatio": "CostPhlogistonRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_CD": {
+          "isUnique": true,
+          "duration": "ImpactCD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_Generator": {
+          "isUnique": true,
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetSystemValueToOverrideMap",
+              "type": "ElementLevelCo",
+              "key": "ElementLevelCo",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "param3": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_RoleCombat_Superconductor_Physical_Impact",
+              "scale": 1,
+              "doOffStage": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "KEPCAMGENCB": "Caster",
+                "positionKey": "_ABILITY_Activity_Atk_3_Inside_NB_Buff_pos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.009999999776482582
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "enBreak": 25,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "ImpactDamageRatio",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 25,
+                    "KGKNBGENBLN": true,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 6,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 10,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "KEPCAMGENCB": "Caster",
+                    "positionKey": "_ABILITY_Activity_Atk_3_Inside_NB_Buff_pos"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10104
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_OnChasca",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_OnChasca": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "ExtraAttack"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "modifierName": "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_CD"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_ABILITY_Activity_Atk_3_Inside_NB_Buff_pos",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_Generator",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_3_Inside_NB_Buff_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10104
+                  ]
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_Atk_3_Inside_Chasca",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_OnTeam": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_3_Inside_CostPhlogiston",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Atk_3_Inside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_Inside_WindZone_cd": {
+          "isUnique": true,
+          "duration": "WindZoneCD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Atk_3_Inside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ElemSubHurtDelta": 0,
+        "ElemSubHurtDuration": 0,
+        "WindZoneDuration": 0
+      },
+      "modifiers": {
+        "Activity_Natlan_Atk_3_WindZone_Handler": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                420004000
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "WindZoneDuration",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_CharAmusement_Gadget_Wind_Absorbe",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "WindZoneMixin",
+              "value": 0.10000000149011612,
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "reject": true,
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "EMMNOPNLHOC": 100,
+              "maxNum": 12,
+              "forceType": "WindZoneType",
+              "strength": 10,
+              "innerRadius": 1,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 0.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "shapeName": "CircleR12",
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_WindZone_Debuff_Handler": {
+          "isUnique": true,
+          "thinkInterval": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR7_5H10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_3_WindZone_OnMonster_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR7_5H10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Atk_3_WindZone_OnMonster_Debuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Atk_3_WindZone_OnMonster_Debuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_FireSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_GrassSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_IceSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_RockSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_WaterSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_WindSubHurtDelta": "ElemSubHurtDelta"
+          },
+          "duration": "ElemSubHurtDuration",
+          "minus_one": -1,
+          "elementDurability": 1,
+          "isLimitedProperties": true,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Activity_Natlan_Atk_3_WindZone_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Atk_3_WindZone_Debuff_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_Natlan_Atk_3_WindZone"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 0,
+        "ElemSubHurtDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_Def_1_Outside_Debuff_Elec": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_RockSubHurtDelta": "ElemSubHurtDelta"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Natlan_Def_1_Outside_Debuff_Fire": {
+          "isUnique": true,
+          "properties": {
+            "Actor_FireSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_RockSubHurtDelta": "ElemSubHurtDelta"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Natlan_Def_1_Outside_Debuff_Ice": {
+          "isUnique": true,
+          "properties": {
+            "Actor_IceSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_RockSubHurtDelta": "ElemSubHurtDelta"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Natlan_Def_1_Outside_Debuff_Water": {
+          "isUnique": true,
+          "properties": {
+            "Actor_RockSubHurtDelta": "ElemSubHurtDelta",
+            "Actor_WaterSubHurtDelta": "ElemSubHurtDelta"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Natlan_Def_1_Outside_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_ANIMAL_ENTITY_TYPE",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "target": "Other",
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Natlan_Def_1_Outside_Debuff_Fire",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "CrystallizeFire"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_ANIMAL_ENTITY_TYPE",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "target": "Other",
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Natlan_Def_1_Outside_Debuff_Water",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "CrystallizeWater"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_ANIMAL_ENTITY_TYPE",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "target": "Other",
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Natlan_Def_1_Outside_Debuff_Ice",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "CrystallizeIce"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_ANIMAL_ENTITY_TYPE",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "target": "Other",
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Natlan_Def_1_Outside_Debuff_Elec",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "CrystallizeElectric"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_1_Outside_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Def_1_Outside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Def_1_Outside_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Def_1_Outside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CD": 0,
+        "DamageRatio": 0,
+        "ElementLevelCo": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Def_1_Inside_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_5_5_Activity_Trigger",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_1_Inside_Impact_CD": {
+          "isUnique": true,
+          "duration": "CD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Def_1_Inside_Impact_Generator": {
+          "isUnique": true,
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetSystemValueToOverrideMap",
+              "type": "ElementLevelCo",
+              "key": "ElementLevelCo",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "param3": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_RoleCombat_Superconductor_Physical_Impact",
+              "scale": 1,
+              "doOffStage": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "KEPCAMGENCB": "Caster",
+                "positionKey": "_ABILITY_Natlan_Def_1_Inside_Impact_Pos"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    },
+                    "hitHaltTimeScale": 0.009999999776482582
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "enBreak": 25,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "DamageRatio",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 25,
+                    "KGKNBGENBLN": true,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 6,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 10,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "KEPCAMGENCB": "Caster",
+                    "positionKey": "_ABILITY_Natlan_Def_1_Inside_Impact_Pos"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 1001,
+              "doOffStage": true,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "KEPCAMGENCB": "Caster",
+                "positionKey": "_ABILITY_Natlan_Def_1_Inside_Impact_Pos"
+              },
+              "gadgetID": 420004001,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_1_Inside_OnAvatar": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Elemental_Art",
+                    "Elemental_Art_Extra",
+                    "Elemental_Art_Hold"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Team",
+                      "modifierName": "UNIQUE_Natlan_Def_1_Inside_Impact_CD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByHasAbilityState",
+                  "abilityState": "NyxState"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_ABILITY_Natlan_Def_1_Inside_Impact_Pos",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Def_1_Inside_Impact_Generator",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Def_1_Inside_Impact_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_1_Inside_OnTeam": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_5_5_Activity_Trigger",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "useLimitRange": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 50,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Def_1_Inside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Def_1_Inside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 0
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_Def_1_TimePause": {
+          "isUnique": true,
+          "properties": {
+            "Animator_MoveSpeedRatio": -1,
+            "Animator_OverallSpeedRatioMultiplied": 0
+          },
+          "duration": "Duration",
+          "onKill": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Def_1_TimePause",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_TowerTrap_01_Confined",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Activity_Natlan_Def_1_TimePause",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": 1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_Def_1_TimePause",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CriticalHurtDelta": 0,
+        "Duration": 0
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_Def_2_Outside_Add_Critical": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalHurtDelta": "CriticalHurtDelta"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Def_2_Outside_OnAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_ANIMAL_ENTITY_TYPE",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "predicates": [
+                        {
+                          "$type": "ByTargetPositionToSelfPosition",
+                          "logic": "LesserOrEqual",
+                          "target": "Target",
+                          "value": 40
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "target": "AllPlayerAvatars",
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Natlan_Def_2_Outside_Add_Critical",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "Melt",
+                "Freeze"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_2_Outside_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Def_2_Outside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Def_2_Outside_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Def_2_Outside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CD": 0,
+        "DamageRatio": 0,
+        "ElemAddHurtRatio": 0,
+        "ElementLevelCo": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Def_2_Inside_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_5_5_Activity_Trigger",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_2_Inside_Buff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElecAddHurtDelta": "ElemAddHurtRatio",
+            "Actor_FireAddHurtDelta": "ElemAddHurtRatio",
+            "Actor_GrassAddHurtDelta": "ElemAddHurtRatio",
+            "Actor_IceAddHurtDelta": "ElemAddHurtRatio",
+            "Actor_RockAddHurtDelta": "ElemAddHurtRatio",
+            "Actor_WaterAddHurtDelta": "ElemAddHurtRatio",
+            "Actor_WindAddHurtDelta": "ElemAddHurtRatio"
+          },
+          "duration": 1.2000000476837158,
+          "thinkInterval": 0.25,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "onThinkInterval": [
+            {
+              "$type": "TriggerTaunt",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR8H10"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "tauntLevel": "Monster_TauntLevel_MAX",
+              "doOffStage": false,
+              "careValue": 99999,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_2_Inside_Impact_CD": {
+          "isUnique": true,
+          "duration": "CD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Def_2_Inside_Impact_Generetor": {
+          "isUnique": true,
+          "duration": 0.699999988079071,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Team",
+                      "modifierName": "UNIQUE_Natlan_Def_2_Inside_Impact_CD"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetSystemValueToOverrideMap",
+                  "type": "ElementLevelCo",
+                  "key": "ElementLevelCo",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "param3": -1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Def_2_Inside_Impact_CD",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_RoleCombat_Superconductor_Physical_Impact_Enhanced",
+                  "scale": 1,
+                  "doOffStage": true,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV7",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        },
+                        "hitHaltTimeScale": 0.009999999776482582
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "enBreak": 1000,
+                        "damageExtra": [
+                          "ElementLevelCo",
+                          "DamageRatio",
+                          "MUL"
+                        ],
+                        "IOLHEGDMIBF": true,
+                        "KEBENMLLFJH": true,
+                        "elementDurability": 25,
+                        "KGKNBGENBLN": true,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 8,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 10,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_2_Inside_OnAvatar": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "KGDFKACEPFA",
+                  "type": "All",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Def_2_Inside_Buff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "KGDFKACEPFA",
+                      "type": "All",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_Def_2_Inside_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "DoActionByCreateShieldMixin",
+              "filterList": [
+                "TeamShield",
+                "CrystalSeedShield",
+                "EliteShield"
+              ],
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Def_2_Inside_Impact_Generetor",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_2_Inside_OnTeam": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_5_5_Activity_Trigger",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "useLimitRange": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 50,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Def_2_Inside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Def_2_Inside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CD": 0,
+        "CriticalHurtDelta": 0,
+        "Duration": 0,
+        "Level": 0
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_Def_3_Outside_Add_Critical": {
+          "isUnique": true,
+          "stackingOption": {
+            "NALKFKGMPAJ": true,
+            "maxModifierNumForMultipleType": "Level"
+          },
+          "properties": {
+            "Actor_CriticalHurtDelta": "CriticalHurtDelta"
+          },
+          "duration": "Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "MultipleRefreshNoRemove"
+        },
+        "UNIQUE_Natlan_Def_3_Outside_Add_Critical_CD": {
+          "isUnique": true,
+          "duration": "CD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_Def_3_Outside_OnAvatar": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "FallingAttack"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Team",
+                      "modifierName": "UNIQUE_Natlan_Def_3_Outside_Add_Critical_CD"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetPositionToSelfPosition",
+                      "logic": "LesserOrEqual",
+                      "target": "Target",
+                      "value": 40
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Def_3_Outside_Add_Critical",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_Def_3_Outside_Add_Critical_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_3_Outside_OnTeam": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Def_3_Outside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_Def_3_Outside_OnTeam",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Def_3_Outside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "WindZoneCD": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Natlan_Def_3_Inside_OnTeam"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_5_5_Activity_Trigger",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_3_Inside_OnAvatar": {
+          "isUnique": true,
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "FallingAttack"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "modifierName": "UNIQUE_Natlan_Def_3_Inside_WindZone_cd"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_ABILITY_Activity_Def_3_pos",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "CreateGadget",
+                  "canBeHandledOnRecover": true,
+                  "KIFCNCEFANN": {
+                    "enable": true,
+                    "IDIMGDPHLCB": 0.5,
+                    "JGGJGFDOKFJ": 0.5,
+                    "OCJBGKNDDAK": true
+                  },
+                  "onGround": true,
+                  "campID": 1001,
+                  "doOffStage": false,
+                  "campTargetType": "Enemy",
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "KEPCAMGENCB": "Caster",
+                    "positionKey": "_ABILITY_Activity_Def_3_pos"
+                  },
+                  "gadgetID": 420004000,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Natlan_Def_3_Inside_WindZone_cd",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_3_Inside_OnTeam": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_5_5_Activity_Trigger",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "useLimitRange": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 50,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LocalAvatarsMixin",
+              "modifierName": "UNIQUE_Natlan_Def_3_Inside_OnAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_Def_3_Inside_WindZone_cd": {
+          "isUnique": true,
+          "duration": "WindZoneCD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_Def_3_Inside"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Goal": 100
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_1": {
+          "isUnique": true,
+          "onHittingOther": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_OnMonster",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "predicates": [
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10100
+                  ]
+                }
+              ],
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_Kachina",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_Add": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Activity_5_5_zhuanzhuan",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": "Goal",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Activity_5_5_Sync_GoalCounterGV",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_Handler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_1",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_Kachina": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_ABILITY_Activity_5_5_zhuanzhuan",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Kachina_IsNyxState",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_ABILITY_Activity_5_5_zhuanzhuan",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_ABILITY_Activity_5_5_zhuanzhuan",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Kachina_IsNyxState",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_ABILITY_Activity_5_5_zhuanzhuan",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_OnMonster": {
+          "isUnique": true,
+          "duration": 1,
+          "onKill": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_Add",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_1_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_5_5_Kill_Counter_Def_1"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Goal": 100
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_2": {
+          "isUnique": true,
+          "onHittingOther": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_2_OnMonster",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_2_Add": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "predicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "UNIQUE_Citlali_ElementalArt_IceShield_Team"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": "Goal",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Activity_5_5_Sync_GoalCounterGV",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_2_Handler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_2_OnMonster": {
+          "isUnique": true,
+          "duration": 1,
+          "onKill": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_2_Add",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_2_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_5_5_Kill_Counter_Def_2"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Goal": 100
+      },
+      "modifiers": {
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_3": {
+          "isUnique": true,
+          "onHittingOther": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "FallingAttack"
+                  ]
+                },
+                {
+                  "$type": "ByHasFeatureTag",
+                  "featureTagIDs": [
+                    10111
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Monster"
+                      ]
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_ANIMAL_ENTITY_TYPE",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_3_OnMonster",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_3_Add": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "useLimitRange": true,
+              "maxValue": "Goal",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Activity_5_5_Sync_GoalCounterGV",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "CurGalleryControlGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_3_Handler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 1,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_3",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Activity_5_5_Kill_Counter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_3",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Natlan_5_5_Kill_Counter_Def_3_OnMonster": {
+          "isUnique": true,
+          "duration": 3,
+          "onKill": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_3_Add",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Natlan_5_5_Kill_Counter_Def_3_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_Natlan_5_5_Kill_Counter_Def_3"
+    }
+  }
+]

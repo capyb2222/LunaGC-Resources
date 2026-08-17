@@ -1,0 +1,5473 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "UNIQUE_Boltbug_Abyss_NormalState",
+            "UNIQUE_Boltbug_Abyss_MaxState",
+            "UNIQUE_Boltbug_Abyss_BoundedState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_MONSTER_Boltbug_Abyss_STATE_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Boltbug_Abyss_ResetHitGCD"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Monster_Boltbug_Abyss_HitGCD",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_BoltbugAbyss_WeakProgress",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "SGV_BoltbugAbyss_WeakTime",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "GV_BoltbugAbyss_WeakTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "GV_BoltbugAbyss_FinishWeakTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "GV_BoltbugAbyss_TeleportTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerUpdateGlobalValueMixin",
+          "key": "GV_Monster_Boltbug_Abyss_BoundedTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "globalValueKey": "SGV_BoltbugAbyss_WeakProgress",
+          "actions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "BoltbugAbyss_WeakProgress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "SGV_BoltbugAbyss_WeakProgress",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "globalValueKey": "GV_BoltbugAbyss_WeakTrigger",
+          "actions": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_BoltbugAbyss_WeakTrigger",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Weak_Start",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "globalValueKey": "GV_BoltbugAbyss_FinishWeakTrigger",
+          "actions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "FinishWeakLoop",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "globalValueKey": "GV_BoltbugAbyss_TeleportTrigger",
+          "actions": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_BoltbugAbyss_TeleportTrigger",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Teleport_Start",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "globalValueKey": "GV_Monster_Boltbug_Abyss_BoundedTrigger",
+          "actions": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Monster_Boltbug_Abyss_BoundedTrigger",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Bounded_Start",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Weak_AS"
+          ],
+          "value": -1,
+          "modifierName": "Retry_Teleport_AfterWeak",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Bounded_AS"
+          ],
+          "value": -1,
+          "modifierName": "Retry_Teleport_AfterBounded",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Bounded_Start": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_BoltbugAbyss_Invisible",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "StunFocus",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "RopeBound",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Retry_Teleport_AfterBounded": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Monster_Boltbug_Abyss_Retry_Teleport",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "BoltbugAbyss_WeakProgress",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 99
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "Teleport",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Retry_Teleport_AfterWeak": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Monster_Boltbug_Abyss_Retry_Teleport",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "Teleport",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Teleport_Start": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "Teleport",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_Retry_Teleport",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_1": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 1,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_2": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 2,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_3": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 3,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_4": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 4,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_5": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 5,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Grass": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 1,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 4,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Rock": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 1,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 2,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Water": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 1,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 3,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Rock": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 2,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 2,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Water": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 2,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 3,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Grass": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 3,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 4,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Rock": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 3,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 2,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_4": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 4,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 1,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BeHit_Nyx_5_Rock": {
+          "isUnique": true,
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": 5,
+              "funcName": "SLC_AbyssBug_BeHit",
+              "canBeHandledOnRecover": true,
+              "param2": 2,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 2
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_BoundedState": {
+          "isUnique": true,
+          "duration": 7,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Hit_L",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Avatar"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Hit_H",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_1",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Water",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Water",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Grass",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Grass",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_2",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Water",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Water",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_3",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Grass",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Grass",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ExtraAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_4",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ExtraAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_4",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "FallingAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_5",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "FallingAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_5_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "UNIQUE_Boltbug_Abyss_MaxState": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "FinishWeakLoop",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "SGV_BoltbugAbyss_WeakTime",
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "BoltbugAbyss_WeakProgress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                0,
+                10,
+                "SGV_BoltbugAbyss_WeakTime",
+                "DIV",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Hit_L",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByEntityTypes",
+                      "value": -1,
+                      "target": "Target",
+                      "entityTypes": [
+                        "Avatar"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Hit_H",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_1",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Water",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Water",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Grass",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Grass",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_2",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Water",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Water",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_3",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Grass",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Grass",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ExtraAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_4",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ExtraAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_4",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "FallingAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_5",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "FallingAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_5_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "UNIQUE_Boltbug_Abyss_NormalState": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalDir",
+                  "key": "_Boltbug_Abyss_BEINGHIT_DIR_",
+                  "target": "TargetOriginOwner",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "$type": "ConfigDirectionByLookAtEntity",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalDir",
+                  "key": "_Boltbug_Abyss_BEINGHIT_DIR_",
+                  "target": "Target",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "$type": "ConfigDirectionByLookAtEntity",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Hit_Blocked",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByAttachPoint",
+                    "direction": {
+                      "$type": "ConfigDirectionByGlobalValue",
+                      "directionKey": "_Boltbug_Abyss_BEINGHIT_DIR_",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "attachPointName": "RootNode",
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "attachPointTargetType": "Self"
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_1",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Water",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Water",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Burst"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Grass",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_1_Grass",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_2",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NormalAttack_01",
+                        "NormalAttack_02",
+                        "NormalAttack_03",
+                        "NormalAttack_04",
+                        "NormalAttack_05",
+                        "NormalAttack_06"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Water",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_2_Water",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_3",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "Elemental_Art",
+                        "Elemental_Art_Hold",
+                        "Elemental_Art_Extra"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Grass",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_3_Grass",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ExtraAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_4",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ExtraAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_4",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "FallingAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_5",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "FallingAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitDamage",
+                      "AIKHBMGDDJB": true,
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Boltbug_Abyss_HitGCD"
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "NyxAttack"
+                      ]
+                    },
+                    {
+                      "$type": "ByHitElementDurability",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "element": "Rock",
+                      "OENCMODINFO": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_BeHit_Nyx_5_Rock",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "UNIQUE_Boltbug_Abyss_ResetHitGCD": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Monster_Boltbug_Abyss_HitGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Weak_Start": {
+          "duration": 0.8999999761581421,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_BoltbugAbyss_Invisible",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "StunFocus",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_Boltbug_Abyss_STATE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "Weak",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_BoltbugAbyss_WeakProgress",
+        "SGV_BoltbugAbyss_WeakTime",
+        "GV_BoltbugAbyss_WeakTrigger",
+        "GV_BoltbugAbyss_FinishWeakTrigger",
+        "GV_BoltbugAbyss_TeleportTrigger",
+        "GV_Monster_Boltbug_Abyss_BoundedTrigger"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Monster_Boltbug_Abyss_Identification_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_BoltbugAbyss_WeakTrigger",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_BoltbugAbyss_FinishWeakTrigger",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_BoltbugAbyss_TeleportTrigger",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_Monster_Boltbug_Abyss_BoundedTrigger",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachAbilityStateResistance",
+          "durationRatio": 1,
+          "canBeHandledOnRecover": true,
+          "resistanceListID": 13002,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "Monster_Boltbug_Abyss_HitGCD",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Boltbug_Abyss_StateManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Bounded_BS"
+          ],
+          "value": -1,
+          "modifierName": "Bounded_BS_Effect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Bounded_BS",
+            "Bounded_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Bounded_Loop_Effect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Bounded_BS",
+            "Bounded_Loop",
+            "Bounded_AS",
+            "Weak_BS",
+            "Weak_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Bounded_Cannot_Teleport",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Bounded_BS_Effect": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_Boltbug_Abyss_STATE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Bounded_Cannot_Teleport": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "CanTeleport",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_Boltbug_Abyss_STATE_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "CanTeleport",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Bounded_Loop_Effect": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Bounded_Hit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Bounded_AS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Bounded_Loop",
+              "scale": 1,
+              "doOffStage": false,
+              "MMBHFKIOIKL": true,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Boltbug_Abyss_BoundedLogic"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "Monster_Boltbug_Abyss_TriggerGasAttack"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Monster_Boltbug_Abyss_GasAttack_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "Monster_Boltbug_Abyss_GasAttackReady"
+          ],
+          "valueSteps": [
+            -0.5,
+            4.5,
+            999.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Monster_Boltbug_Abyss_HitCount_GasAttack_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "Monster_Boltbug_Abyss_DropCoin"
+          ],
+          "valueSteps": [
+            -0.5,
+            4.5,
+            999.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Monster_Boltbug_Abyss_HitCount_DropCoin_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Born",
+            "NormalIdle",
+            "NormalMove",
+            "GasAttack",
+            "Teleport_BS",
+            "Teleport_Loop",
+            "Teleport_AS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Boltbug_Abyss_NormalHitCount_GasAttack",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Born",
+            "NormalIdle",
+            "NormalMove",
+            "GasAttack",
+            "Teleport_BS",
+            "Teleport_Loop",
+            "Teleport_AS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Boltbug_Abyss_NormalHitCount_DropCoin",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Boltbug_Abyss_DropCoin": {
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Boltbug_Abyss_GasAttackReady": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_GasAttack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Boltbug_Abyss_GasAttack_TrueDamage": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "TargetCurLocalAvatar",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Boltbug_Abyss_GasAttack_LoseHP",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Boltbug_Abyss_NormalHitCount_DropCoin": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_DropCoin_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 3,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_DropCoin_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_DropCoin_",
+              "predicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Monster_Boltbug_Abyss_NormalHitCount_GasAttack": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_GasAttack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_GasAttack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_GasAttack_",
+              "predicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Monster_Boltbug_Abyss_TriggerGasAttack": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_GasAttack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 5,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "KBJIEFMEMIE",
+                      "FKALHKNGMLF": [
+                        "GasAttack",
+                        "Teleport_BS",
+                        "Teleport_Loop",
+                        "Teleport_AS",
+                        "Bounded_BS",
+                        "Bounded_Loop",
+                        "Bounded_AS",
+                        "Weak_BS",
+                        "Weak_Loop",
+                        "Weak_AS"
+                      ],
+                      "target": "Target",
+                      "MOCOFLKNODH": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "GasAttack",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Boltbug_Abyss_GasAttack_LoseHP": {
+          "isUnique": true,
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "LoseHP",
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "disableWhenLoading": true,
+              "enableLockHP": true,
+              "doOffStage": false,
+              "amountByTargetMaxHPRatio": 0.15000000596046448,
+              "actorIceSubHurtDelta": -1,
+              "lethal": true
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Monster_Boltbug_Abyss_HitCount_GasAttack_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Monster_Boltbug_Abyss_GasAttack_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Boltbug_Abyss_HitControl"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "Teleport_AS",
+          "modifierName": "Remove_Teleport_Effect",
+          "normalizeEnd": 1,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.9200000166893005
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Teleport_BS",
+            "Teleport_Loop",
+            "Teleport_AS"
+          ],
+          "value": -1,
+          "modifierName": "Teleport_Effect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Teleport_BS",
+            "Teleport_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Spray_Effect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Boltbug_Abyss_SetInvisible"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_BoltbugAbyss_Invisible",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Boltbug_Abyss_DenyLockOn": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "NLBKJKDNFFP": -1
+        },
+        "Boltbug_Abyss_HitBoxOff": {
+          "onRemoved": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Boltbug_Abyss_Invincible": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "NLBKJKDNFFP": -1
+        },
+        "Boltbug_Abyss_IsGhostToAllied": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToAllied",
+          "NLBKJKDNFFP": -1
+        },
+        "Boltbug_Abyss_IsGhostToEnemy": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "NLBKJKDNFFP": -1
+        },
+        "Boltbug_Abyss_MuteTaunt": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "MuteTaunt",
+          "NLBKJKDNFFP": -1
+        },
+        "Boltbug_Abyss_SetInvisible": {
+          "onRemoved": [
+            {
+              "$type": "TriggerSetVisible",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "visible": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "TriggerSetVisible",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Boltbug_Abyss_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Boltbug_Abyss_IsGhostToAllied",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Boltbug_Abyss_IsGhostToEnemy",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Boltbug_Abyss_MuteTaunt",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Boltbug_Abyss_DenyLockOn",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Boltbug_Abyss_HitBoxOff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Remove_Teleport_Effect": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_BoltbugAbyss_Invisible",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Spray_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Teleport_Spray",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Teleport_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_Teleport_Portal",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "abilityName": "Monster_Boltbug_Abyss_Teleport"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Born",
+            "NormalIdle",
+            "NormalMove",
+            "GasAttack",
+            "Teleport_BS",
+            "Teleport_Loop",
+            "Teleport_AS",
+            "Teleport_AS_2",
+            "Bounded_AS",
+            "Weak_AS"
+          ],
+          "value": -1,
+          "modifierName": "Body_AbyssPower_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Body_AbyssPower_Effect": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_AbyssPower_FadeOut",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_AbyssPower_Fadeln",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Boltbug_Abyss_01_AbyssPower_Loop",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Boltbug_Abyss_BodyEffect"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Born",
+            "NormalIdle",
+            "NormalMove",
+            "GasAttack",
+            "Teleport_BS",
+            "Teleport_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Boltbug_Abyss_SpecialHitCount_ExplodeArea",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "Monster_Boltbug_Abyss_TriggerExplodeArea"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Monster_Boltbug_Abyss_FightBack_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "Monster_Boltbug_Abyss_FightBack"
+          ],
+          "valueSteps": [
+            -0.5,
+            4.5,
+            999.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Monster_Boltbug_Abyss_HitCount_FightBack_",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ExplodeArea_Damage": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV6",
+                    "overrideHitImpulse": {
+                      "hitImpulseY": 1000,
+                      "hitLevel": "Air",
+                      "hitImpulseX": 120
+                    },
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "attackTag": "Boltbug_Abyss_ExplodeArea",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "enBreak": 1000,
+                    "damageExtra": 150,
+                    "IOLHEGDMIBF": true,
+                    "elementDurability": 25,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 4,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "positionKey": "Explode_Point"
+                  }
+                }
+              },
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "KBJIEFMEMIE",
+                      "FKALHKNGMLF": [
+                        "Teleport_AS"
+                      ],
+                      "target": "Caster",
+                      "MOCOFLKNODH": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ExplodeArea_TriggerDamage": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ExplodeArea_Damage",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.149999976158142,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Monster_Boltbug_Abyss_FightBack": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_FightBack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 4,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_FightBack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Boltbug_Abyss_SpecialHitCount_ExplodeArea": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_FightBack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 4,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_FightBack_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Monster_Boltbug_Abyss_HitCount_FightBack_",
+              "predicates": [
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Monster_Boltbug_Abyss_TriggerExplodeArea": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "sortType": "Nearest",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 1,
+                "shapeName": "CircleR30H15C"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "KBJIEFMEMIE",
+                      "FKALHKNGMLF": [
+                        "Teleport_Loop",
+                        "Teleport_AS"
+                      ],
+                      "target": "Caster",
+                      "MOCOFLKNODH": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "Explode_Point",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_ExplodeArea",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true,
+                    "positionKey": "Explode_Point"
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ExplodeArea_TriggerDamage",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Boltbug_Abyss_ExplodeArea_LoseHP": {
+          "isUnique": true,
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "LoseHP",
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "disableWhenLoading": true,
+              "enableLockHP": true,
+              "doOffStage": false,
+              "amountByTargetMaxHPRatio": 0.10000000149011612,
+              "actorIceSubHurtDelta": -1,
+              "lethal": true
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Monster_Boltbug_Abyss_HitCount_FightBack_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Monster_Boltbug_Abyss_FightBack_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "MonsterAffix_Boltbug_Abyss_ExplodeArea"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "CreateGadget",
+          "canBeHandledOnRecover": true,
+          "KIFCNCEFANN": {
+            "enable": true,
+            "IDIMGDPHLCB": 0.5,
+            "JGGJGFDOKFJ": 0.5,
+            "OCJBGKNDDAK": true
+          },
+          "onGround": true,
+          "campID": 5001,
+          "doOffStage": false,
+          "campTargetType": "Alliance",
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "onGroundIgnoreWater": true,
+            "alongGround": true
+          },
+          "gadgetID": 70291248,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_VFX",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "configIdArray": [
+            42802014,
+            42802015
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "globalValueKey": "gv_BoltBugAbyss_BiliBall_RemoveGadget",
+          "actions": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                42802014,
+                42802015
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Bullet_VFX": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_BiliBerry_Trail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_VFX",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ChangeTag",
+          "tag": "IS_BoltBugAbyss_BiliBall",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Boltbug_Abyss_CreateCoin"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onKill": [
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42802014,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "randomAngleHor": 70,
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "RootNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_Boltbug_Abyss_CoinDropAfterDeath"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onKill": [
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42802014,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "randomAngleHor": 70,
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "RootNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42802014,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "randomAngleHor": 70,
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "RootNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_Boltbug_Abyss_DoubleCoinDropAfterDeath"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Boltbug_Abyss_GasAttack_ExtraDamage": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyBeHitDamageMixin",
+              "damageExtra": [
+                "FIGHT_PROP_MAX_HP",
+                0.25,
+                "MUL"
+              ],
+              "attackTags": [
+                "Boltbug_Abyss_GasAttack"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Boltbug_Abyss_GasAttack_ExtraDamage",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_Boltbug_Abyss_GasAttack_ExtraDamage"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Boltbug_Abyss_ExplodeArea_ExtraDamage": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyBeHitDamageMixin",
+              "damageExtra": [
+                "FIGHT_PROP_MAX_HP",
+                0.15000000596046448,
+                "MUL"
+              ],
+              "attackTags": [
+                "Boltbug_Abyss_ExplodeArea"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Boltbug_Abyss_ExplodeArea_ExtraDamage",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_Boltbug_Abyss_ExplodeArea_ExtraDamage"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Born",
+            "NormalIdle",
+            "NormalMove",
+            "GasAttack",
+            "Teleport_BS",
+            "Teleport_Loop",
+            "Bounded_BS",
+            "Bounded_Loop",
+            "Bounded_AS"
+          ],
+          "value": -1,
+          "modifierName": "ExplodeArea_AutoTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2
+          ],
+          "modifierName": "ExplodeArea_AutoTrigger_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ExplodeArea_AutoTrigger": {
+          "thinkInterval": 5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "sortType": "Nearest",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Enemy",
+                "topLimit": 1,
+                "shapeName": "CircleR30H15C"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "KBJIEFMEMIE",
+                      "FKALHKNGMLF": [
+                        "Teleport_Loop",
+                        "Teleport_AS"
+                      ],
+                      "target": "Caster",
+                      "MOCOFLKNODH": true
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "ExplodeArea_AutoTrigger_On",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "Explode_Point2",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ExplodeArea_AutoTrigger",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ExplodeArea_AutoTrigger",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Boltbug_Abyss_01_ExplodeArea",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true,
+                    "positionKey": "Explode_Point2"
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ExplodeArea_AutoTrigger",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ExplodeArea_TriggerDamage2",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "ExplodeArea_AutoTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stacking": "Unique"
+        },
+        "ExplodeArea_AutoTrigger_Handler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "ExplodeArea_AutoTrigger_On",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "ExplodeArea_AutoTrigger_On",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ExplodeArea_Damage2": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV6",
+                    "overrideHitImpulse": {
+                      "hitImpulseY": 1000,
+                      "hitLevel": "Air",
+                      "hitImpulseX": 120
+                    },
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "attackTag": "Boltbug_Abyss_ExplodeArea",
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "enBreak": 1000,
+                    "damageExtra": 150,
+                    "IOLHEGDMIBF": true,
+                    "elementDurability": 25,
+                    "attackType": "Default",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 4,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 2.5,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "positionKey": "Explode_Point2"
+                  }
+                }
+              },
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "KBJIEFMEMIE",
+                      "FKALHKNGMLF": [
+                        "Teleport_AS"
+                      ],
+                      "target": "Caster",
+                      "MOCOFLKNODH": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ExplodeArea_TriggerDamage2": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ExplodeArea_Damage2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.149999976158142,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_Boltbug_Abyss_ExplodeArea_AutoTrigger"
+    }
+  }
+]

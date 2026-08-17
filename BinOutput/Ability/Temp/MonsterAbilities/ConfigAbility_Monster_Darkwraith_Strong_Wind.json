@@ -1,0 +1,4703 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Pose_Close",
+            "Pose_Back"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            99.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DARKWRAITH_WIND_CLOSE_TAG_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Pose_Normal",
+            "Pose_Dodge"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DARKWRAITH_WIND_DODGE_TAG_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FieldEntityCountChangeMixin",
+          "targetPredicates": [
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                4902
+              ],
+              "target": "Target"
+            },
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                4013
+              ],
+              "target": "Target"
+            }
+          ],
+          "simpleCountUseLimitRange": true,
+          "onFieldExit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DARKWRAITH_WIND_CLOSE_TAG_",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 99,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "campTargetType": "Alliance",
+          "onFieldEnter": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DARKWRAITH_WIND_CLOSE_TAG_",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 99,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Pose_Back": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "CloseTag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pose_Close": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "CloseTag",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pose_Dodge": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_RemoveEffect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Wind_HitShield_Succ",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DodgeTag",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_AddEffect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SetAnimationPauseByAbilityStateMixin",
+              "abilityStates": [
+                "ElementFrozen",
+                "ElementPetrifaction"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Pose_Normal": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DodgeTag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Pose"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "UNIQUE_Darkwraith_Strong_Wind_Effect": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_WindElement",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Darkwraith_Strong_Wind_AddEffect"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_RemoveEffect"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Darkwraith_Wind_HitShield_Detect": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "KGDFKACEPFA",
+                  "type": "All",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Monster_Darkwraith_Wind_Attack"
+                  ]
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Caster",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Darkwraith_Wind_HitShield_Succ",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Darkwraith_Wind_HitShield_Succ": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_WIND_DODGE_TAG_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 10,
+          "onAdded": [
+            {
+              "$type": "LoseHP",
+              "canBeHandledOnRecover": true,
+              "disableWhenLoading": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "amountByTargetCurrentHPRatio": 0.15000000596046448,
+              "actorIceSubHurtDelta": -1,
+              "lethal": true
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_WIND_DODGE_TAG_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Wind_HitShield_Detect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Darkwraith_Strong_Wind_HitShield"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Invincible",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "UNIQUE_Darkwraith_Strong_Wind_Invincible": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar",
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "TargetOriginOwner",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar",
+                    "Vehicle"
+                  ]
+                },
+                {
+                  "$type": "ByHitDamage",
+                  "AIKHBMGDDJB": true,
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stacking": "Unique"
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge_Invincible"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_Dodge_Actions",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "Darkwraith_Strong_Wind_AttackEnhance": 0.30000001192092896
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "Dodge",
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Dodge_Handler",
+          "normalizeEnd": 0.949999988079071,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_Dodge_Actions": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasAbilityState",
+                      "abilityState": "ElementFreeze",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByHasAbilityState",
+                      "abilityState": "ElementPetrifaction",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityIsAlive"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "DodgeTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Dodge_DenyLockOn": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Dodge_Invincible": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Dodge_ResetCD": {
+          "onRemoved": [
+            {
+              "$type": "SetAISkillGCD",
+              "canBeHandledOnRecover": true,
+              "value": 3,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.5,
+          "onAdded": [
+            {
+              "$type": "SetAISkillCDAvailableNow",
+              "canBeHandledOnRecover": true,
+              "skillIDs": [
+                201,
+                202,
+                301,
+                302,
+                401,
+                402,
+                501,
+                502,
+                601,
+                602,
+                701,
+                702,
+                703
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAISkillGCD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Darkwraith_Strong_Wind_Dodge_AttackEnhance": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "Darkwraith_Strong_Wind_AttackEnhance"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Darkwraith_Strong_Wind_Dodge_Handler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox_Weapon"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HeadBox"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetVisible",
+              "canBeHandledOnRecover": true,
+              "visible": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideUIBillBoard",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_Dodge_BS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Dodge_ResetCD",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Dodge_AttackEnhance",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_Alert",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_WIND_DODGE_TAG_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Dodge_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Dodge_DenyLockOn",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetVisible",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideUIBillBoard",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "hide": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox_Weapon"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HeadBox"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_Dodge_BS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Eye",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "TryFindBlinkPointByBorn",
+              "limitY": 2.5,
+              "CHEKLLNLICK": true,
+              "hitSceneType": "BlinkHitSceneTestByThreeSegments",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTargetLinearPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "FFELNAIDFOO": true,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "LGOGOBEBJPO": true,
+                "linearOffset": 5
+              },
+              "OJDJJPDNJIO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "GMGKGFDDCOA",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TryFindBlinkPointByBorn",
+                  "limitY": 2.5,
+                  "CHEKLLNLICK": true,
+                  "hitSceneType": "BlinkHitSceneTestByThreeSegments",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true,
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 4,
+                      "maxRandomRange": 6
+                    }
+                  },
+                  "OJDJJPDNJIO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackTarget",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetPositionToSelfPosition",
+              "logic": "LesserOrEqual",
+              "target": "Target",
+              "value": 7.5
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TryFindBlinkPointByBorn",
+              "limitY": 2.5,
+              "CHEKLLNLICK": true,
+              "hitSceneType": "BlinkHitSceneTestByThreeSegments",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackTarget",
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByTargetLinearPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "FFELNAIDFOO": true,
+                "offset": {
+                  "y": 3
+                },
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "LGOGOBEBJPO": true,
+                "linearOffset": -4
+              },
+              "OJDJJPDNJIO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "GMGKGFDDCOA",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TryFindBlinkPointByBorn",
+                  "limitY": 2.5,
+                  "CHEKLLNLICK": true,
+                  "hitSceneType": "BlinkHitSceneTestByThreeSegments",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true,
+                    "bornRandom": {
+                      "$type": "BornRandomFromCenter",
+                      "minRandomRange": 4,
+                      "maxRandomRange": 6
+                    }
+                  },
+                  "OJDJJPDNJIO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge_FindBlinkPoint"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DoBlink",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TurnDirectionToPos",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackTarget",
+          "toPos": {
+            "$type": "ConfigBornByTarget",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "IGNFEIPKCPK": -1,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "maxAngle": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge_DoBlink"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "ForlornVessel_ElementShield",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_EndureDelta",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "Darkwraith_Endure": 0.5
+      },
+      "modifiers": {
+        "UNIQUE_Darkwraith_EndureDelta": {
+          "isUnique": true,
+          "properties": {
+            "Actor_EndureDelta": "Darkwraith_Endure"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_EndureDelta_Add"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "ForlornVessel_ElementShield",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_EndureDelta_Funnel",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "Darkwraith_Endure_Funnel": 0
+      },
+      "modifiers": {
+        "UNIQUE_Darkwraith_EndureDelta_Funnel": {
+          "isUnique": true,
+          "properties": {
+            "Actor_EndureDelta": "Darkwraith_Endure_Funnel"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_EndureDelta_AddMax"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_EndureDelta",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_EndureDelta_Funnel",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Dodge_AttackEnhance",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_EndureDelta_Remove"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Turn"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "SwordAtk01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.07999999821186066,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "SwordAtk02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.07000000029802322,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "SwordAtk02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.3100000023841858,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.23999999463558197,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "SwordAtk03"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.07000000029802322,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "SwordAtk03"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.30000001192092896,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.2199999988079071,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChainAtk01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.30000001192092896,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.25,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChainAtk02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.12999999523162842,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.03999999910593033,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChainAtk02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.4099999964237213,
+          "angularSpeed": 270,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.3100000023841858,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "FunnelAtk_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.44999998807907104,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.3499999940395355,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Dodge"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.949999988079071,
+          "angularSpeed": 720,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.800000011920929,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Steer"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorTrigger",
+          "mpTriggerOnRemote": true,
+          "canBeHandledOnRecover": true,
+          "triggerID": "ChainAtk01WeaponTrigger",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_ChainAtk01_Weapon"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetAnimatorTrigger",
+          "mpTriggerOnRemote": true,
+          "canBeHandledOnRecover": true,
+          "triggerID": "ChainAtk02WeaponTrigger",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_ChainAtk02_Weapon"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208008,
+          "onGround": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ChainAtk02_01",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208008,
+          "onGround": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ChainAtk02_02",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208008,
+          "onGround": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ChainAtk02_03",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208008,
+          "onGround": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ChainAtk02_04",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208008,
+          "onGround": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ChainAtk02_05",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208008,
+          "onGround": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ChainAtk02_06",
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_ChainAtk02_TriggerBullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "KillSelf",
+          "otherTargets": {
+            "$type": "SelectTargetsByChildren",
+            "configID": 42208008
+          },
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "ChainAtk02"
+          ],
+          "value": -1,
+          "modifierName": "Darkwraith_Strong_Wind_ChainAtk02_BulletHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_ChainAtk02_BulletHandler": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208008
+              },
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_ChainAtk02_KillBullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV4",
+                "retreatType": "ByHitDirection",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "attackTag": "Monster_Darkwraith_Wind_Attack",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Wind",
+                "damagePercentage": 0.4000000059604645,
+                "enBreak": 10,
+                "elementDurability": 25,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "Monster_Darkwraith_Strong_Wind_ChainAtk02",
+              "attenuationTag": "Monster_Darkwraith_Strong_Wind_ChainAtk02",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 1.5,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Darkwraith_Strong_Wind_ChainAtk02_Bullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_01",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "FunnelAtk_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_Detect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "NormalIdle"
+          ],
+          "value": -1,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_KillGadget",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_01": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_01",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208001,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_01",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208011,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_Detect": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackTarget",
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetPositionToSelfPosition",
+                      "logic": "LesserOrEqual",
+                      "target": "Target",
+                      "value": 3.5
+                    },
+                    {
+                      "$type": "BySelfForwardAndTargetPosition",
+                      "target": "Target",
+                      "value": true,
+                      "enable": true
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "FunnelAtkEnd",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAISkillCDAvailableNow",
+                  "canBeHandledOnRecover": true,
+                  "skillIDs": [
+                    701
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_KillGadget": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_Reconnect": {
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_Reconnect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_01"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_02",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_02": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_02",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208002,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_02",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208012,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_02"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_03",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_03": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_03",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208003,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_03",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208013,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_03"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_04",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_04": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_04",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208004,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_04",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208014,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_04"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_05",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_05": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_05",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208005,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_05",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208015,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_05"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_06",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_StaticGadget_06": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_06",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208006,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "lifeByOwnerV2": true,
+              "doOffStage": false,
+              "campTargetType": "Enemy",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FunnelAtk_06",
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "gadgetID": 42208016,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_06"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208001
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208011
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "target": "Target",
+              "value": 2
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208006
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208016
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "target": "Target",
+              "value": 3
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208002
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208012
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "target": "Target",
+              "value": 4
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208005
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208015
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "target": "Target",
+              "value": 5
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208003
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208013
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "target": "Target",
+              "value": 6
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208004
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "otherTargets": {
+                "$type": "SelectTargetsByChildren",
+                "configID": 42208014
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+          "canBeHandledOnRecover": true,
+          "minValue": 1,
+          "useLimitRange": true,
+          "maxValue": 6,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "FunnelAtk_BS",
+            "FunnelAtk_Loop",
+            "FunnelAtk_AS"
+          ],
+          "value": -1,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_GVHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_GVHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Loop",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Darkwraith_Strong_Wind_FunnelAtk_Count_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_Launch"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_WeaponHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "FunnelAtk_BS",
+            "FunnelAtk_Loop",
+            "FunnelAtk_AS"
+          ],
+          "value": -1,
+          "modifierName": "Darkwraith_Strong_Wind_FunnelAtk_WeaponHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_FunnelAtk_WeaponHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FunnelAtkWeaponTag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FunnelAtkWeaponTag",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_FunnelAtk_Weapon"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "otherTargets": {
+            "$type": "SelectTargetsByShape",
+            "sizeRatio": 1,
+            "sortType": "Nearest",
+            "GLDMBEOHPHB": {
+              "direction": {
+                "maxAngle": 180
+              },
+              "EALBHHJEFGH": {
+                "BKAPGJCLCIO": 180
+              },
+              "value": 10,
+              "onGroundRaycastUpDist": 2
+            },
+            "campTargetType": "Enemy",
+            "shapeName": "CircleR50"
+          },
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar",
+                "Vehicle",
+                "Partner"
+              ]
+            },
+            {
+              "$type": "BySelfForwardAndTargetPosition",
+              "logic": "Lesser",
+              "target": "Target",
+              "value": true,
+              "enable": true
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208007,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackTarget",
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "FunnelAtk_StaticBullet_Kill"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0,
+            0.5,
+            1.5
+          ],
+          "globalValueTarget": "Owner",
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Empty": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FunnelAtk_StaticBullet_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Trail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FunnelAtk_StaticBullet_Kill": {
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FunnelAtk_StaticBullet_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "otherTargets": {
+            "$type": "SelectTargetsByShape",
+            "sizeRatio": 1,
+            "sortType": "Nearest",
+            "GLDMBEOHPHB": {
+              "direction": {
+                "maxAngle": 180
+              },
+              "EALBHHJEFGH": {
+                "BKAPGJCLCIO": 180
+              },
+              "value": 10,
+              "onGroundRaycastUpDist": 2
+            },
+            "campTargetType": "Enemy",
+            "shapeName": "CircleR50"
+          },
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar",
+                "Vehicle",
+                "Partner"
+              ]
+            },
+            {
+              "$type": "BySelfForwardAndTargetPosition",
+              "logic": "Lesser",
+              "target": "Target",
+              "value": true,
+              "enable": true
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetSelfAttackTarget",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42208010,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackTarget",
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Fire_Big",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "target": "Caster",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "FunnelAtk_StaticBullet_Kill"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0,
+            0.5,
+            1.5
+          ],
+          "globalValueTarget": "Owner",
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Darkwraith_Strong_Wind_FunnelAtk_EndTag_",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Empty": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FunnelAtk_StaticBullet_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Big",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Trail_Big",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FunnelAtk_StaticBullet_Kill": {
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FunnelAtk_StaticBullet_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_StaticBullet_Crystallization"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "retreatType": "ByHitDirection",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.05000000074505806
+              },
+              "attackTag": "Monster_Darkwraith_Wind_Attack",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Wind",
+                "damagePercentage": 0.30000001192092896,
+                "enBreak": 25,
+                "elementDurability": 50,
+                "attackType": "Range",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 1,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "FunnelAtk_Bullet_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Trail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Damage",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FunnelAtk_Bullet_Effect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "target": "Owner",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_Bullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "retreatType": "ByHitDirection",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.05000000074505806
+              },
+              "attackTag": "Monster_Darkwraith_Wind_Attack",
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Wind",
+                "damagePercentage": 0.5,
+                "enBreak": 25,
+                "elementDurability": 50,
+                "attackType": "Range",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 2.5,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "configIdArray": [
+            42208010
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "FunnelAtk_Bullet_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Big",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Bullet_Trail_Big",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_FunnelAtk_Damage_Big",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "FunnelAtk_Bullet_Effect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "target": "Owner",
+          "configIdArray": [
+            42208011,
+            42208012,
+            42208013,
+            42208014,
+            42208015,
+            42208016
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Darkwraith_Strong_Wind_FunnelAtk_Bullet_Craystallization"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Eye",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            0,
+            1
+          ],
+          "modifierName": "Darkwraith_Strong_Wind_AlertHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_AlertHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Leisure",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Ceremony",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Leisure",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Ceremony",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "UNIQUE_Darkwraith_Strong_Wind_Eye": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Strong_Flammard_Eye",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Eye",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Alert"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Salute"
+          ],
+          "APJGHNNHBOG": true,
+          "facingTargetTypes": [
+            "BuddyTarget"
+          ],
+          "value": -1,
+          "endNormalizedTime": 0.20000000298023224,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Salute"
+          ],
+          "value": -1,
+          "modifierName": "Darkwraith_Strong_Wind_Salute",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Strong_Wind_Salute": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "Darkwraith_Salute",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "Darkwraith_Salute",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Salute"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            0
+          ],
+          "modifierName": "ExitBattle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ExitBattle": {
+          "onRemoved": [
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "FunnelAtkEnd",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_WIND_DODGE_TAG_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Dodge_AttackEnhance",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Eye",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "FunnelAtkEnd",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_ExitBattle"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "UNIQUE_Darkwraith_Crystallization_ForJSLY",
+          "poseIDs": [
+            9003
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Darkwraith_Crystallization",
+            "Darkwraith_NoCrystallization"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_DARKWRAITH_ALERT_JSLY",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "Alert_Crystallization",
+          "modifierName": "Darkwraith_Crystallization_Alert",
+          "normalizeEnd": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Darkwraith_Crystallization": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "Crystallization",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "Crystallization",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Crystallization_Alert": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "Crystallization",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "RefreshUICombatBarLayout",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_NoCrystallization": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "Crystallization",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "Crystallization",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Darkwraith_Alert_Crystallization",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_NoCrystallization_Shader_Delay": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_Crystallization_ForJSLY",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Fat_Rock_Crystallization_ForJSLY",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.4000000059604645,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_DenyLockOn": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "NLBKJKDNFFP": -1
+        },
+        "State_Invincible": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "NLBKJKDNFFP": -1
+        },
+        "State_IsGhostToEnemy": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Darkwraith_Crystallization_ForJSLY": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "ShowReminder",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_WIND_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 1001850016,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ShowReminder",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_ROCK_TAG_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 1001850017,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_NoCrystallization_Shader_Delay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "State_DenyLockOn",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "State_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "State_IsGhostToEnemy",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachAbilityStateResistance",
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 13002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "HideUIBillBoard",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "ShieldPushCollider",
+                    "ShieldPushColliderExtra",
+                    "PushCollider_Occluder_Crystallization",
+                    "PushCollider_Extra_Crystallization"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "HideUIBillBoard",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "hide": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "ShieldPushCollider",
+                    "ShieldPushColliderExtra",
+                    "PushCollider_Occluder_Crystallization",
+                    "PushCollider_Extra_Crystallization"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_DARKWRAITH_CRYSTALLIZATION_TAG_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetAnimatorBool",
+          "canBeHandledOnRecover": true,
+          "useCurve": true,
+          "boolID": "CrystallizationSkillTag",
+          "doOffStage": false,
+          "value": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ResetAIThreatBroadcastRange",
+          "canBeHandledOnRecover": true,
+          "useCurve": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ResetAIResistTauntLevel",
+          "canBeHandledOnRecover": true,
+          "useCurve": true,
+          "doOffStage": false,
+          "OIBFCMPIMJG": "Monster_TauntLevel_6",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetAIHitFeeling",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Monster_Darkwraith_Common_Crystallization_ForJSLY"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "RemoveUniqueModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Wind_Crystallization_Shader",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2
+          ],
+          "modifierName": "Darkwraith_Strong_Wind_Crystallization_Alert",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Crystallization_Alert": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_WIND_ALERT_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Crystallization_NoticeRock",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_WIND_ALERT_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Crystallization_NoticeRock",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Crystallization_HpDetect": {
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Crystallization_NoticeRock",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Crystallization_NoticeRock": {
+          "onRemoved": [
+            {
+              "$type": "ServerLuaTriggerEvent",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DARKWRAITH_WIND_ALERT_",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "sourceName": "Darkwraith_Rock_Alert",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 40,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToHPPercentMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "Darkwraith_Strong_Wind_Crystallization_HpDetect"
+              ],
+              "valueSteps": [
+                0.699999988079071
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Darkwraith_Strong_Wind_Crystallization_NoticeRockEnhanced": {
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DARKWRAITH_ROCK_ENHANCED_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Darkwraith_Wind_Crystallization_Shader": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 13002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShaderLerpMixin",
+              "type": "DarkwraithCrystallization_Wind",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "Predicated",
+          "otherTargets": {
+            "$type": "SelectTargetsByShape",
+            "entityTypePriority": [
+              "Monster"
+            ],
+            "sizeRatio": 1,
+            "GLDMBEOHPHB": {
+              "direction": {
+                "maxAngle": 180
+              },
+              "EALBHHJEFGH": {
+                "BKAPGJCLCIO": 180
+              },
+              "value": 10,
+              "onGroundRaycastUpDist": 2
+            },
+            "campTargetType": "Alliance",
+            "shapeName": "CircleR50H50C"
+          },
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Monster"
+              ]
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_DARKWRAITH_ROCK_TAG_",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "Darkwraith_Strong_Wind_Crystallization_NoticeRockEnhanced",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ShowReminder",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "id": 1001850019,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_DARKWRAITH_WIND_TAG_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Darkwraith_Strong_Wind_Crystallization_NoticeRock",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Darkwraith_Wind_Crystallization_Shader",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Crystallization_ForJSLY"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Pose_Close",
+            "Pose_Back"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            99.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DARKWRAITH_WIND_CLOSE_TAG_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Pose_Normal",
+            "Pose_Dodge"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DARKWRAITH_WIND_DODGE_TAG_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FieldEntityCountChangeMixin",
+          "targetPredicates": [
+            {
+              "$type": "ByHasFeatureTag",
+              "featureTagIDs": [
+                4014
+              ],
+              "target": "Target"
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_DARKWRAITH_ALERT_JSLY",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "simpleCountUseLimitRange": true,
+          "onFieldExit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DARKWRAITH_WIND_CLOSE_TAG_",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 99,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "campTargetType": "Alliance",
+          "onFieldEnter": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DARKWRAITH_WIND_CLOSE_TAG_",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 99,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Pose_Back": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "CloseTag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pose_Close": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "CloseTag",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pose_Dodge": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_RemoveEffect",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Strong_Wind_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Darkwraith_Wind_HitShield_Succ",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DodgeTag",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_Dodge_Invincible",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Darkwraith_Strong_Wind_AddEffect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SetAnimationPauseByAbilityStateMixin",
+              "abilityStates": [
+                "ElementFrozen",
+                "ElementPetrifaction"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Pose_Normal": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "DodgeTag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Darkwraith_Strong_Wind_Pose_Crystallization"
+    }
+  }
+]
