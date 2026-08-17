@@ -1,0 +1,231 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "State_201",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 202,
+          "modifierName": "State_202",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Change_State": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "ExecuteGadgetLua",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Next_Gadget_State",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Cur_Gadget_State",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "param1": 201,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ExecuteGadgetLua",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Next_Gadget_State",
+                  "target": "Target",
+                  "value": -1
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Cur_Gadget_State",
+                      "target": "Target",
+                      "value": -1
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "param1": 202,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Distance_Check": {
+          "thinkInterval": 3,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_Next_Gadget_State",
+                  "canBeHandledOnRecover": true,
+                  "minValue": -1,
+                  "useLimitRange": true,
+                  "maxValue": -1,
+                  "doOffStage": false,
+                  "value": -1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "value": 30
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_Next_Gadget_State",
+                  "canBeHandledOnRecover": true,
+                  "minValue": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Change_State",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_201": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Cur_Gadget_State",
+              "canBeHandledOnRecover": true,
+              "minValue": 1,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_202": {
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_Cur_Gadget_State",
+              "canBeHandledOnRecover": true,
+              "minValue": -1,
+              "useLimitRange": true,
+              "maxValue": -1,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Distance_Check",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AddGlobalValue",
+          "key": "_Cur_Gadget_State",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Environment_Field_30"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "GuardianStart": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "GuardianStart",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Environment_Other_AreaGuardian"
+    }
+  }
+]

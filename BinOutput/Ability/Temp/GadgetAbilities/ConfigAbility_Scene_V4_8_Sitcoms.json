@@ -1,0 +1,1773 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "EnabledState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 202,
+          "modifierName": "DisableState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "MapGVToRotationMixin",
+          "GNJOFAHBJEF": true,
+          "normalizedRange": [
+            -99999,
+            99999
+          ],
+          "KMFMDKMDFKJ": true,
+          "MABKDMDGDPN": "SpringPart",
+          "OGBJFHCOGKK": "GV_Rotation",
+          "OKMAMEKHNOE": 0.20000000298023224,
+          "ONEJOHBLJKC": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Spring_Pause",
+            "Spring_Forward",
+            "Spring_Reverse",
+            "Spring_Stuck",
+            "Spring_Finish"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5,
+            3.5,
+            4.5
+          ],
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_Grip_State",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "SyncTimelineIdx_00",
+            "SyncTimelineIdx_01",
+            "SyncTimelineIdx_02",
+            "SyncTimelineIdx_03",
+            "SyncTimelineIdx_04"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5,
+            3.5,
+            4.5
+          ],
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_Cur_Order",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "DisableState": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IconDisplay",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EnabledState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Spring_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MelodramaClockwork_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Spring_Finish": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SpringMsg",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IconDisplay",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Grip_State_Cache",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 4,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_PlayerHitSpring",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SpringMsg",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Spring_Forward": {
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IconDisplay",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Grip_State_Cache",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_Rotation",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 0.019999999552965164,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "TriggerAudioMixin",
+              "onRemoved": [
+                "V4_8_FairyBook_Clockwork_Wood_TurnStart_Off"
+              ],
+              "onAdded": [
+                "V4_8_FairyBook_Clockwork_Wood_TurnStart_On"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_PlayerHitSpring",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SpringMsg",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Spring_Pause": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SpringMsg",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Grip_State_Cache",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MelodramaClockwork_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_PlayerHitSpring",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SpringMsg",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Spring_Reverse": {
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "MPAttachUIEffect",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "sortType": "Nearest",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "AllExceptSelf",
+                "shapeName": "CircleR16.5H4"
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Fairybook_Screen",
+              "ILBDIBLGDEB": true,
+              "doOffStage": false,
+              "effectSlot": "MainPagePlugin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IconDisplay",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Grip_State_Cache",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_Rotation",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -0.10000000149011612,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "TriggerAudioMixin",
+              "onRemoved": [
+                "V4_8_FairyBook_Clockwork_Wood_TurnBack_Off"
+              ],
+              "onAdded": [
+                "V4_8_FairyBook_Clockwork_Wood_TurnBack_On"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_PlayerHitSpring",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Spring_Stuck": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SpringMsg",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MelodramaClockwork_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "Shake",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_IconDisplay",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Grip_State_Cache",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MelodramaClockwork_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "Shake",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_PlayerHitSpring",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "SyncTimelineIdx_00": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MeloDrama_Progress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SyncTimelineIdx_01": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MeloDrama_Progress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SyncTimelineIdx_02": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MeloDrama_Progress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                1,
+                "SGV_MeloDrama_Count",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SyncTimelineIdx_03": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MeloDrama_Progress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                2,
+                "SGV_MeloDrama_Count",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SyncTimelineIdx_04": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MeloDrama_Progress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                3,
+                "SGV_MeloDrama_Count",
+                "DIV"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_Rotation",
+        "SGV_MeloDrama_Count"
+      ],
+      "onKill": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_MelodramaClockwork_03",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_SpringMsg",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_Rotation",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_IconDisplay",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_Grip_State_Cache",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MeloDrama_Progress",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Spring_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_CommonSpring_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "both": 0,
+        "buttonType": 0,
+        "forward": 0,
+        "gripState": 0,
+        "reverse": 0,
+        "timelineIdx": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "FindRock_AndKill"
+          ],
+          "valueSteps": [
+            0.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_Grip_State",
+          "actions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "gripState",
+              "globalValueKey": "GV_Grip_State",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": "gripState",
+              "funcName": "SLC_GripSyncGlobalValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_Cur_Timeline",
+          "actions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "timelineIdx",
+              "globalValueKey": "GV_Cur_Timeline",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": "timelineIdx",
+              "funcName": "SLC_SyncTimelineIdx",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_MeloDrama_Event_Both",
+          "actions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "both",
+              "globalValueKey": "GV_MeloDrama_Event_Both",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": "both",
+              "funcName": "SLC_SyncBothEvent",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_MeloDrama_Event_Reverse",
+          "actions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "reverse",
+              "globalValueKey": "GV_MeloDrama_Event_Reverse",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": "reverse",
+              "funcName": "SLC_SyncReverseEvent",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_MeloDrama_Event_Forward",
+          "actions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "forward",
+              "globalValueKey": "GV_MeloDrama_Event_Forward",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": "forward",
+              "funcName": "SLC_SyncForwardEvent",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_MeloDrama_ButtonEnter",
+          "actions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_MeloDrama_ButtonEnter",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueToOverrideMap",
+                  "canBeHandledOnRecover": true,
+                  "overrideMapKey": "buttonType",
+                  "globalValueKey": "GV_MeloDrama_ButtonEnter",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerLuaCall",
+                  "param1": "buttonType",
+                  "funcName": "SLC_ButtonEnter",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "luaCallType": "FromGroup",
+                  "actorIceSubHurtDelta": -1,
+                  "paramNum": 1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "otherTargets": {
+                    "$type": "AKCINJNDJDB",
+                    "JEHGBONKHLH": "GV_MeloDrama_ButtonEnter"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ButtonDown",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_MeloDrama_ButtonExit",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "GV_MeloDrama_ButtonExit",
+          "actions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_MeloDrama_ButtonExit",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "otherTargets": {
+                    "$type": "AKCINJNDJDB",
+                    "JEHGBONKHLH": "GV_MeloDrama_ButtonExit"
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ButtonUp",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_MeloDrama_ButtonEnter",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ButtonDown": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Press",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ButtonUp": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Press",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FindRock_AndKill": {
+          "thinkInterval": 0.4000000059604645,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "sortType": "Nearest",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "AllExceptSelf",
+                "shapeName": "CircleR16.5H4"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Gadget",
+                    "Bullet",
+                    "Field"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_COMMON_GADGET_ISSUMMON",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "V4_8_FairyBook_SummonGadget_Destroyer -> Check Succ",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "Summon_Suicide",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Summon_Suicide": {
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                70000000
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_MeloDrama_ButtonExit"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MeloDrama_Event_Forward",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MeloDrama_Event_Reverse",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MeloDrama_Event_Both",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_Init_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2
+              }
+            ],
+            "2": [
+              {
+                "ECCHCIDEOJL": 3,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step"
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 4,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_01_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step"
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 3,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_02_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "MMJKHMCBCIL": "SGV_MeloDrama_SwitchIdx",
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_03_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step"
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 3,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 4,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 2
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_04_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step"
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 3,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 4,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 2
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_05_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2
+              }
+            ],
+            "2": [
+              {
+                "ECCHCIDEOJL": 3,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step"
+                  }
+                ]
+              },
+              {
+                "ECCHCIDEOJL": 4,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_06_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2
+              }
+            ],
+            "2": [
+              {
+                "ECCHCIDEOJL": 3
+              }
+            ],
+            "3": [
+              {
+                "ECCHCIDEOJL": 4,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_07_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SitcomGripMixin",
+          "AMONBOAMLHF": "GV_SpringMsg",
+          "BNLIAANKDBH": {
+            "1": [
+              {
+                "ECCHCIDEOJL": 2
+              }
+            ],
+            "2": [
+              {
+                "ECCHCIDEOJL": 3
+              }
+            ],
+            "3": [
+              {
+                "ECCHCIDEOJL": 4
+              }
+            ],
+            "4": [
+              {
+                "ECCHCIDEOJL": 5,
+                "predicates": [
+                  {
+                    "$type": "ByTargetGlobalValue",
+                    "key": "SGV_MeloDrama_Step",
+                    "value": 1
+                  }
+                ]
+              }
+            ]
+          },
+          "DCILIHJGIIM": "SGV_MeloDrama_InitIdx",
+          "otherTargets": {
+            "$type": "AKCINJNDJDB"
+          },
+          "GGKKBMINMNC": 2,
+          "IJILKHIAOIL": "GV_Cur_Order",
+          "KFKNGGLMHEP": "GV_Cur_Timeline",
+          "LIMHNIICDDO": 5,
+          "PFLJMLADBLE": "GV_Grip_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "_unk_Q2982101340": [
+        "SGV_MeloDrama_InitIdx"
+      ],
+      "abilityName": "FairyBook_MelodramaClockwork_Grip_08_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Glue_Hide",
+            "Glue_Big"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            999
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "Glue_Level",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Glue_Level_0",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 203,
+          "modifierName": "Glue_Level_203",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Glue_Big": {
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetMaterialParamFloatByTransform",
+              "canBeHandledOnRecover": true,
+              "lerpTime": 0.5,
+              "useCurve": true,
+              "doOffStage": false,
+              "value": 2,
+              "matName": "GlueMat",
+              "patternName": "_TsaAnimeTrans",
+              "actorIceSubHurtDelta": -1,
+              "lerpCurveIndex": 1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Small",
+                "Mid"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Big",
+                "Obj"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGadgetState",
+                      "gadgetState": 203
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "FGHGMFLCBFD": 203,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Glue_Hide": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Small",
+                "Mid",
+                "Big",
+                "Obj"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGadgetState"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Glue_Level_0": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Glue_Level",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Glue_Level_203": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "Glue_Level",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "GlueColloid",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "FairyBook_Clockwork_GlueColloid_Special_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "BubbleTalk_Mixin": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "GadgetSpeechBubbleMixin",
+              "showDistance": 48,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "BubbleTalk_Mixin",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "FairyBook_TalkBubble_01_Ability"
+    }
+  }
+]

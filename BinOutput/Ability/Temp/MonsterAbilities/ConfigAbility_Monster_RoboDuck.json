@@ -1,0 +1,1909 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "RoboDuck_Pose_Shoot",
+            "RoboDuck_Pose_Explode"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5,
+            2.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_RoboDuck_State_",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "NormalIdle_BS"
+          ],
+          "modifierName": "RoboDuck_Born_StandyBSHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "RoboDuck_KillSelf"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "globalValueTarget": "Owner",
+          "removeAppliedModifier": true,
+          "targetRegisterType": "RegisterAlways",
+          "globalValueKey": "_ABILITY_Gastrobot_KillSummon_",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Born_StandyBS": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "boolID": "BornTag",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Born_StandyBSHandler": {
+          "onRemoved": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Born_StandyBS",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Born_StandyBS_BornRush",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Born_StandyBS_BornRush": {
+          "duration": 0.25,
+          "onAdded": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "maxRange": -1,
+              "timeRange": 0.25,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 0.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "animatorStateIDs": [
+                "NormalIdle_BS"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_InitialConfig": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_Explode_FollowBullet_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_Tag_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_KillSelf": {
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_RoboDuck_Explode_Die",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_RoboDuck_Explode_Die",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Pose_Explode": {
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 2,
+              "intID": "StateType",
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Pose_Shoot": {
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "intID": "StateType",
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DamageStatisticsMixin",
+              "MKDGALCCEMD": "_ROBODUCK_DAMAGEALL",
+              "NCBAIJHJDBG": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_RoboDuck_AirFlow": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_RoboDuck_AirFlow",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_InitialConfig",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_RoboDuck_AirFlow",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_RoboDuck_Pose"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Max_ChargeBarValue": 100
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToHPPercentMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "RoboDuck_Interact_HpHandler"
+          ],
+          "valueSteps": [
+            0.019999999552965164
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Interact_Action": {
+          "onAdded": [
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                0,
+                0,
+                0
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Interact_ShockHandler",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_State_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "triggerID": "Explode",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Interact_ChargeBarChangeCheck": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "RoboDuck_Interact_ShockFull"
+              ],
+              "valueSteps": [
+                -0.5,
+                [
+                  "Max_ChargeBarValue",
+                  0.5,
+                  "SUB"
+                ],
+                [
+                  "Max_ChargeBarValue",
+                  0.5,
+                  "ADD"
+                ]
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_CHARGEBAR_VALUE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "RoboDuck_Interact_ShockHit"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                [
+                  "Max_ChargeBarValue",
+                  0.5,
+                  "ADD"
+                ]
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_CHARGEBAR_VALUE",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Interact_HpHandler": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Interact_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Interact_Limbo": {
+          "properties": {
+            "Actor_HpThresholdRatio": 0.009999999776482582
+          },
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 13002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Interact_ShockFull": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Interact_Action",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                0,
+                0,
+                1
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Interact_ShockHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarElementType": "Electric",
+              "chargeBarIconID": 1,
+              "maxValue": "Max_ChargeBarValue",
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "ShockDamage"
+                      ]
+                    },
+                    {
+                      "$type": "ByAttackTags",
+                      "target": "Target",
+                      "attackTags": [
+                        "MoonShockDamage"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "AddChargeBarValue",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 10,
+                  "useMutiPlayerFixData": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "RubbishCampAtk"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_RoboDuck_Abyss_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Caster"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "LeyLineChallenge_MonsterLevelHigh",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team",
+                  "value": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "AddChargeBarValue",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 3,
+                  "useMutiPlayerFixData": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stacking": "Unique"
+        },
+        "RoboDuck_Interact_ShockHit": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_RoboDuck_Swoop_Electric",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "SetOverrideMapValue",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "Max_ChargeBarValue",
+              "doOffStage": false,
+              "value": 200,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "LeyLineChallenge_MonsterLevelHigh",
+              "compareType": "NoneOrEqual",
+              "target": "Team"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetOverrideMapValue",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "Max_ChargeBarValue",
+              "doOffStage": false,
+              "value": 100,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_Interact_ChargeBarChangeCheck",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_Interact_ShockHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_Interact_Limbo",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_RoboDuck_Interact"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "NormalIdle"
+          ],
+          "APJGHNNHBOG": true,
+          "value": true,
+          "IHKDPCPHPJI": true,
+          "endNormalizedTime": 1,
+          "angularSpeed": 60,
+          "LCAEKNCHHNM": 180,
+          "MEHFEPPDNIK": true,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SpacialSteerAttackMixin",
+          "value": true,
+          "IHKDPCPHPJI": true,
+          "endNormalizedTime": 0.800000011920929,
+          "angularSpeed": 150,
+          "LCAEKNCHHNM": 180,
+          "ONEGPKFPLME": [
+            "Shoot"
+          ],
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SpacialSteerAttackMixin",
+          "value": true,
+          "endNormalizedTime": 1,
+          "angularSpeed": 600,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.5,
+          "ONEGPKFPLME": [
+            "Explode_BS"
+          ],
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_RoboDuck_Steer"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42410011,
+          "onGround": true,
+          "doOffStage": false,
+          "trackTarget": "SelfAttackActiveTarget",
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "$type": "ConfigDirectionByAttackTarget",
+              "maxAngle": 45
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "ShootPoint",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "RoboDuck_Shoot"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_RoboDuck_Shoot_",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Shoot"
+          ],
+          "value": -1,
+          "modifierName": "RoboDuck_Shoot_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Shoot": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "RoboDuck_Explode_Handler"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "Shoot",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Shoot_Handler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_Shoot_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_RoboDuck_Shoot"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.009999999776482582
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Electric",
+                "damagePercentage": 1,
+                "enBreak": 25,
+                "elementDurability": 25,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 0.5,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_RoboDuck_Shoot_Bullet_Hit",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByCollisionPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "configIdArray": [
+            42410011
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "RoboDuck_Shoot_Bullet_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_RoboDuck_Shoot_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_RoboDuck_Shoot_Bullet_Trail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_Shoot_Bullet_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "RoboDuck_Shoot_Bullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                },
+                "hitHaltTimeScale": 0.009999999776482582
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "attackProperty": {
+                "elementType": "Electric",
+                "damagePercentage": 1,
+                "enBreak": 25,
+                "elementDurability": 25,
+                "attackType": "Default",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "OriginOwner",
+              "attenuationGroup": "default",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 1,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_RoboDuck_Shoot_Bullet_Hit",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "configIdArray": [
+            42410011
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "RoboDuck_Shoot_Bullet_LifeOver"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Explode_BS",
+            "Explode_Loop"
+          ],
+          "value": -1,
+          "modifierName": "RoboDuck_Explode_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Explode_Loop"
+          ],
+          "value": -1,
+          "modifierName": "RoboDuck_Explode_Rush",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "RoboDuck_Explode_Handler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_Explode_FollowBullet_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_Explode_FollowBullet_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_RoboDuck_AirFlow",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Explode_Rush": {
+          "onAdded": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider",
+                "MoveCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ThinkIntervalMixin",
+              "thinkInterval": 0.4000000059604645,
+              "onThinkInterval": [
+                {
+                  "$type": "FixedMonsterRushMove",
+                  "isInAir": true,
+                  "maxRange": -1,
+                  "timeRange": 0.5,
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "toPos": {
+                    "$type": "NMGFFPGNAOP",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "animatorStateIDs": [
+                    "Explode_Loop"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "PODDIMABFJD": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_RoboDuck_Explode"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "TriggerBullet",
+          "canBeHandledOnRecover": true,
+          "bulletID": 42410012,
+          "onGround": true,
+          "doOffStage": false,
+          "NECMMOKMHBJ": true,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "RootNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_RoboDuck_Explode_FollowBullet"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_Explode_Die",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "RoboDuck_Explode_Die": {
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                24100201,
+                24100202
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                24100201,
+                24100202
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_RoboDuck_Explode_Die"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_ABILITY_Gastrobot_Tag_",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ROBODUCK_DAMAGEALL_BULLET",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": "_MAX_DAMAGE"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_ROBODUCK_DAMAGEALL_BULLET",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "_MAX_DAMAGE",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "LeyLineChallenge_MonsterLevelHigh",
+                  "target": "Team",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "target": "OriginOwner",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV0",
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "COOFHHPOEAC": 1,
+                      "damageExtra": [
+                        "_ROBODUCK_DAMAGEALL_BULLET",
+                        0.20000000298023224,
+                        "MUL"
+                      ],
+                      "IOLHEGDMIBF": true,
+                      "strikeType": "Blunt",
+                      "elementDurability": 25,
+                      "attackType": "Default",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "default",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "x": 1.2000000476837158
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "CasterOwner",
+                      "modifierName": "RoboDuck_Interact_ShockHit"
+                    },
+                    {
+                      "$type": "ByAny",
+                      "predicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield"
+                        },
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield_Abyss"
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Explode_FollowBullet_NoticeTarget_SubHurt",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByNot",
+                      "predicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "CasterOwner",
+                          "modifierName": "RoboDuck_Interact_ShockHit"
+                        }
+                      ],
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByAny",
+                      "predicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield"
+                        },
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield_Abyss"
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Explode_FollowBullet_NoticeTarget_Normal",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "RoboDuck_Explode_FollowBullet_Kill"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "globalValueTarget": "Owner",
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_RoboDuck_Explode_FollowBullet_",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Explode_FollowBullet_Kill": {
+          "onAdded": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                42410012
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Explode_FollowBullet_NoticeCaster": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CasterOwner",
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Explode_FollowBullet_NoticeOwner",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Explode_FollowBullet_NoticeOwner": {
+          "thinkInterval": 5,
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_RoboDuck_Explode_Die",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_RoboDuck_Explode_Die",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Explode_FollowBullet_NoticeTarget_Normal": {
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Gastrobot_WeakType_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Gastrobot_Abyss_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 100,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield",
+              "value": -21,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Gastrobot_Abyss_",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 100,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield_Abyss",
+              "value": -21,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "LoseHP",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "LeyLineChallenge_MonsterLevelHigh",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": false,
+              "MLOHJCFHMDH": "Critical",
+              "amountByTargetMaxHPRatio": 0.05000000074505806,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Explode_FollowBullet_NoticeCaster",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "RoboDuck_Explode_FollowBullet_NoticeTarget_SubHurt": {
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Gastrobot_WeakType_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Gastrobot_Abyss_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 100,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield",
+              "value": -21,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Gastrobot_Abyss_",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 100,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Gastrobot_Pose_Enhanced_Shield_Abyss",
+              "value": -21,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "LoseHP",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "LeyLineChallenge_MonsterLevelHigh",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": false,
+              "MLOHJCFHMDH": "Critical",
+              "amountByTargetMaxHPRatio": 0.05000000074505806,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Explode_FollowBullet_NoticeCaster",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        }
+      },
+      "_unk_Q2982101340": [
+        "_ROBODUCK_DAMAGEALL_BULLET",
+        "_MAX_DAMAGE"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_MAX_DAMAGE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "GetFightProperty",
+          "canBeHandledOnRecover": true,
+          "fightProp": "FIGHT_PROP_MAX_HP",
+          "globalValueKey": "_MAX_DAMAGE",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CopyGlobalValue",
+          "canBeHandledOnRecover": true,
+          "srcTarget": "Owner",
+          "dstTarget": "Caster",
+          "srcKey": "_ROBODUCK_DAMAGEALL",
+          "dstKey": "_ROBODUCK_DAMAGEALL_BULLET",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "RoboDuck_Explode_FollowBullet"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "RoboDuckAddHurb": 0.800000011920929
+      },
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Abyss": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "RoboDuck_Abyss_Config"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Owner",
+              "removeAppliedModifier": true,
+              "targetRegisterType": "RegisterAlways",
+              "globalValueKey": "_ABILITY_Gastrobot_Abyss_",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Abyss_Config": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_RoboDuck_Abyss_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "LeyLineChallenge_MonsterLevelHigh",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "RoboDuck_Abyss_Config_SubHurt_NotInLeyLineChallengeHigh",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RoboDuck_Abyss_Config_SubHurt_NotInLeyLineChallengeHigh": {
+          "properties": {
+            "Actor_FireSubHurtDelta": "RoboDuckAddHurb",
+            "Actor_GrassSubHurtDelta": "RoboDuckAddHurb",
+            "Actor_IceSubHurtDelta": "RoboDuckAddHurb",
+            "Actor_PhysicalSubHurtDelta": "RoboDuckAddHurb",
+            "Actor_RockSubHurtDelta": "RoboDuckAddHurb",
+            "Actor_WaterSubHurtDelta": "RoboDuckAddHurb",
+            "Actor_WindSubHurtDelta": "RoboDuckAddHurb"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RoboDuck_Abyss",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_RoboDuck_Abyss"
+    }
+  }
+]

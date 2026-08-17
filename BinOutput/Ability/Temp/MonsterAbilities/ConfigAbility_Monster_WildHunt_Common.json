@@ -1,0 +1,4095 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "WildHunt_Revive_Confirm",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "zzz_InvincibleStateDelay",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "HealHP",
+          "amountByCasterMaxHPRatio": "_HP_CORROSION_VALUE",
+          "canBeHandledOnRecover": true,
+          "value": 1,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Instable_FakeDie_Unfreeze",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Alive",
+            "Instable_FakeDie"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_WildHunt_INSTABLE_FakeDie",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionBySkillEventMixin",
+          "onEvent": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_WildHunt_Disable_MoonPhase_Trigger",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Instable_MoonPhase",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "OCGFBKKFHMO": "MoonPhaseSkill",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Instable_Active"
+          ],
+          "valueSteps": [
+            0.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_WildHunt_INSTABLE_Active",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToFightPropMixin",
+          "BMDGKAHMMCL": [
+            {
+              "$type": "LoseHP",
+              "amountByCasterMaxHPRatio": 1,
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "HPRatio": "_HP_CORROSION_VALUE"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": false,
+              "limboByTargetMaxHPRatio": "_HP_CORROSION_VALUE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "WildHunt_Revive_Confirm",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "FakeDie",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "FakeDieState",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "globalValueList": [
+                    {
+                      "key": "_WildHunt_INSTABLE_FakeDie"
+                    },
+                    {
+                      "key": "_WildHunt_FakeDie_Reason_HPDown"
+                    },
+                    {
+                      "key": "_WildHunt_FakeDie_Reason_DmgReceived"
+                    },
+                    {
+                      "key": "WildHunt_Revive_Confirm"
+                    }
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerMonsterLog",
+                  "paramList": [
+                    0
+                  ],
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Sigurd_Mark",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "zzz_InvincibleStateDelay",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "fightProp": "FIGHT_PROP_CUR_HP",
+          "removeAppliedModifier": true,
+          "MBEGJDIBCHK": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_WildHunt_INSTABLE_FakeDie",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetHPValue",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "JFPBKJKDOIO": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ClearEndura",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "ratio": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_WildHunt_FakeDie_Reason_HPDown",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_WildHunt_INSTABLE_FakeDie",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_WildHunt_FakeDie_Reason_HPDown",
+                      "target": "Target",
+                      "value": 1
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_WildHunt_FakeDie_Reason_DmgReceived",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "_HP_CORROSION_VALUE",
+          "actions": [
+            {
+              "$type": "LoseHP",
+              "amountByCasterMaxHPRatio": 1,
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "HPRatio": "_HP_CORROSION_VALUE"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": false,
+              "limboByTargetMaxHPRatio": "_HP_CORROSION_VALUE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "target": "Caster",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Alive": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDie",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDieState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Instable_Active": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Instable_Enter_VFX_Type",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_WildHunt_Instable_Enter",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Instable_Enter_VFX_Type",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_WildHunt_Elite_Instable_Enter",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Instable_FakeDie": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_WildHunt_INSTABLE_Active",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_EndureDelta": 0.00009999999747378752,
+            "Entity_WeightRatio": 0.5
+          },
+          "thinkInterval": 9.5,
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceBuffDebuffs": [
+                "Struggle"
+              ],
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "extra_hp_limit_ratio_per_die",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "add_hp_limit_ratio_when_fake_die",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_HP_CORROSION_VALUE",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": [
+                0,
+                "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "FakeDie",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_WildHunt_INSTABLE_Active",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 2,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "target": "Caster",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDie",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDieState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Instable_FakeDie_Unfreeze",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "excludeForces": [
+                "RetreatAirType",
+                "RetreatType"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Instable_FakeDie_Unfreeze": {
+          "onReconnect": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Instable_FakeDie_Unfreeze",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceBuffDebuffs": [
+                "ElementFreeze",
+                "ElementFrozen"
+              ],
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifierByAbilityStateResistanceID",
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 14002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByStateIDMixin",
+              "exitActions": [
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Instable_FakeDie_Unfreeze",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "stateIDs": [
+                "FakeDie_Loop",
+                "FakeDie_AS"
+              ],
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Instable_MoonPhase": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_WildHunt_INSTABLE_Active",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "moon_phase_instable_duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_WildHunt_INSTABLE_Active",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "zzz_InvincibleStateDelay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WindHuntBasicLogic": {
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorBool",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_WildHunt_INSTABLE_Active",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_HpThresholdRatio": 0
+          },
+          "onKill": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_HP_CORROSION_VALUE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "modifierMixins": [
+            {
+              "$type": "MonsterDrownIgnoreLimboMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HPCorrosionMixin",
+              "initialValue": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "OnAttackReceivedMixin",
+              "actions": [
+                {
+                  "$type": "HGBDPGODGBF",
+                  "globalValue": "_Damage_Received",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "Instable_Active"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "GetFightProperty",
+                      "canBeHandledOnRecover": true,
+                      "fightProp": "FIGHT_PROP_MAX_HP",
+                      "globalValueKey": "_MAX_HP",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "PredicatedBySelectTarget",
+                      "failActions": [
+                        {
+                          "$type": "AddGlobalValue",
+                          "key": "_HP_CORROSION_VALUE",
+                          "canBeHandledOnRecover": true,
+                          "useLimitRange": true,
+                          "maxValue": 1,
+                          "doOffStage": false,
+                          "value": [
+                            0,
+                            1,
+                            "instable_damage_ratio_common",
+                            "MUL",
+                            "_Damage_Received",
+                            "MUL",
+                            "_MAX_HP",
+                            "DIV",
+                            "SUB"
+                          ],
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "SGV_MoonPhaseLevel",
+                          "compareType": "MoreThanAndEqual",
+                          "target": "Team",
+                          "value": 2
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "AddGlobalValue",
+                          "key": "_HP_CORROSION_VALUE",
+                          "canBeHandledOnRecover": true,
+                          "useLimitRange": true,
+                          "maxValue": 1,
+                          "doOffStage": false,
+                          "value": [
+                            0,
+                            1,
+                            "instable_damage_ratio_moon_team",
+                            "MUL",
+                            "_Damage_Received",
+                            "MUL",
+                            "_MAX_HP",
+                            "DIV",
+                            "SUB"
+                          ],
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_WildHunt_INSTABLE_FakeDie",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetHPValue",
+                      "logic": "LesserOrEqual",
+                      "target": "Target",
+                      "JFPBKJKDOIO": [
+                        1,
+                        "_Damage_Received",
+                        "ADD"
+                      ]
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ClearEndura",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "ratio": 1,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "_WildHunt_FakeDie_Reason_DmgReceived",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "_WildHunt_INSTABLE_FakeDie",
+                      "predicates": [
+                        {
+                          "$type": "ByAny",
+                          "predicates": [
+                            {
+                              "$type": "ByAnd",
+                              "predicates": [
+                                {
+                                  "$type": "ByTargetGlobalValue",
+                                  "key": "_WildHunt_FakeDie_Reason_HPDown",
+                                  "target": "Target",
+                                  "value": 1
+                                },
+                                {
+                                  "$type": "ByTargetGlobalValue",
+                                  "key": "_WildHunt_FakeDie_Reason_DmgReceived",
+                                  "target": "Target",
+                                  "value": 1
+                                }
+                              ],
+                              "target": "Target"
+                            },
+                            {
+                              "$type": "ByTargetHPValue",
+                              "logic": "LesserOrEqual",
+                              "target": "Target",
+                              "JFPBKJKDOIO": 1
+                            }
+                          ],
+                          "target": "Target"
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "zzz_InvincibleState": {
+          "duration": 6,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "zzz_InvincibleStateDelay": {
+          "duration": 6,
+          "thinkInterval": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "Instable_MoonPhase"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "zzz_InvincibleState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "moon_phase_instable_duration",
+        "instable_damage_ratio_common",
+        "instable_damage_ratio_moon_team",
+        "add_hp_limit_ratio_when_fake_die",
+        "extra_hp_limit_ratio_per_die",
+        "_Damage_Received",
+        "_MAX_HP",
+        "_HP_CORROSION_VALUE",
+        "WildHunt_FakeDie_Dec_HP_Limit_Ratio"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "moon_phase_instable_duration",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "moon_phase_instable_duration",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 10,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_common",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "instable_damage_ratio_common",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.6499999761581421,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_moon_team",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "instable_damage_ratio_moon_team",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.8999999761581421,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "add_hp_limit_ratio_when_fake_die",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "add_hp_limit_ratio_when_fake_die",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.10000000149011612,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "extra_hp_limit_ratio_per_die",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "extra_hp_limit_ratio_per_die",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.07999999821186066,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_WildHunt_Simplify",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_WildHunt_Simplify",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "globalValueList": [
+            {
+              "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio"
+            },
+            {
+              "key": "_HP_CORROSION_VALUE",
+              "value": 1
+            },
+            {
+              "key": "WildHunt_Revive_Confirm"
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "WindHuntBasicLogic",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_Instable_Handler"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "WildHunt_Revive_Confirm",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "zzz_InvincibleStateDelay",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "HealHP",
+          "amountByCasterMaxHPRatio": "_HP_CORROSION_VALUE",
+          "canBeHandledOnRecover": true,
+          "value": 1,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Instable_FakeDie_Unfreeze",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Alive",
+            "Instable_FakeDie"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_WildHunt_INSTABLE_FakeDie",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionBySkillEventMixin",
+          "onEvent": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_WildHunt_Disable_MoonPhase_Trigger",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Instable_MoonPhase",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "OCGFBKKFHMO": "MoonPhaseSkill",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Instable_Active"
+          ],
+          "valueSteps": [
+            0.5,
+            2.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_WildHunt_INSTABLE_Active",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToFightPropMixin",
+          "BMDGKAHMMCL": [
+            {
+              "$type": "LoseHP",
+              "amountByCasterMaxHPRatio": 1,
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "HPRatio": "_HP_CORROSION_VALUE"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": false,
+              "limboByTargetMaxHPRatio": "_HP_CORROSION_VALUE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "WildHunt_Revive_Confirm",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "FakeDie",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "FakeDieState",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "globalValueList": [
+                    {
+                      "key": "_WildHunt_INSTABLE_FakeDie"
+                    },
+                    {
+                      "key": "_WildHunt_FakeDie_Reason_HPDown"
+                    },
+                    {
+                      "key": "_WildHunt_FakeDie_Reason_DmgReceived"
+                    },
+                    {
+                      "key": "WildHunt_Revive_Confirm"
+                    }
+                  ],
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ServerMonsterLog",
+                  "paramList": [
+                    0
+                  ],
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "Monster_Sigurd_Mark",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "zzz_InvincibleStateDelay",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "fightProp": "FIGHT_PROP_CUR_HP",
+          "removeAppliedModifier": true,
+          "MBEGJDIBCHK": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_WildHunt_INSTABLE_FakeDie",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetHPValue",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "JFPBKJKDOIO": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ClearEndura",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "ratio": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_WildHunt_FakeDie_Reason_HPDown",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_WildHunt_INSTABLE_FakeDie",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_WildHunt_FakeDie_Reason_HPDown",
+                      "target": "Target",
+                      "value": 1
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_WildHunt_FakeDie_Reason_DmgReceived",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionOnGlobalValueChangeMixin",
+          "gvInTalk": true,
+          "globalValueKey": "_HP_CORROSION_VALUE",
+          "actions": [
+            {
+              "$type": "LoseHP",
+              "amountByCasterMaxHPRatio": 1,
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "HPRatio": "_HP_CORROSION_VALUE"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "enableInvincible": true,
+              "doOffStage": false,
+              "limboByTargetMaxHPRatio": "_HP_CORROSION_VALUE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "target": "Caster",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Alive": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDie",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDieState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "includeForces": [
+                "RushMoveType",
+                "RetreatType",
+                "FixedRushMoveType"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Instable_Active": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Instable_Enter_VFX_Type",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_WildHunt_Instable_Enter",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "Instable_Enter_VFX_Type",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_WildHunt_Elite_Instable_Enter",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Instable_FakeDie": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_WildHunt_INSTABLE_Active",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_EndureDelta": 0.00009999999747378752,
+            "Entity_WeightRatio": 0.5
+          },
+          "thinkInterval": 9.5,
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceBuffDebuffs": [
+                "Struggle"
+              ],
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "extra_hp_limit_ratio_per_die",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "add_hp_limit_ratio_when_fake_die",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_HP_CORROSION_VALUE",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 1,
+              "doOffStage": false,
+              "value": [
+                0,
+                "WildHunt_FakeDie_Dec_HP_Limit_Ratio",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "FakeDie",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_WildHunt_INSTABLE_Active",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 2,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_HP_CORROSION_VALUE",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 0.009999999776482582
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "target": "Caster",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDie",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "FakeDieState",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Instable_FakeDie_Unfreeze",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "excludeForces": [
+                "RetreatAirType",
+                "RetreatType"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Instable_FakeDie_Unfreeze": {
+          "onReconnect": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Instable_FakeDie_Unfreeze",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceBuffDebuffs": [
+                "ElementFreeze",
+                "ElementFrozen"
+              ],
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifierByAbilityStateResistanceID",
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 14002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByStateIDMixin",
+              "exitActions": [
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Instable_FakeDie_Unfreeze",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "stateIDs": [
+                "FakeDie_Loop",
+                "FakeDie_AS"
+              ],
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Instable_MoonPhase": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_WildHunt_INSTABLE_Active",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "moon_phase_instable_duration",
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_WildHunt_INSTABLE_Active",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 2,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "zzz_InvincibleStateDelay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WindHuntBasicLogic": {
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorBool",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_WildHunt_INSTABLE_Active",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_HpThresholdRatio": 0
+          },
+          "onKill": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_HP_CORROSION_VALUE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Instable",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "modifierMixins": [
+            {
+              "$type": "MonsterDrownIgnoreLimboMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HPCorrosionMixin",
+              "initialValue": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "OnAttackReceivedMixin",
+              "actions": [
+                {
+                  "$type": "HGBDPGODGBF",
+                  "globalValue": "_Damage_Received",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "Instable_Active"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "GetFightProperty",
+                      "canBeHandledOnRecover": true,
+                      "fightProp": "FIGHT_PROP_MAX_HP",
+                      "globalValueKey": "_MAX_HP",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "PredicatedBySelectTarget",
+                      "failActions": [
+                        {
+                          "$type": "AddGlobalValue",
+                          "key": "_HP_CORROSION_VALUE",
+                          "canBeHandledOnRecover": true,
+                          "useLimitRange": true,
+                          "maxValue": 1,
+                          "doOffStage": false,
+                          "value": [
+                            0,
+                            1,
+                            "instable_damage_ratio_common",
+                            "MUL",
+                            "_Damage_Received",
+                            "MUL",
+                            "_MAX_HP",
+                            "DIV",
+                            "SUB"
+                          ],
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "SGV_MoonPhaseLevel",
+                          "compareType": "MoreThanAndEqual",
+                          "target": "Team",
+                          "value": 2
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "AddGlobalValue",
+                          "key": "_HP_CORROSION_VALUE",
+                          "canBeHandledOnRecover": true,
+                          "useLimitRange": true,
+                          "maxValue": 1,
+                          "doOffStage": false,
+                          "value": [
+                            0,
+                            1,
+                            "instable_damage_ratio_moon_team",
+                            "MUL",
+                            "_Damage_Received",
+                            "MUL",
+                            "_MAX_HP",
+                            "DIV",
+                            "SUB"
+                          ],
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_WildHunt_INSTABLE_FakeDie",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetHPValue",
+                      "logic": "LesserOrEqual",
+                      "target": "Target",
+                      "JFPBKJKDOIO": [
+                        1,
+                        "_Damage_Received",
+                        "ADD"
+                      ]
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ClearEndura",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "ratio": 1,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "_WildHunt_FakeDie_Reason_DmgReceived",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "_WildHunt_INSTABLE_FakeDie",
+                      "predicates": [
+                        {
+                          "$type": "ByAny",
+                          "predicates": [
+                            {
+                              "$type": "ByAnd",
+                              "predicates": [
+                                {
+                                  "$type": "ByTargetGlobalValue",
+                                  "key": "_WildHunt_FakeDie_Reason_HPDown",
+                                  "target": "Target",
+                                  "value": 1
+                                },
+                                {
+                                  "$type": "ByTargetGlobalValue",
+                                  "key": "_WildHunt_FakeDie_Reason_DmgReceived",
+                                  "target": "Target",
+                                  "value": 1
+                                }
+                              ],
+                              "target": "Target"
+                            },
+                            {
+                              "$type": "ByTargetHPValue",
+                              "logic": "LesserOrEqual",
+                              "target": "Target",
+                              "JFPBKJKDOIO": 1
+                            }
+                          ],
+                          "target": "Target"
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "zzz_InvincibleState": {
+          "duration": 6,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Invincible",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "zzz_InvincibleStateDelay": {
+          "duration": 6,
+          "thinkInterval": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "Instable_MoonPhase"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "zzz_InvincibleState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "moon_phase_instable_duration",
+        "instable_damage_ratio_common",
+        "instable_damage_ratio_moon_team",
+        "add_hp_limit_ratio_when_fake_die",
+        "extra_hp_limit_ratio_per_die",
+        "_Damage_Received",
+        "_MAX_HP",
+        "_HP_CORROSION_VALUE",
+        "WildHunt_FakeDie_Dec_HP_Limit_Ratio"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "moon_phase_instable_duration",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "moon_phase_instable_duration",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 10,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_common",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "instable_damage_ratio_common",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.6499999761581421,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_moon_team",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "instable_damage_ratio_moon_team",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.8999999761581421,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "add_hp_limit_ratio_when_fake_die",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "add_hp_limit_ratio_when_fake_die",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.10000000149011612,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "extra_hp_limit_ratio_per_die",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "extra_hp_limit_ratio_per_die",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.07999999821186066,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "globalValueList": [
+            {
+              "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio"
+            },
+            {
+              "key": "_HP_CORROSION_VALUE",
+              "value": 1
+            },
+            {
+              "key": "WildHunt_Revive_Confirm"
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "WindHuntBasicLogic",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_Instable_Handler_LeyLineChallenge"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_WildHunt_Tag",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_Tag"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "OverrideShaderDataMixin",
+          "IDMHLCHPOPK": [
+            {
+              "INBOPAFINGL": "WildHuntCharacterFrozen",
+              "NOGEGKMHFGM": "CharacterFrozen"
+            },
+            {
+              "INBOPAFINGL": "WildHuntPetrifaction",
+              "NOGEGKMHFGM": "CharacterPetrifaction"
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "HeadFlameHandler"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_Head_Flame",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "HeadFlameHandler": {
+          "onKill": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_FlameDisappear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "HeadFlameHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "NormalFlame",
+                "InstableFlame"
+              ],
+              "valueSteps": [
+                0,
+                0.5,
+                2.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_WildHunt_INSTABLE_Active",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "InstableFlame": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Flame_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_FlameDisappear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NormalFlame": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Flame",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_FlameBurst",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "Instable_Enter_VFX_Type",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_HeadFlame"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Randomed",
+          "chance": 0.12999999523162842,
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "WalkBlink",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "random_born_speed": 1,
+        "walk_free_random_speed": 1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Turn"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 100,
+          "angularSpeed": 250,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "WildHuntBackToCenter_BS",
+            "WildMove_BS",
+            "ForceStepBack_BS",
+            "StepBack_AS1",
+            "FreeWander02",
+            "FreeWander03"
+          ],
+          "value": -1,
+          "modifierName": "DisappearLogic",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Disappear_In",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "exitActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Disappear_Out",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "FreeWander03"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "DHBLGDBBJMI": true,
+              "maxRange": 10,
+              "timeRange": 0.699999988079071,
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackActiveTarget",
+              "toPos": {
+                "$type": "ConfigBornByTargetLinearPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "FFELNAIDFOO": true,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "LGOGOBEBJPO": true,
+                "linearOffset": -1.25
+              },
+              "animatorStateIDs": [
+                "WildMove_BS",
+                "WildMove_AS"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": 0.25
+            }
+          ],
+          "stateIDs": [
+            "WildMove_BS"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_BLINK_POS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 6,
+                  "maxRandomRange": 10
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirectionToPos",
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_BLINK_POS"
+              },
+              "IGNFEIPKCPK": -1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "maxAngle": -1
+            },
+            {
+              "$type": "FixedMonsterRushMove",
+              "DHBLGDBBJMI": true,
+              "maxRange": 10,
+              "timeRange": 1,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_BLINK_POS"
+              },
+              "animatorStateIDs": [
+                "FreeWander02"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": 0.30000001192092896
+            }
+          ],
+          "stateIDs": [
+            "FreeWander02"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "exitActions": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_BLINK_POS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "positionKey": "_BORN_POS",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 5,
+                  "maxRandomRange": 10
+                }
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirectionToPos",
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_BLINK_POS"
+              },
+              "IGNFEIPKCPK": -1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "maxAngle": -1
+            },
+            {
+              "$type": "DoBlinkByGlobalPos",
+              "CHLEMPPBPPP": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "positionKey": "_BLINK_POS",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "FreeWander03"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "WildMove_BS",
+            "WildMove_AS1",
+            "WildHuntBackToCenter_BS",
+            "WildHuntBackToCenter_AS1",
+            "ForceStepBack_BS",
+            "ForceStepBack_AS1",
+            "FreeWander02"
+          ],
+          "value": -1,
+          "modifierName": "WildMove_TrailVFX",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "WildMove_BS",
+            "WildMove_AS",
+            "WildHuntBackToCenter_BS",
+            "WildHuntBackToCenter_AS",
+            "ForceStepBack_BS",
+            "ForceStepBack_AS",
+            "StepBack_BS",
+            "StepBack_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 800,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Alert"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6499999761581421,
+          "angularSpeed": 400,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.2549999952316284,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "EnsureAlert",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "Standby",
+            "FakeDie_Loop"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "ClearState",
+          "poseIDs": [
+            1901,
+            1902,
+            1903
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionBySkillEventMixin",
+          "onEvent": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "WildHunt_Unlock_RushMove",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "OCGFBKKFHMO": "Monster_WildHunt_Coop",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ClearState": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndReturnToBorn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Disappear_Out",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Head_Flame",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Disappear_In",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "VisibleManager",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "InstantCombat",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "globalValueList": [
+                {
+                  "key": "WildHunt_FakeDie_Dec_HP_Limit_Ratio"
+                },
+                {
+                  "key": "_HP_CORROSION_VALUE",
+                  "value": 1
+                },
+                {
+                  "key": "_Head_Flame"
+                },
+                {
+                  "key": "_WildHunt_INSTABLE_FakeDie"
+                },
+                {
+                  "key": "_WildHunt_FakeDie_Reason_HPDown"
+                },
+                {
+                  "key": "_WildHunt_FakeDie_Reason_DmgReceived"
+                },
+                {
+                  "key": "WildHunt_Revive_Confirm"
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DenyLockOn_State": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "NLBKJKDNFFP": -1
+        },
+        "DisappearLogic": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Head_Flame",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EntityInVisibleDelay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_Head_Flame",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "EntityDitherMixin",
+              "cutInTime": 0.10000000149011612,
+              "cutOutTime": 0.10000000149011612,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "EntityInVisibleDelay": {
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifierToParent",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "VisibleManager",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "EntityInVisibleDelay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RandomSpeed": {
+          "thinkInterval": 3,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetRandomOverrideMapValue",
+              "valueRangeMin": 0.5,
+              "canBeHandledOnRecover": true,
+              "valueRangeMax": 1.1100000143051147,
+              "overrideMapKey": "walk_free_random_speed",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "WalkFreeRandomSpeed",
+              "canBeHandledOnRecover": true,
+              "value": "walk_free_random_speed",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "RandomSpeedHandler": {
+          "onAdded": [
+            {
+              "$type": "SetRandomOverrideMapValue",
+              "valueRangeMin": 0.8999999761581421,
+              "canBeHandledOnRecover": true,
+              "valueRangeMax": 1.2000000476837158,
+              "overrideMapKey": "random_born_speed",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RandomBornSpeed",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "random_born_speed",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToPoseIDMixin",
+              "modifierName": "RandomSpeed",
+              "poseIDs": [
+                1001,
+                1002
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "VisibleManager": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DenyLockOn_State",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "SelfAbility",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnableHitBoxByName",
+                  "canBeHandledOnRecover": true,
+                  "hitBoxNames": [
+                    "HitBox",
+                    "HeadBox"
+                  ],
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "HideUIBillBoard",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "EnableHitBoxByName",
+                  "canBeHandledOnRecover": true,
+                  "hitBoxNames": [
+                    "HitBox",
+                    "HeadBox"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "HideUIBillBoard",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "hide": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "WalkBlink": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_BLINK_POS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 1.25
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoBlinkByGlobalPos",
+              "CHLEMPPBPPP": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "positionKey": "_BLINK_POS",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_Disappear_Out",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.15000000596046448,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DisappearLogic",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WildHunt_Unlock_RushMove": {
+          "onRemoved": [
+            {
+              "$type": "UseSkillEliteSet",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.25,
+          "onAdded": [
+            {
+              "$type": "UseSkillEliteSet",
+              "canBeHandledOnRecover": true,
+              "skillEliteSetID": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WildMove_TrailVFX": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_WildMoveTrail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RandomSpeedHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "_BORN_POS",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_AnimatorControl"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AttackMelee01"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.3400000035762787,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AttackMelee02"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.20000000298023224,
+          "angularSpeed": 360,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.07999999821186066,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AttackRush"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.17499999701976776,
+          "angularSpeed": 600,
+          "LCAEKNCHHNM": 180,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AttackRanged"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.335999995470047,
+          "angularSpeed": 480,
+          "LCAEKNCHHNM": 270,
+          "startNormalizedTime": 0.23000000417232513,
+          "isCheckOnAttach": true,
+          "PFLLBABOMGO": "Right",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AttackRanged"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.5199999809265137,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.3959999978542328,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "AttackRanged"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.9200000166893005,
+          "angularSpeed": 90,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.7710000276565552,
+          "isCheckOnAttach": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_AttackSteer"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FixedMonsterRushMove",
+          "maxRange": 3.5,
+          "timeRange": 0.6000000238418579,
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "toPos": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "z": 3.5
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "animatorStateIDs": [
+            "AttackRush"
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "PODDIMABFJD": 0.30000001192092896
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_WildHunt_AttackRush"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_RangedAttack_Fire",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42213001,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackActiveTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttackTarget",
+                  "KMMLDNHOEEF": {
+                    "$type": "LMPCCDDCKAA",
+                    "CCAJCHBHGCN": 15,
+                    "DKPOAJFBKEO": 20,
+                    "IIBKAIOMNMN": 15,
+                    "ONNNJGJKIFG": 15
+                  },
+                  "maxAngleType": "ByConfig",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FlameHand",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "AttackRanged"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_AttackRanged_Fire"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_VFX",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireHitEffect",
+          "BCIDGAKNEBH": {
+            "BPIDFNFCNHP": {
+              "value": 1,
+              "NJICIOFCOPD": true
+            },
+            "defaultEffect": "Eff_Monster_WildHunt_RangedAttack_Hit_Scene"
+          },
+          "canBeHandledOnRecover": true,
+          "hitEntity": "Eff_Monster_WildHunt_RangedAttack_Hit",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerAttackEvent",
+          "attackEvent": {
+            "attackInfo": {
+              "hitPattern": {
+                "hitImpulseType": "LV3",
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "cameraShake": {
+                "extension": {
+                  "cycleDamping": 0.11999999731779099,
+                  "baseOnCamera": true,
+                  "rangeAttenuation": 0.5,
+                  "baseCycle": 0.11999999731779099
+                },
+                "shakeDistance": 20
+              },
+              "IGJICGFNFCO": "Owner",
+              "attackProperty": {
+                "damagePercentage": 0.800000011920929,
+                "enBreak": 40,
+                "elementDurability": 100,
+                "attackType": "Range",
+                "elementRank": 1
+              },
+              "KMBBLIMOMBH": {
+                "LMEIODIINNM": "Shake"
+              },
+              "canBeModifiedBy": "Owner",
+              "attenuationGroup": "FauneAbyssale_HermitCrab_Mature_Whirl",
+              "attenuationTag": "WildHunt_Bullet",
+              "OLHIHLILEKH": {
+                "onHitEffectName": "default",
+                "NPLKKCCDEDJ": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              }
+            },
+            "attackPattern": {
+              "$type": "ConfigAttackSphere",
+              "BCIDGAKNEBH": {
+                "BPIDFNFCNHP": {
+                  "value": 1,
+                  "NJICIOFCOPD": true
+                }
+              },
+              "radius": 1.25,
+              "triggerType": "TriggerNoRepeat",
+              "massiveAttackRatio": 1,
+              "born": {
+                "$type": "ConfigBornByCollisionPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              }
+            }
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "targetType": "Enemy"
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Bullet_VFX": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_RangedAttack_Bullet",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_WildHunt_RangedAttack_Bullet_Trail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Bullet_VFX",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_WildHunt_AttackRanged_Bullet"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_common",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.800000011920929,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_WildHunt_Simplify",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_WildHunt_Simplify"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "moon_phase_instable_duration",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 15,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_common",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.20000000298023224,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "instable_damage_ratio_moon_team",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.5,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "add_hp_limit_ratio_when_fake_die",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "extra_hp_limit_ratio_per_die",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 0.10000000149011612,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Monster_WildHunt_VariableModifier_TestTemplate"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_CommandType",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DoSkill",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "SkillID",
+              "doOffStage": false,
+              "value": 301,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_CommandType",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "KillSelf",
+              "CKOGMACPCOC": true,
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "NILKMCEFECE": true,
+              "OHOKIEFPFCC": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_CommandType",
+              "target": "Target",
+              "value": 2
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DoSkill",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "SkillID",
+              "doOffStage": false,
+              "value": 101,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_CommandType",
+              "target": "Target",
+              "value": 3
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DoSkill",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "SkillID",
+              "doOffStage": false,
+              "value": 901,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_CommandType",
+              "target": "Target",
+              "value": 4
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DoSkill",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "SkillID",
+              "doOffStage": false,
+              "value": 201,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_CommandType",
+              "target": "Target",
+              "value": 5
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "successActions": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DoSkill",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "SkillID",
+              "doOffStage": false,
+              "value": 501,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "DHBLGDBBJMI": true,
+              "maxRange": 10,
+              "timeRange": 0.699999988079071,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 6
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "animatorStateIDs": [
+                "WildMove_BS",
+                "WildMove_AS"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": 0.25
+            }
+          ],
+          "stateIDs": [
+            "WildMove_BS"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "WildHunt_Monitor_Common",
+            "WildHunt_Monitor_Elite"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            1.5,
+            2.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "Instable_Enter_VFX_Type",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "LuaCallDamage": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "param1": "GV_CommandType",
+              "CallParamList": [
+                220293001
+              ],
+              "funcName": "SLC_WildHunt_Attack",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "SpecificGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            },
+            {
+              "$type": "NotifyUI",
+              "uiContextName": "InLevelRobotAbyssalPage",
+              "message": "Hit",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WildHunt_Monitor_Common": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "AttackMelee01",
+                  "normalizeEnd": 1,
+                  "normalizeStart": 0.43299999833106995
+                },
+                {
+                  "stateID": "AttackMelee02",
+                  "normalizeEnd": 1,
+                  "normalizeStart": 0.38999998569488525
+                },
+                {
+                  "stateID": "AttackRanged",
+                  "normalizeEnd": 1,
+                  "normalizeStart": 0.6399999856948853
+                }
+              ],
+              "modifierName": "LuaCallDamage",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "WildHunt_Monitor_Elite": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToMultiNormalizedTimeMixin",
+              "value": -1,
+              "normalizedStateIDList": [
+                {
+                  "stateID": "AttackHeavy",
+                  "normalizeEnd": 1,
+                  "normalizeStart": 0.5189999938011169
+                },
+                {
+                  "stateID": "ThrowAxe",
+                  "normalizeEnd": 1,
+                  "normalizeStart": 0.3400000035762787
+                }
+              ],
+              "modifierName": "LuaCallDamage",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_CommandType"
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "PointAction_Monster_WildHunt_TriggerAttack"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_WildHunt_Disable_MoonPhase_Trigger",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_WildHunt_Disable_Instable"
+    }
+  }
+]

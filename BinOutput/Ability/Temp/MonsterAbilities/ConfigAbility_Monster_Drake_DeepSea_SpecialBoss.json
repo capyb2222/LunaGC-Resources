@@ -1,0 +1,4845 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "backLifeLine1": 0.5,
+        "backLifeLine1_Elite": 0.5,
+        "backLifeLine2": 0.4000000059604645,
+        "backLifeLine2_Elite": 0.25,
+        "backLifeLine3": 0.30000001192092896,
+        "backLifeLine3_Elite": 0.10000000149011612,
+        "backLifeLine4": 0.20000000298023224,
+        "backLifeLine_Elite_Additional": 0,
+        "dyingDuring": 10,
+        "dyingDuring_Elite": 12
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpToFit_BS",
+            "JumpToFit_During",
+            "FitAttack_BS",
+            "FitAttack_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_DoSkillCheckPartner",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Dying"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_FreezePos",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2,
+            3
+          ],
+          "modifierName": "Drake_DeepSea_Close_LevelTickAlert",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Drake_DeepSea_Close_LevelTickAlert": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Monster_In_Battle",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_WQ_DRAKE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine_Elite_Additional",
+              "globalValueKey": "_MONSTER_DRAKE_BACKLIFEADDITIONAL_",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_DieWithElectric": {
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_Improve_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_DieWithElectricTimer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_DieWithElectricTimer_Elite",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_DieWithElectricEmpty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_Ice_DieEmpty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_Ice_DieTruly": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drake_DeepSea_Ice_DieTruly_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drake_DeepSea_Ice_DieTruly_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drake_DeepSea_Ice_DieTruly_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_Ice_DieTruly_Action": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_DieWithElectric",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_DieWithElectric": {
+          "properties": {
+            "Actor_HpThresholdRatio": 0.009999999776482582
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToHPPercentMixin",
+              "modifierNameSteps": [
+                "Drake_DeepSea_DieWithElectricEmpty",
+                "Drake_DeepSea_DieWithElectric"
+              ],
+              "valueSteps": [
+                0.012000000104308128
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_DoSkillCheckPartner": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IN_SP_ATTACK",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IN_SP_ATTACK",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_FreezePos": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Ice_Reminder_Delay": {
+          "onRemoved": [
+            {
+              "$type": "ShowReminder",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_REMINDER_ING",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 400380101,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_REMINDER_ING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Limbo_Ghost": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_End_SPAttack": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "PartnerDying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Monster_Drake_DeepSea_DieWithElectricTimer": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ICE_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 4,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine1",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine2",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine3",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine4",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_REMINDER_ING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": "dyingDuring",
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IN_SP_ATTACK",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_End_SPAttack",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "GoDying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ICE_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Ice_Reminder_Delay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Limbo_Ghost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 1000,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "onThinkInterval": [
+            {
+              "$type": "AddChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                20,
+                "dyingDuring",
+                "DIV"
+              ],
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Drake_DeepSea_Ice_DieEmpty",
+                "Drake_DeepSea_Ice_DieTruly"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarIconID": 3,
+              "maxValue": 100,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Monster_Drake_DeepSea_DieWithElectricTimer_Elite": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ICE_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 3,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": [
+                "backLifeLine1_Elite",
+                "backLifeLine_Elite_Additional",
+                "ADD"
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": [
+                "backLifeLine2_Elite",
+                "backLifeLine_Elite_Additional",
+                "ADD"
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": [
+                "backLifeLine3_Elite",
+                "backLifeLine_Elite_Additional",
+                "ADD"
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_REMINDER_ING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                9,
+                2,
+                1
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": "dyingDuring_Elite",
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IN_SP_ATTACK",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_End_SPAttack",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "GoDying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ICE_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ELECTRIC",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Ice_Reminder_Delay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Limbo_Ghost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 1000,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "onThinkInterval": [
+            {
+              "$type": "AddChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                20,
+                "dyingDuring_Elite",
+                "DIV"
+              ],
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Drake_DeepSea_Ice_DieEmpty",
+                "Drake_DeepSea_Ice_DieTruly"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarIconID": 3,
+              "maxValue": 100,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onKill": [
+        {
+          "$type": "SetUICombatBarSpark",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "dyingDuring",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_TIME",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine1",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine2",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE2",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine3",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE3",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine4",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE4",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_DRAKE_BACKTOLIFE_TIME",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Drake_DeepSea_DieWithElectric",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Drake_DeepSea_DieWithElectric"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "backLifeLine1": 0.5,
+        "backLifeLine1_Elite": 0.5,
+        "backLifeLine2": 0.4000000059604645,
+        "backLifeLine2_Elite": 0.25,
+        "backLifeLine3": 0.30000001192092896,
+        "backLifeLine3_Elite": 0.10000000149011612,
+        "backLifeLine4": 0.20000000298023224,
+        "backLifeLine_Elite_Additional": 0,
+        "dyingDuring": 10,
+        "dyingDuring_Elite": 12
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpToFit_BS",
+            "JumpToFit_During",
+            "FitAttack_BS",
+            "FitAttack_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_DoSkillCheckPartner",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Dying"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_FreezePos",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2,
+            3
+          ],
+          "modifierName": "Monster_Drake_DeepSea_InBattle_LinkEff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2,
+            3
+          ],
+          "modifierName": "Drake_DeepSea_Close_LevelTickAlert",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Drake_DeepSea_Close_LevelTickAlert": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Monster_In_Battle",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_WQ_DRAKE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine_Elite_Additional",
+              "globalValueKey": "_MONSTER_DRAKE_BACKLIFEADDITIONAL_",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_DieWithIceEmpty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_DieWithIceHandler": {
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_Improve_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Drake_DeepSea_Electric_DieWithIceTimer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Drake_DeepSea_Electric_DieWithIceTimer_Elite",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_Electric_DieEmpty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_Electric_DieTruly": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drake_DeepSea_Electric_DieTruly_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drake_DeepSea_Electric_DieTruly_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Drake_DeepSea_Electric_DieTruly_Action",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_Electric_DieTruly_Action": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_DoSkillCheckPartner": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IN_SP_ATTACK",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IN_SP_ATTACK",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Electric_DieWithIce": {
+          "properties": {
+            "Actor_HpThresholdRatio": 0.009999999776482582
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToHPPercentMixin",
+              "modifierNameSteps": [
+                "Drake_DeepSea_DieWithIceEmpty",
+                "Drake_DeepSea_DieWithIceHandler"
+              ],
+              "valueSteps": [
+                0.013000000268220901
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Electric_DieWithIce_Eff": {
+          "onReconnect": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff_ReconnectDelay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff_ReconnectDelay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Drake_DeepSea_LifeLink",
+              "scale": 1,
+              "doOffStage": false,
+              "MMBHFKIOIKL": true,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Electric_DieWithIce_EffForSure": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Electric_DieWithIce_Eff_ReconnectDelay": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Electric_Reminder_Delay": {
+          "onRemoved": [
+            {
+              "$type": "ShowReminder",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_REMINDER_ING",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_ICE_DYING",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 400380101,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_REMINDER_ING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_FreezePos": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_InBattle_LinkEff": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_EffForSure",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Limbo_Ghost": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "IsGhostToEnemy",
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_End_SPAttack": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "PartnerDying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_DrakeElectricDyingFlag": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKEELECTRICDYING_FLAG_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_DrakeElectricDyingHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_DrakeElectricDyingFlag",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_DrakeElectricDying_SetGV": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKEELECTRICDYING_FLAG_HANDLER_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "dyingDuring_Elite",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKEELECTRICDYING_FLAG_HANDLER_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_DrakeElectricLiveFlag": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKEELECTRICDYING_FLAG_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_DrakeElectricLiveFlagHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_DrakeElectricLiveHandler",
+                "UNIQUE_DrakeElectricDyingHandler"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_DRAKEELECTRICDYING_FLAG_HANDLER_",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_DrakeElectricLiveHandler": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_DrakeElectricLiveFlag",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Drake_DeepSea_Electric_DieWithIceTimer": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 4,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine1",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine2",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine3",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": "backLifeLine4",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_REMINDER_ING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": "dyingDuring",
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IN_SP_ATTACK",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_End_SPAttack",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "GoDying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_Reminder_Delay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Limbo_Ghost",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 1000,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "onThinkInterval": [
+            {
+              "$type": "AddChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                20,
+                "dyingDuring",
+                "DIV"
+              ],
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Drake_DeepSea_Electric_DieEmpty",
+                "Drake_DeepSea_Electric_DieTruly"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_DRAKE_DEEPSEA_ICE_DYING",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarIconID": 3,
+              "maxValue": 100,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "UNIQUE_Drake_DeepSea_Electric_DieWithIceTimer_Elite": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 3,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": [
+                "backLifeLine1_Elite",
+                "backLifeLine_Elite_Additional",
+                "ADD"
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": [
+                "backLifeLine2_Elite",
+                "backLifeLine_Elite_Additional",
+                "ADD"
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": [
+                "backLifeLine3_Elite",
+                "backLifeLine_Elite_Additional",
+                "ADD"
+              ],
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_HEAL_TIMES",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_REMINDER_ING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                9,
+                2,
+                2
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_DrakeElectricDying_SetGV",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onChangeAuthority": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "DyingReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": "dyingDuring_Elite",
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IN_SP_ATTACK",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_End_SPAttack",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Dying",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Limbo",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "GoDying",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_DEEPSEA_ELECTRIC_DYING",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR200"
+              },
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_DEEPSEA_ICE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Electric_Reminder_Delay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetUICombatBarSpark",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_Limbo_Ghost",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_DrakeElectricDying_SetGV",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 1000,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "onThinkInterval": [
+            {
+              "$type": "AddChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                20,
+                "dyingDuring_Elite",
+                "DIV"
+              ],
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllTeams",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_DrakeElectricDying_SetGV",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Drake_DeepSea_Electric_DieEmpty",
+                "Drake_DeepSea_Electric_DieTruly"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_DRAKE_DEEPSEA_ICE_DYING",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarIconID": 3,
+              "maxValue": 100,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onKill": [
+        {
+          "$type": "SetUICombatBarSpark",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce_Eff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllTeams",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_DrakeElectricDying_SetGV",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "dyingDuring",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_TIME",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine1",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine2",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE2",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine3",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE3",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "backLifeLine4",
+              "globalValueKey": "_DRAKE_BACKTOLIFE_LINE4",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_DRAKE_BACKTOLIFE_TIME",
+              "compareType": "NoneOrEqual",
+              "target": "Target"
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Drake_DeepSea_Electric_DieWithIce",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_IS_ACTIVITY_01_",
+              "value": 1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "target": "AllTeams",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_DrakeElectricLiveFlagHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Drake_DeepSea_Electric_DieWithIce"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Drake_DeepSea_Blackball_RemoveDelay",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Drake_Level_BlackBall_BeEated",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "BlackBall_Empty",
+            "BlackBall_BeEated"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_BLACK_BALL_STATE",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BlackBall_BeEated": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "BlackBall_KillSelf_Delay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "BlackBall_Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "BlackBall_KillSelf_Delay": {
+          "onRemoved": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 3,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_BLACKBALL_DYING",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_BlackBall_CheckClean": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "MichiaeMatsuri_CrystalAttack"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_BLACKBALL_DYING",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "BlackBall_KillSelf_Delay",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Monster_Drake_DeepSea_BlackBall",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Drake_Level_BlackBall_BePurified",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Monster_Drake_DeepSea_BlackBall": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Drake_Level_BlackBall",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_DRAKE_BLACKBALL",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_Blackball_RemoveDelay": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_BlackBall",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.30000001192092896,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Drake_DeepSea_BlackBall",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Drake_BlackBall_CheckClean",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Drake_DeepSea_BlackBall"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Monster_Drake_DeepSea_Improve_Timer",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "NormalIdle",
+            "Walk_BS",
+            "Walk_AS",
+            "NormalMove",
+            "Turn"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_CanEatBall",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackTraceToPosMixin",
+          "steerStateIDs": [
+            "Improve"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "attackDistance": 2,
+          "endNormalizedTime": 0.14000000059604645,
+          "angularSpeed": 720,
+          "LCAEKNCHHNM": 180,
+          "globalPosKey": "_DRAKE_EAT_BLACKBALL_POS",
+          "startNormalizedTime": 0.05999999865889549,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2,
+            3
+          ],
+          "modifierName": "Monster_Drake_DeepSea_CheckAffix",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BlackBall_BeEated_EffectDelay": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Drake_DeepSea_BlackBall",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.8299999833106995,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_RemoveImproveDying": {
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_Improve_Timer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_DeepSea_RemoveImproveDying_Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drake_EatBall_CDTimer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_EATBALL_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 20,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_EATBALL_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Drake_Set_BlackBall_Eated": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_BLACK_BALL_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "BlackBall_BeEated_EffectDelay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_CanEatBall": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_CAN_NOT_EATBALL",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_CAN_NOT_EATBALL",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_CheckAffix": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_CheckBlackBall_Handler",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "UseSkillEliteSet",
+              "predicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_DRAKE_DEEPSEA_CHALLENGE_LEVEL",
+                      "compareType": "MoreThanAndEqual",
+                      "target": "Target",
+                      "value": 2
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_IS_WQ_DRAKE",
+                      "target": "Target",
+                      "value": 1
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_IS_ACTIVITY_01_",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "skillEliteSetID": 3,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "UseSkillEliteSet",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_IN_TOWER",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "skillEliteSetID": 4,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "UseSkillEliteSet",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "skillEliteSetID": 5,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_CheckBlackBall_Handler": {
+          "thinkInterval": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "AllExceptSelf",
+                "shapeName": "CircleR10"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_DRAKE_BLACKBALL",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_BLACKBALL_DYING",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_DRAKE_CAN_NOT_EATBALL",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target",
+                      "forceByCaster": true
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_DRAKE_EATBALL_IN_CD",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target",
+                      "forceByCaster": true
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetAnimatorTrigger",
+                      "canBeHandledOnRecover": true,
+                      "triggerID": "EatBlackBall",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "target": "Target",
+                      "doOffStage": false,
+                      "modifierName": "Drake_Set_BlackBall_Eated",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalPos",
+                      "key": "_DRAKE_EAT_BLACKBALL_POS",
+                      "canBeHandledOnRecover": true,
+                      "target": "Target",
+                      "doOffStage": false,
+                      "born": {
+                        "$type": "ConfigBornByTarget",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "Drake_EatBall_CDTimer",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Monster_Drake_DeepSea_Improve_Timer": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAISkillGCD",
+              "canBeHandledOnRecover": true,
+              "value": 1.5,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_SubHurtDelta": 0.30000001192092896
+          },
+          "duration": 15,
+          "thinkInterval": 5,
+          "onAdded": [
+            {
+              "$type": "SetAISkillGCD",
+              "canBeHandledOnRecover": true,
+              "value": 1.5,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Drake_DeepSea_Improve",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CLEAN_IMPROVE_TIMES",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Drake_DeepSea_ImpactDamage",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 1.5,
+                        "enBreak": 60,
+                        "strikeType": "Blunt",
+                        "elementDurability": 50,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 15,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 5,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "offset": {
+                          "x": -1
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_WQ_DRAKE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 0.800000011920929,
+                        "enBreak": 60,
+                        "strikeType": "Blunt",
+                        "elementDurability": 50,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 15,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 5,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "offset": {
+                          "x": -1
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Drake_DeepSea_ImpactDamage",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 1.5,
+                        "enBreak": 60,
+                        "strikeType": "Blunt",
+                        "elementDurability": 50,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 15,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 5,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "offset": {
+                          "x": -1
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_WQ_DRAKE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV2",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeDistance": 20
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 0.800000011920929,
+                        "enBreak": 60,
+                        "strikeType": "Blunt",
+                        "elementDurability": 50,
+                        "attackType": "Default",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "canBeModifiedBy": "OriginOwner",
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 15,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 5,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "offset": {
+                          "x": -1
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "ChargeBarMixin",
+              "initialValue": 5,
+              "chargeBarIconID": 2,
+              "maxValue": 5,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "MichiaeMatsuri_CrystalAttack"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddChargeBarValue",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": -1,
+                  "useMutiPlayerFixData": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_CLEAN_IMPROVE_TIMES",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 5,
+                  "doOffStage": false,
+                  "value": -1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_CLEAN_IMPROVE_TIMES",
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Monster_Drake_DeepSea_Improve_Timer",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "abilityName": "Monster_Drake_DeepSea_EatBlackBall"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Drake_DeepSea_JumpDust",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FixedMonsterRushMove",
+          "isInAir": true,
+          "maxRange": -1,
+          "timeRange": 0.9599999785423279,
+          "canBeHandledOnRecover": true,
+          "toPos": {
+            "$type": "ConfigBornByGlobalValue",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "positionKey": "_DRAKE_DEEPSEA_JUMPWALL_STARTPOS"
+          },
+          "animatorStateIDs": [
+            "JumpWall_JumpToStart_AS"
+          ],
+          "doOffStage": false,
+          "MCHKEKKPHIJ": true,
+          "actorIceSubHurtDelta": -1,
+          "PODDIMABFJD": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Drake_DeepSea_JumpIcePillar_CloseCollider",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpWall_Idle",
+            "JumpWall_Attack"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_Boss_JumpWallMuteForce",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpWall_JumpToStart_BS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_JumpWall_JumpToStart_SetTargetPos",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpWall_JumpToStart_AS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_JumpWall_CheckWallState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpWall_BS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_JumpWall_ShowReminder_Delay",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackTraceToPosMixin",
+          "steerStateIDs": [
+            "JumpWall_JumpToStart_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "attackDistance": 2,
+          "endNormalizedTime": 1,
+          "angularSpeed": 500,
+          "LCAEKNCHHNM": 180,
+          "globalPosKey": "_DRAKE_DEEPSEA_JUMPWALL_TURN_POS",
+          "startNormalizedTime": 0.27000001072883606,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "NormalIdle",
+            "Walk_BS",
+            "Walk_AS",
+            "NormalMove",
+            "Turn"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Drake_DeepSea_CanFit",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Watcher_82122_FallDown_Trigger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "JumpWall_WeakBS"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Monster_Drake_DeepSea_Boss_JumpWallMuteForce": {
+          "onRemoved": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_Deny_Lock_On",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_IN_TOWER",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ResetAIAttackTarget",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerLuaCall",
+              "param1": 1,
+              "funcName": "SLC_Deny_Lock_On",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_DEEPSEA_IN_TOWER",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1,
+              "paramNum": 1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DenyLockOn",
+          "modifierMixins": [
+            {
+              "$type": "VelocityForceMixin",
+              "includeForces": [
+                "FixedRushMoveType"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ExcludeGravityMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "RockPush"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "RockPush"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_CanFit": {
+          "onRemoved": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "target": "AllPlayerAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_CanFit_AvatarMark",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "AllPlayerAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Monster_Drake_DeepSea_CanFit_AvatarMark",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpIcePillar_CloseCollider": {
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider_Alert",
+                    "MoveCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider_Alert",
+                    "MoveCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpIcePillar_Collider": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_JumpIcePillar_CloseCollider",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpWall_CheckWallState": {
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Wall1_State",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_TARGET_UPWALL_NUM",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "WallAlredyBroken",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Wall2_State",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_TARGET_UPWALL_NUM",
+                  "target": "Target",
+                  "value": 2
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "WallAlredyBroken",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Wall3_State",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_TARGET_UPWALL_NUM",
+                  "target": "Target",
+                  "value": 3
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "WallAlredyBroken",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ICEPILLAR_ALIVE_",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "triggerID": "WallAlredyBroken",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpWall_JumpToStart_CloseCollider": {
+          "onRemoved": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider_Alert"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider_Alert"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpWall_JumpToStart_SetTargetPos": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_WALL_1_READY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_WALL_2_READY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_WALL_3_READY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "AllExceptSelf",
+                "shapeName": "CircleR200"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_WALL_1",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_DRAKE_WALL_1_READY",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "AllExceptSelf",
+                "shapeName": "CircleR200"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_WALL_2",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_DRAKE_WALL_2_READY",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "AllExceptSelf",
+                "shapeName": "CircleR200"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_WALL_3",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_DRAKE_WALL_3_READY",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "Predicated",
+                      "failActions": [
+                        {
+                          "$type": "SetAnimatorTrigger",
+                          "predicates": [
+                            {
+                              "$type": "ByTargetGlobalValue",
+                              "key": "_IS_ACTIVITY_01_",
+                              "compareType": "NoneOrEqual",
+                              "target": "Target"
+                            }
+                          ],
+                          "canBeHandledOnRecover": true,
+                          "triggerID": "WallAlredyBroken",
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "_ALL_WALL_BROKE",
+                          "predicates": [
+                            {
+                              "$type": "ByTargetGlobalValue",
+                              "key": "_IS_ACTIVITY_01_",
+                              "compareType": "NoneOrEqual",
+                              "target": "Target"
+                            }
+                          ],
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "value": 1,
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_Wall3_State",
+                          "compareType": "NoneOrEqual",
+                          "target": "Target"
+                        },
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_DRAKE_WALL_3_READY",
+                          "target": "Target",
+                          "value": 1
+                        },
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_IS_ACTIVITY_01_",
+                          "compareType": "NoneOrEqual",
+                          "target": "Target"
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "SetGlobalPos",
+                          "key": "_DRAKE_DEEPSEA_JUMPWALL_STARTPOS",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "born": {
+                            "$type": "ConfigBornByActionPoint",
+                            "direction": {
+                              "maxAngle": 180
+                            },
+                            "selectType": {
+                              "$type": "SelectActionPointByID",
+                              "actionPointID": 700500005
+                            },
+                            "EALBHHJEFGH": {
+                              "BKAPGJCLCIO": 180
+                            },
+                            "actionPointType": "StandbyPoint",
+                            "value": 10,
+                            "onGroundRaycastUpDist": 2
+                          },
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalPos",
+                          "key": "_DRAKE_DEEPSEA_ELECTRIC_JUMPWALL_TURN_POS",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "born": {
+                            "$type": "ConfigBornByActionPoint",
+                            "direction": {
+                              "maxAngle": 180
+                            },
+                            "selectType": {
+                              "$type": "SelectActionPointByID",
+                              "actionPointID": 700500008
+                            },
+                            "EALBHHJEFGH": {
+                              "BKAPGJCLCIO": 180
+                            },
+                            "actionPointType": "StandbyPoint",
+                            "value": 10,
+                            "onGroundRaycastUpDist": 2
+                          },
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "_DRAKE_TARGET_UPWALL_NUM",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "value": 3,
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_Wall2_State",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_DRAKE_WALL_2_READY",
+                      "target": "Target",
+                      "value": 1
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_IS_ACTIVITY_01_",
+                      "compareType": "NoneOrEqual",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetGlobalPos",
+                      "key": "_DRAKE_DEEPSEA_JUMPWALL_STARTPOS",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "born": {
+                        "$type": "ConfigBornByActionPoint",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "selectType": {
+                          "$type": "SelectActionPointByID",
+                          "actionPointID": 700500004
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "actionPointType": "StandbyPoint",
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalPos",
+                      "key": "_DRAKE_DEEPSEA_ELECTRIC_JUMPWALL_TURN_POS",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "born": {
+                        "$type": "ConfigBornByActionPoint",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "selectType": {
+                          "$type": "SelectActionPointByID",
+                          "actionPointID": 700500007
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "actionPointType": "StandbyPoint",
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      },
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValue",
+                      "key": "_DRAKE_TARGET_UPWALL_NUM",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 2,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_Wall1_State",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DRAKE_WALL_1_READY",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_DRAKE_DEEPSEA_JUMPWALL_STARTPOS",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByActionPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "selectType": {
+                      "$type": "SelectActionPointByID",
+                      "actionPointID": 700500003
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "actionPointType": "StandbyPoint",
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_DRAKE_DEEPSEA_ELECTRIC_JUMPWALL_TURN_POS",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByActionPoint",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "selectType": {
+                      "$type": "SelectActionPointByID",
+                      "actionPointID": 700500006
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "actionPointType": "StandbyPoint",
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_DRAKE_TARGET_UPWALL_NUM",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "entityTypePriority": [
+                  "Gadget"
+                ],
+                "sizeRatio": 1,
+                "sortType": "Nearest",
+                "GLDMBEOHPHB": {
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2
+                },
+                "campTargetType": "Alliance",
+                "shapeName": "CircleR60"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ICEPILLAR_CANBEJUMPTO_",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_DRAKE_DEEPSEA_JUMPWALL_TURN_POS",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_DRAKE_DEEPSEA_JUMPWALL_STARTPOS",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "y": -10.300000190734863
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_DRAKE_DEEPSEA_JUMPWALL_WEAK_POS",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "offset": {
+                      "y": -15
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirectionToPos",
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_DRAKE_DEEPSEA_JUMPWALL_STARTPOS"
+              },
+              "IGNFEIPKCPK": -1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "maxAngle": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpWall_ShowReminder": {
+          "onRemoved": [
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 50050103,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Drake_DeepSea_JumpWall_ShowReminder_Delay": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Drake_DeepSea_JumpWall_ShowReminder",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Monster_Drake_DeepSea_CanFit_AvatarMark": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_NO_WEAK",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DRAKE_NO_WEAK",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        },
+        "Watcher_82122_FallDown_Trigger": {
+          "onRemoved": [
+            {
+              "$type": "DoWatcherSystemAction",
+              "BDGJEIODHMK": true,
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_ACTIVITY_01_",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "watcherId": 82122,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.33000001311302185,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Drake_DeepSea_JumpWall_JumpToStart_Electric_SP"
+    }
+  }
+]

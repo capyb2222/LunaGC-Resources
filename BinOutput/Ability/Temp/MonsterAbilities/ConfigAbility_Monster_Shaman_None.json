@@ -1,0 +1,4452 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "SubHurtCookFail": 0,
+        "SubHurtDeltaHigh": 1.100000023841858,
+        "SubHurtDeltaWeak": -0.6000000238418579
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "NormalStage",
+            "ChargeingState",
+            "AngryStage",
+            "HardStage",
+            "Weak",
+            "Flee"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5,
+            3.5,
+            4.5,
+            5.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_SHAMAN_STATE",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2,
+            3
+          ],
+          "modifierName": "Monster_Shaman_None_EnterCookingState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "Monster_Shaman_None_OutOfBattle",
+          "poseIDs": [
+            901
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerFinishWatcherMixin",
+          "predicates": [
+            {
+              "$type": "AGPAOPLIOJF",
+              "logic": "GreaterOrEqual",
+              "value": 93
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_LocalLegendTag_",
+              "value": 1
+            }
+          ],
+          "watcherId": 100101071,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerFinishWatcherMixin",
+          "predicates": [
+            {
+              "$type": "AGPAOPLIOJF",
+              "logic": "GreaterOrEqual",
+              "value": 93
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_LocalLegendTag_",
+              "value": 1
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_MONSTER_POT_HAS_BROKENED",
+              "value": 1
+            }
+          ],
+          "watcherId": 100101072,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ServerFinishWatcherMixin",
+          "predicates": [
+            {
+              "$type": "AGPAOPLIOJF",
+              "logic": "GreaterOrEqual",
+              "value": 103
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_LocalLegendTag_",
+              "value": 1
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_SHAMAN_COOK_SUCCESSED",
+              "compareType": "NoneOrEqual"
+            }
+          ],
+          "watcherId": 100101073,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AngryStage": {
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryShaderOn",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_AttackRatio": 1,
+            "Actor_ElecSubHurtDelta": "SubHurtCookFail",
+            "Actor_EndureDelta": 0.0010000000474974513,
+            "Actor_FireSubHurtDelta": "SubHurtCookFail",
+            "Actor_GrassSubHurtDelta": "SubHurtCookFail",
+            "Actor_IceSubHurtDelta": "SubHurtCookFail",
+            "Actor_PhysicalSubHurtDelta": "SubHurtCookFail",
+            "Actor_RockSubHurtDelta": "SubHurtCookFail",
+            "Actor_WaterSubHurtDelta": "SubHurtCookFail",
+            "Actor_WindSubHurtDelta": "SubHurtCookFail"
+          },
+          "thinkInterval": 3,
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 2,
+              "intID": "Stage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAISkillGCD",
+              "canBeHandledOnRecover": true,
+              "value": 0.10000000149011612,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                2
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryShaderOn",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ChargeingState": {
+          "properties": {
+            "Actor_EndureDelta": 0.0010000000474974513
+          },
+          "onAdded": [
+            {
+              "$type": "ClearEndura",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "ratio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "intID": "Stage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "HardShaderOn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryShaderOn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Flee": {
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 5,
+              "intID": "Stage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "HardStage": {
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "HardShaderOn",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_ElecSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_EndureDelta": 0.0010000000474974513,
+            "Actor_FireSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_GrassSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_IceSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_PhysicalSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_RockSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_WaterSubHurtDelta": "SubHurtDeltaHigh",
+            "Actor_WindSubHurtDelta": "SubHurtDeltaHigh"
+          },
+          "thinkInterval": 3,
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 3,
+              "intID": "Stage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                3
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "HardShaderOn",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_CookingPoseDelay": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 30,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_EnterCookingState": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_IN_BATTLE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Weak_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_WeakRecoverCooking_NextTimer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_IN_BATTLE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_SHAMAN_STATE",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SHAMAN_IN_ABYSS",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Monster_Shaman_None_CookingPoseDelay",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_OutOfBattle": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_POT_LIFE_BEGIN",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_StageControl_ResistFreeze": {
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "durationRatio": 0.8999999761581421,
+              "canBeHandledOnRecover": true,
+              "resistanceListID": 14002,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_WeakRecoverCooking_NextTimer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 20,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Weak_Timer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "WeakOver",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SHAMAN_IN_BATTLE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_WeakRecoverCooking_NextTimer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 10,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "NormalStage": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "intID": "Stage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "HardShaderOn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryShaderOn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "HardShaderOn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryShaderOn",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Weak": {
+          "onReconnect": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "WeakReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_ElecSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_FireSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_GrassSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_IceSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_PhysicalSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_RockSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_WaterSubHurtDelta": "SubHurtDeltaWeak",
+            "Actor_WindSubHurtDelta": "SubHurtDeltaWeak"
+          },
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 4,
+              "intID": "Stage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Weak_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearEndura",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "ratio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                1
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "_SHAMAN_BORN_POS",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSkillAnchor",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByGlobalValue",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "positionKey": "_SHAMAN_BORN_POS"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_StageControl_ResistFreeze",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_SHAMAN_IN_ABYSS",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetOverrideMapValue",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "SubHurtDeltaHigh",
+              "doOffStage": false,
+              "value": 2.9000000953674316,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Shaman_None_StageControl"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Cooking_SubHurtDelta": 1.100000023841858
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SummonPot_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Shaman_None_Cooking_DisturbAtkHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SummonPot_BS",
+            "SummonPot_Loop",
+            "SummonPot_Check",
+            "SummonPot_Success",
+            "SummonPot_Fail",
+            "Weak_BS",
+            "Weak_Loop",
+            "Weak_AS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Shaman_None_PotLifeControl",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "SummonPot_BS",
+          "modifierName": "Monster_Shaman_None_Cooking_Begin",
+          "normalizeEnd": 1,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.8999999761581421
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Weak_BS"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Shaman_None_Weak_RemoveCooking",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SummonPot_BS",
+            "SummonPot_Loop"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Shaman_None_Cooking_SubHurtDecrease",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Monster_Shaman_None_PotClose",
+            "Monster_Shaman_None_PotOn"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_POT_LIFE_BEGIN",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "SummonPot_Fail",
+          "modifierName": "Monster_Shaman_None_Cooking_GoAngryShow",
+          "normalizeEnd": 0.4000000059604645,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.05999999865889549
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "SummonPot_Success",
+          "modifierName": "Monster_Shaman_None_Cooking_GoHardShow",
+          "normalizeEnd": 0.699999988079071,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.009999999776482582
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            0
+          ],
+          "modifierName": "Monster_Shaman_None_Cooking_RemoveState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Monster_Shaman_None_AngryState_Timer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 30,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_CookOverNow": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Remove_CookingDelay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_CookingFireEnd_Timer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_COOKING_CONTINUE_TIME",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_Begin": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_POT_LIFE_BEGIN",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddChargeBarValue",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -100,
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_COOKING_CONTINUE_TIME",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_COOKING_TRUE_TIME",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Cooking_Timing",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_CheckResult": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_DisturbAtkHandler": {
+          "thinkInterval": 3,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Cooking_DisturbAtkTrackAvatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByDefault",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 5,
+                  "maxRandomRange": 7
+                }
+              },
+              "gadgetID": 42103047,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByDefault",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 7,
+                  "maxRandomRange": 10
+                }
+              },
+              "gadgetID": 42103047,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_DisturbAtkTrackAvatar": {
+          "thinkInterval": 4,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "otherTargets": {
+                "$type": "SelectTargetsByShape",
+                "sizeRatio": 1,
+                "GLDMBEOHPHB": {
+                  "$type": "ConfigBornByGlobalValue",
+                  "direction": {
+                    "maxAngle": 180
+                  },
+                  "EALBHHJEFGH": {
+                    "BKAPGJCLCIO": 180
+                  },
+                  "value": 10,
+                  "onGroundRaycastUpDist": 2,
+                  "positionKey": "_SHAMAN_BORN_POS"
+                },
+                "campTargetType": "Enemy",
+                "shapeName": "CircleR25H3"
+              },
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar",
+                    "Partner",
+                    "Vehicle"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalPos",
+                  "key": "_SHAMAN_FIRECIRCLE_POS",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "$type": "ConfigDirectionByDefault",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "onGroundIgnoreWater": true
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "CreateGadget",
+                      "canBeHandledOnRecover": true,
+                      "KIFCNCEFANN": {
+                        "enable": true,
+                        "IDIMGDPHLCB": 0.5,
+                        "JGGJGFDOKFJ": 0.5,
+                        "OCJBGKNDDAK": true
+                      },
+                      "onGround": true,
+                      "doOffStage": false,
+                      "NECMMOKMHBJ": true,
+                      "born": {
+                        "$type": "ConfigBornByGlobalValue",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2,
+                        "positionKey": "_POT_POS",
+                        "bornRandom": {
+                          "$type": "BornRandomFromCenter",
+                          "maxRandomRange": 3
+                        }
+                      },
+                      "gadgetID": 42103047,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "HFBIPLCBPFN",
+                      "ABOILODCIHF": "_SHAMAN_FIRECIRCLE_POS",
+                      "logic": "Lesser",
+                      "target": "Target",
+                      "LPJIKKGIOMN": "_POT_POS",
+                      "value": 3
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "CreateGadget",
+                      "canBeHandledOnRecover": true,
+                      "KIFCNCEFANN": {
+                        "enable": true,
+                        "IDIMGDPHLCB": 0.5,
+                        "JGGJGFDOKFJ": 0.5,
+                        "OCJBGKNDDAK": true
+                      },
+                      "onGround": true,
+                      "doOffStage": false,
+                      "NECMMOKMHBJ": true,
+                      "born": {
+                        "$type": "ConfigBornByGlobalValue",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2,
+                        "positionKey": "_SHAMAN_FIRECIRCLE_POS"
+                      },
+                      "gadgetID": 42103047,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_GoAngryShow": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "AngryShaderOn",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_GoHardShow": {
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "HardShaderOn",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "amountByCasterMaxHPRatio": 0.20000000298023224,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_GeneralSkill_Sovereign_Master_Heal",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_PowerBuff",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_RemoveState": {
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Cooking_Timing",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_HardState_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_AngryState_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_COOK_SUCCESSED",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_BE_HITH_TIMES",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_POT_HAS_BROKENED",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_SubHurtDecrease": {
+          "properties": {
+            "Actor_ElecSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_FireSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_GrassSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_IceSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_PhysicalSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_RockSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_WaterSubHurtDelta": "Cooking_SubHurtDelta",
+            "Actor_WindSubHurtDelta": "Cooking_SubHurtDelta"
+          },
+          "onAdded": [
+            {
+              "$type": "AttachAbilityStateResistance",
+              "resistanceBuffDebuffs": [
+                "ElementFreeze",
+                "ElementPetrifaction"
+              ],
+              "durationRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Cooking_Timing": {
+          "onRemoved": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_COOKING_TRUE_TIME",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "value": 12
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_CHARGEBAR_VALUE",
+                      "compareType": "MoreThan",
+                      "target": "Target",
+                      "value": 95
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_SHAMAN_STATE",
+                      "compareType": "LessAndEqual",
+                      "target": "Target",
+                      "value": 3
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetAnimatorTrigger",
+                      "canBeHandledOnRecover": true,
+                      "triggerID": "CookingOver",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "Predicated",
+                      "failActions": [
+                        {
+                          "$type": "SetAnimatorBool",
+                          "canBeHandledOnRecover": true,
+                          "boolID": "CookSuccess",
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "ApplyModifier",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "modifierName": "Monster_Shaman_None_AngryState_Timer",
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "_POT_LIFE_BEGIN",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "FireEffect",
+                          "canBeHandledOnRecover": true,
+                          "effectTempleteID": -1,
+                          "effectPattern": "Eff_Monster_Shaman_None_RockPotCookingFail",
+                          "scale": 1,
+                          "doOffStage": false,
+                          "born": {
+                            "$type": "ConfigBornByGlobalValue",
+                            "direction": {
+                              "maxAngle": 180
+                            },
+                            "EALBHHJEFGH": {
+                              "BKAPGJCLCIO": 180
+                            },
+                            "value": 10,
+                            "onGroundRaycastUpDist": 2,
+                            "positionKey": "_POT_POS"
+                          },
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_CHARGEBAR_VALUE",
+                          "target": "Target",
+                          "value": 100
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "_SHAMAN_COOK_SUCCESSED",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "value": 1,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetAnimatorBool",
+                          "canBeHandledOnRecover": true,
+                          "boolID": "CookSuccess",
+                          "doOffStage": false,
+                          "value": true,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "ApplyModifier",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "modifierName": "Monster_Shaman_None_HardState_Timer",
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "_POT_LIFE_BEGIN",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "FireEffect",
+                          "canBeHandledOnRecover": true,
+                          "effectTempleteID": -1,
+                          "effectPattern": "Eff_Monster_Shaman_None_RockPotCookingSuccess",
+                          "scale": 1,
+                          "doOffStage": false,
+                          "born": {
+                            "$type": "ConfigBornByGlobalValue",
+                            "direction": {
+                              "maxAngle": 180
+                            },
+                            "EALBHHJEFGH": {
+                              "BKAPGJCLCIO": 180
+                            },
+                            "value": 10,
+                            "onGroundRaycastUpDist": 2,
+                            "positionKey": "_POT_POS"
+                          },
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": 16,
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_SummonPot",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AddChargeBarValue",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FIRE_ON",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_COOKING_CONTINUE_TIME",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2.5,
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddChargeBarValue",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FIRE_ON",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_COOKING_CONTINUE_TIME",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 7.5,
+              "useMutiPlayerFixData": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_COOKING_CONTINUE_TIME",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 5,
+              "doOffStage": false,
+              "value": 0.5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValue",
+              "key": "_COOKING_TRUE_TIME",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 17,
+              "doOffStage": false,
+              "value": 0.5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FIRE_ON",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_CookingFireEnd_Timer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarIconID": 16,
+              "maxValue": 100,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Monster_Shaman_None_InCooking",
+                "Monster_Shaman_None_CookOverNow"
+              ],
+              "valueSteps": [
+                -0.5,
+                99.5,
+                101
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "_CHARGEBAR_VALUE",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_HardState_Timer": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 30,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_InCooking": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_PotClose": {
+          "onAdded": [
+            {
+              "$type": "KillGadgetV2",
+              "gadgetInfo": {
+                "configID": 42103045
+              },
+              "value": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillGadgetV2",
+              "gadgetInfo": {
+                "configID": 42103046
+              },
+              "value": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_PotLifeControl": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_POT_LIFE_BEGIN",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Cooking_Timing",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_POT_LIFE_BEGIN",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_PotOn": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_POT_POS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByDefault",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 2.5
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_POT_POS"
+              },
+              "gadgetID": 42103045,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ShowReminder",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "id": 31030701,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Weak_RemoveCooking": {
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Cooking_Timing",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Remove_CookingDelay": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Cooking_Timing",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Cooking_Timing",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_SHAMAN_IN_ABYSS",
+              "target": "Target",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetOverrideMapValue",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "Cooking_SubHurtDelta",
+              "doOffStage": false,
+              "value": 2.9000000953674316,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Shaman_None_Cooking"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "RockDurability": 750
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Monster_Shaman_None_Pot_KillSelf",
+            "Monster_Shaman_None_Pot_Alive"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "globalValueTarget": "Owner",
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_POT_LIFE_BEGIN",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Monster_Shaman_None_Pot_SetOwnerNoFire",
+            "Monster_Shaman_None_Pot_SetOwnerFire"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_FIRE_STATE",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "_FIRE_ELEMNT_OFF",
+            "_FIRE_ELEMNT_ON"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_FIRE_ELEMNT_NUMS",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Monster_Shaman_None_Fire_Off": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_FIRE_ON",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Fire_On": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_FIRE_ON",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_FIRE_ELEMNT_NUMS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_GoWeak": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_POT_HAS_BROKENED",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "GoWeak",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_RockPotWeak",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_Alive": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_KillSelf": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_RockPotCookingFail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_LifeEffcet": {
+          "properties": {
+            "Actor_EndureDelta": 0
+          },
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_RockPot",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "Limbo",
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_RockShield": {
+          "elementType": "Rock",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_POT_TOTAL_RECIVE_DAMAGE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": "RockDurability",
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ElementShieldMixin",
+              "elementType": "Rock",
+              "EFCCOMMILBA": 360,
+              "maxShieldByHPRatio": 1,
+              "enable": true,
+              "onShieldBroken": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "doOffStage": false,
+                  "modifierName": "Monster_Shaman_None_GoWeak",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SendEffectTrigger",
+                  "canBeHandledOnRecover": true,
+                  "effectPattern": "Eff_Monster_Shaman_None_RockPot",
+                  "doOffStage": false,
+                  "parameter": "Break",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Monster_Shaman_None_Pot_RockShield_DelayDie",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnableHitBoxByName",
+                  "canBeHandledOnRecover": true,
+                  "hitBoxNames": [
+                    "HitBox"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushColliderAvatar"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "LLEHFJNOJMK": true,
+              "MCDLFGPPBJM": "_POT_TOTAL_RECIVE_DAMAGE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToElementDurabilityMixin",
+              "modifierNameSteps": [
+                "Pot_HalfBreak",
+                "Pot_FullOK"
+              ],
+              "valueSteps": [
+                -0.5,
+                [
+                  "RockDurability",
+                  0.5,
+                  "MUL",
+                  1,
+                  "SUB"
+                ],
+                [
+                  "RockDurability",
+                  1,
+                  "ADD"
+                ]
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Fire"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_FIRE_STATE",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalDir",
+                  "key": "_HIT_EFFECT_DIR",
+                  "target": "TargetOriginOwner",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "$type": "ConfigDirectionByLookAtEntity",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar",
+                    "Partner",
+                    "Vehicle"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalDir",
+                  "key": "_HIT_EFFECT_DIR",
+                  "target": "Target",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "$type": "ConfigDirectionByLookAtEntity",
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_RockPotBeHit",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByGlobalValue",
+                  "directionKey": "_HIT_EFFECT_DIR",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Electric"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FIRE_STATE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_FIRE_ELEMNT_NUMS",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 2,
+                  "doOffStage": false,
+                  "value": -1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Water"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FIRE_STATE",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_FIRE_ELEMNT_NUMS",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 2,
+                  "doOffStage": false,
+                  "value": -2,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAnd",
+                  "predicates": [
+                    {
+                      "$type": "ByAny",
+                      "predicates": [
+                        {
+                          "$type": "ByHitElement",
+                          "target": "Target",
+                          "element": "Ice"
+                        },
+                        {
+                          "$type": "ByHitElement",
+                          "target": "Target",
+                          "element": "Rock"
+                        },
+                        {
+                          "$type": "ByHitElement",
+                          "target": "Target",
+                          "element": "Wind"
+                        }
+                      ],
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_FIRE_STATE",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_FIRE_ELEMNT_NUMS",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 2,
+                  "doOffStage": false,
+                  "value": -0.5,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Monster_Shaman_None_Pot_RockShield_DelayDie": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Pot_LifeEffcet",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.5,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_POT_TOTAL_RECIVE_DAMAGE",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": [
+                    "FIGHT_PROP_MAX_HP",
+                    0.10000000149011612,
+                    "MUL"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_POT_TOTAL_RECIVE_DAMAGE",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": [
+                    "FIGHT_PROP_MAX_HP",
+                    0.10000000149011612,
+                    "MUL"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "target": "Owner",
+              "attackInfo": {
+                "hitPattern": {
+                  "hitImpulseType": "LV0",
+                  "onHitEffectName": "none",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "COOFHHPOEAC": 1,
+                  "enBreak": 1,
+                  "damageExtra": [
+                    "FIGHT_PROP_MAX_HP",
+                    0.10000000149011612,
+                    "MUL",
+                    "_POT_TOTAL_RECIVE_DAMAGE",
+                    "ADD"
+                  ],
+                  "IOLHEGDMIBF": true,
+                  "strikeType": "None",
+                  "KGKNBGENBLN": true,
+                  "attackType": "Default",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_SetOwnerFire": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Owner",
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Fire_On",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_FIRE_ELEMNT_NUMS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_SetOwnerNoFire": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Owner",
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_Fire_Off",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pot_FullOK": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pot_HalfBreak": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_Monster_Shaman_None_RockPot",
+              "doOffStage": false,
+              "parameter": "HalfBreak",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "_FIRE_ELEMNT_OFF": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_FIRE_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "_FIRE_ELEMNT_ON": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "_POT_TOTAL_RECIVE_DAMAGE"
+      ],
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_LifeEffcet",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_FIRE_STATE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_RockShield",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CreateGadget",
+          "canBeHandledOnRecover": true,
+          "KIFCNCEFANN": {
+            "enable": true,
+            "IDIMGDPHLCB": 0.5,
+            "JGGJGFDOKFJ": 0.5,
+            "OCJBGKNDDAK": true
+          },
+          "onGround": true,
+          "doOffStage": false,
+          "NECMMOKMHBJ": true,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "$type": "ConfigDirectionByDefault",
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "onGroundIgnoreWater": true
+          },
+          "gadgetID": 42103046,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_LifeEffcet",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Shaman_None_Pot"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Monster_Shaman_None_Pot_FireEffcet": {
+          "thinkInterval": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_CookingFire",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "WetModifier"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "doOffStage": false,
+                  "modifierName": "Monster_Shaman_None_Pot_FireOff_BecauseRain",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_FireLisnter": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Monster_Shaman_None_Pot_Fire_Off",
+                "Monster_Shaman_None_Pot_Fire_On"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "globalValueTarget": "Owner",
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "targetRegisterType": "RegisterAlways",
+              "globalValueKey": "_FIRE_STATE",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_FireOff_BecauseRain": {
+          "duration": 0.029999999329447746,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_FIRE_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_Fire_Off": {
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Bool",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_Monster_Shaman_None_CookingFire",
+              "doOffStage": false,
+              "parameter": "FireOn",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_Pot_Fire_On": {
+          "thinkInterval": 3,
+          "onAdded": [
+            {
+              "$type": "SendEffectTrigger",
+              "type": "Bool",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "effectPattern": "Eff_Monster_Shaman_None_CookingFire",
+              "doOffStage": false,
+              "parameter": "FireOn",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "FireEffect",
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Shaman_None_CookToPot2",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.5,
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "FireEffect",
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Shaman_None_CookToPot1",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_FireLisnter",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_FireEffcet",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_FireEffcet",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_FireLisnter",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Shaman_None_Pot_Fire"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "NormalAttack01",
+          "modifierName": "Monster_Shaman_None_NormalAttackEffect",
+          "normalizeEnd": 0.5,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.17000000178813934
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "NormalAttack01",
+          "modifierName": "Monster_Shaman_None_NormalAttackEvent",
+          "normalizeEnd": 1,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.3799999952316284
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "VegetableAtk_AS",
+          "modifierName": "Monster_Shaman_None_VegetableAtk_CreateBullet",
+          "normalizeEnd": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Monster_Shaman_None_NormalAttackEffect": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_SHAMAN_NORMAL_ATTACK_TYPE",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Shaman_None_NormalAttack01_Effect_02",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SHAMAN_STATE",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_SHAMAN_NORMAL_ATTACK_TYPE",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 2,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "FireEffect",
+                  "canBeHandledOnRecover": true,
+                  "effectTempleteID": -1,
+                  "effectPattern": "Eff_Monster_Shaman_None_NormalAttack01_EffectPlus",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_NormalAttackEvent": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV5",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeTime": 0.15000000596046448,
+                        "shakeRange": 0.20000000298023224,
+                        "shakeDistance": 25,
+                        "shakeDir": {
+                          "x": -1,
+                          "y": -0.30000001192092896
+                        },
+                        "shakeType": "HitVector"
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 0.800000011920929,
+                        "enBreak": 100,
+                        "strikeType": "Slash",
+                        "elementDurability": 100,
+                        "attackType": "Melee",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 6,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 2,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SHAMAN_NORMAL_ATTACK_TYPE",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "TriggerAttackEvent",
+                  "attackEvent": {
+                    "attackInfo": {
+                      "hitPattern": {
+                        "hitImpulseType": "LV5",
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "cameraShake": {
+                        "extension": {
+                          "cycleDamping": 0.11999999731779099,
+                          "baseOnCamera": true,
+                          "rangeAttenuation": 0.5,
+                          "baseCycle": 0.11999999731779099
+                        },
+                        "shakeTime": 0.15000000596046448,
+                        "shakeRange": 0.20000000298023224,
+                        "shakeDistance": 25,
+                        "shakeDir": {
+                          "x": -1,
+                          "y": -0.30000001192092896
+                        },
+                        "shakeType": "HitVector"
+                      },
+                      "attackProperty": {
+                        "damagePercentage": 0.800000011920929,
+                        "enBreak": 100,
+                        "strikeType": "Slash",
+                        "elementDurability": 100,
+                        "attackType": "Melee",
+                        "elementRank": 1
+                      },
+                      "KMBBLIMOMBH": {
+                        "LMEIODIINNM": "Shake"
+                      },
+                      "attenuationGroup": "default",
+                      "OLHIHLILEKH": {
+                        "onHitEffectName": "default",
+                        "NPLKKCCDEDJ": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      }
+                    },
+                    "attackPattern": {
+                      "$type": "ConfigAttackCircle",
+                      "BCIDGAKNEBH": {
+                        "BPIDFNFCNHP": {
+                          "value": 1,
+                          "NJICIOFCOPD": true
+                        }
+                      },
+                      "radius": 9,
+                      "triggerType": "TriggerNoRepeat",
+                      "massiveAttackRatio": 1,
+                      "fanAngle": 360,
+                      "height": 2,
+                      "born": {
+                        "$type": "ConfigBornBySelf",
+                        "direction": {
+                          "maxAngle": 180
+                        },
+                        "EALBHHJEFGH": {
+                          "BKAPGJCLCIO": 180
+                        },
+                        "useRotation": true,
+                        "value": 10,
+                        "onGroundRaycastUpDist": 2
+                      }
+                    }
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1,
+                  "targetType": "Enemy"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_VegetableAtk_CreateBullet": {
+          "onAdded": [
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "maxRandomRange": 3
+                }
+              },
+              "gadgetID": 42103020,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 3,
+                  "maxRandomRange": 5
+                }
+              },
+              "gadgetID": 42103020,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 5,
+                  "maxRandomRange": 8
+                }
+              },
+              "gadgetID": 42103020,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 8,
+                  "maxRandomRange": 10
+                }
+              },
+              "gadgetID": 42103020,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS",
+                "bornRandom": {
+                  "$type": "BornRandomFromCenter",
+                  "minRandomRange": 10,
+                  "maxRandomRange": 12
+                }
+              },
+              "gadgetID": 42103020,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalPos",
+              "key": "_SHAMAN_VEGETABLE_BULLET_POS",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackTarget",
+              "doOffStage": false,
+              "born": {
+                "$type": "HGMGNKEAGGA",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CreateGadget",
+              "canBeHandledOnRecover": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "doOffStage": false,
+              "NECMMOKMHBJ": true,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_VEGETABLE_BULLET_POS"
+              },
+              "gadgetID": 42103020,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Shaman_None_ExtraAttack"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "JumpAtk_InAir",
+              "normalizeEnd": 0.6499999761581421,
+              "normalizeStart": 0.05000000074505806
+            },
+            {
+              "stateID": "JumpAtk_Jump",
+              "normalizeEnd": 0.5799999833106995
+            },
+            {
+              "stateID": "JumpAtk_Jump2",
+              "normalizeEnd": 0.5799999833106995
+            }
+          ],
+          "modifierName": "Monster_Shaman_None_JumpAtk_RushMove",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "JumpAtk_InAir",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.8500000238418579
+            },
+            {
+              "stateID": "JumpBack_InAir",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.8100000023841858
+            },
+            {
+              "stateID": "JumpAtk_Jump",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.949999988079071
+            },
+            {
+              "stateID": "JumpAtk_Jump2",
+              "normalizeEnd": 1,
+              "normalizeStart": 0.949999988079071
+            }
+          ],
+          "modifierName": "Monster_Shaman_None_JumpAtk_Damage",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "JumpBack_InAir",
+          "modifierName": "Monster_Shaman_None_JumpBackToBorn_Move",
+          "normalizeEnd": 0.6499999761581421,
+          "actorIceSubHurtDelta": -1,
+          "normalizeStart": 0.05000000074505806
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "JumpAtk_InAir",
+            "JumpAtk_Jump",
+            "JumpAtk_Jump2",
+            "JumpBack_InAir"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Shaman_None_JumpAtk_ClosePush",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Monster_Shaman_None_JumpAtk_ClosePush": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider",
+                    "PushCollider_Wand"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider",
+                    "PushCollider_Wand"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpAtk_Damage": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "_SHMAN_JUM_END_POS",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByDefault",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_FloorAttack_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHMAN_JUM_END_POS"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "retreatType": "ByHitDirection",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "damagePercentage": 0.699999988079071,
+                    "enBreak": 105,
+                    "strikeType": "Blunt",
+                    "elementDurability": 100,
+                    "attackType": "Melee",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 3.5,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 2,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "positionKey": "_SHMAN_JUM_END_POS"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_SHAMAN_STATE",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_JumpAtk_Damage_Plus1",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpAtk_Damage_Plus1": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_FloorAttack_01_Plus1",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHMAN_JUM_END_POS"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.15000000596046448,
+                    "shakeRange": 0.20000000298023224,
+                    "shakeDistance": 25,
+                    "shakeDir": {
+                      "x": -1,
+                      "y": -0.30000001192092896
+                    },
+                    "shakeType": "HitVector"
+                  },
+                  "attackProperty": {
+                    "damagePercentage": 1,
+                    "enBreak": 100,
+                    "elementDurability": 100,
+                    "attackType": "Range",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 8,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 2,
+                  "innerRadius": 4,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "positionKey": "_SHMAN_JUM_END_POS"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_JumpAtk_Damage_Plus2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpAtk_Damage_Plus2": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_FloorAttack_01_Plus2",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHMAN_JUM_END_POS"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV3",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.15000000596046448,
+                    "shakeRange": 0.20000000298023224,
+                    "shakeDistance": 25,
+                    "shakeDir": {
+                      "x": -1,
+                      "y": -0.30000001192092896
+                    },
+                    "shakeType": "HitVector"
+                  },
+                  "attackProperty": {
+                    "damagePercentage": 1,
+                    "enBreak": 100,
+                    "elementDurability": 100,
+                    "attackType": "Range",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 12,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 2,
+                  "innerRadius": 8,
+                  "born": {
+                    "$type": "ConfigBornByGlobalValue",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2,
+                    "positionKey": "_SHMAN_JUM_END_POS"
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpAtk_RushMove": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_FallAttack01_BS_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_JumpAtk_RushMove_Actions",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpAtk_RushMoveToBornActions": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "FixedMonsterRushMove",
+              "maxRange": -1,
+              "timeRange": 1,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS"
+              },
+              "animatorStateIDs": [
+                "JumpAtk_InAir",
+                "JumpAtk_Jump",
+                "JumpAtk_Jump2",
+                "JumpBack_InAir"
+              ],
+              "doOffStage": false,
+              "MCHKEKKPHIJ": true,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_FloorAttack_01_Warnning02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_BORN_POS"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpAtk_RushMove_Actions": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetGlobalPos",
+              "key": "_SHAMAN_JUMPATK_POS",
+              "canBeHandledOnRecover": true,
+              "target": "SelfAttackTarget",
+              "doOffStage": false,
+              "born": {
+                "$type": "HGMGNKEAGGA",
+                "direction": {
+                  "$type": "ConfigDirectionByDefault",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FixedMonsterRushMove",
+              "maxRange": 20,
+              "timeRange": 1,
+              "canBeHandledOnRecover": true,
+              "toPos": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_JUMPATK_POS"
+              },
+              "animatorStateIDs": [
+                "JumpAtk_InAir",
+                "JumpAtk_Jump",
+                "JumpAtk_Jump2"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "PODDIMABFJD": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_FloorAttack_01_Warnning02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_SHAMAN_JUMPATK_POS"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_JumpBackToBorn_Move": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_FallAttack01_BS_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_JumpAtk_RushMoveToBornActions",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Shaman_None_JumpAtk"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "BeHit"
+          ],
+          "value": -1,
+          "modifierName": "Monster_Shaman_None_FleeMode_Handler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToNormalizedTimeMixin",
+          "value": -1,
+          "stateID": "Escape",
+          "modifierName": "Monster_Shaman_None_FleeMode_EscapeEffect",
+          "normalizeEnd": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Monster_Shaman_None_Ender_FleeMode": {
+          "onRemoved": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "EscapeState",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_SHAMAN_STATE",
+                      "target": "Target",
+                      "value": 1
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "_SHAMAN_STATE_TEMP",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_EndureDelta": 0
+          },
+          "duration": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE_TEMP",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "_SHAMAN_STATE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_BE_HITH_TIMES",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_SHAMAN_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearEndura",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "ratio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Monster_Shaman_None_FleeMode_EscapeCD",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_FleeMode_EscapeCD": {
+          "duration": 10,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_FleeMode_EscapeEffect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_Escape_Large",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Monster_Shaman_None_FleeMode_Handler": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_SHAMAN_STATE",
+                      "target": "Target",
+                      "value": 2
+                    }
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasModifier",
+                      "target": "Target",
+                      "modifierName": "Monster_Shaman_None_FleeMode_EscapeCD"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_BE_HITH_TIMES",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 2,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_BE_HITH_TIMES",
+                      "target": "Target",
+                      "value": 2
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Monster_Shaman_None_Ender_FleeMode",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "_SHAMAN_STATE",
+        "_SHAMAN_STATE_TEMP"
+      ],
+      "abilityName": "Monster_Shaman_None_FleeMode"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Monster_Shaman_None_Pot_SummonFireCicle_Delay": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_CookingAtk_Attack",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV4",
+                    "retreatType": "ByHitDirection",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeDistance": 20
+                  },
+                  "attackProperty": {
+                    "elementType": "Fire",
+                    "damagePercentage": 0.699999988079071,
+                    "enBreak": 105,
+                    "strikeType": "Pierce",
+                    "elementDurability": 25,
+                    "attackType": "Melee",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "canBeModifiedBy": "OriginOwner",
+                  "attenuationGroup": "Nutcracker_Stage1_MaleCircle1",
+                  "attenuationTag": "FireCircleAtk",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 3,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 3,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "AllExceptSelf"
+            }
+          ],
+          "duration": 1.5,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Shaman_None_CookingAtk_Warning",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Monster_Shaman_None_Pot_SummonFireCicle_Delay",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Shaman_None_Pot_SummonFireCicle"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_SHAMAN_IN_ABYSS",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Monster_Shaman_None_Abyss_Mark"
+    }
+  }
+]

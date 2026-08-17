@@ -1,0 +1,676 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "EffigyChallenge_V6_Skill_Forbiden_Not_Started",
+            "EffigyChallenge_V6_Skill_Forbiden_Started"
+          ],
+          "valueSteps": [
+            -0.5,
+            1.5,
+            2.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_EffigyChallenge_V6_FightStarted",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "EffigyChallenge_V6_Revive"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_EffigyChallenge_V6_FightStarted",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CurLocalAvatarMixinV2",
+          "modifierName": "UNIQUE_EffigyChallenge_V6_Immune_Avatar",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "EffigyChallenge_V6_Revive": {
+          "onAdded": [
+            {
+              "$type": "HealHP",
+              "canBeHandledOnRecover": true,
+              "target": "AllPlayerAvatars",
+              "value": 1,
+              "doOffStage": true,
+              "amountByTargetMaxHPRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ReviveDeadAvatar",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "value": 1,
+              "doOffStage": true,
+              "amountByTargetMaxHPRatio": 1,
+              "range": 50,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "EffigyChallenge_V6_Skill_Forbiden_Not_Started": {
+          "onRemoved": [
+            {
+              "$type": "ChangePlayMode",
+              "enable": true,
+              "toPlayMode": "ForbidenSkillAndAttack",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ChangePlayMode",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "toPlayMode": "ForbidenSkillAndAttack",
+              "useCurve": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangePhlogiston",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 100,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "HideTeamEnergyBtnMixin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "EffigyChallenge_V6_Skill_Forbiden_Started": {
+          "onAdded": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "value": 100,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ReviveSpecialEnergy",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "value": 999,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HealHP",
+              "canBeHandledOnRecover": true,
+              "target": "AllPlayerAvatars",
+              "value": 1,
+              "doOffStage": true,
+              "amountByTargetMaxHPRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ModifyAvatarSkillCD",
+              "skillSlot": [
+                2,
+                5
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "cdRatio": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearLocalGadgets",
+              "whiteList": [
+                42601125
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangePhlogiston",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 100,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Team"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EffigyChallenge_V6_Immune_Avatar": {
+          "isUnique": true,
+          "properties": {
+            "Actor_FallingDamageRatio": -1
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "ActivityAbility_EffigyChallenge_V6_Skill_Forbidden"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Level_1",
+            "Level_2",
+            "Level_3",
+            "Level_4"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            1.5,
+            2.5,
+            3.5,
+            4.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_EffigyChallenge_V6_Level",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Level_1": {
+          "onAdded": [
+            {
+              "$type": "EnableGadgetExtraButton",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 6,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Level_2": {
+          "onAdded": [
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 6,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Level_3": {
+          "onAdded": [
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 6,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Level_4": {
+          "onAdded": [
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 5,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetExtraButton",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NLDOIOCCOKB": 6,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_EffigyChallengeV6_Worktop_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Fire_Off",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Fire_On",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Fire_Off": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "ExecuteGadgetLua",
+              "predicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Fire"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByHasElement",
+                      "target": "Target",
+                      "element": "Water"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "param1": 201,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Fire_On": {
+          "onRemoved": [
+            {
+              "$type": "ExecuteGadgetLua",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_FireBasin_Smoke",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "attachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Fire",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cooking_01_Fire",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Cooking_01_Smoke",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "RootNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 25,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "SceneObj_Level_Common_Property_Ani_Prop_EffigyChallengeV6_CookingPot"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixinV2",
+          "modifierName": "ElectroherculesBattle_CurLocalAvatar",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ElectroherculesBattle_CurLocalAvatar": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "Gallary",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "JHJCOJFFPGG": {
+                "PFGNFCCBKOC": true
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TailListenerToMainCamera": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "TailListenerToMainCameraMixin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "TailListenerToMainCamera",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Activity_ElectroherculesBattleV3_CurLocalAvatar_Ability"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "State_0": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "SingleCol"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "CoopCol"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_201": {
+          "onAdded": [
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "SingleCol"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "CoopCol"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "State_Handle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "State_0",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "State_201",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "State_Handle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Ly_Property_Ani_Prop_ElectroherculesBattlefield_AirWall_01"
+    }
+  }
+]

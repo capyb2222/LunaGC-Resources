@@ -1,0 +1,1520 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ChangeGadgetState",
+          "FGHGMFLCBFD": 201,
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Handler": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_totalProgress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 100,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_increaseProgress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 30,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_ExecutionQTEProgress",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 50,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "_Idle",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "QTESucc_state",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 202,
+              "modifierName": "QTEFail_state",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 901,
+              "modifierName": "InQTE_state",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "InQTE_state": {
+          "thinkInterval": 15,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_ForbidWitchTime",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "WitchTime_Handler",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_ForbidQTE",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "QTE_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "ChangeGadgetState",
+              "FGHGMFLCBFD": 202,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "QTEFail_state": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "QTESucc_state": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "QTE_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "QTE_TYPE_GRAVITY_DASH",
+                "QTE_TYPE_TO_GRAPPLE",
+                "QTE_TYPE_TO_JELLYFISH",
+                "QTE_TYPE_TO_ORCA",
+                "QTE_TYPE_TO_SHIELD"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5,
+                2.5,
+                3.5,
+                4.5,
+                5.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_QTE_Type",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "QTE_TYPE_GRAVITY_DASH": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "InLevelQTEMixin",
+              "BPDLEDKGGBD": "Btn_QTE_GravityDash",
+              "EJHPNNDMKKL": "GV_increaseProgress",
+              "EMAIAHKJBID": 9,
+              "IGMMJBAENGO": "GV_totalProgress",
+              "JKEOPBCIBCH": "DisableFirmamentExecute",
+              "NLIFBHLGJOI": true,
+              "OBEBCFIIJOA": "GV_ExecutionQTEProgress",
+              "actorIceSubHurtDelta": -1,
+              "PJCIMOBCOFE": "SceneObj_Area_NK_Property_Ani_Prop_CometMoonSpirit_QTE_01"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "QTE_TYPE_TO_GRAPPLE": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "InLevelQTEMixin",
+              "BPDLEDKGGBD": "Btn_QTE_MoonSpirit_ToGrapple",
+              "EJHPNNDMKKL": "GV_increaseProgress",
+              "EMAIAHKJBID": 9,
+              "IGMMJBAENGO": "GV_totalProgress",
+              "JKEOPBCIBCH": "DisableFirmamentExecute",
+              "NLIFBHLGJOI": true,
+              "OBEBCFIIJOA": "GV_ExecutionQTEProgress",
+              "actorIceSubHurtDelta": -1,
+              "PJCIMOBCOFE": "SceneObj_Area_NK_Property_Ani_Prop_CometMoonSpirit_QTE_01"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "QTE_TYPE_TO_JELLYFISH": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "InLevelQTEMixin",
+              "BPDLEDKGGBD": "Btn_QTE_MoonSpirit_ToJellyfish",
+              "EJHPNNDMKKL": "GV_increaseProgress",
+              "EMAIAHKJBID": 9,
+              "IGMMJBAENGO": "GV_totalProgress",
+              "JKEOPBCIBCH": "DisableFirmamentExecute",
+              "NLIFBHLGJOI": true,
+              "OBEBCFIIJOA": "GV_ExecutionQTEProgress",
+              "actorIceSubHurtDelta": -1,
+              "PJCIMOBCOFE": "SceneObj_Area_NK_Property_Ani_Prop_CometMoonSpirit_QTE_01"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "QTE_TYPE_TO_ORCA": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "InLevelQTEMixin",
+              "BPDLEDKGGBD": "Btn_QTE_MoonSpirit_ToOrca",
+              "EJHPNNDMKKL": "GV_increaseProgress",
+              "EMAIAHKJBID": 9,
+              "IGMMJBAENGO": "GV_totalProgress",
+              "JKEOPBCIBCH": "DisableFirmamentExecute",
+              "NLIFBHLGJOI": true,
+              "OBEBCFIIJOA": "GV_ExecutionQTEProgress",
+              "actorIceSubHurtDelta": -1,
+              "PJCIMOBCOFE": "SceneObj_Area_NK_Property_Ani_Prop_CometMoonSpirit_QTE_01"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "QTE_TYPE_TO_SHIELD": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "InLevelQTEMixin",
+              "BPDLEDKGGBD": "Btn_QTE_MoonSpirit_ToShield",
+              "EJHPNNDMKKL": "GV_increaseProgress",
+              "EMAIAHKJBID": 9,
+              "IGMMJBAENGO": "GV_totalProgress",
+              "JKEOPBCIBCH": "DisableFirmamentExecute",
+              "NLIFBHLGJOI": true,
+              "OBEBCFIIJOA": "GV_ExecutionQTEProgress",
+              "actorIceSubHurtDelta": -1,
+              "PJCIMOBCOFE": "SceneObj_Area_NK_Property_Ani_Prop_CometMoonSpirit_QTE_01"
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "WitchTime_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "TriggerWitchTimeMixin",
+              "ABGEDKMDAIM": 0.05000000074505806,
+              "DAFDKEGGMOI": true,
+              "FELNOELBJPB": true,
+              "KFEBMDAEKIK": 0.12999999523162842,
+              "KFLLPLNNNGB": 0.5,
+              "duHPRation": 15,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Idle": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_totalProgress",
+        "GV_increaseProgress"
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_NK_Property_Ani_Prop_CometMoonSpirit_QTE_01",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGadgetState"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "ChangeGadgetState",
+              "FGHGMFLCBFD": 901,
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Level",
+                "Gadget",
+                "Platform",
+                "Monster",
+                "NPC"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "WidgetMpSupportMixin",
+          "succActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Delay_Move": {
+          "thinkInterval": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Move",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "GravityBomb_WaterBall_On": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetTargetToTargetKey",
+              "targetKey": "GV_GravityBomb_WaterBall",
+              "canBeHandledOnRecover": true,
+              "target": "Applier",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_GravityBomb_WaterBallState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "[fxy]GravityBomb_WaterBall_On",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Handler": {
+          "onKill": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_Die",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "MovingState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "IdleEff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "IdleEff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalPos",
+              "setTarget": true,
+              "key": "GV_ControlledBullet_TrackPos",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 30,
+                  "y": 0.10000000149011612
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeTag",
+              "tag": "Moon_WaterBall",
+              "canBeHandledOnRecover": true,
+              "isAdd": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Stop",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "MovingState",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "PartMoveMixin",
+              "duration": 0.30000001192092896,
+              "HBIHEDIPHIM": "EffectNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "x": 0.009999999776482582
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNBNKELKMLM": true
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "IdleEff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_4M",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPartScaleByTransform",
+              "BOHKGFIMIHC": {
+                "z": 1,
+                "x": 1,
+                "y": 1
+              },
+              "EMOHLBJCHEK": "EffectNode",
+              "canBeHandledOnRecover": true,
+              "lerpTime": 1,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Move": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "MovingState": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 10,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_AfterEntering",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetIntee",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Stop": {
+          "thinkInterval": 10,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "EnableGadgetIntee",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "gadgetState": 201
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Moon_Property_Ani_Prop_GravityBomb_WaterBall_01",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_GravityBomb_WaterBallState",
+              "compareType": "NoneOrEqual",
+              "target": "TargetTeam"
+            },
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "JDDNHIEGHPC",
+                  "stateIDs": [
+                    "Climb",
+                    "Swim"
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "target": "Target"
+            },
+            {
+              "$type": "ByAvatarIsHost",
+              "isHost": true,
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "TargetTeam",
+              "doOffStage": false,
+              "modifierName": "GravityBomb_WaterBall_On",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "FGHGMFLCBFD": 201,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "target": "Caster",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "SceneObj_Area_Moon_Property_Ani_Prop_GravityBomb_WaterBall_01_KillSelf"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Level"
+              ]
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "WidgetMpSupportMixin",
+          "succActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "GravityBomb_WaterBall_On": {
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetTargetToTargetKey",
+              "targetKey": "GV_GravityBomb_WaterBall",
+              "canBeHandledOnRecover": true,
+              "target": "Applier",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_GravityBomb_WaterBallState",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Handler": {
+          "onReconnect": [
+            {
+              "$type": "SetPartScaleByTransform",
+              "BOHKGFIMIHC": {
+                "z": 1,
+                "x": 1,
+                "y": 1
+              },
+              "EMOHLBJCHEK": "EffectNode",
+              "canBeHandledOnRecover": true,
+              "lerpTime": 1,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onKill": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_Die",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "MovingState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_4M",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPartScaleByTransform",
+              "BOHKGFIMIHC": {
+                "z": 1,
+                "x": 1,
+                "y": 1
+              },
+              "EMOHLBJCHEK": "EffectNode",
+              "canBeHandledOnRecover": true,
+              "lerpTime": 1,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByRayCastTarget",
+              "AHNBFGCAOJP": "_WaterPlanePos",
+              "ENGOPILCNOE": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "GMILNDPNNJL": 90,
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "EPDBAJJGGLA": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "PopUp",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "failActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "InstantAppear",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "GHCGNNFBIGM": true,
+              "HDLDKAGKBNL": 3,
+              "LCDNKEEJHKH": "Water",
+              "doOffStage": false,
+              "MGIBEKGCNMO": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "PopUp",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "MJNJFCAFBAE": -1,
+              "NGFFHBBGCGO": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "Stop",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "gadgetState": 201,
+              "modifierName": "MovingState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "InstantAppear": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "HBIHEDIPHIM": "EffectNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "x": 0.009999999776482582
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNBNKELKMLM": true
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "MovingState": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_WaterBallAlive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "target": "Caster",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnableGadgetIntee",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_AfterEntering",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableGadgetIntee",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "PopUp": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_GravityWaterBall_01_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByGlobalValue",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "positionKey": "_WaterPlanePos"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "duration": 0.699999988079071,
+              "HBIHEDIPHIM": "EffectNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "x": 0.009999999776482582
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNBNKELKMLM": true
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Stop": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_MoveTime",
+        "GV_MoveTime",
+        "SGV_MoveSpeed",
+        "GV_MoveSpeed"
+      ],
+      "onAdded": [
+        {
+          "$type": "EnableGadgetIntee",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "ByTargetGadgetState",
+                  "gadgetState": 201
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Moon_Property_Ani_Prop_GravityBomb_WaterBall_02",
+      "onFieldEnter": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "GV_GravityBomb_WaterBallState",
+              "compareType": "NoneOrEqual",
+              "target": "TargetTeam"
+            },
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "JDDNHIEGHPC",
+                  "stateIDs": [
+                    "Climb",
+                    "Swim"
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "TargetTeam",
+              "doOffStage": false,
+              "modifierName": "GravityBomb_WaterBall_On",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeGadgetState",
+              "FGHGMFLCBFD": 201,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ]
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "ChangeSize": {
+          "onAdded": [
+            {
+              "$type": "SetPartScaleByTransform",
+              "BOHKGFIMIHC": {
+                "z": "SGV_ChangeSizeTo",
+                "x": "SGV_ChangeSizeTo",
+                "y": "SGV_ChangeSizeTo"
+              },
+              "EMOHLBJCHEK": "Root",
+              "canBeHandledOnRecover": true,
+              "lerpTime": 5,
+              "useCurve": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "lerpCurveIndex": 1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Handler": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_ChangeSizeTo",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetPartScaleByTransform",
+                  "BOHKGFIMIHC": {
+                    "z": "SGV_ChangeSizeTo",
+                    "x": "SGV_ChangeSizeTo",
+                    "y": "SGV_ChangeSizeTo"
+                  },
+                  "EMOHLBJCHEK": "Root",
+                  "canBeHandledOnRecover": true,
+                  "useCurve": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "SGV_ChangeSizeTo",
+              "actions": [
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ChangeSize",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ChangeSize",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_ChangeSizeTo"
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Moon_Property_Ani_Prop_GravityBomb_WaterBall_03"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Handler": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Property_Ani_Prop_CentralMoonSea_01_Vo_Light_01",
+              "scale": 1,
+              "doOffStage": false,
+              "MKKILNDLKHD": true,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_NK_Property_Ani_Prop_CentralMoonSea_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "LaserMixin",
+          "CICICHILEDC": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ServerLuaTriggerEvent",
+                  "canBeHandledOnRecover": true,
+                  "sourceName": "ShooterLaserLowETrigger",
+                  "doOffStage": false,
+                  "luaCallType": "FromGroup",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "effectPattern": "Eff_SceneObj_Nata_Laser_01_Audio",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Normal",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "gadgetState": 201,
+          "modifierName": "Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_Nata_Laser_01_Audio",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Normal": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "SceneObj_Area_Nt_Property_Prop_ShooterLaserLowE_03"
+    }
+  }
+]

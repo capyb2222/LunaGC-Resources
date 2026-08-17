@@ -1,0 +1,1602 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetType",
+              "target": "Target",
+              "targetType": "Owner"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Hallworld_Drxg_Snowball_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "doOffStage": false,
+              "modifierName": "Drxg_CheckHitBox_Type",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                77401320
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "Owl_Angry_Duration": 1.5,
+        "Owl_ChangeWeatherCnt": 15
+      },
+      "modifiers": {
+        "Avatar_Add_BeHit_Count": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "canBeHandledOnRecover": true,
+              "minValue": 1,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "ShakeTrigger",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drxg_CheckHitBox_Type": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Drxg_CheckHitFromSnowBall_Avatar",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Drxg_CheckHitFromSnowBall_Owl",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drxg_CheckHitFromSnowBall_Avatar": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Avatar"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "Avatar_Add_BeHit_Count",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "HittingOhter_Avatar",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drxg_CheckHitFromSnowBall_Owl": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasTag",
+                  "tag": "ImOwl",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Owl_AngryShow_Handler",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "doOffStage": false,
+                  "modifierName": "Owl_Add_BeHit_Count",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "HittingOther_Owl",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ExtraHitSound": {
+          "duration": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Owl_Add_BeHit_Count": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Hallworld_Drxg_SnowShake_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_SnowBall_Hit_Count",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": [
+                    "Owl_ChangeWeatherCnt",
+                    1,
+                    "SUB"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "minValue": 1,
+              "maxValue": "Owl_ChangeWeatherCnt",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SnowBallBullet_Effect": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Hallworld_Drxg_Snowball_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Owl_AngryShow_Handler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "SnowBallBeHit",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Owl_Angry_Duration",
+          "onAdded": [
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "SnowBallBeHit",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "EHPMPEBJHAJ": true,
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "SnowBallBullet_Effect",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObject_Hallworld_Drxg_Shooting_Snowball_Bullet_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "SwitchSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SwitchSkillIDMixin",
+              "skillID": 20643,
+              "priority": "Playmode",
+              "skillIndex": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Drxg_TriggerSnowBall_AddSkillInfo": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "SwitchSkill",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveAvatarSkillInfo",
+              "skillID": 20643,
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddAvatarSkillInfo",
+              "skillID": 20643,
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 20643,
+              "costStaminaRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "SwitchSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "EHPMPEBJHAJ": true,
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "UNIQUE_Drxg_TriggerSnowBall_AddSkillInfo",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "AvatarAbility_Drxg_TriggerSnowBall_SwitchSkill"
+    }
+  },
+  {
+    "Default": {
+      "onRemoved": [
+        {
+          "$type": "RemoveModifier",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "PBGEHEGIMKH",
+                  "target": "Target",
+                  "sceneIds": [
+                    47101,
+                    47102,
+                    47103,
+                    47401,
+                    47402,
+                    47403,
+                    47404,
+                    47405,
+                    47406
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ActionPanelController",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Channel_BS",
+            "Channel_Loop"
+          ],
+          "value": -1,
+          "modifierName": "CheckChannelLoop",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Channel_BS",
+            "Channel_Loop",
+            "Channel_AS"
+          ],
+          "value": -1,
+          "modifierName": "Trigger_OnExit",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ButtonHoldChargeMixin",
+          "OnBeginCharged": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ActionPanelController",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Common_Channel_IsTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Drxg_按键按下_1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "skillID": 20643,
+          "OnReleaseCharged": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ActivityAbility_Endora_IsFocus",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Shoot_Short",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Drxg_按键松开_1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ActivityAbility_Endora_IsFocus",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Shoot",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ActionPanelController",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "chargeStateIDs": [
+            "Channel_Loop"
+          ],
+          "secondChargeTime": 0.11999999731779099,
+          "OnBeginSecondCharged": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Focus",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "Drxg_按键按下_2",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onCancelCharged": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndChannelTrigger",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ActionPanelController",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ActionPanelController": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "SlotQuickUse",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "slotType": "SlotCharge",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "HideActionSlotMixin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "CheckChannelLoop": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "RemovedFocusState",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "AvatarEnterFocus",
+              "enable": true,
+              "dragButtonName": "Skill2",
+              "DBCACFJHJPA": {
+                "CEBHFOEODGL": -1,
+                "canBeHandledOnRecover": true,
+                "doOffStage": false,
+                "actorIceSubHurtDelta": -1
+              },
+              "DKPKOFBFMON": -60,
+              "ECPEOPJCIAN": -1,
+              "cameraFollowLower": {
+                "x": 0.800000011920929,
+                "y": 0.20000000298023224,
+                "z": -1.5
+              },
+              "canBeHandledOnRecover": true,
+              "GPNPKCIICEE": -1,
+              "HGFKKBFBDKA": true,
+              "vcamFov": 30,
+              "cameraFollowMinDegree": -60,
+              "doOffStage": false,
+              "MEEPKNCPLJK": -1,
+              "NLBDOFNOIGL": true,
+              "cameraFollowMaxDegree": 60,
+              "cameraFollowUpper": {
+                "x": 0.5,
+                "y": -0.20000000298023224
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ActivityAbility_Endora_IsFocus",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndChannelTrigger",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Focus": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndChannelTrigger",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "LockMotionFlagExitChannel",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "RemovedFocusStateDelay",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearGlobalValue",
+              "key": "_ActivityAbility_Endora_IsFocus",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "mpTriggerOnRemote": true,
+              "canBeHandledOnRecover": true,
+              "triggerID": "StartChannelTrigger",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ActivityAbility_Endora_IsFocus",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "LockMotionFlagExitChannel",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Hallworld_Drxg_ShotXuli_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DummyAction",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RemovedFocusState": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Focus",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "RemovedFocusStateDelay",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        },
+        "RemovedFocusStateDelay": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ActionPanelController",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AvatarExitFocus",
+              "CEBHFOEODGL": -1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.6000000238418579,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Shoot": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 20643,
+              "costStaminaRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Focus",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Hallworld_Drxg_ShotXuli_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FocusAnchor",
+                "offset": {
+                  "z": 0.800000011920929
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "predicates": [
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByAvatarWeaponType",
+                      "target": "Target",
+                      "weaponTypes": [
+                        "WEAPON_BOW"
+                      ]
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "bulletID": 77401320,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttachPoint",
+                  "attachPointName": "FocusAnchor",
+                  "attachPointTargetType": "Self",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FocusAnchor",
+                "offset": {
+                  "z": 0.800000011920929,
+                  "y": 0.07999999821186066
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "predicates": [
+                {
+                  "$type": "ByAvatarWeaponType",
+                  "target": "Target",
+                  "weaponTypes": [
+                    "WEAPON_BOW"
+                  ]
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "bulletID": 77401320,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttachPoint",
+                  "attachPointName": "FocusAnchor",
+                  "angleOffset": {
+                    "y": -1.5
+                  },
+                  "attachPointTargetType": "Self",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FocusAnchor",
+                "offset": {
+                  "z": 0.800000011920929,
+                  "y": 0.30000001192092896
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Shoot_Short": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "AvatarSkillStart",
+              "skillID": 20643,
+              "costStaminaRatio": 1,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Hallworld_Drxg_ShotXuli_02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FocusAnchor",
+                "offset": {
+                  "z": 0.800000011920929
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 77401320,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "SelfAttackTarget",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttachPoint",
+                  "attachPointName": "FocusAnchor",
+                  "attachPointTargetType": "Self",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FocusAnchor",
+                "offset": {
+                  "z": 0.800000011920929,
+                  "y": 0.07999999821186066
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "attachPointTargetType": "Self"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Trigger_OnExit": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ABILITY_Common_Channel_IsTrigger",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Shoot_Short",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Common_Channel_IsTrigger",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "EHPMPEBJHAJ": true,
+      "onAvatarOut": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "RemovedFocusState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "predicates": [
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "PBGEHEGIMKH",
+                  "target": "Target",
+                  "sceneIds": [
+                    47101,
+                    47102,
+                    47103,
+                    47401,
+                    47402,
+                    47403,
+                    47404,
+                    47405,
+                    47406
+                  ]
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ActionPanelController",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "AvatarAbility_TriggerSnowBall_Serve"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Frozen_Duration": 5,
+        "Frozen_ProtectDuration": 15,
+        "SlowDownToFrozonCnt": 3,
+        "SpeedSlowDown_Duration": 5
+      },
+      "modifiers": {
+        "Init_Drxg_BeHit_Params": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_SnowBallBullet_BeHit_SlowDown",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Drxg_SnowBall_BeHittoFrozen",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ProtectToNotBeFrozen": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "ImInFrozenProtect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Frozen_ProtectDuration",
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "ImInFrozenProtect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SnowBallBullet_BeHit_Handler": {
+          "onRemoved": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Init_Drxg_BeHit_Params",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "ImInFrozen",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "ImInFrozenProtect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "GV_SnowBall_Hit_Count",
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_SnowBall_Hit_Count",
+                      "compareType": "MoreThanAndEqual",
+                      "value": "SlowDownToFrozonCnt"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ImInFrozenProtect",
+                      "compareType": "NoneOrEqual"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ImInFrozen",
+                      "compareType": "NoneOrEqual"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "UNIQUE_Drxg_SnowBall_BeHittoFrozen",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_SnowBall_Hit_Count",
+                      "compareType": "Between",
+                      "maxValue": "SlowDownToFrozonCnt"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ImInFrozen",
+                      "compareType": "NoneOrEqual"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "UNIQUE_SnowBallBullet_BeHit_SlowDown",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_SnowBall_Hit_Count",
+                      "compareType": "MoreThan"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ImInFrozenProtect",
+                      "value": 1
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "ImInFrozen",
+                      "compareType": "NoneOrEqual"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "UNIQUE_SnowBallBullet_BeHit_SlowDown",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_SnowBall_Hit_Count",
+                      "compareType": "LessAndEqual"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "AttachModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "Init_Drxg_BeHit_Params",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimationPauseByAbilityStateMixin",
+              "abilityStates": [
+                "ElementFrozen"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Drxg_SnowBall_BeHittoFrozen": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "ImInFrozen",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ProtectToNotBeFrozen",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Frozen_Duration",
+          "thinkInterval": 0.5,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "ImInFrozen",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "ElementFreeze",
+          "onThinkInterval": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "predicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "UNIQUE_SnowBallBullet_BeHit_SlowDown"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_SnowBallBullet_BeHit_SlowDown",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "OverrideStickElemUIMixin",
+              "effName": "Frozen",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_SnowBallBullet_BeHit_SlowDown": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_SnowBall_Hit_Count",
+                  "compareType": "Between",
+                  "maxValue": "SlowDownToFrozonCnt"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_SnowBall_Hit_Count",
+                  "compareType": "MoreThanAndEqual",
+                  "value": "SlowDownToFrozonCnt"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "ImInFrozen",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Animator_MoveSpeedRatio": -0.5
+          },
+          "duration": "SpeedSlowDown_Duration",
+          "isLimitedProperties": true,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Beyd_Eff_Element_Frozen",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "SpeedDown",
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "EHPMPEBJHAJ": true,
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Init_Drxg_BeHit_Params",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "SnowBallBullet_BeHit_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "AvatarAbility_Hallworld_Drxg_Snowball_BeHit_01"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Owl_ChangeWeatherCnt": 15,
+        "RecoverTime": 360
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToGadgetStateMixin",
+          "modifierName": "Drxg_Owl_CloudyWeather",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Drxg_Owl_BigSnowWeather": {
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_ChangeWeatherToBigSnow",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "luaCallType": "FromGroup",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Drxg_Owl_CloudyWeather": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Owl_Emotion_Detector": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_SnowBall_Hit_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "SnowBallBeHit",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ChangeTag",
+              "tag": "ImOwl",
+              "EFPPKCJOHKN": true,
+              "canBeHandledOnRecover": true,
+              "isAdd": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+              "modifierNameSteps": [
+                "Drxg_Owl_BigSnowWeather"
+              ],
+              "valueSteps": [
+                [
+                  "Owl_ChangeWeatherCnt",
+                  0.5,
+                  "SUB"
+                ],
+                999
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_SnowBall_Hit_Count",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "EHPMPEBJHAJ": true,
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Owl_Emotion_Detector",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "SceneObj_Hallworld_Ani_Drxg_Prop_Snowowl_01"
+    }
+  }
+]

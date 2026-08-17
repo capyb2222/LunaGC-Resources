@@ -1,0 +1,2250 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_CACHE_ELEMENT",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 250,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "DendroSkin",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "cache_element": 250,
+        "charge_global_adjust": 1,
+        "dendro_skin_sub_hurt_delta": 0,
+        "dendro_skin_sub_hurt_delta_grass": 0,
+        "electric_charge": 2,
+        "overdose_attenuation_ratio": 0.20000000298023224,
+        "overdose_attenuation_timer": 3,
+        "overdose_charge": 15,
+        "stun_time": 16,
+        "sub_hurt_delta": -0.30000001192092896
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Stage_0_Decay",
+            "Stage_1_Normal",
+            "Stage_2_OverdoseStun",
+            "Stage_3_ReadyForRecovery"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5,
+            3.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_RAPTOR_STATE",
+          "defaultGlobalValueOnCreate": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Stun",
+            "Stun_RopeBound"
+          ],
+          "value": -1,
+          "modifierName": "Stun_Timer",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Stun",
+            "Stun_RopeBound"
+          ],
+          "value": -1,
+          "modifierName": "Prop_Stun_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Stun",
+            "Stun_RopeBound",
+            "RopeBound_Loop",
+            "RopeBound_BS"
+          ],
+          "value": -1,
+          "modifierName": "Fall_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "exitActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_RAPTOR_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "Recovery_RopeBound",
+            "Recovery"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "RopeBound_BS",
+            "RopeBound_Loop",
+            "RopeBound_Overdose_BS"
+          ],
+          "value": -1,
+          "modifierName": "TemporaryRemoveSkin",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "AssistOption_4_Cancel": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ENABLE_SHIELD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CACHE_ELEMENT",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 250,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DendroSkin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "AssistOption_4_Selected": {
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_FUNGUS_RAPTOR_ISCHARGED_",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "GrassAttach"
+              ],
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_MONSTER_FUNGUS_RAPTOR_ISCHARGED_",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ChargeBar_OnFull": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CACHE_ELEMENT",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EnterOverdoseTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                3,
+                0,
+                0
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_RAPTOR_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Decay_CD_Timer": {
+          "thinkInterval": 18,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_RAPTOR_DECAY_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_RAPTOR_DECAY_IN_CD",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Decay_CD_Timer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "DendroSkin": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_NOT_IN_DENDRO_SKIN",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "elementType": "Grass",
+          "properties": {
+            "Actor_ElecSubHurtDelta": "dendro_skin_sub_hurt_delta",
+            "Actor_FireSubHurtDelta": "dendro_skin_sub_hurt_delta",
+            "Actor_GrassSubHurtDelta": "dendro_skin_sub_hurt_delta_grass",
+            "Actor_IceSubHurtDelta": "dendro_skin_sub_hurt_delta",
+            "Actor_PhysicalSubHurtDelta": "dendro_skin_sub_hurt_delta",
+            "Actor_RockSubHurtDelta": "dendro_skin_sub_hurt_delta",
+            "Actor_WaterSubHurtDelta": "dendro_skin_sub_hurt_delta",
+            "Actor_WindSubHurtDelta": "dendro_skin_sub_hurt_delta"
+          },
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_Charged",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueToOverrideMap",
+              "canBeHandledOnRecover": true,
+              "overrideMapKey": "cache_element",
+              "globalValueKey": "_CACHE_ELEMENT",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DendroSkin",
+              "value": "cache_element",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_NOT_IN_DENDRO_SKIN",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 250,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ShieldBarMixin",
+              "barElementType": "Grass",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Fall_State": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_EffigyChallenge_V5_Boss_Fall",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_EffigyChallenge_V5_Boss_DisableButtonT",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_CAMERA_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_EffigyChallenge_V5_Boss_Fall",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_EffigyChallenge_V5_Boss_DisableButtonT",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_CAMERA_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GrassAttach": {
+          "elementType": "Grass",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_Charged",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Overdose_Hit_Timer": {
+          "thinkInterval": "overdose_attenuation_timer",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_OVERDOSE_CHARGE_ATTENUATION",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Prop_Stun_State": {
+          "properties": {
+            "Actor_ElecSubHurtDelta": "sub_hurt_delta",
+            "Actor_FireSubHurtDelta": "sub_hurt_delta",
+            "Actor_GrassSubHurtDelta": "sub_hurt_delta",
+            "Actor_IceSubHurtDelta": "sub_hurt_delta",
+            "Actor_PhysicalSubHurtDelta": "sub_hurt_delta",
+            "Actor_RockSubHurtDelta": "sub_hurt_delta",
+            "Actor_WaterSubHurtDelta": "sub_hurt_delta",
+            "Actor_WindSubHurtDelta": "sub_hurt_delta"
+          },
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Stage_0_Decay": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Decay_CD_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Decay_CD_Timer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Animator_MoveSpeedRatio": 0.5
+          },
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_CHARGEBAR_VALUE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "intID": "BattleStage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_DecayState",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OverrideMonsterMoveSpeedRatioMixin",
+              "minValue": -0.800000011920929,
+              "showID": -0.20000000298023224,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Stage_1_Normal": {
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "intID": "BattleStage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ChargeBarMixin",
+              "chargeBarElementType": "Electric",
+              "chargeBarIconID": 2,
+              "maxValue": 100,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "ChargeBar_OnFull"
+              ],
+              "valueSteps": [
+                99.5,
+                100.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_CHARGEBAR_VALUE",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "Overdose_Hit_Timer"
+              ],
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_OVERDOSE_CHARGE_ATTENUATION",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "AssistOption_4_Cancel",
+                "AssistOption_4_Selected"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -0.10000000149011612,
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_EffigyChallenge_V5_AssistOptionSelected_4",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionBySelfElementReactionMixin",
+              "actionQueue": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "AddGlobalValue",
+                      "key": "_CHARGEBAR_VALUE",
+                      "canBeHandledOnRecover": true,
+                      "useLimitRange": true,
+                      "maxValue": 100,
+                      "doOffStage": false,
+                      "value": [
+                        "overdose_charge",
+                        "overdose_attenuation_ratio",
+                        "MUL",
+                        "charge_global_adjust",
+                        "MUL"
+                      ],
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "_OVERDOSE_CHARGE_ATTENUATION",
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "_OVERDOSE_CHARGE_ATTENUATION",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "AddGlobalValue",
+                      "key": "_CHARGEBAR_VALUE",
+                      "canBeHandledOnRecover": true,
+                      "useLimitRange": true,
+                      "maxValue": 100,
+                      "doOffStage": false,
+                      "value": [
+                        "overdose_charge",
+                        "charge_global_adjust",
+                        "MUL"
+                      ],
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "reactionTypes": [
+                "OverdoseElectric",
+                "OverdoseGrass"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByHitElement",
+                      "target": "Target",
+                      "element": "Fire"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "AddGlobalValue",
+                      "key": "_CHARGEBAR_VALUE",
+                      "canBeHandledOnRecover": true,
+                      "useLimitRange": true,
+                      "maxValue": 100,
+                      "doOffStage": false,
+                      "value": -34,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "Predicated",
+                      "canBeHandledOnRecover": true,
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_RAPTOR_DECAY_IN_CD",
+                          "compareType": "NoneOrEqual",
+                          "target": "Target"
+                        },
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_RAPTOR_STATE",
+                          "compareType": "MoreThan",
+                          "target": "Target"
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "ServerMonsterLog",
+                          "paramList": [
+                            3,
+                            1,
+                            0
+                          ],
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValue",
+                          "key": "_RAPTOR_STATE",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHitElement",
+                  "target": "Target",
+                  "element": "Electric"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_CHARGEBAR_VALUE",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 100,
+                  "doOffStage": false,
+                  "value": [
+                    "electric_charge",
+                    "charge_global_adjust",
+                    "MUL"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "Stage_2_OverdoseStun": {
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 2,
+              "intID": "BattleStage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_OverdoseState",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DendroSkin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OverrideMonsterMoveSpeedRatioMixin",
+              "showID": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Stage_3_ReadyForRecovery": {
+          "onAdded": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 3,
+              "intID": "BattleStage",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Stun_Timer": {
+          "thinkInterval": "stun_time",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_RAPTOR_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 3,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "TemporaryRemoveSkin": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_CACHE_ELEMENT",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_EffigyChallenge_V5_AssistOptionSelected_4",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DendroSkin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_CACHE_ELEMENT",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "DendroSkin"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetElementDurabilityToGlobalValue",
+                  "canBeHandledOnRecover": true,
+                  "globalValueKey": "_CACHE_ELEMENT",
+                  "doOffStage": false,
+                  "modifierName": "DendroSkin",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "DendroSkin",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachAbilityStateResistance",
+          "resistanceBuffDebuffs": [
+            "ElementFreeze",
+            "Struggle",
+            "ElementPetrifaction"
+          ],
+          "durationRatio": 1,
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_RAPTOR_DECAY_IN_CD",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_EffigyChallenge_V5_Boss_Fall",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "GV_EffigyChallenge_V5_Boss_DisableButtonT",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_MONSTER_FUNGUS_RAPTOR_ISCHARGED_",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ENABLE_SHIELD",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_NOT_IN_DENDRO_SKIN",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_CACHE_ELEMENT",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 250,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_StateManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "EnablePushColliderName",
+          "pushColliderNames": [
+            "PushCollider",
+            "PushCollider_Extra"
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "OMGAHMIGHHO": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "EnablePushColliderName",
+          "pushColliderNames": [
+            "PushColliderStun",
+            "PushColliderStun_Extra",
+            "PushColliderRopeBound",
+            "PushColliderRopeBound_Extra"
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Stun"
+          ],
+          "value": -1,
+          "modifierName": "Stun_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "RopeBound_Loop",
+            "Stun_RopeBound"
+          ],
+          "value": -1,
+          "modifierName": "RopeBound_State",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToMultiNormalizedTimeMixin",
+          "value": -1,
+          "normalizedStateIDList": [
+            {
+              "stateID": "ConfusedJumpAttack_1",
+              "normalizeEnd": 0.35199999809265137,
+              "normalizeStart": 0.11500000208616257
+            },
+            {
+              "stateID": "ConfusedJumpAttack_2",
+              "normalizeEnd": 0.35199999809265137,
+              "normalizeStart": 0.11500000208616257
+            },
+            {
+              "stateID": "ConfusedJumpAttack_2",
+              "normalizeEnd": 0.35199999809265137,
+              "normalizeStart": 0.11500000208616257
+            },
+            {
+              "stateID": "MeleeAttack03",
+              "normalizeEnd": 0.3499999940395355,
+              "normalizeStart": 0.10000000149011612
+            },
+            {
+              "stateID": "PowerJump01",
+              "normalizeEnd": 0.3499999940395355,
+              "normalizeStart": 0.10000000149011612
+            },
+            {
+              "stateID": "PowerJump02",
+              "normalizeEnd": 0.3499999940395355,
+              "normalizeStart": 0.10000000149011612
+            }
+          ],
+          "modifierName": "Jump_State",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Jump_State": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Fungus_Raptor_BossEvent_ColliderManager",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IN_AIR",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider",
+                "PushCollider_Extra",
+                "PushColliderStun",
+                "PushColliderStun_Extra",
+                "PushColliderRopeBound",
+                "PushColliderRopeBound_Extra"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IN_AIR",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RopeBound_State": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Fungus_Raptor_BossEvent_ColliderManager",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushColliderRopeBound",
+                "PushColliderRopeBound_Extra"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider",
+                "PushCollider_Extra",
+                "PushColliderStun",
+                "PushColliderStun_Extra"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Stun_State": {
+          "onRemoved": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Fungus_Raptor_BossEvent_ColliderManager",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushColliderStun",
+                "PushColliderStun_Extra"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider",
+                "PushCollider_Extra",
+                "PushColliderRopeBound",
+                "PushColliderRopeBound_Extra"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "TriggerAbility",
+          "canBeHandledOnRecover": true,
+          "target": "Other",
+          "doOffStage": false,
+          "abilityName": "Monster_Fungus_Raptor_BossEvent_ColliderManager",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_IN_AIR",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_ColliderManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ToJump"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "StartMeleeAttack",
+            "StartChargeAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_AS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6499999761581421,
+          "angularSpeed": 360,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.36000001430511475,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChangeState"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6399999856948853,
+          "angularSpeed": 120,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "TurnLeft"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6399999856948853,
+          "angularSpeed": 460,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.4000000059604645,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "TurnRight"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6399999856948853,
+          "angularSpeed": 460,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.4000000059604645,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "Warning"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.8399999737739563,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.7400000095367432,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "MeleeAttack01_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.5,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "MeleeAttack02_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "SporeAttack_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttack_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "PowerAttack_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_BS"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 30,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_RushLoop"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 99,
+          "angularSpeed": 15,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_TurnLeft"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.33000001311302185,
+          "angularSpeed": 15,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_TurnLeft"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.33000001311302185,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_TurnRight"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.33000001311302185,
+          "angularSpeed": 15,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ChargeAttack_TurnRight"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 180,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.33000001311302185,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "BackStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttackBackStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "LeftStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "RightStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "MeleeAttackLeftStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "MeleeAttackRightStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttackLeftStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ShootAttackRightStep"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.6000000238418579,
+          "angularSpeed": 240,
+          "LCAEKNCHHNM": 180,
+          "startNormalizedTime": 0.30000001192092896,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SteerAttackMixin",
+          "steerStateIDs": [
+            "ConfusedMeleeAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 1,
+          "angularSpeed": 190,
+          "LCAEKNCHHNM": 180,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_SteerAttack"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RopeBound_Monitor",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "RopeBound_Monitor",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "sub_hurt_delta": -0.15000000596046448
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "RopeBound_Ready",
+            "RopeBound_Start"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_EffigyChallenge_V5_AssistSkillUsed",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "RopeBound_BS",
+            "RopeBound_Loop",
+            "RopeBound_Overdose_BS",
+            "Stun_RopeBound"
+          ],
+          "value": -1,
+          "modifierName": "RopeBound_State_VFX",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Dummy_Bullet_Timer": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "RopeBound",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ServerMonsterLog",
+              "paramList": [
+                3,
+                2,
+                0
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_BossEvent_BidingRope_BS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RopeBound_Monitor": {
+          "thinkInterval": 0.05000000074505806,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IN_AIR",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Dummy_Bullet_Timer",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "RopeBound_Monitor",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "RopeBound_Ready": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RopeBound_Start": {
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Monster_Fungus_Raptor_BossEvent_RopeBoundLogic",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RopeBound_State_VFX": {
+          "onRemoved": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_BossEvent_BidingRope_AS",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_ElecSubHurtDelta": "sub_hurt_delta",
+            "Actor_FireSubHurtDelta": "sub_hurt_delta",
+            "Actor_GrassSubHurtDelta": "sub_hurt_delta",
+            "Actor_IceSubHurtDelta": "sub_hurt_delta",
+            "Actor_PhysicalSubHurtDelta": "sub_hurt_delta",
+            "Actor_RockSubHurtDelta": "sub_hurt_delta",
+            "Actor_WaterSubHurtDelta": "sub_hurt_delta",
+            "Actor_WindSubHurtDelta": "sub_hurt_delta"
+          },
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_BossEvent_BidingRope_Loop",
+              "scale": 1,
+              "doOffStage": false,
+              "MMBHFKIOIKL": true,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_RopeBoundLogic"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "ChargeAttack_BS",
+            "ChargeAttack_RushLoop"
+          ],
+          "value": -1,
+          "modifierName": "ChargeLoop_VFX",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ChargeLoop_VFX": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_Fungus_Raptor_ChargeAttack_RushLoop_01",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_ChargeAttack"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_CAMERA_STATE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Camera_Default",
+            "Camera_StunView",
+            "Camera_UltView",
+            "Camera_JumpView"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5,
+            3.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_CAMERA_STATE",
+          "defaultGlobalValueOnCreate": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAIAlertnessMixin",
+          "alertness": [
+            2,
+            3
+          ],
+          "modifierName": "Camera_Manager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Camera_Default": {
+          "onAdded": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "BasicView",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Camera_JumpView": {
+          "onAdded": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "JumpView",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Camera_Manager": {
+          "onReconnect": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "BasicView",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_CAMERA_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_CAMERA_STATE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByStateIDMixin",
+              "enterActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_CAMERA_STATE",
+                  "predicates": [
+                    {
+                      "$type": "ByNot",
+                      "predicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "_CAMERA_STATE",
+                          "target": "Target"
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "stateIDs": [
+                "NormalIdle"
+              ],
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByStateIDMixin",
+              "enterActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_CAMERA_STATE",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 2,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "stateIDs": [
+                "StartChargeAttack",
+                "StartMeleeAttack",
+                "ChangeState"
+              ],
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Camera_StunView": {
+          "onAdded": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "StunView",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Camera_UltView": {
+          "onAdded": [
+            {
+              "$type": "SetLockingV3Config",
+              "enable": true,
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "specialCameraName": "UltView",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_CameraManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_CAMERA_STATE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 3,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_Camera_JumpView"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_CAMERA_STATE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 2,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_Camera_UltView"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalPos",
+          "key": "_JUMP_POS",
+          "canBeHandledOnRecover": true,
+          "target": "SelfAttackActiveTarget",
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByTargetLinearPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "FFELNAIDFOO": true,
+            "onGroundRaycastUpDist": 2,
+            "LGOGOBEBJPO": true,
+            "linearOffset": 0.5
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_Monster_Fungus_Raptor_BossEvent_JumpAttack_Alert",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByGlobalValue",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "positionKey": "_JUMP_POS"
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FixedMonsterRushMove",
+          "maxRange": -1,
+          "timeRange": 0.8399999737739563,
+          "canBeHandledOnRecover": true,
+          "toPos": {
+            "$type": "ConfigBornByGlobalValue",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "value": 10,
+            "onGroundRaycastUpDist": 2,
+            "positionKey": "_JUMP_POS"
+          },
+          "animatorStateIDs": [
+            "ConfusedJumpAttack_1",
+            "ConfusedJumpAttack_2",
+            "PowerJump01",
+            "PowerJump02"
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1,
+          "PODDIMABFJD": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "SteerAttackTraceToPosMixin",
+          "steerStateIDs": [
+            "PowerJump",
+            "ConfusedJumpAttack"
+          ],
+          "APJGHNNHBOG": true,
+          "value": -1,
+          "endNormalizedTime": 0.15000000596046448,
+          "angularSpeed": 800,
+          "LCAEKNCHHNM": 180,
+          "globalPosKey": "_JUMP_POS",
+          "startNormalizedTime": 0.10000000149011612,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "_JUMP_POS",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_JumpWarning"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_RAPTOR_STATE",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "PutOutFire",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "PutOutFire": {
+          "elementType": "AntiFire",
+          "duration": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Monster_Fungus_Raptor_BossEvent_ToNormalState"
+    }
+  }
+]

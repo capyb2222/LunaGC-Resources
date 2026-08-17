@@ -1,0 +1,2258 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "RandomLatency": 0.10000000149011612
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Activity_ChannellerSlab_DangerArea_Active",
+            "Activity_ChannellerSlab_DangerArea_CoolDown"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DANGERAREA_StateID",
+          "defaultGlobalValueOnCreate": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Activity_ChannellerSlab_DangerArea_ActiveEffect"
+          ],
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_DANGERAREA_ActiveEffect",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FieldEntityCountChangeMixin",
+          "targetPredicates": [
+            {
+              "$type": "ByEntityTypes",
+              "value": -1,
+              "target": "Target",
+              "entityTypes": [
+                "Avatar"
+              ]
+            }
+          ],
+          "simpleCountUseLimitRange": true,
+          "onFieldExit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DANGERAREA_Avatar_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "campTargetType": "Enemy",
+          "onFieldEnter": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_DANGERAREA_Avatar_Count",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Activity_ChannellerSlab_CountDown": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Alert",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Alert_Enhanced",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "CreateGadget",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "IMHMMLGIHCL": true,
+              "KIFCNCEFANN": {
+                "enable": true,
+                "IDIMGDPHLCB": 0.5,
+                "JGGJGFDOKFJ": 0.5,
+                "OCJBGKNDDAK": true
+              },
+              "onGround": true,
+              "campID": 4001,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true
+              },
+              "gadgetID": 49001018,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_ActiveEffect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_StateID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "LNEPKOKJEJG": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Activity_ChannellerSlab_DangerArea_Active": {
+          "thinkInterval": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DANGERAREA_Avatar_Count",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 0.5
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Activity_ChannellerSlab_CountDown",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_DANGERAREA_Avatar_Count",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 0.5
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Activity_ChannellerSlab_CountDown",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Activity_ChannellerSlab_DangerArea_ActiveEffect": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "DangerArea_ActiveEffect_Normal",
+                "DangerArea_ActiveEffect_Enhanced"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Activity_ChannellerSlab_DangerArea_CoolDown": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Activity_ChannellerSlab_DangerArea_CoolDown_Recover",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 6.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Activity_ChannellerSlab_DangerArea_CoolDown_Recover": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_StateID",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1.5,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_DANGERAREA_ActiveEffect",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DangerArea_ActiveEffect_Enhanced": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Active_Enhanced",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "DangerArea_ActiveEffect_Normal": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Active",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Activity_ChannellerSlab_DangerArea_CoolDown_Recover",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Activity_ChannellerSlab_DangerArea"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Activity_ChannellerSlab_DangerArea_EnhancedTag"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DamageRatio": 0,
+        "DamageRatioEnhanced": 0,
+        "ElementLevelCo": 0
+      },
+      "modifiers": {
+        "ChargeAtk_LatencyGadget": {
+          "duration": 0.5,
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+                  "compareType": "NoneOrEqual",
+                  "target": "Owner"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Trigger",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+                  "target": "Owner",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Activity_ChannellerSlab_DangerArea_Trigger_Enhanced",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "$type": "ConfigDirectionByWorld",
+                  "eularAngles": {
+                    "x": 0.10000000149011612,
+                    "y": 0.10000000149011612,
+                    "z": 0.10000000149011612
+                  },
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2,
+                "onGroundIgnoreWater": true,
+                "alongGround": true
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV4",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.11999999731779099,
+                    "shakeRange": 0.11999999731779099,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "z": -1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "enBreak": 30,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "DamageRatio",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 100,
+                    "attackType": "Range",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 7.5,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 20,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityIsAlive",
+                  "target": "Owner"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+                  "compareType": "NoneOrEqual",
+                  "target": "Owner"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            },
+            {
+              "$type": "TriggerAttackEvent",
+              "attackEvent": {
+                "attackInfo": {
+                  "hitPattern": {
+                    "hitImpulseType": "LV4",
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "cameraShake": {
+                    "extension": {
+                      "cycleDamping": 0.11999999731779099,
+                      "baseOnCamera": true,
+                      "rangeAttenuation": 0.5,
+                      "baseCycle": 0.11999999731779099
+                    },
+                    "shakeTime": 0.11999999731779099,
+                    "shakeRange": 0.11999999731779099,
+                    "shakeDistance": 30,
+                    "shakeDir": {
+                      "z": -1
+                    },
+                    "shakeType": "CustomVector"
+                  },
+                  "forceCameraShake": true,
+                  "attackProperty": {
+                    "enBreak": 30,
+                    "damageExtra": [
+                      "ElementLevelCo",
+                      "DamageRatioEnhanced",
+                      "MUL"
+                    ],
+                    "IOLHEGDMIBF": true,
+                    "KEBENMLLFJH": true,
+                    "elementDurability": 100,
+                    "attackType": "Range",
+                    "elementRank": 1
+                  },
+                  "KMBBLIMOMBH": {
+                    "LMEIODIINNM": "Shake"
+                  },
+                  "attenuationGroup": "default",
+                  "OLHIHLILEKH": {
+                    "onHitEffectName": "default",
+                    "NPLKKCCDEDJ": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  }
+                },
+                "attackPattern": {
+                  "$type": "ConfigAttackCircle",
+                  "BCIDGAKNEBH": {
+                    "BPIDFNFCNHP": {
+                      "value": 1,
+                      "NJICIOFCOPD": true
+                    }
+                  },
+                  "radius": 10,
+                  "triggerType": "TriggerNoRepeat",
+                  "massiveAttackRatio": 1,
+                  "fanAngle": 360,
+                  "height": 20,
+                  "born": {
+                    "$type": "ConfigBornBySelf",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  }
+                }
+              },
+              "predicates": [
+                {
+                  "$type": "ByEntityIsAlive",
+                  "target": "Owner"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ACTIVIITY_ChannellerSlab_DangerArea_EnhancedTag",
+                  "target": "Owner",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1,
+              "targetType": "Enemy"
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ChargeAtk_LatencyGadget",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetSystemValueToOverrideMap",
+          "type": "ElementLevelCo",
+          "key": "ElementLevelCo",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "param3": -1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Activity_ChannellerSlab_DamageArea_Impulse"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "HPUpRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv1": {
+          "isUnique": true,
+          "properties": {
+            "Actor_MaxHPRatio": "HPUpRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv1",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv1"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "HPUpRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv2": {
+          "isUnique": true,
+          "properties": {
+            "Actor_MaxHPRatio": "HPUpRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv2",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv2"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "HPUpRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv3": {
+          "isUnique": true,
+          "properties": {
+            "Actor_MaxHPRatio": "HPUpRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv3",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Monster_HpUp_Lv3"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AtkUpRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_AtkUp_Lv1": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "AtkUpRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Monster_AtkUp_Lv1",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Monster_AtkUp_Lv1"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ShieldCostMinusRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_ShieldCostMinusDown": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ShieldCostMinusRatio": "ShieldCostMinusRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_ShieldCostMinusDown",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_ShieldCostMinusDown"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "MoveSpeedRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_MoveSpeedDown": {
+          "isUnique": true,
+          "properties": {
+            "Animator_MoveSpeedRatio": "MoveSpeedRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_MoveSpeedDown",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_MoveSpeedDown"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CostStaminaRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_ChannellerSlabV2_DashStaminaReduction": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CostStaminaRatio": "CostStaminaRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_DashStaminaUp": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "Sprint",
+                "SprintBS"
+              ],
+              "value": -1,
+              "modifierName": "UNIQUE_ChannellerSlabV2_DashStaminaReduction",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_DashStaminaUp",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_DashStaminaUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "SkillCDMinusRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_SkillCDIncrement": {
+          "isUnique": true,
+          "properties": {
+            "Actor_SkillCDMinusRatio": "SkillCDMinusRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": true,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_SkillCDIncrement",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_SkillCDIncrement"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "RecoverStaminaRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_RecoverStaminaRatioDown": {
+          "isUnique": true,
+          "properties": {
+            "Actor_RecoverStaminaRatio": "RecoverStaminaRatio"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_RecoverStaminaRatioDown",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_RecoverStaminaRatioDown"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AttackRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_Handler": {
+          "isUnique": true,
+          "thinkInterval": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_Ability_EnergyDisk_NoShieldAtkDown_Check",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasShield",
+                  "type": "All",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "_Ability_EnergyDisk_NoShieldAtkDown_Check",
+                  "canBeHandledOnRecover": true,
+                  "minValue": 1,
+                  "useLimitRange": true,
+                  "maxValue": 1,
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_Handler_AS": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_HasDebuff",
+                "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_NoDebuff"
+              ],
+              "valueSteps": [
+                -0.5,
+                0.5,
+                1.5
+              ],
+              "removeAppliedModifier": true,
+              "globalValueKey": "_Ability_EnergyDisk_NoShieldAtkDown_Check",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_HasDebuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "AttackRatio"
+          },
+          "isLimitedProperties": true,
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Avatar_Properties_Attack_Down",
+              "scale": 1,
+              "doOffStage": true,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_NoDebuff": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_EffigyChallenge_NoShieldAtkDown_HasDebuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "AllPlayerAvatars",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_EnergyDisk_Lv1_NoShieldAtkDown_Handler_AS",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_NoShieldAtkDown"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "AtkRate_P2": 0,
+        "HpRate_P1": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixin",
+          "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_Del_EnergyDisk_AtkDownLowHP_Sub": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_AtkDownLowHP": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "modifierName": "UNIQUE_Del_EnergyDisk_AtkDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_AtkDownLowHP_Sub": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "AtkRate_P2"
+          },
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Avatar_Properties_Attack_Down",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Team_AtkDownLowHP"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "HpRate_P1": 0,
+        "MoveSpeedRatio_P2": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixin",
+          "modifierName": "UNIQUE_EnergyDisk_SpeedDownLowHP",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_Del_EnergyDisk_SpeedDownLowHP_Sub": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_SpeedDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_SpeedDownLowHP": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_SpeedDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "GreaterOrEqual",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "modifierName": "UNIQUE_Del_EnergyDisk_SpeedDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "modifierName": "UNIQUE_EnergyDisk_SpeedDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_SpeedDownLowHP_Sub": {
+          "isUnique": true,
+          "properties": {
+            "Animator_MoveSpeedRatio": "MoveSpeedRatio_P2"
+          },
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Avatar_Properties_Attack_Down",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_EnergyDisk_SpeedDownLowHP",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Team_SpeedDownLowHP"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Duration": 0,
+        "SubHurtDelta": 0
+      },
+      "modifiers": {
+        "LevelEntity_EnergyDisk_Lv3_SprintBeHurtDamageUp_Check": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "SprintBS"
+              ],
+              "value": -1,
+              "modifierName": "UNIQUE_LevelEntity_EnergyDisk_Lv3_SprintBeHurtDamageUp_Applier",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_Lv3_SprintBeHurtDamageUp_Avatar": {
+          "isUnique": true,
+          "properties": {
+            "Actor_SubHurtDelta": "SubHurtDelta"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_LevelEntity_EnergyDisk_Lv3_SprintBeHurtDamageUp_Applier": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_LevelEntity_EnergyDisk_Lv3_SprintBeHurtDamageUp_Team",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_LevelEntity_EnergyDisk_Lv3_SprintBeHurtDamageUp_Team": {
+          "isUnique": true,
+          "duration": "Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixinV2",
+              "modifierName": "UNIQUE_EnergyDisk_Lv3_SprintBeHurtDamageUp_Avatar",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "RefreshUniqueDurability"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "LevelEntity_EnergyDisk_Lv3_SprintBeHurtDamageUp_Check",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_SprintBeHurtDamageUp"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "BuffMaxCount": 0,
+        "Duration": 0,
+        "EnergyDisk_BeHurtSubHurt": 0,
+        "EnergyDisk_BuffCurCount": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixin",
+          "modifierName": "UNIQUE_LevelEntity_EnergyDisk_Lv3_BeHurtDamageUpAfterChangeAvatar",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_EnergyDisk_Lv3_BeHurtDamageUpAfterChangeAvatarEffect": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "EnergyDisk_BeHurtDamageUpAfterChangeAvatar_BuffLayer",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_SubHurtDelta": [
+              "EnergyDisk_BeHurtSubHurt",
+              "EnergyDisk_BuffCurCount",
+              "MUL"
+            ]
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_LevelEntity_EnergyDisk_Lv3_BeHurtDamageUpAfterChangeAvatar": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onAvatarIn": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "EnergyDisk_BeHurtDamageUpAfterChangeAvatar_BuffLayer",
+              "predicates": [
+                {
+                  "$type": "ByIsCombat",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "minValue": -1,
+              "useLimitRange": true,
+              "maxValue": "BuffMaxCount",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "EnergyDisk_BeHurtDamageUpAfterChangeAvatar_BuffLayer",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueToOverrideMap",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "overrideMapKey": "EnergyDisk_BuffCurCount",
+                  "globalValueKey": "EnergyDisk_BeHurtDamageUpAfterChangeAvatar_BuffLayer",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_EnergyDisk_Lv3_BeHurtDamageUpAfterChangeAvatarEffect",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalValue",
+          "key": "EnergyDisk_BeHurtDamageUpAfterChangeAvatar_BuffLayer",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Team_BeHurtDamageUpAfterChangeAvatar"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "BuffMaxCount": 0,
+        "Duration": 0,
+        "EnergyDisk_BeHurtSubHurt": 0,
+        "EnergyDisk_BuffCurCount": 0
+      },
+      "modifiers": {
+        "Reset_CountDown": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "EnergyDisk_BeHurtDamageUpAfterULT_BuffLayer",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "Duration",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_Effect": {
+          "isUnique": true,
+          "properties": {
+            "Actor_SubHurtDelta": [
+              "EnergyDisk_BeHurtSubHurt",
+              "EnergyDisk_BuffCurCount",
+              "MUL"
+            ]
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "DefenseDown",
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_Manager": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CurLocalAvatarMixin",
+              "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_CastDetect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_CastDetect": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "EnergyDisk_BeHurtDamageUpAfterULT_BuffLayer",
+                  "compareType": "MoreThan",
+                  "target": "Caster"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": false,
+              "modifierName": "UNIQUE_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_Effect",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OnAvatarUseSkillMixin",
+              "onTriggerUltimateSkill": [
+                {
+                  "$type": "AddGlobalValue",
+                  "key": "EnergyDisk_BeHurtDamageUpAfterULT_BuffLayer",
+                  "predicates": [
+                    {
+                      "$type": "ByIsCombat",
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "minValue": -1,
+                  "useLimitRange": true,
+                  "maxValue": "BuffMaxCount",
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_Effect",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueToOverrideMap",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "overrideMapKey": "EnergyDisk_BuffCurCount",
+                  "globalValueKey": "EnergyDisk_BeHurtDamageUpAfterULT_BuffLayer",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_Effect",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "modifierName": "Reset_CountDown",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "clearSkillIdDelay": 0.20000000298023224,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT_Manager",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Team_BeHurtDamageUpAfterULT"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "DmgRate_P3": 0,
+        "DmgRate_P4": 0,
+        "HpRate_P1": 0,
+        "HpRate_P2": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "CurLocalAvatarMixin",
+          "modifierName": "UNIQUE_EnergyDisk_Lv2_AtkDownLowHP",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_Del_EnergyDisk_AtkDownLowHP_Sub": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_AtkDownLowHP_Sub1": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "DmgRate_P3"
+          },
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Avatar_Properties_Attack_Down",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_AtkDownLowHP_Sub2": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AddHurtDelta": "DmgRate_P4"
+          },
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Avatar_Properties_Attack_Down",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_EnergyDisk_Lv2_AtkDownLowHP": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                },
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "GreaterOrEqual",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P2"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P2"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub2",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                },
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "GreaterOrEqual",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P2"
+                }
+              ],
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub1",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "Lesser",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P2"
+                }
+              ],
+              "modifierName": "UNIQUE_EnergyDisk_AtkDownLowHP_Sub2",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToPredicateMixin",
+              "onEvent": "HP",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "logic": "GreaterOrEqual",
+                  "target": "Target",
+                  "HPRatio": "HpRate_P1"
+                }
+              ],
+              "modifierName": "UNIQUE_Del_EnergyDisk_AtkDownLowHP_Sub",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Team_AtkDownLowHP_TwoStages"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ModifyRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_MonsterAffix_WeakTimeModify_ForChannellerSlabV2": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_MONSTER_WeakTime_ExtraRatio",
+              "canBeHandledOnRecover": true,
+              "minValue": -1,
+              "useLimitRange": true,
+              "maxValue": 10,
+              "doOffStage": false,
+              "value": "ModifyRatio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_MONSTER_WeakTime_ExtraRatio",
+              "canBeHandledOnRecover": true,
+              "minValue": -1,
+              "useLimitRange": true,
+              "maxValue": 10,
+              "doOffStage": false,
+              "value": "ModifyRatio",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_MonsterAffix_WeakTimeModify_ForChannellerSlabV2",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "MonsterAffix_WeakTimeModify_ForChannellerSlabV2"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "SelfHealLatency": 0,
+        "SelfHealRatio": 0,
+        "SelfHealThreshold": 0,
+        "Times": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "GeneralSkill_WaterEnhance_SelfHeal_Manager",
+            "Blank"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            [
+              "Times",
+              0.5,
+              "ADD"
+            ]
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "_MONSTER_GeneralSkill_WaterEnhance_SelfHeal_Times",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GeneralSkill_WaterEnhance_SelfHeal_Latency": {
+          "onRemoved": [
+            {
+              "$type": "HealHP",
+              "predicates": [
+                {
+                  "$type": "ByEntityIsAlive",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "amountByTargetMaxHPRatio": "SelfHealRatio",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByEntityIsAlive",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_GeneralSkill_SelfHeal_HealEffect",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "SelfHealLatency",
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_GeneralSkill_SelfHeal_Alert",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "GeneralSkill_WaterEnhance_SelfHeal_Manager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Monster_GeneralSkill_SelfHeal_FootCircle",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToHPPercentMixin",
+              "modifierNameSteps": [
+                "Blank",
+                "GeneralSkill_WaterEnhance_SelfHeal_Trigger"
+              ],
+              "valueSteps": [
+                "SelfHealThreshold"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "GeneralSkill_WaterEnhance_SelfHeal_Trigger": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "_MONSTER_GeneralSkill_WaterEnhance_SelfHeal_Times",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetHPRatio",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "GeneralSkill_WaterEnhance_SelfHeal_Latency",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onKill": [
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "GeneralSkill_WaterEnhance_SelfHeal_Manager",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "RemoveModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "GeneralSkill_WaterEnhance_SelfHeal_Latency",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "GeneralSkill_SelfHeal_ForChannellerSlabV2"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ChargeEfficiencyDelta": 0
+      },
+      "modifiers": {
+        "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_ChargeEfficiencyDelta": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ChargeEfficiencyDelta": "ChargeEfficiencyDelta"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_LevelEntity_ChannellerSlabV2_Avatar_ChargeEfficiencyDelta",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "LevelEntity_ChannellerSlabV2_Avatar_ChargeEfficiencyDelta"
+    }
+  }
+]

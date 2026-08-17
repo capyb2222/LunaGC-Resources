@@ -1,0 +1,1501 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "onAdded": [
+        {
+          "$type": "FireEffect",
+          "predicates": [
+            {
+              "$type": "ByTargetHPValue",
+              "logic": "Lesser",
+              "JFPBKJKDOIO": 1000
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_FireInitEffectCompleted",
+              "compareType": "NoneOrEqual"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_BalloonEnemy_Smoke_Small",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "EnemyNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "FireEffect",
+          "predicates": [
+            {
+              "$type": "ByTargetHPValue",
+              "JFPBKJKDOIO": 1000
+            },
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_FireInitEffectCompleted",
+              "compareType": "NoneOrEqual"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_BalloonEnemy_Smoke_Big",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "EnemyNode",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "EnableSceneTransformByName",
+          "canBeHandledOnRecover": true,
+          "transformNames": [
+            "Mesh"
+          ],
+          "doOffStage": false,
+          "OMGAHMIGHHO": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_FireInitEffectCompleted",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Common_Property_Ani_6_4_AirEmeny_NoFollow"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "AutoMoveMananger": {
+          "onAdded": [
+            {
+              "$type": "CopyGlobalValue",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_ContextData",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "srcKey": "SGV_ContextData",
+              "dstKey": "GV_ContextData",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "BornFireEffectModifier",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "State_AutoMoveController_AB",
+                "State_AutoMoveController_ABC",
+                "State_AutoMoveController_ABCD"
+              ],
+              "enable": true,
+              "valueSteps": [
+                1.5,
+                2.5,
+                3.5,
+                4.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "SGV_AutoMove",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "globalValueKey": "SGV_ContextData",
+              "actions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "SGV_ContextData",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "BornFireEffectModifier": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_IsBoss",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FireInitEffectCompleted",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_BalloonEnemy_Smoke_Small",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EnemyNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FireEffect",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_IsBoss",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_FireInitEffectCompleted",
+                  "compareType": "NoneOrEqual"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_BalloonEnemy_Smoke_Big",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "EnemyNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableSceneTransformByName",
+              "canBeHandledOnRecover": true,
+              "transformNames": [
+                "Mesh"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_FireInitEffectCompleted",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "CheckEnemyLifeTime": {
+          "onRemoved": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_ExitTargetPointID",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_ExitTargetPointID",
+                  "compareType": "MoreThan",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_ExitTargetPointID",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_ExitTargetPointID",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": "SGV_ExitTargetPointID",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "SGV_EnemyLifeTime",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "PointExit_1": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "CIBCHBLGBPF": [
+                {
+                  "$type": "EnableSceneTransformByName",
+                  "canBeHandledOnRecover": true,
+                  "transformNames": [
+                    "Mesh"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_MuteKillEffect",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    73120001,
+                    73120026,
+                    73120012
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "duration": "SGV_MoveToExitPointDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": 20,
+                "x": 65
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "PointExit_2": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "CIBCHBLGBPF": [
+                {
+                  "$type": "EnableSceneTransformByName",
+                  "canBeHandledOnRecover": true,
+                  "transformNames": [
+                    "Mesh"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_MuteKillEffect",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    73120001,
+                    73120026,
+                    73120012
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "duration": "SGV_MoveToExitPointDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": 20,
+                "y": 65
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "PointExit_3": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "CIBCHBLGBPF": [
+                {
+                  "$type": "EnableSceneTransformByName",
+                  "canBeHandledOnRecover": true,
+                  "transformNames": [
+                    "Mesh"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_MuteKillEffect",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    73120001,
+                    73120026,
+                    73120012
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "duration": "SGV_MoveToExitPointDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": 20,
+                "x": -65
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "PointExit_4": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "CIBCHBLGBPF": [
+                {
+                  "$type": "EnableSceneTransformByName",
+                  "canBeHandledOnRecover": true,
+                  "transformNames": [
+                    "Mesh"
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "_MuteKillEffect",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "KillSelf",
+                  "canBeHandledOnRecover": true,
+                  "killSelfType": "Normal",
+                  "configIdArray": [
+                    73120001,
+                    73120026,
+                    73120012
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "duration": "SGV_MoveToExitPointDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": 20,
+                "y": -65
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_1_LogicBranch": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_1_NoRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleXPosA",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleYPosA",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleZPosA",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_1_WithRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Point_1_NoRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "duration": "SGV_MoveToADuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosA_3",
+                "x": "SGV_OffsetPosA_2",
+                "y": "SGV_OffsetPosA_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_1_WithRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "FEABGEBIOOC": {
+                "z": "SGV_EulerAngleZPosA",
+                "x": "SGV_EulerAngleYPosA",
+                "y": "SGV_EulerAngleXPosA"
+              },
+              "duration": "SGV_MoveToADuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosA_3",
+                "x": "SGV_OffsetPosA_2",
+                "y": "SGV_OffsetPosA_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_2_LogicBranch": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_2_NoRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleXPosB",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleYPosB",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleZPosB",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_2_WithRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Point_2_NoRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "duration": "SGV_MoveToBDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosB_3",
+                "x": "SGV_OffsetPosB_2",
+                "y": "SGV_OffsetPosB_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_2_WithRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "FEABGEBIOOC": {
+                "z": "SGV_EulerAngleZPosB",
+                "x": "SGV_EulerAngleYPosB",
+                "y": "SGV_EulerAngleXPosB"
+              },
+              "duration": "SGV_MoveToBDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosB_3",
+                "x": "SGV_OffsetPosB_2",
+                "y": "SGV_OffsetPosB_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_3_LogicBranch": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_3_NoRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleXPosC",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleYPosC",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleZPosC",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_3_WithRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Point_3_NoRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "duration": "SGV_MoveToCDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosC_3",
+                "x": "SGV_OffsetPosC_2",
+                "y": "SGV_OffsetPosC_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_3_WithRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "FEABGEBIOOC": {
+                "z": "SGV_EulerAngleZPosC",
+                "x": "SGV_EulerAngleYPosC",
+                "y": "SGV_EulerAngleXPosC"
+              },
+              "duration": "SGV_MoveToCDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosC_3",
+                "x": "SGV_OffsetPosC_2",
+                "y": "SGV_OffsetPosC_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_4_LogicBranch": {
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_4_NoRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByAny",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleXPosD",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleYPosD",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    },
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_EulerAngleZPosD",
+                      "compareType": "MoreThan",
+                      "target": "Target"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Point_4_WithRotation",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Point_4_NoRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "duration": "SGV_MoveToDDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosD_3",
+                "x": "SGV_OffsetPosD_2",
+                "y": "SGV_OffsetPosD_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_4_WithRotation": {
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "AutoMoveMananger",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "FEABGEBIOOC": {
+                "z": "SGV_EulerAngleZPosD",
+                "x": "SGV_EulerAngleYPosD",
+                "y": "SGV_EulerAngleXPosD"
+              },
+              "duration": "SGV_MoveToDDuration",
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPosD_3",
+                "x": "SGV_OffsetPosD_2",
+                "y": "SGV_OffsetPosD_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_DefaultInit": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "CIBCHBLGBPF": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "AutoMoveMananger",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "duration": 0.5,
+              "HBIHEDIPHIM": "EnemyNode",
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPos_3",
+                "x": "SGV_OffsetPos_2",
+                "y": "SGV_OffsetPos_1"
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Point_Exit": {
+          "onAdded": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "CheckEnemyLifeTime",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "StateMachineHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "Point_Exit",
+                "Point_DefaultInit",
+                "Point_1_LogicBranch",
+                "Point_2_LogicBranch",
+                "Point_3_LogicBranch",
+                "Point_4_LogicBranch"
+              ],
+              "enable": true,
+              "valueSteps": [
+                -1.5,
+                -0.5,
+                0.5,
+                1.5,
+                2.5,
+                3.5,
+                4.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_ContextData",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "PointExit_1",
+                "PointExit_2",
+                "PointExit_3",
+                "PointExit_4"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5,
+                2.5,
+                3.5,
+                4.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_ExitTargetPointID",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_AutoMoveController_AB": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_ContextData",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_ContextData",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_AutoMoveController_ABC": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_ContextData",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_ContextData",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": 3
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_AutoMoveController_ABCD": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_ContextData",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "AddGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_ContextData",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_ContextData",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_OffsetPos_1",
+        "SGV_OffsetPos_2",
+        "SGV_OffsetPos_3",
+        "SGV_OffsetPosA_1",
+        "SGV_OffsetPosA_2",
+        "SGV_OffsetPosA_3",
+        "SGV_EulerAngleXPosA",
+        "SGV_EulerAngleYPosA",
+        "SGV_EulerAngleZPosA",
+        "SGV_MoveToADuration",
+        "SGV_OffsetPosB_1",
+        "SGV_OffsetPosB_2",
+        "SGV_OffsetPosB_3",
+        "SGV_EulerAngleXPosB",
+        "SGV_EulerAngleYPosB",
+        "SGV_EulerAngleZPosB",
+        "SGV_MoveToBDuration",
+        "SGV_OffsetPosC_1",
+        "SGV_OffsetPosC_2",
+        "SGV_OffsetPosC_3",
+        "SGV_EulerAngleXPosC",
+        "SGV_EulerAngleYPosC",
+        "SGV_EulerAngleZPosC",
+        "SGV_MoveToCDuration",
+        "SGV_OffsetPosD_1",
+        "SGV_OffsetPosD_2",
+        "SGV_OffsetPosD_3",
+        "SGV_EulerAngleXPosD",
+        "SGV_EulerAngleYPosD",
+        "SGV_EulerAngleZPosD",
+        "SGV_MoveToDDuration",
+        "SGV_ContextData",
+        "SGV_AutoMove",
+        "SGV_EnemyLifeTime",
+        "SGV_ExitTargetPointID",
+        "GV_ExitTargetPointID",
+        "SGV_MoveToExitPointDuration"
+      ],
+      "onAdded": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "_MuteKillEffect",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_ContextData",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StateMachineHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "predicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "SGV_EnemyLifeTime",
+              "compareType": "MoreThan",
+              "target": "Target"
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "CheckEnemyLifeTime",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Common_Property_Ani_6_4_AirEmeny_Follow"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "ShootManager": {
+          "thinkInterval": 3,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 73120003,
+              "onGround": true,
+              "doOffStage": false,
+              "trackTarget": "CurLocalAvatar",
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "$type": "ConfigDirectionByAttachPoint",
+                  "attachPointName": "FireNode",
+                  "attachPointTargetType": "Self",
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "FireNode",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "StateMachineHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToGadgetStateMixin",
+              "modifierName": "State_0",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "ShootManager"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_ShootActive",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "State_0": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_ShootActive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_ShootActive",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "PartMoveMixin",
+              "duration": 1,
+              "HBIHEDIPHIM": "EnemyNode",
+              "useCurve": true,
+              "OJEDMGMDGLD": {
+                "z": "SGV_OffsetPos_3",
+                "x": "SGV_OffsetPos_2",
+                "y": "SGV_OffsetPos_1"
+              },
+              "actorIceSubHurtDelta": -1,
+              "PNGNODOBKIN": 1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "SGV_OffsetPos_1",
+        "SGV_OffsetPos_2",
+        "SGV_OffsetPos_3"
+      ],
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "StateMachineHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "SceneObj_Area_Common_Property_Ani_6_4_AirEmeny_Follow_FixedPos"
+    }
+  }
+]

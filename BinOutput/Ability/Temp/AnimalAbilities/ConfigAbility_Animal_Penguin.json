@@ -1,0 +1,1467 @@
+[
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "SetPoseBool",
+          "canBeHandledOnRecover": true,
+          "boolID": "Inflated",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Animal_Penguin_Inflated_End"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Hit_L",
+            "Hit_H",
+            "Hit_Rolling_Loop",
+            "Hit_Rolling_Loop02",
+            "Hit_Rolling_Loop_Water",
+            "Hit_Rolling_Loop_Water02",
+            "Hit_Rolling_AS",
+            "Hit_Rolling_AS_Water"
+          ],
+          "value": -1,
+          "modifierName": "RollingSpeedRateHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Hit_L",
+            "Hit_H",
+            "Hit_Rolling_Loop",
+            "Hit_Rolling_Loop02",
+            "Hit_Rolling_Loop_Water",
+            "Hit_Rolling_Loop_Water02",
+            "Hit_Rolling_AS",
+            "Hit_Rolling_AS_Water"
+          ],
+          "value": -1,
+          "modifierName": "RollingAttack",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "StandbyLand_Sit"
+          ],
+          "value": -1,
+          "modifierName": "SitFixedState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BeHitHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RollingAttack": {
+          "onRemoved": [
+            {
+              "$type": "KillGadgetV2",
+              "gadgetInfo": {
+                "configID": 42803001
+              },
+              "value": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42803001,
+              "onGround": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RollingSpeedRateHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Animal_Penguin_BeHitCounter",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "BeHitCounter",
+              "doOffStage": false,
+              "value": "GV_Animal_Penguin_BeHitCounter",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                0.30000001192092896,
+                0.699999988079071,
+                "GV_Animal_Penguin_BeHitCounter",
+                "MUL",
+                "ADD"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Animal_Penguin_BeHitCounter",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "BeHitCounter",
+              "doOffStage": false,
+              "value": "GV_Animal_Penguin_BeHitCounter",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                0.30000001192092896,
+                0.699999988079071,
+                "GV_Animal_Penguin_BeHitCounter",
+                "MUL",
+                "ADD"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "RunVariant",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.33000001311302185,
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "RunVariant",
+                  "doOffStage": false,
+                  "value": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "SitFixedState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_Animal_Penguin_BeHitCounter"
+      ],
+      "abilityName": "Animal_Penguin_RollingManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueNoInitMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "Penguin_ToSitState",
+            "Penguin_FleeState"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5,
+            2.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "SGV_Animal_Penguin_ControlState",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "DoActionByAnimatorStateIDMixin",
+          "enterActions": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1203,
+              "intID": "RandomPose",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stateIDs": [
+            "ReactActionPoint_Sit"
+          ],
+          "value": -1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "ActionPointManager",
+          "poseIDs": [
+            1203
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Flee"
+          ],
+          "value": -1,
+          "modifierName": "Penguin_FleeKillSelf",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ActionPointManager": {
+          "onRemoved": [
+            {
+              "$type": "ReleaseAIActionPoint",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OLANBBDAOGH": "SleepPoint",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onKill": [
+            {
+              "$type": "ReleaseAIActionPoint",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OLANBBDAOGH": "SleepPoint",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "RegisterAIActionPoint",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OLANBBDAOGH": "SleepPoint",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_FleeKillSelf": {
+          "onAdded": [
+            {
+              "$type": "StartDither",
+              "DIMCCOIBNKM": 10,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "duHPRation": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                28030903
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_FleeState": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "Flee",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_ToSitState": {
+          "onAdded": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "ActionPointReacting",
+              "doOffStage": false,
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetNeuronEnable",
+              "enable": true,
+              "ECHNKKKMDLB": "SURROUND",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "Animal_Penguin_NeuronManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "WaterState",
+          "poseIDs": [
+            2001,
+            2002,
+            2004,
+            2101,
+            2102,
+            2103,
+            2301
+          ],
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "LandState",
+          "poseIDs": [
+            1001,
+            1002,
+            1004,
+            1101,
+            1201,
+            1202,
+            1301
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "LandState": {
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox_Water"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider_Water01",
+                "PushCollider_Water02"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "WaterState": {
+          "onAdded": [
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnableHitBoxByName",
+              "canBeHandledOnRecover": true,
+              "hitBoxNames": [
+                "HitBox_Water"
+              ],
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "EnablePushColliderName",
+              "pushColliderNames": [
+                "PushCollider_Water01",
+                "PushCollider_Water02"
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "OMGAHMIGHHO": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "isDynamicAbility": true,
+      "abilityName": "Animal_Penguin_WaterStateManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Empty",
+            "Penguin_PhlogistonEffect"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_Is_In_LiquidPhlogiston",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_PhlogistonEffect": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ReplaceEventPatternMixin",
+              "oldPatterns": [
+                "Animal_Penguin_Water_Idle",
+                "Animal_Penguin_Water_Moving",
+                "Animal_Penguin_Rolling_Water",
+                "Animal_Penguin_HitThrowToGround_Water",
+                "Animal_Penguin_Personality1_Water_AS",
+                "Animal_Penguin_Personality2_Water",
+                "Animal_Penguin_WaterToGround"
+              ],
+              "newPatterns": [
+                "Animal_Penguin_Water_Idle_Phlogiston",
+                "Animal_Penguin_Water_Moving_Phlogiston",
+                "Animal_Penguin_Rolling_Water_Phlogiston",
+                "Animal_Penguin_HitThrowToGround_Water_Phlogiston",
+                "Animal_Penguin_Personality1_Water_AS_Phlogiston",
+                "Animal_Penguin_Personality2_Water_Phlogiston",
+                "Animal_Penguin_WaterToGround_Phlogiston"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Penguin_PhlogistonEffectManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToSelfGlobalValueMixin",
+          "modifierNameSteps": [
+            "Penguin_WaterEffect",
+            "Empty"
+          ],
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "removeAppliedModifier": true,
+          "globalValueKey": "GV_Is_In_LiquidPhlogiston",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Empty": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Penguin_WaterEffect": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ReplaceEventPatternMixin",
+              "oldPatterns": [
+                "Animal_Penguin_Water_Idle_Phlogiston",
+                "Animal_Penguin_Water_Moving_Phlogiston",
+                "Animal_Penguin_Rolling_Water_Phlogiston",
+                "Animal_Penguin_HitThrowToGround_Water_Phlogiston",
+                "Animal_Penguin_Personality1_Water_AS_Phlogiston",
+                "Animal_Penguin_Personality2_Water_Phlogiston",
+                "Animal_Penguin_WaterToGround_Phlogiston"
+              ],
+              "newPatterns": [
+                "Animal_Penguin_Water_Idle",
+                "Animal_Penguin_Water_Moving",
+                "Animal_Penguin_Rolling_Water",
+                "Animal_Penguin_HitThrowToGround_Water",
+                "Animal_Penguin_Personality1_Water_AS",
+                "Animal_Penguin_Personality2_Water",
+                "Animal_Penguin_WaterToGround"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Penguin_PhlogistonEffectManager_Reverse"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Drop_Loop",
+            "Drop_Land"
+          ],
+          "value": -1,
+          "modifierName": "Penguin_DropHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Penguin_DropHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "MonsterLandMixin",
+              "BELJODABJLH": true,
+              "DGDGMJBDAEK": 10,
+              "GEGOACDEACG": [
+                {
+                  "$type": "SetPoseBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "InAir",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "JOMLADMDKDG": "PENGUIN_DROP_POS",
+              "MNFMBDIFKGH": 30,
+              "NBNHEIPJHBJ": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetPoseBool",
+              "canBeHandledOnRecover": true,
+              "boolID": "InAir",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "SetGlobalPos",
+          "setTarget": true,
+          "key": "PENGUIN_DROP_POS",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornBySelf",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "offset": {
+              "x": -50
+            },
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Penguin_AirStateManager"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToPoseIDMixin",
+          "modifierName": "StuckOnGroundManager",
+          "poseIDs": [
+            1102
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "StuckOnGroundManager": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Animal_Penguin_StuckOnGround_Idle",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "SetPoseInt",
+              "canBeHandledOnRecover": true,
+              "value": 1001,
+              "intID": "RandomPose",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        }
+      },
+      "abilityName": "Penguin_StuckOnGroundManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByTargetType",
+              "target": "Target",
+              "targetType": "Owner"
+            },
+            {
+              "$type": "ByNot",
+              "predicates": [
+                {
+                  "$type": "ByIsTargetCamp",
+                  "target": "Target",
+                  "campBaseOn": "Owner",
+                  "campTargetType": "Enemy"
+                }
+              ],
+              "target": "Target"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DamageByAttackValue",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "attackInfo": {
+                "hitPattern": {
+                  "hitImpulseType": "LV3",
+                  "onHitEffectName": "default",
+                  "muteHitText": true,
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                },
+                "cameraShake": {
+                  "extension": {
+                    "cycleDamping": 0.11999999731779099,
+                    "baseOnCamera": true,
+                    "rangeAttenuation": 0.5,
+                    "baseCycle": 0.11999999731779099
+                  },
+                  "shakeDistance": 20
+                },
+                "attackProperty": {
+                  "enBreak": 100,
+                  "strikeType": "Blunt",
+                  "elementDurability": 100,
+                  "attackType": "Melee",
+                  "elementRank": 1
+                },
+                "KMBBLIMOMBH": {
+                  "LMEIODIINNM": "Shake"
+                },
+                "attenuationGroup": "default",
+                "OLHIHLILEKH": {
+                  "onHitEffectName": "default",
+                  "NPLKKCCDEDJ": {
+                    "value": 1,
+                    "NJICIOFCOPD": true
+                  }
+                }
+              },
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "target": "Owner",
+              "triggerID": "RollingStopTrigger",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityName": "Penguin_RollingAttack_Attack"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Hit_L",
+            "Hit_H",
+            "Hit_Rolling_Loop",
+            "Hit_Rolling_Loop02",
+            "Hit_Rolling_Loop_Water",
+            "Hit_Rolling_Loop_Water02",
+            "Hit_Rolling_AS",
+            "Hit_Rolling_AS_Water"
+          ],
+          "value": -1,
+          "modifierName": "RollingSpeedRateHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "Hit_L",
+            "Hit_H",
+            "Hit_Rolling_Loop",
+            "Hit_Rolling_Loop02",
+            "Hit_Rolling_Loop_Water",
+            "Hit_Rolling_Loop_Water02",
+            "Hit_Rolling_AS",
+            "Hit_Rolling_AS_Water"
+          ],
+          "value": -1,
+          "modifierName": "RollingAttack",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToAnimatorStateIDMixin",
+          "stateIDs": [
+            "StandbyLand_Sit"
+          ],
+          "value": -1,
+          "modifierName": "SitFixedState",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "BeHitHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RollingAttack": {
+          "onRemoved": [
+            {
+              "$type": "KillGadgetV2",
+              "gadgetInfo": {
+                "configID": 42803002
+              },
+              "value": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "TriggerBullet",
+              "canBeHandledOnRecover": true,
+              "bulletID": 42803002,
+              "onGround": true,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "RollingSpeedRateHandler": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Animal_Penguin_BeHitCounter",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 4
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 4,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "BeHitCounter",
+              "doOffStage": false,
+              "value": "GV_Animal_Penguin_BeHitCounter",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                0.30000001192092896,
+                0.699999988079071,
+                "GV_Animal_Penguin_BeHitCounter",
+                "MUL",
+                "ADD"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "onBeingHit": [
+            {
+              "$type": "AddGlobalValue",
+              "key": "GV_Animal_Penguin_BeHitCounter",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Animal_Penguin_BeHitCounter",
+                  "compareType": "LessAndEqual",
+                  "target": "Target",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorInt",
+              "canBeHandledOnRecover": true,
+              "intID": "BeHitCounter",
+              "doOffStage": false,
+              "value": "GV_Animal_Penguin_BeHitCounter",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": [
+                0.30000001192092896,
+                0.699999988079071,
+                "GV_Animal_Penguin_BeHitCounter",
+                "MUL",
+                "ADD"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "RollingSpeedRate",
+              "canBeHandledOnRecover": true,
+              "value": 1,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Randomed",
+              "failActions": [
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "RunVariant",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "chance": 0.33000001311302185,
+              "canBeHandledOnRecover": true,
+              "successActions": [
+                {
+                  "$type": "SetAnimatorBool",
+                  "canBeHandledOnRecover": true,
+                  "boolID": "RunVariant",
+                  "doOffStage": false,
+                  "value": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ]
+        },
+        "SitFixedState": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "RigidBodyFreezeMixin",
+              "value": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_Animal_Penguin_BeHitCounter"
+      ],
+      "abilityName": "Animal_Penguin_RollingManager_Homeworld"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "target": "MPLevel",
+          "doOffStage": false,
+          "modifierName": "Penguin_Homeworld_HitCount",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Penguin_Homeworld_HitCount": {
+          "onRemoved": [
+            {
+              "$type": "AddGlobalValueV2",
+              "key": "GV_Penguin_HitCount",
+              "canBeHandledOnRecover": true,
+              "target": "MPLevel",
+              "doOffStage": false,
+              "value": -1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "AddGlobalValueV2",
+              "key": "GV_Penguin_HitCount",
+              "canBeHandledOnRecover": true,
+              "target": "MPLevel",
+              "maxValue": 15,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Multiple"
+        }
+      },
+      "abilityName": "Penguin_Homeworld_HitManager"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "Predicated",
+          "canBeHandledOnRecover": true,
+          "target": "Target",
+          "targetPredicates": [
+            {
+              "$type": "ByAny",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Penguin_HitCount",
+                  "compareType": "LessAndEqual",
+                  "target": "MPLevel",
+                  "value": 15
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Penguin_HitCount",
+                  "compareType": "NoneOrEqual",
+                  "target": "MPLevel"
+                }
+              ],
+              "target": "MPLevel"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetType",
+                  "target": "Target",
+                  "targetType": "Owner"
+                },
+                {
+                  "$type": "ByNot",
+                  "predicates": [
+                    {
+                      "$type": "ByIsTargetCamp",
+                      "target": "Target",
+                      "campBaseOn": "Owner",
+                      "campTargetType": "Enemy"
+                    }
+                  ],
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DamageByAttackValue",
+                  "canBeHandledOnRecover": true,
+                  "target": "Target",
+                  "attackInfo": {
+                    "hitPattern": {
+                      "hitImpulseType": "LV3",
+                      "onHitEffectName": "default",
+                      "muteHitText": true,
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    },
+                    "cameraShake": {
+                      "extension": {
+                        "cycleDamping": 0.11999999731779099,
+                        "baseOnCamera": true,
+                        "rangeAttenuation": 0.5,
+                        "baseCycle": 0.11999999731779099
+                      },
+                      "shakeDistance": 20
+                    },
+                    "attackProperty": {
+                      "enBreak": 100,
+                      "strikeType": "Blunt",
+                      "elementDurability": 100,
+                      "attackType": "Melee",
+                      "elementRank": 1
+                    },
+                    "KMBBLIMOMBH": {
+                      "LMEIODIINNM": "Shake"
+                    },
+                    "attenuationGroup": "default",
+                    "OLHIHLILEKH": {
+                      "onHitEffectName": "default",
+                      "NPLKKCCDEDJ": {
+                        "value": 1,
+                        "NJICIOFCOPD": true
+                      }
+                    }
+                  },
+                  "doOffStage": false,
+                  "born": {
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetAnimatorTrigger",
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "triggerID": "RollingStopTrigger",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Owner",
+                  "doOffStage": false,
+                  "modifierName": "Penguin_RollingHit",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Penguin_RollingHit": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Penguin_Homeworld_HitManager",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Penguin_RollingAttack_Homeworld_Attack"
+    }
+  }
+]

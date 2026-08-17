@@ -1,0 +1,3973 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintHorizontal",
+            "SprintHorizontalLoop",
+            "SprintHorizontalAS",
+            "SprintVertical",
+            "SprintVerticalLoop",
+            "SprintVerticalAS"
+          ],
+          "value": -1,
+          "modifierName": "MothSpirit_NoGravity",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Hook",
+            "HookAS",
+            "OutFeatherballBS",
+            "ActivitySkill_CommonMove"
+          ],
+          "value": -1,
+          "modifierName": "ForbidMoveSkill",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "InFeatherball"
+          ],
+          "value": -1,
+          "modifierName": "ForbidMoveSkill01",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "ActivitySkill_CommonMove"
+          ],
+          "value": -1,
+          "modifierName": "ForbidMoveSkill1",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "ForceQuit"
+          ],
+          "value": -1,
+          "modifierName": "ForceQuit",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ForbidMoveSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ForbidSkillByIDMixin",
+              "skillID": 11501,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ForbidSkillByIDMixin",
+              "skillID": 11502,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ForbidMoveSkill01": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ForbidMoveSkillReal",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ForbidMoveSkill1": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ForbidMoveSkillReal": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": 0.4000000059604645,
+          "thinkInterval": 0.15000000596046448,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ForbidMoveSkillReal",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "ForbidSkillByIDMixin",
+              "skillID": 11501,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ForbidSkillByIDMixin",
+              "skillID": 11502,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ForceQuit": {
+          "onAdded": [
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "LandCheck": {
+          "thinkInterval": 0.20000000298023224,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Vehicle_MothSpirit_FallLand",
+              "predicates": [
+                {
+                  "$type": "ByTargetAltitude",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "TargetAltitudeType": "Both",
+                  "value": 0.20000000298023224
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_ABILITY_Vehicle_MothSpirit_FallLand",
+              "predicates": [
+                {
+                  "$type": "ByTargetAltitude",
+                  "target": "Target",
+                  "TargetAltitudeType": "Both",
+                  "value": 0.20000000298023224
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "LandCheckDelay": {
+          "onRemoved": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "LandCheck",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "MothSpiritCamera": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SpawnCameraStateMixin",
+              "EPKKMMGGFLK": {
+                "blendType": 2,
+                "JNBHAHPJPDD": 3,
+                "LMBEJPGJGGC": 4,
+                "duHPRation": 1.399999976158142
+              },
+              "KDDIPCCKNIG": {
+                "duHPRation": 1
+              },
+              "sceneID": -1,
+              "NNFIONMNHFB": {
+                "$type": "LNFCLGPCLPG",
+                "AKIIHCMFMLD": 6,
+                "BPIHDOBMKJK": -89,
+                "CGBAGCLOHJF": 6,
+                "DICOLHOPDLO": 12,
+                "HHPHGKMAJBE": 89,
+                "JHBHODKKKON": 4.5,
+                "KDMGMFHJKLA": {
+                  "lerpDuration": 1
+                },
+                "KJFKAOHGFNL": 6,
+                "KLJHFDEJCGC": 6
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "MothSpiritSwitchSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SwitchVehicleSkillIDMixin",
+              "skillID": 11502,
+              "priority": "VehicleCommon",
+              "skillIndex": 2,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SwitchVehicleSkillIDMixin",
+              "skillID": 11501,
+              "priority": "VehicleCommon",
+              "skillIndex": 3,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetVehicleStateToGlobalValueMixin",
+              "globalValueKey": "_ABILITY_Vehicle_Driving_Flag",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToGlobalValueMixin",
+              "modifierNameSteps": [
+                "MothSpiritCamera"
+              ],
+              "enable": true,
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "_ABILITY_Vehicle_Driving_Flag",
+              "PGNFKDOAEMM": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "MothSpirit_NoGravity": {
+          "onRemoved": [
+            {
+              "$type": "SetVelocityIgnoreAirGY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_AddGravityScale": -2
+          },
+          "onAdded": [
+            {
+              "$type": "RemoveVelocityForce",
+              "canBeHandledOnRecover": true,
+              "forces": [
+                "RushMoveType",
+                "InertiaType"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetVelocityIgnoreAirGY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MOFDGEACLFP": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Avatar_MothSpirit_InteeTrigger": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OverrideTriggerParamMixin",
+              "IDMHLCHPOPK": [
+                {
+                  "$type": "LPOFJNLGIDP",
+                  "direction": "YAxis",
+                  "AOEJCCGBHPO": {
+                    "y": 0.699999988079071
+                  },
+                  "height": 0.5,
+                  "namedTransform": "InteeTrigger",
+                  "sceneID": 1.5
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachAbilityStateResistance",
+          "durationRatio": 1,
+          "canBeHandledOnRecover": true,
+          "resistanceListID": 15001,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachAbilityStateResistance",
+          "durationRatio": 1,
+          "canBeHandledOnRecover": true,
+          "resistanceListID": 15002,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "MothSpiritSwitchSkill",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_Vehicle_MothSpirit_FallLand",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "LandCheckDelay",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Avatar_MothSpirit_InteeTrigger",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValue",
+          "key": "_ABILITY_Vehicle_MothSpiritGetOff",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Vehicle_MothSpirit_Common"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "VehicleButtonHoldChargeMixin",
+          "OnBeginCharged": [
+            {
+              "$type": "DebugLog",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "content": "蛾子 Vehicle_MothSpirit_Sprint_Vertical OnBeginCharged",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "MothSpiritVerticalRush",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirection",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MPMGAAIMHBA": "OnlyCamera",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Moth_OutBall_Up",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_InFeatherball",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "OnReleaseUncharged": [
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11501,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintVertical",
+                    "SprintVerticalLoop_01",
+                    "SprintVerticalLoop_02"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "skillID": 11501,
+          "inputActionType": "Action5",
+          "OnReleaseCharged": [
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11501,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintVertical",
+                    "SprintVerticalLoop_01",
+                    "SprintVerticalLoop_02"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "secondChargeTime": 0.20000000298023224,
+          "OnBeginSecondCharged": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintVertical",
+                    "SprintVerticalLoop_01",
+                    "SprintVerticalLoop_02"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11501,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onCancelCharged": [
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11501,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintVertical",
+                    "SprintVerticalLoop_01",
+                    "SprintVerticalLoop_02"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "inputActionControllerType": "VehicleSkillController",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintVertical",
+            "SprintVerticalLoop",
+            "SprintVerticalAS"
+          ],
+          "value": -1,
+          "modifierName": "SprintVertical_NoGravity",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintVertical",
+            "SprintVerticalLoop"
+          ],
+          "value": -1,
+          "modifierName": "ForbidAnotherSkillFather",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintVertical",
+            "SprintVerticalLoop"
+          ],
+          "value": -1,
+          "modifierName": "FullTile_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ForbidAnotherSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ForbidSkillByIDMixin",
+              "skillID": 11502,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ForbidAnotherSkillFather": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ForbidAnotherSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FullTile_Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail02",
+              "doOffStage": false,
+              "followPath": "Bone_Tail01_M",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_OutBall_Up": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "MoveSpeedRatio",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "MoveSpeedRatio",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1.5,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyCameraMaxDistanceMixin",
+              "elevAngleOnStart": 6.5,
+              "lerpInDuration": 0.20000000298023224,
+              "maxDistance": 10,
+              "lerpOutDuration": 0.699999988079071,
+              "resetToMaxOnStart": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerPostProcessEffectMixin",
+              "postEffectAssetName": "PostEffect_Skiff_Sprint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CameraBlurMixin",
+              "cameraRadialBlur": {
+                "power": 1,
+                "fadeTime": 0.3499999940395355
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SprintVerticalAni": {
+          "onRemoved": [
+            {
+              "$type": "RemoveVelocityForce",
+              "canBeHandledOnRecover": true,
+              "forces": [
+                "RushMoveType",
+                "InertiaType",
+                "FixedRushMoveType"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetPassThrough",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "SprintVerticalAni_Father",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "SprintVertical_NoGravity",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetPassThrough",
+              "canBeHandledOnRecover": true,
+              "passThrough": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveVelocityForce",
+              "canBeHandledOnRecover": true,
+              "forces": [
+                "RushMoveType",
+                "InertiaType"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetVelocityIgnoreAirGY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MOFDGEACLFP": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "GadgetRushMove",
+              "canBeHandledOnRecover": true,
+              "maxRange": 5,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "x": 3
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "KFMEIEOHBON": true,
+              "timeRange": 0.699999988079071,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VehicleSteerByCameraMixin",
+              "stateIDs": [
+                "SprintVertical"
+              ],
+              "IKGMAIEABFN": 4,
+              "angularSpeed": 120,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SprintVerticalAni_Father": {
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "SprintVertical"
+              ],
+              "value": -1,
+              "modifierName": "SprintVerticalAni",
+              "isCheckOnAttach": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SprintVertical_NoGravity": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VehicleSteerByCameraMixin",
+              "stateIDs": [
+                "SprintVertical",
+                "SprintVerticalLoop",
+                "SprintVerticalAS"
+              ],
+              "IKGMAIEABFN": 4,
+              "angularSpeed": 120,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Vehicle_MothSpirit_Sprint_Vertical"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "VehicleButtonHoldChargeMixin",
+          "OnBeginCharged": [
+            {
+              "$type": "DebugLog",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_Vertical OnBeginCharged",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "MothSpiritHoritalRush",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirection",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MPMGAAIMHBA": "OnlyCamera",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "Moth_OutBall_Forward",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_InFeatherball",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "OnReleaseUncharged": [
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11502,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintHorizontal",
+                    "SprintHorizontalLoop"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "skillID": 11502,
+          "inputActionType": "Action4",
+          "OnReleaseCharged": [
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11502,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintHorizontal",
+                    "SprintHorizontalLoop"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "secondChargeTime": 0.20000000298023224,
+          "OnBeginSecondCharged": [
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintHorizontal",
+                    "SprintHorizontalLoop"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11502,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onCancelCharged": [
+            {
+              "$type": "VehicleSkillStart",
+              "skillID": 11502,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "cdRatio": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "predicates": [
+                {
+                  "$type": "KBJIEFMEMIE",
+                  "FKALHKNGMLF": [
+                    "SprintHorizontal",
+                    "SprintHorizontalLoop"
+                  ],
+                  "target": "Target",
+                  "MOCOFLKNODH": true
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHold",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "inputActionControllerType": "VehicleSkillController",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintHorizontal",
+            "SprintHorizontalLoop",
+            "SprintHorizontalAS"
+          ],
+          "value": -1,
+          "modifierName": "SprintHorizontal_NoGravity",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintHorizontal",
+            "SprintHorizontalLoop"
+          ],
+          "value": -1,
+          "modifierName": "ForbidAnotherSkillFather",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintHorizontal",
+            "SprintHorizontalLoop"
+          ],
+          "value": -1,
+          "modifierName": "FullTile_Eff",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ForbidAnotherSkill": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ForbidSkillByIDMixin",
+              "skillID": 11501,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ForbidAnotherSkillFather": {
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ForbidAnotherSkill",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FullTile_Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail02",
+              "doOffStage": false,
+              "followPath": "Bone_Tail01_M",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_OutBall_Forward": {
+          "onRemoved": [
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "MoveSpeedRatio",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 1,
+          "onAdded": [
+            {
+              "$type": "SetAnimatorFloat",
+              "floatID": "MoveSpeedRatio",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1.5,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyCameraMaxDistanceMixin",
+              "elevAngleOnStart": 6.5,
+              "lerpInDuration": 0.20000000298023224,
+              "maxDistance": 10,
+              "lerpOutDuration": 0.699999988079071,
+              "resetToMaxOnStart": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerPostProcessEffectMixin",
+              "postEffectAssetName": "PostEffect_Skiff_Sprint",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CameraBlurMixin",
+              "cameraRadialBlur": {
+                "power": 1,
+                "fadeTime": 0.3499999940395355
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SprintHorizontalAni": {
+          "onRemoved": [
+            {
+              "$type": "RemoveVelocityForce",
+              "canBeHandledOnRecover": true,
+              "forces": [
+                "RushMoveType",
+                "InertiaType",
+                "FixedRushMoveType"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FixedAvatarRushMove",
+              "isInAir": true,
+              "timeRange": 1,
+              "canBeHandledOnRecover": true,
+              "HIAAGAFFGEN": -1,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 0.20000000298023224
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetPassThrough",
+              "canBeHandledOnRecover": true,
+              "useCurve": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "SprintHorizontalAni_Father",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "SprintHorizontal_NoGravity",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerSetPassThrough",
+              "canBeHandledOnRecover": true,
+              "passThrough": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveVelocityForce",
+              "canBeHandledOnRecover": true,
+              "forces": [
+                "RushMoveType",
+                "InertiaType"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetVelocityIgnoreAirGY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MOFDGEACLFP": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "FixedAvatarRushMove",
+              "isInAir": true,
+              "timeRange": 0.4000000059604645,
+              "canBeHandledOnRecover": true,
+              "HIAAGAFFGEN": -1,
+              "toPos": {
+                "$type": "ConfigBornBySelf",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "offset": {
+                  "z": 3
+                },
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "animatorStateIDs": [
+                "SprintHorizontal"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SprintHorizontalAni_Father": {
+          "duration": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "SprintHorizontal"
+              ],
+              "value": -1,
+              "modifierName": "SprintHorizontalAni",
+              "isCheckOnAttach": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "SprintHorizontal_NoGravity": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "VehicleSteerByCameraMixin",
+              "stateIDs": [
+                "SprintHorizontal",
+                "SprintHorizontalLoop",
+                "SprintHorizontalAS"
+              ],
+              "angularSpeed": 120,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "abilityName": "Vehicle_MothSpirit_Sprint_Horizontal"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_Hook onAbilityStart",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CopyGlobalValue",
+          "canBeHandledOnRecover": true,
+          "srcTarget": "Team",
+          "srcKey": "GV_Active_QuickMove_HookTarget_0",
+          "dstKey": "GV_Active_QuickMove_HookTarget_0",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CopyGlobalValue",
+          "canBeHandledOnRecover": true,
+          "srcTarget": "Team",
+          "srcKey": "GV_Active_QuickMove_HookTarget_1",
+          "dstKey": "GV_Active_QuickMove_HookTarget_1",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "otherTargets": {
+            "$type": "PBAGJILDBFN",
+            "targetKey": "GV_Last_QuickMove_HookTarget",
+            "IIIMMGPIIKD": "Team"
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ReleaseQuickMoveInteract",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ClearGlobalValue",
+          "key": "GV_Last_QuickMove_HookTarget_0",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ClearGlobalValue",
+          "key": "GV_Last_QuickMove_HookTarget_1",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "otherTargets": {
+            "$type": "PBAGJILDBFN",
+            "targetKey": "GV_Active_QuickMove_HookTarget",
+            "IIIMMGPIIKD": "Team"
+          },
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "InteractingMothRegister",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  目标不存在 不勾",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "JPAJKMFBIPK",
+              "CFMBEBPILIM": true,
+              "target": "Target",
+              "_unk_Q16140806": "GV_Active_QuickMove_HookTarget"
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  目标存在 开始勾",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MothHooking",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "MothSpirit_Click_SetTargetPos",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "StartHook",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "Hook"
+          ],
+          "value": -1,
+          "modifierName": "UNIQUE_MothSpirit_GrapnelSkillHandler",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintVertical"
+          ],
+          "value": -1,
+          "modifierName": "SprintVertical",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "SprintHorizontal"
+          ],
+          "value": -1,
+          "modifierName": "SprintHorizontal",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ClearActiveData": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 ClearActiveData onAdded",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "GV_Active_QuickMove_HookTarget",
+                "IIIMMGPIIKD": "Team"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ReleaseQuickMoveInteract",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "dstTarget": "Team",
+              "srcKey": "GV_Active_QuickMove_HookTarget_0",
+              "dstKey": "GV_Last_QuickMove_HookTarget_0",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "dstTarget": "Team",
+              "srcKey": "GV_Active_QuickMove_HookTarget_1",
+              "dstKey": "GV_Last_QuickMove_HookTarget_1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearGlobalValue",
+              "key": "GV_Active_QuickMove_HookTarget_0",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearGlobalValue",
+              "key": "GV_Active_QuickMove_HookTarget_1",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "InteractingMothRegister": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  InteractingMothRegister",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetTargetToTargetKey",
+              "targetKey": "GV_InteractingMoth",
+              "canBeHandledOnRecover": true,
+              "target": "Applier",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "MothSpirit_Click_SetTargetPos": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  MothSpirit_Click_SetTargetPos succ",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalPos",
+              "key": "_GrapplingHook_TargetPos",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "GV_Active_QuickMove_HookTarget",
+                "IIIMMGPIIKD": "Team"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalDir",
+              "key": "_GrapplingHook_AimDir",
+              "target": "Target",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "GV_Active_QuickMove_HookTarget",
+                "IIIMMGPIIKD": "Team"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "AttachPoint",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetTargetToTargetKey",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "GV_Active_QuickMove_HookTarget",
+                "IIIMMGPIIKD": "Team"
+              },
+              "targetKey": "_ABILITY_MothSpirit_DragEntity",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "MothSpirit_Grapnel_Moving_Fixed": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed onRemoved",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed onAdded 开始钩爪",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "TickCheckTragetVaild",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "FixedGrapnelMoveMixin",
+              "BEJFNHIIFMP": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onInterrupted",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "TickCheckTragetVaild",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "otherTargets": {
+                    "$type": "PBAGJILDBFN",
+                    "targetKey": "GV_Active_QuickMove_HookTarget",
+                    "IIIMMGPIIKD": "Team"
+                  },
+                  "predicates": [
+                    {
+                      "$type": "ByNot",
+                      "predicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "GV_Active_QuickMove_HookTarget_0",
+                          "compareType": "NoneOrEqual",
+                          "target": "Team"
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "ReleaseQuickMoveInteract",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ClearGlobalValue",
+                  "key": "GV_Active_QuickMove_HookTarget_0",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ClearGlobalValue",
+                  "key": "GV_Active_QuickMove_HookTarget_1",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_MothHooking",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_MothSpirit_GrapnelSkillHandler",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "BOEONDNILNP": "_ABILITY_GrapplingHookSkill_Step",
+              "BOHKBODCBHC": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onMove",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "isOnStageFalseSwitchValue": {
+                    "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                  },
+                  "target": "TempTarget",
+                  "doOffStage": false,
+                  "modifierName": "Moth_Arrive_TriggerInfo_onMove",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachEffect",
+                  "canBeHandledOnRecover": true,
+                  "isOnStageFalseSwitchValue": {
+                    "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                  },
+                  "effectTempleteID": -1,
+                  "target": "TempTarget",
+                  "effectPattern": "Eff_Vehicle_Natsaurus_Hookwalker_Aim_Point",
+                  "scale": 1,
+                  "doOffStage": false,
+                  "born": {
+                    "$type": "ConfigBornByTarget",
+                    "direction": {
+                      "maxAngle": 180
+                    },
+                    "EALBHHJEFGH": {
+                      "BKAPGJCLCIO": 180
+                    },
+                    "useRotation": true,
+                    "value": 10,
+                    "onGroundRaycastUpDist": 2
+                  },
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Moth_Grapnel_MovingBlur",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_Vehicle_Moth_InfiniteMode",
+                      "compareType": "NoneOrEqual",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Moth_HookEff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "effectAttachPoint": "HookStart",
+              "EMCLMNNDGLO": 0.10000000149011612,
+              "FBJKNHKNOEK": 0.699999988079071,
+              "FFCLLJCDHPJ": 1.2000000476837158,
+              "FGECKHOIEJC": "EaseOutCubic",
+              "FNJOEPDHJKM": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onBrake",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "HIAAGAFFGEN": 9,
+              "HMAINKAJMDA": true,
+              "ICEPELOHBOC": "NodKrai_MainTag",
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Line",
+              "animatorStateIDs": [
+                "HookAS",
+                "HookLoop",
+                "HookBS"
+              ],
+              "NGJFIJFLJJH": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onArrived",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "TickCheckTragetVaild",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onArrived 目标不在了",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetAnimatorTrigger",
+                      "canBeHandledOnRecover": true,
+                      "triggerID": "Return2Move",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "JPAJKMFBIPK",
+                      "CFMBEBPILIM": true,
+                      "target": "Target",
+                      "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onArrived 目标还在",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_MothHooking",
+                      "canBeHandledOnRecover": true,
+                      "target": "Team",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "Predicated",
+                      "failActions": [
+                        {
+                          "$type": "DebugLog",
+                          "canBeHandledOnRecover": true,
+                          "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onArrived 目标还在 曲线模式",
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValueV2",
+                          "key": "GV_Vehicle_MothSpirit_Stamina",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "value": 125,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "ApplyModifier",
+                          "canBeHandledOnRecover": true,
+                          "target": "Team",
+                          "doOffStage": false,
+                          "modifierName": "MothTryOnCurve",
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "ApplyModifier",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "modifierName": "ClearActiveData",
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "TurnDirection",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "MFCMLEDDBHF": [
+                            3
+                          ],
+                          "actorIceSubHurtDelta": -1,
+                          "PPLHADLBBFI": 10005
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "isOnStageFalseSwitchValue": {
+                        "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                      },
+                      "target": "TempTarget",
+                      "targetPredicates": [
+                        {
+                          "$type": "ByTargetGlobalValue",
+                          "key": "GV_QuickMoveCurveMode",
+                          "compareType": "NoneOrEqual",
+                          "target": "Target"
+                        }
+                      ],
+                      "successActions": [
+                        {
+                          "$type": "DebugLog",
+                          "canBeHandledOnRecover": true,
+                          "content": " 【蛾子】  MothSpirit_Grapnel_Moving_Fixed 钩爪 onArrived 目标还在 非曲线模式",
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetGlobalValueV2",
+                          "key": "GV_InFeatherball",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "value": 1,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "SetAnimatorTrigger",
+                          "canBeHandledOnRecover": true,
+                          "triggerID": "EndHook",
+                          "doOffStage": false,
+                          "actorIceSubHurtDelta": -1
+                        },
+                        {
+                          "$type": "TurnDirection",
+                          "canBeHandledOnRecover": true,
+                          "doOffStage": false,
+                          "MFCMLEDDBHF": [
+                            2
+                          ],
+                          "actorIceSubHurtDelta": -1,
+                          "PPLHADLBBFI": 10005
+                        }
+                      ],
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "ApplyModifier",
+                      "canBeHandledOnRecover": true,
+                      "isOnStageFalseSwitchValue": {
+                        "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                      },
+                      "target": "TempTarget",
+                      "doOffStage": false,
+                      "modifierName": "Moth_Arrive_TriggerInfo",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveUniqueModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_MothSpirit_GrapnelSkillHandler",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "positionKey": "_GrapplingHook_TargetPos",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "MothTryOnCurve": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "ServerLuaCall",
+              "funcName": "SLC_MothTryOnCurve",
+              "canBeHandledOnRecover": true,
+              "isOnStageFalseSwitchValue": {
+                "_unk_Q16140806": "GV_Active_QuickMove_HookTarget"
+              },
+              "target": "TempTarget",
+              "doOffStage": false,
+              "luaCallType": "FromGroup",
+              "isTarget": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "target": "Applier",
+              "doOffStage": false,
+              "modifierName": "ClearActiveData",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_Arrive_TriggerInfo": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_ABILITY_MothSpirit_IsHooked",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_Arrive_TriggerInfo_onMove": {
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "_ABILITY_MothSpirit_IsHooked",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 2,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_Grapnel_MovingBlur": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "CameraBlurMixin",
+              "cameraRadialBlur": {
+                "power": 1,
+                "fadeTime": 0.3499999940395355
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_HookEff": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "ModifyCameraMaxDistanceMixin",
+              "elevAngleOnStart": 6.5,
+              "lerpInDuration": 0.20000000298023224,
+              "maxDistance": 10,
+              "lerpOutDuration": 0.699999988079071,
+              "resetToMaxOnStart": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerPostProcessEffectMixin",
+              "postEffectAssetName": "PostEffect_Skiff_Sprint",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "ReleaseQuickMoveInteract": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  ReleaseQuickMoveInteract",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_BanQuickMoveInteract",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "SprintHorizontal": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ClearActiveData",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "SprintVertical": {
+          "onAdded": [
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ClearActiveData",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "TickCheckTragetVaild": {
+          "thinkInterval": 1,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 TickCheckTragetVaild Tick",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】 TickCheckTragetVaild 目标消失下载具",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "JPAJKMFBIPK",
+                  "CFMBEBPILIM": true,
+                  "target": "Target",
+                  "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_MothSpirit_GrapnelSkillHandler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "StartHook",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  钩爪选择逻辑 UNIQUE_MothSpirit_GrapnelSkillHandler",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHook",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "Return2Move",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_StreamingOptimization",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "MothSpirit_Grapnel_Moving_Fixed",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "OverrideCameraModuleParamMixin",
+              "IDMHLCHPOPK": [
+                {
+                  "$type": "CMDLJLBCMJJ",
+                  "LJGGIGGJNEC": 50000
+                }
+              ],
+              "stateName": "LandVehicle",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_StreamingOptimization": {
+          "isUnique": true,
+          "duration": 4,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "StreamingModifierMixin",
+              "actorIceSubHurtDelta": -1,
+              "PNMKKCIPGBB": true
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_Active_QuickMove_HookTarget_0",
+        "GV_Active_QuickMove_HookTarget_1"
+      ],
+      "onAdded": [
+        {
+          "$type": "ChangeTag",
+          "tag": "MothSpirit",
+          "canBeHandledOnRecover": true,
+          "isAdd": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Vehicle_MothSpirit_Sprint_Hook"
+    }
+  },
+  {
+    "Default": {
+      "onRemoved": [
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MothHooking",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachToStateIDMixin",
+          "stateIDs": [
+            "InFeatherball"
+          ],
+          "value": -1,
+          "modifierName": "UNIQUE_MothSpirit_InFeatherball",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Init": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "Hook",
+                "HookBS",
+                "HookLoop",
+                "HookAS",
+                "InFeatherball",
+                "OutFeatherballAS",
+                "OutFeatherballBS"
+              ],
+              "value": -1,
+              "modifierName": "NoGravity",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "SprintVertical",
+                "SprintVerticalLoop",
+                "SprintVerticalAS",
+                "SprintHorizontal",
+                "SprintHorizontalLoop",
+                "SprintHorizontalAS",
+                "NormalMove",
+                "InFeatherball",
+                "OutFeatherballAS",
+                "OutFeatherballBS"
+              ],
+              "value": -1,
+              "modifierName": "OutHooking",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "NoGravity": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 NoGravity onRemoved",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetVelocityIgnoreAirGY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "properties": {
+            "Actor_AddGravityScale": -2
+          },
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 NoGravity onAdded",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveVelocityForce",
+              "canBeHandledOnRecover": true,
+              "forces": [
+                "RushMoveType",
+                "InertiaType"
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetVelocityIgnoreAirGY",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MOFDGEACLFP": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "OutHooking": {
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MothHooking",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_CheckBallActive": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  UNIQUE_CheckBallActive 主动退出载具",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "JPAJKMFBIPK",
+                  "CFMBEBPILIM": true,
+                  "_unk_Q16140806": "_ABILITY_MothSpirit_DragEntity"
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_MothSpirit_InFeatherball": {
+          "isUnique": true,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 Vehicle_MothSpirit_Sprint_JumpOut UNIQUE_MothSpirit_InFeatherball",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_CheckBallActive",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MothHooking",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoBlinkByGlobalPos",
+              "CHLEMPPBPPP": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "NDIMDPOPBGN": true,
+              "positionKey": "_GrapplingHook_TargetPos",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Vehicle_MothSpirit_Stamina",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 125,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "StartHook",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "EndHook",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ResetAnimatorTrigger",
+              "canBeHandledOnRecover": true,
+              "triggerID": "StartOutFeatherball",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "EntityInVisibleMixin",
+              "BDGEFIBINGG": {
+                "PFGNFCCBKOC": true
+              },
+              "reason": "SelfAbility",
+              "disableAudio": true,
+              "FOJOAIMCOFG": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClampVehicleMoveVelocityMixin",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "OMGAHMIGHHO": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "EnablePushColliderName",
+                  "pushColliderNames": [
+                    "PushCollider"
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": " 【蛾子】 Vehicle_MothSpirit_Sprint_JumpOut",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Init",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MothHooking",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Vehicle_MothSpirit_Sprint_JumpOut"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "VehicleButtonHoldChargeMixin",
+          "OnBeginCharged": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_AvatarAbility_HoldOnUI_Index04",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_JumpOut_Quit 主动退出载具",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TurnDirection",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_InFeatherball",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "MPMGAAIMHBA": "OnlyCamera",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "chargeTime": 0.5,
+          "OnReleaseUncharged": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_AvatarAbility_HoldOnUI_Index04",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "inputActionType": "Action6",
+          "OnReleaseCharged": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_AvatarAbility_HoldOnUI_Index04",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "secondChargeTime": 999999,
+          "OnBeginUncharged": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_AvatarAbility_HoldOnUI_Index04",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 0.5,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "inputActionControllerType": "VehicleSkillController",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "onAdded": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": " 【蛾子】 Vehicle_MothSpirit_Sprint_JumpOut_Quit onAdded",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Vehicle_MothSpirit_Sprint_JumpOut_Quit"
+    }
+  },
+  {
+    "Default": {
+      "onRemoved": [
+        {
+          "$type": "TurnDirection",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "MFCMLEDDBHF": [
+            4
+          ],
+          "actorIceSubHurtDelta": -1,
+          "PPLHADLBBFI": 10005
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_Is_In_MothVehicle",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "Delay_OutMoth": {
+          "onRemoved": [
+            {
+              "$type": "DebugLog",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Vehicle_MothSpirit_InHookAinm",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_Stamina 体力用光下尝试载具 不在Hook流程 下载具",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DebugLog",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Vehicle_MothSpirit_InHookAinm",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_Stamina 体力用光下尝试载具 在Hook流程 不下载具",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Vehicle_MothSpirit_InHookAinm",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.20000000298023224,
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Vehicle_MothSpirit_Stamina",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "InHookAinm": {
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Vehicle_MothSpirit_InHookAinm",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Vehicle_MothSpirit_InHookAinm",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "MothSpirit_Sprint_StaminaAndEff": {
+          "onAdded": [
+            {
+              "$type": "FireEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Appear",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "$type": "ConfigBornByAttachPoint",
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "attachPointName": "Bone_Chest01_M",
+                "useRotation": true,
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail",
+              "doOffStage": false,
+              "followPath": "Bone_Tail01_M",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_BanStamina",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "MothSpirit_Sprint_StaminaMain",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "GV_BanStamina",
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "AttachModifier",
+                      "predicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "MothSpirit_Sprint_StaminaMain"
+                        }
+                      ],
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "MothSpirit_Sprint_StaminaMain",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_BanStamina",
+                      "value": 1
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "RemoveModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "modifierName": "MothSpirit_Sprint_StaminaMain",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "SprintVertical",
+                "SprintVerticalLoop",
+                "SprintVerticalAS",
+                "SprintHorizontal",
+                "SprintHorizontalLoop",
+                "SprintHorizontalAS"
+              ],
+              "value": -1,
+              "modifierName": "UNIQUE_Use_MothSpirit_Stamina_Normal",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachToStateIDMixin",
+              "stateIDs": [
+                "Hook",
+                "HookAS",
+                "OutFeatherballBS",
+                "InFeatherball"
+              ],
+              "value": -1,
+              "modifierName": "InHookAinm",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionOnGlobalValueChangeMixin",
+              "gvInTalk": true,
+              "globalValueKey": "GV_Vehicle_Moth_InfiniteMode",
+              "actions": [
+                {
+                  "$type": "Predicated",
+                  "failActions": [
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_BanStamina",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_Vehicle_Moth_InfiniteMode",
+                      "value": 1
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_Stamina 无尽能量模式",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_Vehicle_MothSpirit_Stamina",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 125,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "SetGlobalValueV2",
+                      "key": "GV_BanStamina",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": false,
+                      "value": 1,
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "MothSpirit_Sprint_StaminaMain": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "EnergyBarMixin",
+              "speed": 8,
+              "CFKAAIDOLHC": "GV_Vehicle_MothSpirit_Stamina",
+              "maxValue": 125,
+              "MHJNDBCOJLN": {
+                "MELMMAELMPN": {
+                  "Decreasing": 1,
+                  "Empty": 4,
+                  "Full": 3,
+                  "Increasing": 2,
+                  "None": 0
+                },
+                "parameter": "State"
+              },
+              "prefabName": "SpBarV4_Featherball",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Moth_InVehicle": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "SetAvatarVehicleStateToGlobalValueMixin",
+              "AEDHGMPNGJM": [
+                {
+                  "predicates": [
+                    {
+                      "$type": "OBDFNIEMJAF",
+                      "HFAPOALHBKP": [
+                        45003201
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "value": 1
+                }
+              ],
+              "CMDCGDJGPBM": true,
+              "EJAHKEPGFGN": true,
+              "globalValueKey": "GV_Is_In_MothVehicle",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Use_MothSpirit_Stamina_Normal": {
+          "isUnique": true,
+          "onThinkIntervalIsFixedUpdate": true,
+          "thinkInterval": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_Vehicle_Moth_InfiniteMode",
+                      "compareType": "NoneOrEqual",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "Delay_OutMoth",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Vehicle_MothSpirit_Stamina",
+                  "compareType": "MoreThan",
+                  "target": "Target",
+                  "value": 1.25
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddGlobalValueV2",
+                  "key": "GV_Vehicle_MothSpirit_Stamina",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_Vehicle_Moth_InfiniteMode",
+                      "compareType": "NoneOrEqual",
+                      "target": "Team"
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "maxValue": 125,
+                  "doOffStage": false,
+                  "value": -1.25,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "_unk_Q2982101340": [
+        "GV_Vehicle_MothSpirit_Stamina"
+      ],
+      "onAdded": [
+        {
+          "$type": "TurnDirection",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "MFCMLEDDBHF": [
+            1
+          ],
+          "actorIceSubHurtDelta": -1,
+          "PPLHADLBBFI": 10005
+        },
+        {
+          "$type": "DoWatcherSystemAction",
+          "enable": true,
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "watcherId": 81653,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_Vehicle_MothSpirit_Stamina",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "value": 125,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_InFeatherball",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_Is_In_MothVehicle",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "value": 1,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "MothSpirit_Sprint_StaminaAndEff",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Moth_InVehicle",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Vehicle_MothSpirit_Sprint_Stamina"
+    }
+  },
+  {
+    "Default": {
+      "onAbilityStart": [
+        {
+          "$type": "FireEffect",
+          "canBeHandledOnRecover": true,
+          "effectTempleteID": -1,
+          "effectPattern": "Eff_SceneObj_MothSpirit_01_MoveOut",
+          "scale": 1,
+          "doOffStage": false,
+          "born": {
+            "$type": "ConfigBornByAttachPoint",
+            "direction": {
+              "maxAngle": 180
+            },
+            "EALBHHJEFGH": {
+              "BKAPGJCLCIO": 180
+            },
+            "attachPointName": "Bone_Chest01_M",
+            "useRotation": true,
+            "value": 10,
+            "onGroundRaycastUpDist": 2
+          },
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ClearActiveData",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TurnDirection",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "MFCMLEDDBHF": [
+            4
+          ],
+          "actorIceSubHurtDelta": -1,
+          "PPLHADLBBFI": 10005
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_Is_In_MothVehicle",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "TriggerVehicleOff",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "KillSelf",
+          "canBeHandledOnRecover": true,
+          "killSelfType": "Normal",
+          "configIdArray": [
+            45003201
+          ],
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "FallOnGround"
+          ],
+          "enable": true,
+          "valueSteps": [
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_ABILITY_Vehicle_MothSpirit_FallLand",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "CurLocalAvatarMixinV2",
+          "modifierName": "Moth_OnVechileHandler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "ClearActiveData": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 ClearActiveData onAdded",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "GV_Active_QuickMove_HookTarget",
+                "IIIMMGPIIKD": "Team"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ReleaseQuickMoveInteract",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "dstTarget": "Team",
+              "srcKey": "GV_Active_QuickMove_HookTarget_0",
+              "dstKey": "GV_Last_QuickMove_HookTarget_0",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "dstTarget": "Team",
+              "srcKey": "GV_Active_QuickMove_HookTarget_1",
+              "dstKey": "GV_Last_QuickMove_HookTarget_1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】 ClearActiveData 清理交互目标",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ClearGlobalValue",
+                  "key": "GV_Active_QuickMove_HookTarget_0",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ClearGlobalValue",
+                  "key": "GV_Active_QuickMove_HookTarget_1",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_QuickMove_DoNotClear_ActiveHookTarget_WhenOutVechile",
+                  "target": "Team",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】 ClearActiveData 不清理交互目标",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "SetGlobalValueV2",
+                  "key": "GV_QuickMove_DoNotClear_ActiveHookTarget_WhenOutVechile",
+                  "canBeHandledOnRecover": true,
+                  "target": "Team",
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "FallOnGround": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "GV_Vehicle_Moth_InfiniteMode",
+                  "compareType": "NoneOrEqual",
+                  "target": "Team"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  Vehicle_MothSpirit_Sprint_OnGroundCheck 落地下载具",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "TriggerAbility",
+                  "canBeHandledOnRecover": true,
+                  "target": "Other",
+                  "doOffStage": false,
+                  "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_KillSelf": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": "6.5测试 【蛾子】Moth_KillSelf 自杀 -- 好的 我死了",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MothHooking",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_Is_In_MothVehicle",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "KillSelf",
+              "canBeHandledOnRecover": true,
+              "killSelfType": "Normal",
+              "configIdArray": [
+                45003201
+              ],
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Moth_OnVechileHandler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionOnVehicleInteractPostMixin",
+              "onReconnect": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": "6.5测试 【蛾子】 Moth_OnVechileHandler 蛾子自己监听 客户端成功下蛾子载具 自杀",
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "Applier",
+                  "doOffStage": false,
+                  "modifierName": "Moth_KillSelf",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "ReleaseQuickMoveInteract": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  ReleaseQuickMoveInteract",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_BanQuickMoveInteract",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onKill": [
+        {
+          "$type": "DebugLog",
+          "canBeHandledOnRecover": true,
+          "content": " 【蛾子】  onKill",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "SetGlobalValueV2",
+          "key": "GV_MothHooking",
+          "canBeHandledOnRecover": true,
+          "target": "Team",
+          "doOffStage": false,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "ApplyModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "ClearActiveData",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "modifiers": {
+        "ClearActiveData": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】 ClearActiveData onAdded",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "otherTargets": {
+                "$type": "PBAGJILDBFN",
+                "targetKey": "GV_Active_QuickMove_HookTarget",
+                "IIIMMGPIIKD": "Team"
+              },
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ReleaseQuickMoveInteract",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "dstTarget": "Team",
+              "srcKey": "GV_Active_QuickMove_HookTarget_0",
+              "dstKey": "GV_Last_QuickMove_HookTarget_0",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "CopyGlobalValue",
+              "canBeHandledOnRecover": true,
+              "srcTarget": "Team",
+              "dstTarget": "Team",
+              "srcKey": "GV_Active_QuickMove_HookTarget_1",
+              "dstKey": "GV_Last_QuickMove_HookTarget_1",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearGlobalValue",
+              "key": "GV_Active_QuickMove_HookTarget_0",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ClearGlobalValue",
+              "key": "GV_Active_QuickMove_HookTarget_1",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "ReleaseQuickMoveInteract": {
+          "duration": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  ReleaseQuickMoveInteract",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_BanQuickMoveInteract",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_MothCurve_InCurvePredicate": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "LevelCurveMoveGVMixin",
+              "speed": "GV_MothCurve_In_Curve_Speed",
+              "tag": "MothCurve",
+              "EPKELMHBEIK": true,
+              "HGOABLCHLKJ": [
+                {
+                  "$type": "DebugLog",
+                  "canBeHandledOnRecover": true,
+                  "content": " 【蛾子】  UNIQUE_MothCurve_InCurvePredicate onCurveEnd",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "GV_Is_In_MothVehicle",
+                      "target": "Team",
+                      "value": 1
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "DebugLog",
+                      "canBeHandledOnRecover": true,
+                      "content": " 【蛾子】  UNIQUE_MothCurve_InCurvePredicate 出曲线 下载具",
+                      "doOffStage": false,
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "TriggerAbility",
+                      "canBeHandledOnRecover": true,
+                      "target": "Other",
+                      "doOffStage": false,
+                      "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "HMHIJHLLPBM": "GV_MothCurve_In_Curve",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifierToSelfGlobalValueMixin",
+              "modifierNameSteps": [
+                "UNIQUE_MothCurve_In_Curve"
+              ],
+              "valueSteps": [
+                0.5,
+                1.5
+              ],
+              "setEnable": true,
+              "removeAppliedModifier": true,
+              "globalValueKey": "GV_MothCurve_In_Curve",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_MothCurve_In_Curve": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_BanStamina",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail02",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetEffectFollowPath",
+              "canBeHandledOnRecover": true,
+              "effectPattern": "Eff_SceneObj_MothSpirit_01_Trail02",
+              "doOffStage": false,
+              "followPath": "Bone_Tail01_M",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_BanStamina",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_onReconnectCheck": {
+          "isUnique": true,
+          "onReconnect": [
+            {
+              "$type": "DebugLog",
+              "canBeHandledOnRecover": true,
+              "content": " 【蛾子】  onReconnect",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValueV2",
+              "key": "GV_MothHooking",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": false,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "ClearActiveData",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "TriggerAbility",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "doOffStage": false,
+              "abilityName": "Vehicle_MothSpirit_Sprint_OnGroundCheck",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "target": "CurLocalAvatar",
+          "doOffStage": false,
+          "modifierName": "UNIQUE_MothCurve_InCurvePredicate",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_onReconnectCheck",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Vehicle_MothSpirit_Sprint_OnCurveCheck"
+    }
+  }
+]

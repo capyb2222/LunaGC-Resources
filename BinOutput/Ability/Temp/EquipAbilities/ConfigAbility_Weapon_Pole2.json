@@ -1,0 +1,1248 @@
+[
+  {
+    "Default": {
+      "abilitySpecials": {
+        "MoonShockUPRatio": 0,
+        "MoonShockUPRatioExtra": 0,
+        "ShockUpRatio": 0
+      },
+      "modifiers": {
+        "UNIQUE_Pole_Ilmarinen_Driver": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactElectricDelta": "ShockUpRatio",
+            "Actor_ElemReactMoonShockDelta": "MoonShockUPRatio"
+          },
+          "thinkInterval": 1,
+          "isLimitedProperties": true,
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_MoonPhaseLevel",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Team",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Weapon_Pole_Ilmarinen_Buff_Extra",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "onThinkInterval": [
+            {
+              "$type": "AttachModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_MoonPhaseLevel",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Team",
+                  "value": 2
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Weapon_Pole_Ilmarinen_Buff_Extra",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_MoonPhaseLevel",
+                  "compareType": "LessAndEqual",
+                  "target": "Team",
+                  "value": 1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Weapon_Pole_Ilmarinen_Buff_Extra",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "DoActionByTeamStatusMixin",
+              "waitTime": 20,
+              "waitForBigteam": true,
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_MoonPhaseLevel",
+                      "compareType": "MoreThanAndEqual",
+                      "target": "Team",
+                      "value": 2
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Weapon_Pole_Ilmarinen_Buff_Extra",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "RemoveModifier",
+                  "predicates": [
+                    {
+                      "$type": "ByTargetGlobalValue",
+                      "key": "SGV_MoonPhaseLevel",
+                      "compareType": "LessAndEqual",
+                      "target": "Team",
+                      "value": 1
+                    }
+                  ],
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Weapon_Pole_Ilmarinen_Buff_Extra",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Weapon_Pole_Ilmarinen_Buff_Extra": {
+          "properties": {
+            "Actor_ElemReactMoonShockDelta": "MoonShockUPRatioExtra"
+          },
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Pole_Ilmarinen_Driver",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Weapon_Pole_Ilmarinen"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "CDTime": 0,
+        "CritHurt": 0,
+        "Energy": 0,
+        "ShockRatio": 0,
+        "Timer1": 0,
+        "Timer2": 0
+      },
+      "abilityMixins": [
+        {
+          "$type": "OnAvatarUseSkillMixin",
+          "onTriggerUltimateSkill": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Pole_TummaLyhty_MoonShockBuff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "clearSkillIdDelay": 0.20000000298023224,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "UNIQUE_Pole_TummaLyhty_CritHurt": {
+          "isUnique": true,
+          "properties": {
+            "Actor_CriticalHurtDelta": "CritHurt"
+          },
+          "duration": "Timer2",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Pole_TummaLyhty_MoonShockBuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_ElemReactMoonShockDelta": "ShockRatio"
+          },
+          "duration": "Timer1",
+          "buffID": 10001,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Pole_TummaLyhty_ReviveEnergy": {
+          "isUnique": true,
+          "duration": "CDTime",
+          "onAdded": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "value": "Energy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Weapon_Pole_TummaLyhty_Handler": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Pole_TummaLyhty_CritHurt",
+                  "actorIceSubHurtDelta": -1
+                },
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Pole_TummaLyhty_ReviveEnergy",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 40,
+              "reactionTypes": [
+                "MoonShock"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Weapon_Pole_TummaLyhty_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Weapon_Pole_TummaLyhty"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "Attack": 0,
+        "Charge": 0,
+        "Dura": 0,
+        "Stack": 0
+      },
+      "modifiers": {
+        "Weapon_Pole_Krivule_Buff": {
+          "stackingOption": {
+            "maxModifierNumForMultipleType": "Stack"
+          },
+          "properties": {
+            "Actor_AttackRatio": "Attack",
+            "Actor_ChargeEfficiencyDelta": "Charge"
+          },
+          "duration": "Dura",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1,
+          "stacking": "MultipleAllRefresh"
+        },
+        "Weapon_Pole_Krivule_Handler": {
+          "onAttackLanded": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Target",
+              "targetPredicates": [
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Elemental_Art",
+                    "Elemental_Art_Hold",
+                    "Elemental_Art_Extra"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Weapon_Pole_Krivule_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Weapon_Pole_Krivule_Handler",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Weapon_Pole_Krivule"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ArtBurstRatio": 0,
+        "BuffDuration_Base": 0,
+        "BuffDuration_Start": 0,
+        "BuffRatio": 1,
+        "HandlerCD": 0,
+        "HandlerDuration": 0,
+        "HexenzirkelExtraRatio": 0,
+        "NormalExtraRatio": 0
+      },
+      "modifiers": {
+        "Pole_Carbine_Checker": {
+          "thinkInterval": 10,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "RemoveModifier",
+                  "otherTargets": {
+                    "$type": "SelectTargetsByEquipParts",
+                    "partNames": [
+                      "equip01",
+                      "equip02",
+                      "sheathPoint"
+                    ]
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Pole_Carbine_Eff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_HexenzirkelLevel",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Team",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "otherTargets": {
+                    "$type": "SelectTargetsByEquipParts",
+                    "partNames": [
+                      "equip01",
+                      "equip02",
+                      "sheathPoint"
+                    ]
+                  },
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Pole_Carbine_Eff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "DoActionByTeamStatusMixin",
+              "waitTime": 20,
+              "waitForBigteam": true,
+              "actions": [
+                {
+                  "$type": "TriggerThinkInterval",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Pole_Carbine_Delay": {
+          "onRemoved": [
+            {
+              "$type": "AttachModifierToParent",
+              "ECDHKBDCCPP": true,
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Pole_Carbine_Checker",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": 0.10000000149011612,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Pole_Carbine_Eff": {
+          "onAdded": [
+            {
+              "$type": "AttachEffect",
+              "canBeHandledOnRecover": true,
+              "effectTempleteID": -1,
+              "effectPattern": "Eff_Weapon_Pole_Carbine",
+              "scale": 1,
+              "doOffStage": false,
+              "born": {
+                "direction": {
+                  "maxAngle": 180
+                },
+                "EALBHHJEFGH": {
+                  "BKAPGJCLCIO": 180
+                },
+                "value": 10,
+                "onGroundRaycastUpDist": 2
+              },
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff": {
+          "isUnique": true,
+          "duration": "BuffDuration_Base",
+          "minus_one": -1,
+          "elementDurability": "BuffDuration_Base",
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": [
+                "ArtBurstRatio",
+                "BuffRatio",
+                "MUL"
+              ],
+              "attackTags": [
+                "Elemental_Art",
+                "Elemental_Art_Extra",
+                "Elemental_Art_Hold",
+                "Elemental_Burst"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Weapon_Pole_Carbine_CD": {
+          "isUnique": true,
+          "duration": "HandlerCD",
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Weapon_Pole_Carbine_Handler": {
+          "isUnique": true,
+          "onRemoved": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "duration": "HandlerDuration",
+          "onAvatarOut": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onHittingOther": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "Elemental_Art",
+                    "Elemental_Art_Extra",
+                    "Elemental_Art_Hold",
+                    "Elemental_Burst"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Weapon_Pole_Carbine_NormalExtra_Buff_ProlongHandler",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "Other",
+              "targetPredicates": [
+                {
+                  "$type": "ByAttackTags",
+                  "target": "Target",
+                  "attackTags": [
+                    "NormalAttack_01",
+                    "NormalAttack_02",
+                    "NormalAttack_03",
+                    "NormalAttack_04",
+                    "NormalAttack_05",
+                    "NormalAttack_06",
+                    "ExtraAttack"
+                  ]
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_ANIMAL_ENTITY_TYPE",
+                  "compareType": "NoneOrEqual",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByEntityTypes",
+                  "value": -1,
+                  "target": "Target",
+                  "entityTypes": [
+                    "Monster"
+                  ]
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "Weapon_Pole_Carbine_ArtBurst_Buff_ProlongHandler",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onKill": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_Handler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 99,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff",
+              "value": [
+                "BuffDuration_Start",
+                "BuffDuration_Base",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "AddElementDurability",
+              "canBeHandledOnRecover": true,
+              "useLimitRange": true,
+              "maxValue": 99,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff",
+              "value": [
+                "BuffDuration_Start",
+                "BuffDuration_Base",
+                "SUB"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff": {
+          "isUnique": true,
+          "duration": "BuffDuration_Base",
+          "minus_one": -1,
+          "elementDurability": "BuffDuration_Base",
+          "isLimitedProperties": true,
+          "state": "AttackUp",
+          "modifierMixins": [
+            {
+              "$type": "ModifyDamageMixin",
+              "damagePercentageRatio": [
+                "NormalExtraRatio",
+                "BuffRatio",
+                "MUL"
+              ],
+              "attackTags": [
+                "NormalAttack_01",
+                "NormalAttack_02",
+                "NormalAttack_03",
+                "NormalAttack_04",
+                "NormalAttack_05",
+                "NormalAttack_06",
+                "ExtraAttack"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Weapon_Pole_Carbine_ArtBurst_Buff_ProlongHandler": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": 0.10000000149011612,
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddElementDurability",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 99,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Weapon_Pole_Carbine_ArtBurst_Buff",
+                  "value": "BuffDuration_Base",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Weapon_Pole_Carbine_ArtBurst_Buff_ProlongHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "Weapon_Pole_Carbine_Driver": {
+          "thinkInterval": 2,
+          "onAdded": [
+            {
+              "$type": "TriggerThinkInterval",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "SetOverrideMapValue",
+                  "canBeHandledOnRecover": true,
+                  "overrideMapKey": "BuffRatio",
+                  "doOffStage": true,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "SGV_HexenzirkelLevel",
+                  "compareType": "MoreThanAndEqual",
+                  "target": "Team",
+                  "value": 2
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetOverrideMapValue",
+                  "canBeHandledOnRecover": true,
+                  "overrideMapKey": "BuffRatio",
+                  "doOffStage": true,
+                  "value": [
+                    1,
+                    "HexenzirkelExtraRatio",
+                    "ADD"
+                  ],
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "OnAvatarUseSkillMixin",
+              "onTriggerSkill": [
+                {
+                  "$type": "Predicated",
+                  "canBeHandledOnRecover": true,
+                  "targetPredicates": [
+                    {
+                      "$type": "ByNot",
+                      "predicates": [
+                        {
+                          "$type": "ByHasModifier",
+                          "target": "Target",
+                          "modifierName": "UNIQUE_Weapon_Pole_Carbine_CD"
+                        }
+                      ],
+                      "target": "Target"
+                    }
+                  ],
+                  "successActions": [
+                    {
+                      "$type": "RemoveUniqueModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Weapon_Pole_Carbine_Handler",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "AttachModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Weapon_Pole_Carbine_Handler",
+                      "actorIceSubHurtDelta": -1
+                    },
+                    {
+                      "$type": "AttachModifier",
+                      "canBeHandledOnRecover": true,
+                      "doOffStage": true,
+                      "modifierName": "UNIQUE_Weapon_Pole_Carbine_CD",
+                      "actorIceSubHurtDelta": -1
+                    }
+                  ],
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "clearSkillIdDelay": 0.20000000298023224,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByTeamStatusMixin",
+              "waitTime": 20,
+              "waitForBigteam": true,
+              "actions": [
+                {
+                  "$type": "TriggerThinkInterval",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "Weapon_Pole_Carbine_NormalExtra_Buff_ProlongHandler": {
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": 0.10000000149011612,
+          "thinkInterval": 0.10000000149011612,
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Target",
+                  "modifierName": "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "AddElementDurability",
+                  "canBeHandledOnRecover": true,
+                  "useLimitRange": true,
+                  "maxValue": 99,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Weapon_Pole_Carbine_NormalExtra_Buff",
+                  "value": "BuffDuration_Base",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "RemoveModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "Weapon_Pole_Carbine_NormalExtra_Buff_ProlongHandler",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "Pole_Carbine_Delay",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "Weapon_Pole_Carbine_Driver",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Weapon_Pole_Carbine"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ATKRatio": 0,
+        "CDTime": 0,
+        "Duration": 0,
+        "Energy": 0
+      },
+      "modifiers": {
+        "UNIQUE_Pole_FaesCrystalle_ATKBuff": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "ATKRatio"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "state": "AttackUp",
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Pole_FaesCrystalle_CD": {
+          "isUnique": true,
+          "duration": "CDTime",
+          "onAdded": [
+            {
+              "$type": "AttachModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": false,
+              "modifierName": "UNIQUE_Pole_FaesCrystalle_ATKBuff",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "ApplyModifier",
+              "predicates": [
+                {
+                  "$type": "ByTargetType",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetPositionToSelfPosition",
+                  "logic": "LesserOrEqual",
+                  "target": "Target",
+                  "value": 40
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "AllPlayerAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Pole_FaesCrystalle_TeamEnergy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Pole_FaesCrystalle_Driver": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "KMNEDAKBCBJ": true,
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": false,
+                  "modifierName": "UNIQUE_Pole_FaesCrystalle_CD",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 40,
+              "reactionTypes": [
+                "Melt",
+                "Freeze",
+                "FrozenBroken",
+                "Superconductor",
+                "SwirlIce",
+                "SwirlWater",
+                "CrystallizeIce",
+                "CrystallizeWater",
+                "Stream",
+                "Shock",
+                "Overgrow",
+                "MoonShock",
+                "MoonOvergrow",
+                "MoonCrystallizeWater",
+                "StarSuperconductor",
+                "StarSwirlIce",
+                "StarSwirlWind"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Pole_FaesCrystalle_TeamEnergy": {
+          "isUnique": true,
+          "duration": 0.30000001192092896,
+          "onAdded": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": "Energy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": false,
+          "modifierName": "UNIQUE_Pole_FaesCrystalle_Driver",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Weapon_Pole_FaesCrystalle"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "ATKRatio": 0,
+        "CDTime": 0,
+        "Duration": 0,
+        "Energy": 0
+      },
+      "modifiers": {
+        "UNIQUE_Pole_GlintstonePolearm_Buff1": {
+          "isUnique": true,
+          "duration": "CDTime",
+          "onAdded": [
+            {
+              "$type": "ReviveElemEnergy",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "value": "Energy",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        },
+        "UNIQUE_Pole_GlintstonePolearm_Buff2": {
+          "isUnique": true,
+          "properties": {
+            "Actor_AttackRatio": "ATKRatio"
+          },
+          "duration": "Duration",
+          "isLimitedProperties": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Pole_GlintstonePolearm_Driver": {
+          "isUnique": true,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "modifierMixins": [
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "KMNEDAKBCBJ": true,
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Pole_GlintstonePolearm_Buff1",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "Explode",
+                "Stream",
+                "Burning",
+                "Melt",
+                "Freeze",
+                "FrozenBroken",
+                "Shock",
+                "Superconductor",
+                "SwirlFire",
+                "SwirlWater",
+                "SwirlElectric",
+                "SwirlIce",
+                "CrystallizeFire",
+                "CrystallizeWater",
+                "CrystallizeElectric",
+                "CrystallizeIce",
+                "Overdose",
+                "OverdoseElectric",
+                "OverdoseGrass",
+                "Overgrow",
+                "OvergrowMushroomFire",
+                "OvergrowMushroomElectric",
+                "MoonShock",
+                "MoonOvergrow",
+                "MoonCrystallizeWater",
+                "StarSuperconductor",
+                "StarSwirlIce",
+                "StarSwirlWind"
+              ],
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "DoActionByElementReactionMixin",
+              "KMNEDAKBCBJ": true,
+              "entityTypes": [
+                "Monster"
+              ],
+              "actions": [
+                {
+                  "$type": "AttachModifier",
+                  "canBeHandledOnRecover": true,
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Pole_GlintstonePolearm_Buff2",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "range": 20,
+              "reactionTypes": [
+                "StarSuperconductor",
+                "StarSwirlIce",
+                "StarSwirlWind"
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "AttachModifier",
+          "canBeHandledOnRecover": true,
+          "doOffStage": true,
+          "modifierName": "UNIQUE_Pole_GlintstonePolearm_Driver",
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Weapon_Pole_GlintstonePolearm"
+    }
+  }
+]
