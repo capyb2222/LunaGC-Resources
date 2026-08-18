@@ -2272,5 +2272,445 @@
       ],
       "isDynamicAbility": true
     }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "PreloadAbilityMixin",
+          "abilities": [
+            "ElementAbility_MoonShock"
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Avatar_NewElementReaction_Preload_MoonShock"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "PreloadAbilityMixin",
+          "abilities": [
+            "ElementAbility_MoonOvergrow"
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Avatar_NewElementReaction_Preload_MoonOvergrow"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "PreloadAbilityMixin",
+          "abilities": [
+            "ElementAbility_MoonCrystallize_Water"
+          ],
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "abilityName": "Avatar_NewElementReaction_Preload_MoonCrystallize_Water"
+    }
+  },
+  {
+    "Default": {
+      "abilitySpecials": {
+        "minus_one": -1,
+        "elementDurability": 100,
+        "isLimitedProperties": true,
+        "NLBKJKDNFFP": -1
+      },
+      "abilityMixins": [
+        {
+          "$type": "StarSuperconductorCheckFieldMixin",
+          "PCLFDOJEDKF": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Avatar_StarSuperconductor_Field_Out",
+            "Avatar_StarSuperconductor_Field_In"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        },
+        {
+          "$type": "AttachModifierToGlobalValueMixin",
+          "modifierNameSteps": [
+            "Blank",
+            "UNIQUE_Avatar_StarSuperconductor_ScreenEffect"
+          ],
+          "enable": true,
+          "valueSteps": [
+            -0.5,
+            0.5,
+            1.5
+          ],
+          "setEnable": true,
+          "removeAppliedModifier": true,
+          "globalValueKey": "_IS_IN_STARMODE",
+          "PGNFKDOAEMM": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "modifiers": {
+        "Avatar_StarSuperconductor_Field_In": {
+          "onAdded": [
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Avatar_StarSuperconductor_StarMode_Timer",
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+                  "target": "Target",
+                  "value": 1
+                },
+                {
+                  "$type": "ByTargetInArea",
+                  "areas": [
+                    8
+                  ],
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByCurrentSceneTypes",
+                  "target": "Target",
+                  "SceneTypes": [
+                    "SCENE_WORLD",
+                    "SCENE_ROOM"
+                  ]
+                },
+                {
+                  "$type": "ByHasModifier",
+                  "target": "Team",
+                  "modifierName": "TeamAbility_StarSuperconductor_Ice_Creature_Push_Unlock"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "DoWatcherSystemAction",
+                  "enable": true,
+                  "canBeHandledOnRecover": true,
+                  "watcherId": 1057,
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Avatar_StarSuperconductor_Field_Out": {
+          "onReconnect": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "onAdded": [
+            {
+              "$type": "Predicated",
+              "failActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Avatar_StarSuperconductor_StarMode_Timer",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "canBeHandledOnRecover": true,
+              "target": "CurLocalAvatar",
+              "targetPredicates": [
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+                  "target": "Target",
+                  "value": 1
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "SetGlobalValue",
+                  "key": "_IS_IN_STARMODE",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": true,
+                  "value": 1,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "Blank": {
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "NLBKJKDNFFP": -1
+        },
+        "UNIQUE_Avatar_StarSuperconductor_ScreenEffect": {
+          "isUnique": true,
+          "thinkInterval": 0.5,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByIsLocalAvatar",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Avatar_StarSuperconductor_StarMode_Timer",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "modifierMixins": [
+            {
+              "$type": "AttachActionToModifierMixin",
+              "onRemoved": [
+                {
+                  "$type": "CameraScreenEffect",
+                  "muteRemoteAction": true,
+                  "canBeHandledOnRecover": true,
+                  "useCurve": true,
+                  "effectName": "Eff_Element_StarSuperconductor_ScreenEffect",
+                  "doOffStage": true,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "onAdded": [
+                {
+                  "$type": "CameraScreenEffect",
+                  "muteRemoteAction": true,
+                  "enable": true,
+                  "canBeHandledOnRecover": true,
+                  "useCurve": true,
+                  "effectName": "Eff_Element_StarSuperconductor_ScreenEffect",
+                  "doOffStage": false,
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "onAvatarIn": [
+            {
+              "$type": "Predicated",
+              "canBeHandledOnRecover": true,
+              "targetPredicates": [
+                {
+                  "$type": "ByIsLocalAvatar",
+                  "target": "Target"
+                },
+                {
+                  "$type": "ByTargetGlobalValue",
+                  "key": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+                  "target": "Target"
+                }
+              ],
+              "successActions": [
+                {
+                  "$type": "ApplyModifier",
+                  "canBeHandledOnRecover": true,
+                  "target": "CurTeamAvatars",
+                  "doOffStage": true,
+                  "modifierName": "UNIQUE_Avatar_StarSuperconductor_StarMode_Timer",
+                  "actorIceSubHurtDelta": -1
+                }
+              ],
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "stacking": "Unique"
+        },
+        "UNIQUE_Avatar_StarSuperconductor_StarMode_Timer": {
+          "isUnique": true,
+          "onThinkIntervalIsFixedUpdate": true,
+          "duration": 2.5,
+          "thinkInterval": 2,
+          "minus_one": -1,
+          "elementDurability": 100,
+          "isLimitedProperties": true,
+          "onThinkInterval": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "RemoveUniqueModifier",
+              "canBeHandledOnRecover": true,
+              "doOffStage": true,
+              "modifierName": "UNIQUE_Avatar_StarSuperconductor_StarMode_Timer",
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "NLBKJKDNFFP": -1,
+          "stacking": "Unique"
+        }
+      },
+      "onAdded": [
+        {
+          "$type": "Predicated",
+          "failActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "CurTeamAvatars",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            },
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "Team",
+              "doOffStage": true,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "canBeHandledOnRecover": true,
+          "targetPredicates": [
+            {
+              "$type": "ByTargetGlobalValue",
+              "key": "_IS_IN_STARSUPERCONDUCTOR_FIELD",
+              "target": "CurLocalAvatar",
+              "value": 1
+            }
+          ],
+          "successActions": [
+            {
+              "$type": "SetGlobalValue",
+              "key": "_IS_IN_STARMODE",
+              "canBeHandledOnRecover": true,
+              "target": "Caster",
+              "doOffStage": true,
+              "value": 1,
+              "actorIceSubHurtDelta": -1
+            }
+          ],
+          "doOffStage": true,
+          "actorIceSubHurtDelta": -1
+        }
+      ],
+      "isDynamicAbility": true,
+      "abilityName": "Avatar_StarSuperconductor_Field_Checker"
+    }
   }
 ]
