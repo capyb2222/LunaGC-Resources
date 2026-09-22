@@ -1,6 +1,6 @@
-# 7.0 resources!
+# 7.1 resources!
 
-# This is enough to get you in-game. Resources is not complete, so many things WILL break. Ima stop updating for now, will update next version tho.
+# This is enough to get you in-game. Resources is not complete, so many things WILL break.
 
 
 # Credits:
